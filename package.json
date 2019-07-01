@@ -4,9 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run storybook",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build:component": "webpack --config webpack.config.js",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "build:component": "webpack --config webpack.config.js",
+    "build:storybook": "rimraf build && build-storybook -c .storybook -o build",
+    "deploy:ghpages": "rimraf build && npm run build:storybook && gh-pages -d build",
+    "publish:public": "npm run build:component && rm ./dist/package.json || true && cp package.json ./dist/package.json && rm ./dist/README.md || true && cp README.md ./dist/README.md || true && npm publish dist --access public",
+    "publish:dry:run": "npm publish --dry-run"
   },
   "author": "",
   "license": "ISC",
@@ -14,12 +21,13 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@storybook/addon-a11y": "^5.0.8",
-    "@storybook/addon-knobs": "^5.0.8",
-    "@storybook/addon-viewport": "^5.0.8",
     "@storybook/addon-actions": "^5.1.9",
+    "@storybook/addon-knobs": "^5.0.8",
     "@storybook/addon-links": "^5.1.9",
+    "@storybook/addon-viewport": "^5.0.8",
     "@storybook/addons": "^5.1.9",
     "@storybook/react": "^5.1.9",
-    "babel-loader": "^8.0.6"
+    "babel-loader": "^8.0.6",
+    "gh-pages": "^2.0.1"
   }
 }
