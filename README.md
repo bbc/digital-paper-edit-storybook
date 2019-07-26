@@ -56,7 +56,7 @@ npm install @bbc/react-transcript-editor
 
 - uses [`storybook`](https://storybook.js.org) with the setup as [explained in their docs](https://storybook.js.org/docs/guides/guide-react/) to develop this React.
 <!-- - This uses [CSS Modules](https://github.com/css-modules/css-modules) to contain the scope of the css for this component. -->
-- [`.storybook/webpack.config.js](./.storybook/webpack.config.js) enanches the storybook webpack config to add support for css modules.
+- [.storybook/webpack.config.js](./.storybook/webpack.config.js) enanches the storybook webpack config to add support for css modules.
 <!-- - The parts of the component are inside [`./packages`](./packages) -->
 <!-- - [babel.config.js](./babel.config.js) provides root level system config for [babel 7](https://babeljs.io/docs/en/next/config-files#project-wide-configuration). -->
 
