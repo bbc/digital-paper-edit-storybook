@@ -1,5 +1,8 @@
 
 ## Digital Paper Edit - React Components 
+
+---> _Work in progress_ <--
+
 <!-- _One liner + link to confluence page_
 _Screenshot of UI - optional_ -->
 This repository uses [storybook](https://storybook.js.org) to gather the components of the React front end.
