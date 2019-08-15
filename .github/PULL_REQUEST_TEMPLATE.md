@@ -1,4 +1,5 @@
-**Is your Pull Request request related to another [issue](https://github.com/bbc/react-transcript-editor/issues) in this repository ?**      
+**Is your Pull Request request related to another [issue](https://github.com/bbc/digital-paper-edit-storybook/issues) in this repository ?**      
+
 <!-- _If so please link to other issues and PRs as appropriate_ -->
 
 **Describe what the PR does**    
