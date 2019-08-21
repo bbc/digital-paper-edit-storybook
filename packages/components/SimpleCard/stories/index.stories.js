@@ -3,6 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
+import { withState } from '@dump247/storybook-state';
 import SimpleCard from '../index.js';
 
 export const item = {

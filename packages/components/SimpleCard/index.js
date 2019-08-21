@@ -31,14 +31,12 @@ class SimpleCard extends Component {
     handleEdit = () => {
         this.props.handleEdit(this.props.id);
     }
+
     showLinkPath = () => {
-        // return this.props.showLinkPath(this.props.id);
-        return '/'
+        return this.props.showLinkPath(this.props.id) ? this.props.showLinkPath(this.props.id) : '/';
     }
 
     render() {
-
-        console.log(this.showLinkPath());
 
         return (
             <Card style={{ width: '100%', marginBottom: '1em' }}>
