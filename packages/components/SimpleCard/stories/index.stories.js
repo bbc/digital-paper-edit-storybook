@@ -2,7 +2,7 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import 'bootstrap-css-only/css/bootstrap.css';
+import StoryRouter from 'storybook-react-router';
 import SimpleCard from '../index.js';
 
 export const item = {
@@ -19,16 +19,19 @@ export const actions = {
 };
 
 storiesOf('Simple Card', module)
+    .addDecorator(StoryRouter())
     .add('default', () => {
         return (
-            <SimpleCard
-                key={item.key}
-                id={item.id}
-                title={item.title}
-                description={item.description}
-                handleEdit={actions.handleEdit}
-                handleDelete={actions.handleDelete}
-                showLinkPath={actions.showLinkPath}
-            />
+            <section style={{ height: '75vh', overflow: 'scroll' }}>
+                <SimpleCard
+                    key={item.key}
+                    id={item.id}
+                    title={item.title}
+                    description={item.description}
+                    handleEdit={actions.handleEdit}
+                    handleDelete={actions.handleDelete}
+                    showLinkPath={actions.showLinkPath}
+                />
+            </section>
         )
     })

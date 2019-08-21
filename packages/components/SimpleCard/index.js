@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Link } from 'react';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-// import { LinkContainer } from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faTrash,
     faPen
 } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap-css-only/css/bootstrap.css';
 
 class SimpleCard extends Component {
 
@@ -31,25 +32,28 @@ class SimpleCard extends Component {
         this.props.handleEdit(this.props.id);
     }
     showLinkPath = () => {
-        return this.props.showLinkPath(this.props.id);
+        // return this.props.showLinkPath(this.props.id);
+        return '/'
     }
 
     render() {
+
+        console.log(this.showLinkPath());
 
         return (
             <Card style={{ width: '100%', marginBottom: '1em' }}>
                 <Card.Body>
                     <Row>
-                        <Container to='/' style={{ cursor: 'pointer' }} >
-                            <Col xs={8} sm={10} md={10} ld={10} xl={10}>
+                        <LinkContainer to={this.showLinkPath()} style={{ cursor: 'pointer' }} >
+                            <Col xs={8} sm={10} md={10} lg={10} xl={10}>
                                 <Card.Title>
                                     <a href='/' >
                                         {this.props.title}
                                     </a>
                                 </Card.Title>
                             </Col>
-                        </Container>
-                        <Col xs={2} sm={1} md={1} ld={1} xl={1}>
+                        </LinkContainer>
+                        <Col xs={2} sm={1} md={1} lg={1} xl={1}>
                             <Card.Link>
                                 <Button
                                     onClick={this.handleEdit}
@@ -60,7 +64,7 @@ class SimpleCard extends Component {
                                 </Button>
                             </Card.Link>
                         </Col>
-                        <Col xs={2} sm={1} md={1} ld={1} xl={1}>
+                        <Col xs={2} sm={1} md={1} lg={1} xl={1}>
                             <Card.Link>
                                 <Button
                                     onClick={this.handleDelete}
@@ -72,15 +76,15 @@ class SimpleCard extends Component {
                             </Card.Link>
                         </Col>
                     </Row>
-                    <Container to='/' style={{ cursor: 'pointer' }} >
+                    <LinkContainer to={this.showLinkPath()} style={{ cursor: 'pointer' }} >
                         <Row>
-                            <Col xs={10} sm={11} md={11} ld={11} xl={11}>
+                            <Col xs={10} sm={11} md={11} lg={11} xl={11}>
                                 <Card.Subtitle className="mb-2 text-muted">
                                     {this.props.description}
                                 </Card.Subtitle>
                             </Col>
                         </Row>
-                    </Container>
+                    </LinkContainer>
                 </Card.Body>
             </Card>
         );
