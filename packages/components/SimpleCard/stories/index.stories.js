@@ -3,14 +3,13 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
-import { withState } from '@dump247/storybook-state';
 import SimpleCard from '../index.js';
 
 export const item = {
     id: '1234',
     key: 'abc123',
     title: 'Sample Simple Card Title',
-    description: 'This is a sample card description. This is fun!'
+    description: 'This is a sample card description. This is fun!',
 };
 
 export const actions = {

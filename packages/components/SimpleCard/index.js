@@ -33,6 +33,7 @@ class SimpleCard extends Component {
     }
 
     showLinkPath = () => {
+        // Changed from original code because the function for this exists in a higer-level component
         return this.props.showLinkPath(this.props.id) ? this.props.showLinkPath(this.props.id) : '/';
     }
 
