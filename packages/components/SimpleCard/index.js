@@ -38,7 +38,7 @@ class SimpleCard extends Component {
     }
 
     render() {
-
+        console.log(this.props);
         return (
             <Card style={{ width: '100%', marginBottom: '1em' }}>
                 <Card.Body>
