@@ -19,7 +19,7 @@ class SimpleCard extends Component {
         const confirmationPrompt = confirm(confirmDeleteText);
         
         if (confirmationPrompt) {
-            this.props.handleDelete ? this.props.handleDelete(this.props.id) : alert(cancelDelteText);
+            this.props.handleDelete ? this.props.handleDelete(this.props.id) : alert(cancelDeleteText);
         }
     };
 
