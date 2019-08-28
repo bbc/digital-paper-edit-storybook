@@ -14,13 +14,13 @@ import 'bootstrap-css-only/css/bootstrap.css';
 
 class SimpleCard extends Component {
     handleDelete = () => {
-      const confirmDeleteText = "Click OK if you wish to delete or cancel if you don't";
-      const cancelDelteText = 'All is good, it was not deleted';
-      const confirmationPrompt = confirm(confirmDeleteText);
-
-      if (confirmationPrompt) {
-        this.props.handleDelete ? this.props.handleDelete(this.props.id) : alert(cancelDelteText);
-      }
+        const confirmDeleteText = "Click OK if you wish to delete or cancel if you don't";
+        const cancelDeleteText = "All is good, it was not deleted";
+        const confirmationPrompt = confirm(confirmDeleteText);
+        
+        if (confirmationPrompt) {
+            this.props.handleDelete ? this.props.handleDelete(this.props.id) : alert(cancelDeleteText);
+        }
     };
 
     handleEdit = () => {
