@@ -12,17 +12,11 @@ export const item = {
     description: 'This is a sample card description. This is fun!',
 };
 
-// export const actions = {
-//     handleEdit: action('handleEdit'),
-//     handleDelete: action('handleDelete'),
-//     showLinkPath: action('showLinkPath')
-// };
-
 const cardActions = actions({ handleEdit: 'Edit button clicked', handleDelete: 'Delete button clicked', showLinkPath: 'Card clicked' });
 
 storiesOf('Simple Card', module)
     .addDecorator(StoryRouter())
-    .add('default', () => {
+    .add('Default', () => {
         return (
             <section style={{ height: '75vh', overflow: 'scroll' }}>
                 <SimpleCard
