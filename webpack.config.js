@@ -6,22 +6,7 @@ module.exports = {
   mode: 'production',
   devtool: 'source-map',
   entry: {
-    index: './packages/index.js',
-    TranscriptEditor: './packages/components/transcript-editor/index.js',
-    TimedTextEditor: './packages/components/timed-text-editor/index.js',
-    MediaPlayer: './packages/components/media-player/index.js',
-    MediaPlayer: './packages/components/media-player/index.js',
-    ProgressBar: './packages/components/media-player/src/ProgressBar.js',
-    PlaybackRate: './packages/components/media-player/src/PlaybackRate.js',
-    PlayerControls: './packages/components/media-player/src/PlayerControls.js',
-    RollBack: './packages/components/media-player/src/RollBack.js',
-    Select: './packages/components/media-player/src/Select.js',
-    VideoPlayer: './packages/components/video-player/index.js',
-    Settings: './packages/components/settings/index.js',
-    KeyboardShortcuts: './packages/components/keyboard-shortcuts/index.js',
-    timecodeConverter: './packages/util/timecode-converter/index.js',
-    exportAdapter: './packages/export-adapters/index.js',
-    sttJsonAdapter: './packages/stt-adapters/index.js',
+    DPESimpleCard: './packages/components/SimpleCard/index.js'
   },
   output: {
     path: path.resolve('dist'),
