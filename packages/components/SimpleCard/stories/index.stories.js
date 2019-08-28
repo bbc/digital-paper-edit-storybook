@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { actions } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import SimpleCard from '../index.js';
 
@@ -12,11 +12,13 @@ export const item = {
     description: 'This is a sample card description. This is fun!',
 };
 
-export const actions = {
-    handleEdit: action('handleEdit'),
-    handleDelete: action('handleDelete'),
-    showLinkPath: action('showLinkPath')
-};
+// export const actions = {
+//     handleEdit: action('handleEdit'),
+//     handleDelete: action('handleDelete'),
+//     showLinkPath: action('showLinkPath')
+// };
+
+const cardActions = actions({ handleEdit: 'Edit button clicked', handleDelete: 'Delete button clicked', showLinkPath: 'Card clicked' });
 
 storiesOf('Simple Card', module)
     .addDecorator(StoryRouter())
@@ -28,9 +30,7 @@ storiesOf('Simple Card', module)
                     id={item.id}
                     title={item.title}
                     description={item.description}
-                    handleEdit={actions.handleEdit}
-                    handleDelete={actions.handleDelete}
-                    showLinkPath={actions.showLinkPath}
+                    {...cardActions}
                 />
             </section>
         )
