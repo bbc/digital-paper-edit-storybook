@@ -2,6 +2,7 @@
 ## Digital Paper Edit - React Components 
 
 ---> _Work in progress_ <--
+**! What is published in the Storybook may be different to what is being actively used in Digital-Paper-Edit-Client, as the components are currently being migrated. !**
 
 <!-- _One liner + link to confluence page_
 _Screenshot of UI - optional_ -->
