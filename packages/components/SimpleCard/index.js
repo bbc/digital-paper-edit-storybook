@@ -32,26 +32,26 @@ class SimpleCard extends Component {
         this.props.handleEdit(this.props.id);
     }
 
-    showLinkPath = () => {
-        // Changed from original code because the function for this exists in a higer-level component
-        return this.props.showLinkPath(this.props.id) ? this.props.showLinkPath(this.props.id) : '/';
+    showLink= (id) => {
+        console.log(id);
+        this.props.showLink(id);
     }
-
+    
     render() {
         console.log(this.props);
         return (
             <Card style={{ width: '100%', marginBottom: '1em' }}>
                 <Card.Body>
                     <Row>
-                        <LinkContainer to={this.showLinkPath()} style={{ cursor: 'pointer' }} >
+                        <LinkContainer to={this.props.showLink(this.props.id) ? this.props.showLink(this.props.id) : `/${this.props.id}`} style={{ cursor: 'pointer' }} >
                             <Col xs={8} sm={10} md={10} lg={10} xl={10}>
+                                
                                 <Card.Title>
-                                    <a href='/' >
-                                        {this.props.title}
-                                    </a>
+                                     {this.props.title}
                                 </Card.Title>
+
                             </Col>
-                        </LinkContainer>
+                            </LinkContainer>
                         <Col xs={2} sm={1} md={1} lg={1} xl={1}>
                             <Card.Link>
                                 <Button
@@ -75,7 +75,6 @@ class SimpleCard extends Component {
                             </Card.Link>
                         </Col>
                     </Row>
-                    <LinkContainer to={this.showLinkPath()} style={{ cursor: 'pointer' }} >
                         <Row>
                             <Col xs={10} sm={11} md={11} lg={11} xl={11}>
                                 <Card.Subtitle className="mb-2 text-muted">
@@ -83,7 +82,6 @@ class SimpleCard extends Component {
                                 </Card.Subtitle>
                             </Col>
                         </Row>
-                    </LinkContainer>
                 </Card.Body>
             </Card>
         );

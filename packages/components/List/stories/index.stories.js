@@ -1,9 +1,10 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
+import { actions } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import List from '../index.js';
+import SearchBar from '../../SearchBar';
 
 export const items = [{
     id: '1234',
@@ -19,11 +20,7 @@ export const items = [{
     display: true,
 }];
 
-export const actions = {
-    handleEdit: action('handleEdit'),
-    handleDelete: action('handleDelete'),
-    showLinkPath: action('showLinkPath')
-};
+const listEventNames = actions('handleEdit', 'handleDelete', 'showLink', 'handleSearch');
 
 storiesOf('List', module)
     .addDecorator(StoryRouter())
@@ -31,9 +28,7 @@ storiesOf('List', module)
         return (
             <List
                 items={items}
-                handleEdit={actions.handleEdit}
-                handleDelete={actions.handleDelete}
-                showLinkPath={actions.showLinkPath}
+                {...listEventNames}
             />
         )
     });
