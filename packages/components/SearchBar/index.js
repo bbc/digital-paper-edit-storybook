@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,41 +7,48 @@ import {
     faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 
-class SearchBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showSearchInput: false
-        };
+const SearchBar = ({handleSearch}) => {
+
+    console.log('handle search', handleSearch);
+
+    const [showSearchInput, toggleShowInput] = useState(false);
+
+    const [searchValue, setSearchValue] = useState("");
+
+    const handleSearchInputChanges = (e) => {
+        setSearchValue(e.target.value);
     }
 
-    handleShowSearchBar = () => {
-        this.setState(state => {
-            return { showSearchInput: !state.showSearchInput };
-        });
+    const resetInputField = () => {
+        setSearchValue("")
     }
 
-    render() {
+    const callSearchFunction = (e) => {
+        e.preventDefault();
+        handleSearch(searchValue);
+        resetInputField();
+    }
 
         return (
             <InputGroup className="mb-3">
                 <InputGroup.Prepend
-                    onClick={this.handleShowSearchBar}
+                    onClick={() => toggleShowInput(!showSearchInput)}
                 >
                     <InputGroup.Text id="basic-addon2">
                         <FontAwesomeIcon icon={faSearch} />
                     </InputGroup.Text>
                 </InputGroup.Prepend>
                 <FormControl
-                    style={{ display: this.state.showSearchInput ? '' : 'none' }}
-                    onChange={this.handleSearch}
+                    style={{ display: showSearchInput ? '' : 'none' }}
+                    value={searchValue}
+                    onChange={handleSearchInputChanges}
                     placeholder="Search"
                     aria-label="search"
                     aria-describedby="search"
                 />
+                <input onClick={callSearchFunction} type="submit" value="Search" />
             </InputGroup>
         );
     }
-}
 
 export default SearchBar;
