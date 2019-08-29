@@ -6,41 +6,28 @@ import StoryRouter from 'storybook-react-router';
 import SimpleCard from '../index.js';
 
 export const item = {
-    id: '1234',
-    key: 'abc123',
-    title: 'Sample Simple Card Title',
-    description: 'This is a sample card description. This is fun!',
+  id: '1234',
+  key: 'abc123',
+  title: 'Sample Simple Card Title',
+  description: 'This is a sample card description. This is fun!',
+  url: '/projects/1/transcripts/'
 };
 
-const eventNames = actions('handleEdit', 'handleDelete', 'showLink');
-
-const eventsFromObject = actions({ handleEdit: 'edited', handleDelete: 'deleted', showLink: `/${item.id}` });
+export const cardActions = actions({ handleEdit: 'Edit button clicked', handleDelete: 'Delete button clicked', showLinkPath: 'Card clicked' });
 
 storiesOf('Simple Card', module)
-    .addDecorator(StoryRouter())
-    .add('default', () => {
-        return (
-            <section style={{ height: '75vh', overflow: 'scroll' }}>
-                <SimpleCard
-                    key={item.key}
-                    id={item.id}
-                    title={item.title}
-                    description={item.description}
-                    {...eventsFromObject}
-                />
-            </section>
-        )
-    })
-    // .add('test', () => {
-    //     return (
-    //         <section style={{ height: '75vh', overflow: 'scroll' }}>
-    //             <SimpleCard
-    //                 key={item.key}
-    //                 id={item.id}
-    //                 title={item.title}
-    //                 description={item.description}
-    //                 {...eventsFromObject}
-    //             />
-    //         </section>
-    //     )
-    // });
+  .addDecorator(StoryRouter())
+  .add('Default', () => {
+    return (
+      <section style={ { height: '75vh', overflow: 'scroll' } }>
+        <SimpleCard
+          key={ item.key }
+          id={ item.id }
+          title={ item.title }
+          description={ item.description }
+          url={ item.url }
+          { ...cardActions }
+        />
+      </section>
+    );
+  });
