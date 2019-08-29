@@ -9,25 +9,20 @@ import {
 
 const SearchBar = ({handleSearch}) => {
 
-    console.log('handle search', handleSearch);
-
     const [showSearchInput, toggleShowInput] = useState(false);
 
     const [searchValue, setSearchValue] = useState("");
 
     const handleSearchInputChanges = (e) => {
         setSearchValue(e.target.value);
+        handleSearch(searchValue);
     }
 
+    // Keep - perhaps add if we add keystrokes / enter to submit?
     const resetInputField = () => {
         setSearchValue("")
     }
 
-    const callSearchFunction = (e) => {
-        e.preventDefault();
-        handleSearch(searchValue);
-        resetInputField();
-    }
 
         return (
             <InputGroup className="mb-3">
@@ -46,7 +41,6 @@ const SearchBar = ({handleSearch}) => {
                     aria-label="search"
                     aria-describedby="search"
                 />
-                <input onClick={callSearchFunction} type="submit" value="Search" />
             </InputGroup>
         );
     }

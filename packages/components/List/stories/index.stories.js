@@ -5,6 +5,7 @@ import StoryRouter from 'storybook-react-router';
 import List from '../index.js';
 
 import { item, cardActions } from '../../SimpleCard/stories/index.stories.js';
+import { searchActions } from '../../SearchBar/stories/index.stories.js';
 
 export const items = [{
     ...item,
@@ -28,5 +29,6 @@ storiesOf('List', module)
             <List
                 items={items}
                 {...cardActions}
+                {...searchActions}
             />
         );

@@ -2,54 +2,40 @@ import React, { useState } from 'react';
 import SimpleCard from '../SimpleCard';
 import SearchBar from '../SearchBar';
 
-class List extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         showSearchInput: true
-    //     };
-    // }
-    // // const [showSearchInput, toggleShowSearch] = useState(true)
+const List = ({ items, handleSearch, handleEdit, handleDelete }) => {
 
-    // handleSearch = searchText => {
-    //     console.log('search text', searchText);
-    //     console.log('logging items', this.props.items);
-    //     const results = this.props.items.filter(project => {
-    //         console.log('project', project);
-    //         if (
-    //             includesText(project.title, searchText) ||
-    //             includesText(project.description, searchText)
-    //         ) {
-    //             project.display = true;
+    const includesText = (textOne, textTwo) => {
+        return textOne.toLowerCase().trim().includes(textTwo.toLowerCase().trim());
+    };
 
-    //             return project;
-    //         } else {
-    //             project.display = false;
+    const [list, handleUpdateList] = useState(items);
 
-    //             return project;
-    //         }
-    //     });
-    //     this.props.handleUpdateList(results);
-    // };
+    handleSearch = searchText => {
+        const results = items.filter(item => {
+            if (
+                includesText(item.title, searchText) ||
+                includesText(item.description, searchText)
+            ) {
+                item.display = true;
 
-    // handleShowSearchBar = () => {
-    //     this.setState(state => {
-    //         return { showSearchInput: !state.showSearchInput };
-    //     });
-    // }
+                return item;
+            } else {
+                item.display = false;
 
+                return item;
+            }
+        });
+        handleUpdateList(results);
+    };
 
-  render() {
+      let searchEl;
+      if (items !== null && items.length !== 0) {
+          searchEl = <SearchBar
+              handleSearch={handleSearch}
+          />;
+      }
 
-    //   let searchEl;
-    //   if (this.props.items !== null && this.props.items.length !== 0) {
-    //       searchEl = (<SearchBar
-    //           handleSearch={this.handleSearch}
-    //       />);
-    //   }
-
-
-    const listItems = this.props.items.map((item) => {
+    const listItems = list.map((item) => {
       if (item.display) {
         return ( 
         <SimpleCard
@@ -58,8 +44,8 @@ class List extends React.Component {
           title={ item.title }
           description={ item.description }
           url={ item.url }
-          handleEdit={ this.props.handleEdit }
-          handleDelete={ this.props.handleDelete }
+          handleEdit={ handleEdit }
+          handleDelete={ handleDelete }
         />
         )} return null;
     }).filter(item => {
@@ -68,12 +54,12 @@ class List extends React.Component {
 
     return (<>
       <section style={ { height: '75vh', overflow: 'scroll' } }>
+        {searchEl}
         {listItems}
       </section>
     </>
     );
   }
-}
 
 export default List;
 

@@ -13,7 +13,7 @@ export const item = {
   url: '/projects/1/transcripts/'
 };
 
-export const cardActions = actions({ handleEdit: 'Edit button clicked', handleDelete: 'Delete button clicked', showLinkPath: 'Card clicked' });
+export const cardActions = actions({ handleEdit: 'Edit button clicked', handleDelete: 'Delete button clicked' });
 
 storiesOf('Simple Card', module)
   .addDecorator(StoryRouter())
