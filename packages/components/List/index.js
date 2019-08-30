@@ -2,40 +2,32 @@ import React, { useState } from 'react';
 import SimpleCard from '../SimpleCard';
 import SearchBar from '../SearchBar';
 
-const List = ({ items, handleSearch, handleEdit, handleDelete }) => {
+const List = ({ projectItems, handleSearch, handleEdit, handleDelete }) => {
 
-    const includesText = (textOne, textTwo) => {
-        return textOne.toLowerCase().trim().includes(textTwo.toLowerCase().trim());
+    const includesText = (text, subsetText) => {
+        return text.toLowerCase().includes(subsetText.toLowerCase().trim());
     };
 
-    const [list, handleUpdateList] = useState(items);
+    const [items, setItems] = useState(projectItems);
+    
+    const handleDisplay = (item, searchText) => {
+        if (
+            includesText(item.title, searchText) ||
+            includesText(item.description, searchText)
+        ) {
+            item.display = true;
+        } else {
+            item.display = false;
+        }
+        return item;
+    };
 
     handleSearch = searchText => {
-        const results = items.filter(item => {
-            if (
-                includesText(item.title, searchText) ||
-                includesText(item.description, searchText)
-            ) {
-                item.display = true;
-
-                return item;
-            } else {
-                item.display = false;
-
-                return item;
-            }
-        });
-        handleUpdateList(results);
+        const results = items.filter(item => handleDisplay(item, searchText));
+        setItems(results);
     };
 
-      let searchEl;
-      if (items !== null && items.length !== 0) {
-          searchEl = <SearchBar
-              handleSearch={handleSearch}
-          />;
-      }
-
-    const listItems = list.map((item) => {
+    const listItems = items.map((item) => {
       if (item.display) {
         return ( 
         <SimpleCard
@@ -54,7 +46,7 @@ const List = ({ items, handleSearch, handleEdit, handleDelete }) => {
 
     return (<>
       <section style={ { height: '75vh', overflow: 'scroll' } }>
-        {searchEl}
+        {items !== null && items.length !== 0 ? <SearchBar handleSearch={handleSearch}/> : null}
         {listItems}
       </section>
     </>

@@ -1,11 +1,14 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
+import { actions } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import List from '../index.js';
+import SearchBar from '../../SearchBar';
 
 import { item, cardActions } from '../../SimpleCard/stories/index.stories.js';
-import { searchActions } from '../../SearchBar/stories/index.stories.js';
+
+export const searchActions = actions({ handleSearch: 'Handle search' });
 
 export const items = [{
     ...item,
@@ -20,15 +23,27 @@ export const items = [{
     title: 'Sample Simple Card Title Two',
     description: 'This is a sample card description. This is fun!',
     display: true,
-    url: 'projects/1/transcripts/'
+    url: '/projects/1/transcripts/5678'
 }];
 
 storiesOf('List', module)
     .addDecorator(StoryRouter())
-    .add('default', () => 
+    .add('With Simple Cards', () => 
             <List
-                items={items}
+                projectItems={items}
                 {...cardActions}
                 {...searchActions}
             />
         );
+
+storiesOf('List/Search Bar', module)
+    .addDecorator(StoryRouter())
+    .add('Default', () => {
+        return (
+            <section style={{ height: '75vh', overflow: 'scroll' }}>
+                <SearchBar
+                    {...searchActions}
+                />
+            </section>
+        );
+    });

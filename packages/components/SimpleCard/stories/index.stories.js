@@ -10,7 +10,7 @@ export const item = {
   key: 'abc123',
   title: 'Sample Simple Card Title',
   description: 'This is a sample card description. This is fun!',
-  url: '/projects/1/transcripts/'
+  url: '/projects/1/transcripts/1234'
 };
 
 export const cardActions = actions({ handleEdit: 'Edit button clicked', handleDelete: 'Delete button clicked' });

@@ -33,7 +33,7 @@ class SimpleCard extends Component {
         <Card style={ { width: '100%', marginBottom: '1em' } }>
           <Card.Body>
             <Row>
-              <LinkContainer to={ `${this.props.url}${this.props.id}` } style={ { cursor: 'pointer' } }>
+              <LinkContainer to={ `${this.props.url}` } style={ { cursor: 'pointer' } }>
                 <Col xs={ 8 } sm={ 10 }>
                   <Card.Title>
                     {this.props.title}

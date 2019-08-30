@@ -9,7 +9,7 @@ import {
 
 const SearchBar = ({handleSearch}) => {
 
-    const [showSearchInput, toggleShowInput] = useState(false);
+    const [toggleSearchInput, setToggleShowInput] = useState(false);
 
     const [searchValue, setSearchValue] = useState("");
 
@@ -17,24 +17,17 @@ const SearchBar = ({handleSearch}) => {
         setSearchValue(e.target.value);
         handleSearch(searchValue);
     }
-
-    // Keep - perhaps add if we add keystrokes / enter to submit?
-    const resetInputField = () => {
-        setSearchValue("")
-    }
-
-
         return (
             <InputGroup className="mb-3">
                 <InputGroup.Prepend
-                    onClick={() => toggleShowInput(!showSearchInput)}
+                    onClick={() => setToggleShowInput(!toggleSearchInput)}
                 >
                     <InputGroup.Text id="basic-addon2">
                         <FontAwesomeIcon icon={faSearch} />
                     </InputGroup.Text>
                 </InputGroup.Prepend>
                 <FormControl
-                    style={{ display: showSearchInput ? '' : 'none' }}
+                    style={{ display: toggleSearchInput ? '' : 'none' }}
                     value={searchValue}
                     onChange={handleSearchInputChanges}
                     placeholder="Search"
