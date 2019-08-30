@@ -14,62 +14,89 @@ import {
     faPen
 } from '@fortawesome/free-solid-svg-icons';
 
-class TranscriptCard extends Component {
-    handleDelete = () => {
-        //eslint-disable-next-line
-        const confirmationPrompt = confirm(
-            "Click OK if you wish to delete, cancel if you don't"
-        );
-        if (confirmationPrompt && this.props.handleDelete) {
-                this.props.handleDelete(this.props.id);
-        } else {
-            alert('All is good, it was not deleted');
+const TranscriptCard = ({ transcriptItem, transcriptCardActions }) => {
+    
+    const handleDeleteClick = () => {
+        const confirmDeleteText = "Click OK if you wish to delete or cancel if you don't";
+        const cancelDeleteText = "All is good, it was not deleted";
+        
+        const confirmationPrompt = confirm(confirmDeleteText);
+
+        if (confirmationPrompt) {
+            transcriptCardActions.handleDelete ? transcriptCardActions.handleDelete(transcriptItem.id) : alert(cancelDeleteText);
         }
     };
 
-    handleEdit = () => {
-        this.props.handleEdit(this.props.id);
-    }
+    const handleEditClick = () => {
+        transcriptCardActions.handleEdit(transcriptItem.id);
+    };
 
-    render() {
-
-       const status = () => { 
-        switch (this.props.status) {
-            case 'error':
-                return 'danger';
-            case 'in-progress':
-                return 'info';
-            case 'done':
-                return 'success'
-        }
+    const setStatus = () => {
+        if (transcriptItem.status === 'error') {
+            return 'danger';
         };
-        const description = () => {
-            switch (this.props.status) {
-                case 'in-progress':
-                    return <Badge variant="info">In progress</Badge>;
-                case 'done':
-                    return <Badge variant="success">Success</Badge>;
-                case 'error':
-                    return (
+        if (transcriptItem.status === 'in-progress') {
+            return 'info';
+        };
+        if (transcriptItem.status === 'done') {
+            return 'success';
+        };
+    };
+
+    const status = setStatus();
+
+    const setDescription = () => {
+        switch (status) {
+            case 'info':
+                return <Badge variant="info">In progress</Badge>;
+            case 'success':
+                return <Badge variant="success">Success</Badge>;
+            case 'danger':
+                return (
                     <>
                         <Alert variant="danger">
                             <FontAwesomeIcon icon={faExclamationTriangle} />{' '}
-                            {this.props.errorMessage}
+                            {transcriptItem.errorMessage}
                         </Alert>
                         <Badge variant="danger">Error</Badge>
                     </>
                 );
-            }
-        };
-        let borderStatus;
-        let title = <a href={`#${this.props.showLink()}`}> {this.props.title}</a>;
-        if (status && status === 'info') {
-            title = this.props.title;
         }
-        if (status && status === 'danger') {
-            title = this.props.title;
-            borderStatus = 'danger';
+    };
+
+    const setStatusIcon = () => {
+        switch (status) {
+            case 'info': 
+            return (
+                <Button variant="info" size="sm" disabled>
+                    <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                    />
+                </Button>
+            );
+        case 'danger':
+            return (
+                <Button variant="danger" size="sm" disabled>
+                    <FontAwesomeIcon icon={faExclamationTriangle} />
+                </Button>
+            );
+        case 'success': 
+            return (
+                <Button variant="success" size="sm" disabled>
+                    <FontAwesomeIcon icon={faCheck} />
+                </Button>
+            )
         }
+    };
+
+    const description = setDescription();
+    const statusIcon = setStatusIcon();
+    const borderStatus = status && status === 'danger' ? 'danger' : null;
+    const title = status && status === "success" ? <a href={`#${transcriptItem.url}`}> {transcriptItem.title}</a> : transcriptItem.title;
 
         return (
             <Card
@@ -78,15 +105,15 @@ class TranscriptCard extends Component {
             >
                 <Card.Body>
                     <Row>
-                        <Col xs={12} sm={9} md={9} ld={9} xl={9}>
+                        <Col xs={12} sm={9}>
                             <Card.Title>
-                                {this.props.icon ? this.props.icon : ''} {title}
+                                {transcriptItem.icon ? transcriptItem.icon : ''} {title}
                             </Card.Title>
                         </Col>
-                        <Col xs={2} sm={1} md={1} ld={1} xl={1}>
+                        <Col xs={2} sm={1}>
                             <Card.Link>
                                 <Button
-                                    onClick={this.handleEdit}
+                                    onClick={() => handleEditClick()}
                                     variant="outline-secondary"
                                     size="sm"
                                 >
@@ -94,10 +121,10 @@ class TranscriptCard extends Component {
                                 </Button>
                             </Card.Link>
                         </Col>
-                        <Col xs={2} sm={1} md={1} ld={1} xl={1}>
+                        <Col xs={2} sm={1}>
                             <Card.Link>
                                 <Button
-                                    onClick={this.handleDelete}
+                                    onClick={() => handleDeleteClick()}
                                     variant="outline-secondary"
                                     size="sm"
                                 >
@@ -105,46 +132,19 @@ class TranscriptCard extends Component {
                                 </Button>
                             </Card.Link>
                         </Col>
-                        <Col xs={1} sm={1} md={1} ld={1} xl={1}>
-                            {status && status === 'info' ? (
-                                <Button variant="info" size="sm" disabled>
-                                    <Spinner
-                                        as="span"
-                                        animation="border"
-                                        size="sm"
-                                        role="status"
-                                        aria-hidden="true"
-                                    />
-                                </Button>
-                            ) : (
-                                    ''
-                                )}
-                            {status && status === 'danger' ? (
-                                <Button variant="danger" size="sm" disabled>
-                                    <FontAwesomeIcon icon={faExclamationTriangle} />
-                                </Button>
-                            ) : (
-                                    ''
-                                )}
-                            {status && status === 'success' ? (
-                                <Button variant="success" size="sm" disabled>
-                                    <FontAwesomeIcon icon={faCheck} />
-                                </Button>
-                            ) : (
-                                    ''
-                                )}
+                        <Col xs={1}>
+                            {statusIcon}
                         </Col>
                     </Row>
-
                     <Row>
-                        <Col xs={12} sm={12} md={12} ld={12} xl={12}>
+                        <Col xs={12}>
                             <Card.Subtitle className="mb-2 text-muted">
-                                {this.props.subtitle}
+                                {transcriptItem.subtitle}
                             </Card.Subtitle>
                         </Col>
                     </Row>
                     <Row>
-                        <Col xs={12} sm={12} md={12} ld={12} xl={12}>
+                        <Col xs={12}>
                             {description}
                         </Col>
                     </Row>
@@ -152,6 +152,5 @@ class TranscriptCard extends Component {
             </Card>
         );
     }
-}
 
 export default TranscriptCard;
