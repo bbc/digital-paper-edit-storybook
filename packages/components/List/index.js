@@ -78,7 +78,7 @@ const List = ({ projectItems, handleEdit, handleDelete }) => {
 };
 
 List.propTypes = {
-  projectItems: PropTypes.array.of.objects.isRequired,
+  projectItems: PropTypes.array.isRequired,
   handleEdit: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
 };

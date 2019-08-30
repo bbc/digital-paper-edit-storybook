@@ -44,8 +44,8 @@ SearchBar.propTypes = {
 };
 
 SearchBar.defaultProps = {
-  handleSearch: (e) => {
-    console.log(`Search for ${ e.target.value }`);
+  handleSearch: () => {
+    console.log('Searching...');
   },
 };
 
