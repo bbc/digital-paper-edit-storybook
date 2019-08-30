@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,12 +11,13 @@ const SearchBar = ({handleSearch}) => {
 
     const [toggleSearchInput, setToggleShowInput] = useState(false);
 
-    const [searchValue, setSearchValue] = useState("");
+    const [searchValue, setSearchValue] = useState('');
 
     const handleSearchInputChanges = (e) => {
+        handleSearch(e.target.value);
         setSearchValue(e.target.value);
-        handleSearch(searchValue);
-    }
+    };
+
         return (
             <InputGroup className="mb-3">
                 <InputGroup.Prepend
