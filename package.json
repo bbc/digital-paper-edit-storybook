@@ -12,7 +12,11 @@
     "build:storybook": "rimraf build && build-storybook -c .storybook -o build",
     "deploy:ghpages": "rimraf build && npm run build:storybook && gh-pages -d build",
     "publish:public": "npm run build:component && rm ./dist/package.json || true && cp package.json ./dist/package.json && rm ./dist/README.md || true && cp README.md ./dist/README.md || true && npm publish dist --access public",
-    "publish:dry:run": "npm publish --dry-run"
+    "publish:dry:run": "npm publish --dry-run",
+    "lint:fix": "eslint ./packages/* --fix"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "author": "",
   "license": "ISC",
@@ -31,7 +35,9 @@
     "downloadjs": "^1.4.7",
     "edl_composer": "^1.0.3",
     "express": "^4.17.1",
+    "gel-typography": "^2.0.5",
     "node-sass": "^4.12.0",
+    "prop-types": "^15.7.2",
     "randomcolor": "^0.5.4",
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.0-beta.11",
@@ -53,7 +59,10 @@
     "@storybook/addon-viewport": "^5.0.8",
     "@storybook/addons": "^5.1.9",
     "@storybook/react": "^5.1.9",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
+    "eslint": "^6.2.2",
+    "eslint-plugin-react": "^7.14.3",
     "gh-pages": "^2.0.1",
     "storybook-react-router": "^1.0.5"
   }
