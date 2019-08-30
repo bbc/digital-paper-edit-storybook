@@ -14,21 +14,17 @@ import 'bootstrap-css-only/css/bootstrap.css';
 
 class SimpleCard extends Component {
     handleDelete = () => {
-        const confirmDeleteText = "Click OK if you wish to delete or cancel if you don't";
-        const cancelDeleteText = "All is good, it was not deleted";
-        const confirmationPrompt = confirm(confirmDeleteText);
-        
-        if (confirmationPrompt) {
-            this.props.handleDelete ? this.props.handleDelete(this.props.id) : alert(cancelDeleteText);
-        }
+      const confirmDeleteText = "Click OK if you wish to delete or cancel if you don't";
+      const cancelDeleteText = 'All is good, it was not deleted';
+      const confirmationPrompt = confirm(confirmDeleteText);
+
+      if (confirmationPrompt) {
+        this.props.handleDelete ? this.props.handleDelete(this.props.id) : alert(cancelDeleteText);
+      }
     };
 
     handleEdit = () => {
       this.props.handleEdit(this.props.id);
-    }
-
-    showLinkPath = () => {
-      return this.props.showLinkPath(this.props.id) || '';
     }
 
     render() {
@@ -37,7 +33,7 @@ class SimpleCard extends Component {
         <Card style={ { width: '100%', marginBottom: '1em' } }>
           <Card.Body>
             <Row>
-              <LinkContainer to={ this.showLinkPath() } style={ { cursor: 'pointer' } }>
+              <LinkContainer to={ `${ this.props.url }` } style={ { cursor: 'pointer' } }>
                 <Col xs={ 8 } sm={ 10 }>
                   <Card.Title>
                     {this.props.title}
@@ -86,6 +82,7 @@ SimpleCard.propTypes = {
   key: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
   description: PropTypes.string,
   handleEdit: PropTypes.func,
   handleDelete: PropTypes.func,
@@ -103,9 +100,6 @@ SimpleCard.defaultProps = {
   handleDelete: () => {
     console.log('Delete button clicked');
   },
-  showLinkPath: () => {
-    console.log('Card clicked');
-  }
 };
 
 export default SimpleCard;

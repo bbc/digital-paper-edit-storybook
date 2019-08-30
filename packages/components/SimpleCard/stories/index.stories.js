@@ -10,9 +10,10 @@ export const item = {
   key: 'abc123',
   title: 'Sample Simple Card Title',
   description: 'This is a sample card description. This is fun!',
+  url: '/projects/1/transcripts/1234'
 };
 
-const cardActions = actions({ handleEdit: 'Edit button clicked', handleDelete: 'Delete button clicked', showLinkPath: 'Card clicked' });
+export const cardActions = actions({ handleEdit: 'Edit button clicked', handleDelete: 'Delete button clicked' });
 
 storiesOf('Simple Card', module)
   .addDecorator(StoryRouter())
@@ -24,6 +25,7 @@ storiesOf('Simple Card', module)
           id={ item.id }
           title={ item.title }
           description={ item.description }
+          url={ item.url }
           { ...cardActions }
         />
       </section>
