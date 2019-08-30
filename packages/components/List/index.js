@@ -4,11 +4,31 @@ import SearchBar from '../SearchBar';
 
 const List = ({ projectItems, handleSearch, handleEdit, handleDelete }) => {
 
+    const [items, setItems] = useState(projectItems);
+
     const includesText = (text, subsetText) => {
         return text.toLowerCase().includes(subsetText.toLowerCase().trim());
     };
 
-    const [items, setItems] = useState(projectItems);
+    const handleDeleteItem = async (itemId) => {
+        const updatedList = items.filter((item) => {
+            return item.id !== itemId;
+        });
+        setItems(updatedList);
+
+        // This is the original handleDelete, which took place at the page level: 
+        // https://github.com/bbc/digital-paper-edit-client/blob/ba1924e89592fc8cd75fcb1e450ea15bc2599d95/src/Components/Projects/index.js
+        //
+        // const result = await ApiWrapper.deleteProject(itemId);
+        // if (result.ok) {
+        //     const newItemsList = this.state.items.filter((p) => {
+        //         return p.id !== itemId;
+        //     });
+        //     this.setState({ items: newItemsList });
+        // } else {
+        //     // TODO: some error handling, error message saying something went wrong
+        // }
+    }
     
     const handleDisplay = (item, searchText) => {
         if (
@@ -37,7 +57,7 @@ const List = ({ projectItems, handleSearch, handleEdit, handleDelete }) => {
           description={ item.description }
           url={ item.url }
           handleEdit={ handleEdit }
-          handleDelete={ handleDelete }
+          handleDelete={ handleDeleteItem }
         />
         )} return null;
     }).filter(item => {
