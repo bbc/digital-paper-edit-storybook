@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -96,7 +97,7 @@ const TranscriptCard = ({ transcriptItem, transcriptCardActions }) => {
     const description = setDescription();
     const statusIcon = setStatusIcon();
     const borderStatus = status && status === 'danger' ? 'danger' : null;
-    const title = status && status === "success" ? <a href={`#${transcriptItem.url}`}> {transcriptItem.title}</a> : transcriptItem.title;
+    const title = status && status === "success" ? <a href={`${transcriptItem.url}`}> {transcriptItem.title}</a> : transcriptItem.title;
 
         return (
             <Card
@@ -153,4 +154,33 @@ const TranscriptCard = ({ transcriptItem, transcriptCardActions }) => {
         );
     }
 
+TranscriptCard.propTypes = {
+    key: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    subtitle: PropTypes.string,
+    url: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    errorMessage: PropTypes.string,
+    icon: PropTypes.string,
+    handleEdit: PropTypes.func.isRequired,
+    handleDelete: PropTypes.func.isRequired
+};
+
+TranscriptCard.defaultProps = {
+    key: 'key_1234',
+    id: '1234',
+    title: 'Default Title String',
+    description: 'This is a default description string',
+    subtitle: 'This is a default subtitle',
+    status: 'done',
+    url: '/test/path/here',
+    handleEdit: () => {
+        console.log('Edit button clicked');
+    },
+    handleDelete: () => {
+        console.log('Delete button clicked');
+    }
+};
 export default TranscriptCard;
