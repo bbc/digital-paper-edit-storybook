@@ -40,7 +40,6 @@ const ProgrammeScriptContainer = (props) => {
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
     const result = arrayMove(elements, oldIndex, newIndex);
-    console.log(result);
     props.handleReorder(result);
   };
 
