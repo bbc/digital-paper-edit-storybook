@@ -2,7 +2,7 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
-import ProgrammeScript from '../index.js';
+import ProgrammeScriptContainer from '../../ProgrammeScriptContainer/';
 
 export const handleReorderActions = actions({ handleReorder: 'Handle reorder' });
 export const handleDeleteActions = actions({ handleDelete: 'Handle delete' });
@@ -25,7 +25,7 @@ export const items = [ {
 
 storiesOf('ProgrammeScript', module)
   .add('Default', () =>
-    <ProgrammeScript
+    <ProgrammeScriptContainer
       elements={ items }
       handleReorder={ handleReorderActions }
       handleDelete={ handleDeleteActions }
