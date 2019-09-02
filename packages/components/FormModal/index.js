@@ -3,19 +3,18 @@ import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap/Modal';
 import ItemForm from './ItemForm/index.js';
 
-const ItemFormModal = ({ modalActions, modalItem }) => {
+const ItemFormModal = (props) => {
 
-  const [ showModal, toggleShowModal ] = useState(modalItem.isNewItemModalShow);
+  const [ showModal, toggleShowModal ] = useState(props.isNewItemModalShow);
 
   return (
     <Modal show={ showModal } onHide={ () => toggleShowModal(!showModal) }>
       <Modal.Header closeButton>
-        <Modal.Title>{modalItem.modalTitle}</Modal.Title>
+        <Modal.Title>{props.modalTitle}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <ItemForm
-          modalActions={ modalActions }
-          modalItem={ modalItem }
+          { ...props }
         />
       </Modal.Body>
     </Modal>
@@ -23,23 +22,21 @@ const ItemFormModal = ({ modalActions, modalItem }) => {
 };
 
 ItemFormModal.propTypes = {
-  modalActions: PropTypes.object.isRequired,
-  modalItem: PropTypes.object.isRequired
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  isNewItemModalShow: PropTypes.bool.isRequired,
+  modalTitle: PropTypes.string.isRequired,
+  handleSaveForm: PropTypes.func.isRequired,
 };
 
 ItemFormModal.defaultProps = {
-  modalActions: {
-    handleSaveForm: () => {
-      console.log('Handling a project save');
-    },
+  handleSaveForm: () => {
+    console.log('Handling a project save');
   },
-  modalItem: {
-    id: 1,
-    title: 'Default Title String',
-    description: 'This is a default description string',
-    isNewItemModalShow: false,
-    modalTitle: 'New Project',
-  }
+  id: 1,
+  isNewItemModalShow: false,
+  modalTitle: 'New Project',
 };
 
 export default ItemFormModal;

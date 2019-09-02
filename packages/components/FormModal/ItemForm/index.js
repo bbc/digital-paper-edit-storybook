@@ -4,14 +4,13 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-const ItemForm = ({ modalActions, modalItem }) => {
+const ItemForm = (props) => {
 
-  console.log(modalActions);
-  const [ description, setDescription ] = useState(modalItem.description);
+  const [ description, setDescription ] = useState(props.description);
 
   const [ isValidated, setFormValidation ] = useState(false);
 
-  const [ title, setTitle ] = useState(modalItem.title);
+  const [ title, setTitle ] = useState(props.title);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -26,10 +25,10 @@ const ItemForm = ({ modalActions, modalItem }) => {
       const editedProject = {
         title: title,
         description: description,
-        id: modalItem.id
+        id: props.id
       };
 
-      modalActions.handleSaveForm(editedProject);
+      props.handleSaveForm(editedProject);
     }
   };
 
@@ -58,7 +57,7 @@ const ItemForm = ({ modalActions, modalItem }) => {
       </Form.Group>
 
       <Form.Group controlId="formBasicEmail">
-        <Form.Label>Description </Form.Label>
+        <Form.Label>Description</Form.Label>
         <Form.Control
           type="text"
           placeholder="Enter a project description"
@@ -81,23 +80,21 @@ const ItemForm = ({ modalActions, modalItem }) => {
 };
 
 ItemForm.propTypes = {
-  modalActions: PropTypes.object.isRequired,
-  modalItem: PropTypes.object.isRequired
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  isNewItemModalShow: PropTypes.bool.isRequired,
+  modalTitle: PropTypes.string.isRequired,
+  handleSaveForm: PropTypes.func.isRequired,
 };
 
 ItemForm.defaultProps = {
-  modalActions: {
-    handleSaveForm: () => {
-      console.log('Handling a project save');
-    },
+  handleSaveForm: () => {
+    console.log('Handling a project save');
   },
-  modalItem: {
-    id: '1',
-    title: 'Default Title String',
-    description: 'This is a default description string',
-    isNewItemModalShow: false,
-    modalTitle: 'New Project',
-  }
+  id: 1,
+  isNewItemModalShow: false,
+  modalTitle: 'New Project',
 };
 
 export default ItemForm;

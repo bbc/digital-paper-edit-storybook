@@ -27,8 +27,8 @@ storiesOf('Form Modal', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <FormModal
-          modalActions = { modalActions }
-          modalItem = { modalItems[0] }
+          { ...modalActions }
+          { ...modalItems[0] }
         />
       </section>
     );
@@ -37,8 +37,8 @@ storiesOf('Form Modal', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <FormModal
-          modalActions={ modalActions }
-          modalItem={ modalItems[1] }
+          { ...modalActions }
+          { ...modalItems[1] }
         />
       </section>
     );
@@ -50,8 +50,8 @@ storiesOf('Form Modal / Item Form', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <ItemForm
-          modalActions={ modalActions }
-          modalItem={ modalItems[0] }
+          { ...modalActions }
+          { ...modalItems[0] }
         />
       </section>
     );
