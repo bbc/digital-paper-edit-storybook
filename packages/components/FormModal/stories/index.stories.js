@@ -7,7 +7,7 @@ import FormModal from '../index.js';
 import ItemForm from '../ItemForm';
 
 export const modalItems = [ {
-  id: '1',
+  id: 1,
   isNewItemModalShow: true,
   title: 'Example Transcript Title',
   description: 'This is a sample card description. This is fun!',
@@ -16,6 +16,7 @@ export const modalItems = [ {
 }, {
   isNewItemModalShow: true,
   modalTitle: 'New Project',
+  id: 2
 } ];
 
 export const modalActions = actions({ handleSaveForm: 'Form saved' });

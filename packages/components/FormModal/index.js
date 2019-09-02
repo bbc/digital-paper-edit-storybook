@@ -34,7 +34,7 @@ ItemFormModal.defaultProps = {
     },
   },
   modalItem: {
-    id: '1',
+    id: 1,
     title: 'Default Title String',
     description: 'This is a default description string',
     isNewItemModalShow: false,
