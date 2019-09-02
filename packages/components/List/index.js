@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SimpleCard from '../SimpleCard';
-import SearchBar from '../SearchBar';
+import SearchBar from './SearchBar';
 
 const List = ({ projectItems, handleEdit, handleDelete }) => {
 
