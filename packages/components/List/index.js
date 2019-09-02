@@ -53,7 +53,6 @@ const List = ({ projectItems, handleEdit, handleDelete }) => {
   };
 
   const listItems = items.map((item) => {
-    console.log('item map', item);
     if (item.display && item.status) {
       return (
         <TranscriptCard
