@@ -15,7 +15,7 @@ import {
   faPen
 } from '@fortawesome/free-solid-svg-icons';
 
-const TranscriptCard = ({ transcriptItem, handleEdit, handleDelete }) => {
+const TranscriptCard = (props) => {
 
   const handleDeleteClick = () => {
     const confirmDeleteText = "Click OK if you wish to delete or cancel if you don't";
@@ -24,50 +24,43 @@ const TranscriptCard = ({ transcriptItem, handleEdit, handleDelete }) => {
     const confirmationPrompt = confirm(confirmDeleteText);
 
     if (confirmationPrompt) {
-      return handleDelete ? handleDelete(transcriptItem.id) : alert(cancelDeleteText);
+      return props.handleDelete ? props.handleDelete(props.id) : alert(cancelDeleteText);
     }
   };
 
   const handleEditClick = () => {
-    handleEdit(transcriptItem.id);
+    props.handleEdit(props.id);
   };
 
-  const setStatus = () => {
-    if (transcriptItem.status === 'error') {
-      return 'danger';
-    };
-    if (transcriptItem.status === 'in-progress') {
-      return 'info';
-    };
-    if (transcriptItem.status === 'done') {
-      return 'success';
-    };
+  const iconStatus = {
+    'in-progress': 'info',
+    'done': 'success',
+    'error': 'danger'
   };
-
-  const status = setStatus();
 
   const setDescription = () => {
-    switch (status) {
-    case 'info':
-      return <Badge variant="info">In progress</Badge>;
-    case 'success':
-      return <Badge variant="success">Success</Badge>;
-    case 'danger':
+    if (props.status === 'error') {
       return (
         <>
           <Alert variant="danger">
             <FontAwesomeIcon icon={ faExclamationTriangle } />{' '}
-            {transcriptItem.errorMessage}
+            {props.errorMessage}
           </Alert>
           <Badge variant="danger">Error</Badge>
         </>
       );
     }
+    else {
+      const badgeText = (props.status.charAt(0).toUpperCase() + props.status.slice(1)).replace('-', ' ');
+
+      return (
+        <Badge variant={ iconStatus[props.status] }>{badgeText}</Badge>
+      );
+    };
   };
 
   const setStatusIcon = () => {
-    switch (status) {
-    case 'info':
+    if (props.status === 'in-progress') {
       return (
         <Button variant="info" size="sm" disabled>
           <Spinner
@@ -79,36 +72,27 @@ const TranscriptCard = ({ transcriptItem, handleEdit, handleDelete }) => {
           />
         </Button>
       );
-    case 'danger':
+    } else {
       return (
-        <Button variant="danger" size="sm" disabled>
-          <FontAwesomeIcon icon={ faExclamationTriangle } />
+        <Button variant={ iconStatus[props.status] } size="sm" disabled>
+          <FontAwesomeIcon icon={ props.status === 'danger' ? faExclamationTriangle : faCheck } />
         </Button>
       );
-    case 'success':
-      return (
-        <Button variant="success" size="sm" disabled>
-          <FontAwesomeIcon icon={ faCheck } />
-        </Button>
-      );
-    }
+    };
   };
 
-  const description = setDescription();
-  const statusIcon = setStatusIcon();
-  const borderStatus = status && status === 'danger' ? 'danger' : null;
-  const title = status && status === 'success' ? <a href={ `${ transcriptItem.url }` }> {transcriptItem.title}</a> : transcriptItem.title;
+  const title = props.status && props.status === 'done' ? <a href={ `${ props.url }` }> {props.title}</a> : props.title;
 
   return (
     <Card
-      border={ borderStatus }
+      border={ props.status && props.status === 'danger' ? status : null }
       style={ { width: '100%', marginBottom: '2em' } }
     >
       <Card.Body>
         <Row>
           <Col xs={ 12 } sm={ 9 }>
             <Card.Title>
-              {transcriptItem.icon ? transcriptItem.icon : ''} {title}
+              {props.icon ? props.icon : ''} {title}
             </Card.Title>
           </Col>
           <Col xs={ 2 } sm={ 1 }>
@@ -134,19 +118,19 @@ const TranscriptCard = ({ transcriptItem, handleEdit, handleDelete }) => {
             </Card.Link>
           </Col>
           <Col xs={ 1 }>
-            {statusIcon}
+            {setStatusIcon()}
           </Col>
         </Row>
         <Row>
           <Col xs={ 12 }>
             <Card.Subtitle className="mb-2 text-muted">
-              {transcriptItem.subtitle}
+              {props.subtitle}
             </Card.Subtitle>
           </Col>
         </Row>
         <Row>
           <Col xs={ 12 }>
-            {description}
+            {setDescription()}
           </Col>
         </Row>
       </Card.Body>
@@ -155,21 +139,26 @@ const TranscriptCard = ({ transcriptItem, handleEdit, handleDelete }) => {
 };
 
 TranscriptCard.propTypes = {
-  transcriptItem: PropTypes.object.isRequired,
+  key: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  subtitle: PropTypes.string,
+  status: PropTypes.string,
+  url: PropTypes.string,
+  errorMessage: PropTypes.string,
   handleEdit: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired
 };
 
 TranscriptCard.defaultProps = {
-  transcriptItem: {
-    key: 'key_1234',
-    id: '1234',
-    title: 'Default Title String',
-    description: 'This is a default description string',
-    subtitle: 'This is a default subtitle',
-    status: 'done',
-    url: '/test/path/here',
-  },
+  key: 'key_1234',
+  id: '1234',
+  title: 'Default Title String',
+  description: 'This is a default description string',
+  subtitle: 'This is a default subtitle',
+  status: 'done',
+  url: '/test/path/here',
   handleEdit: () => {
     console.log('Edit button clicked');
   },
@@ -177,4 +166,5 @@ TranscriptCard.defaultProps = {
     console.log('Delete button clicked');
   }
 };
+
 export default TranscriptCard;
