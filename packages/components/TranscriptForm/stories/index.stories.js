@@ -19,9 +19,14 @@ export const transcriptFormProps = {
   id: 456
 };
 
-export const transcriptFormActions = actions({ handleSaveForm: 'Form saved', handleCloseModal: 'Modal closed' });
+export const transcriptFormActions = actions(
+  {
+    handleSaveForm: 'Form saved',
+    handleCloseModal: 'Modal closed',
+    handleSubmitForm: 'Form submitted' }
+);
 
-storiesOf('Custom Alert', module)
+storiesOf('Transcript Form / Custom Alert', module)
   .addDecorator(StoryRouter())
   .add('Transcript Error', () => {
     return (
