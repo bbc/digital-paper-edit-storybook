@@ -2,18 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import SimpleCard from './index.js';
 
-describe('VideoContextProgressBar', () => {
-  const mockVideoContext = {};
+describe('Simple Card', () => {
+  const props = {};
+  const component = shallow(<SimpleCard props={ props } />);
 
   it('should render correctly', () => {
-    const component = shallow(<SimpleCard props={ mockVideoContext } />);
     expect(component).toMatchSnapshot();
   });
-
-  //   it('should be possible to activate button with Spacebar', () => {
-  //     const component = mount(<SimpleCard props={ mockVideoContext } />);
-  //     expect(component).toMatchSnapshot();
-
-//     component.unmount();
-//   });
 });
