@@ -48,7 +48,7 @@ const ItemForm = (props) => {
           onChange={ (e) => setTitle(e.target.value) }
         />
         <Form.Text className="text-muted">
-            Chose a title
+            Choose a title
         </Form.Text>
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         <Form.Control.Feedback type="invalid">
