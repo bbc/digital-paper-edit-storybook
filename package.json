@@ -26,7 +26,6 @@
     "@fortawesome/free-brands-svg-icons": "^5.8.2",
     "@fortawesome/free-solid-svg-icons": "^5.10.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "babel-jest": "^24.9.0",
     "bootstrap": "^4.3.1",
     "bootstrap-css-only": "^4.3.1",
     "chroma-js": "^2.0.3",
@@ -35,17 +34,16 @@
     "cuid": "^2.1.6",
     "downloadjs": "^1.4.7",
     "edl_composer": "^1.0.3",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.4.0",
     "express": "^4.17.1",
     "gel-typography": "^2.0.5",
     "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
     "randomcolor": "^0.5.4",
-    "react": "^16.8.3",
+    "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.11",
     "react-color": "^2.17.1",
+    "react-dom": "^16.9.0",
     "react-router-bootstrap": "^0.25.0",
     "react-router-dom": "^5.0.1",
     "react-select": "^2.4.3",
@@ -55,7 +53,7 @@
     "videocontext": "^0.53.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
+    "@babel/core": "^7.5.5",
     "@storybook/addon-a11y": "^5.0.8",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-knobs": "^5.0.8",
@@ -64,7 +62,10 @@
     "@storybook/addons": "^5.1.9",
     "@storybook/react": "^5.1.9",
     "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^6.2.2",
     "eslint-plugin-react": "^7.14.3",
     "gh-pages": "^2.0.1",
@@ -87,7 +88,9 @@
     },
     "moduleFileExtensions": [
       "js",
-      "jsx"
-    ]
+      "jsx",
+      "json"
+    ],
+    "verbose": true
   }
 }
