@@ -2,13 +2,32 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import TranscriptWrapper from './TranscriptWrapper/index.js';
+import CustomAlert from './CustomAlert';
 
 const TranscriptForm = ({ ...props }) => {
 
   const [ title, setTitle ] = useState(props.title);
   const [ description, setDescription ] = useState(props.description);
   const [ isValidated, setValidationStatus ] = useState(false);
-  var [ formData, setFormData ] = useState({});
+  const [ formData, setFormData ] = useState({});
+  const [ isUploading, setIsUploading ] = useState(false);
+  const [ uploadCompleted, setUploadCompletion ] = useState(null);
+  const [ redirect, setShouldRedirect ] = useState(false);
+  const [ transcriptId, setNewTranscriptId ] = useState(null);
+  const [ notificationMessage, updateNotificationMessage ] = useState(null);
+
+  const setNotificationMessage = () => {
+    if (!uploadCompleted) {
+      const alert = <CustomAlert
+        dismissable={ true }
+        variant={ 'danger' }
+        heading={ 'Error could not contact the server' }
+        message={ <p>There was an error trying to create this transcript on the server</p> }
+      />;
+      updateNotificationMessage(alert);
+    }
+  };
 
   const handleTitleChange = event => {
     setTitle(event.target.value);
@@ -48,17 +67,40 @@ const TranscriptForm = ({ ...props }) => {
     setFormData(tmpObj);
     props.handleSaveForm(formData);
     props.handleSubmitForm(formData);
+
+    await TranscriptWrapper(formData, props.projectId)
+      .then((response) => {
+        console.log('inside then');
+        if (response.success === true) {
+          console.log('inside where success is true');
+          setIsUploading(false);
+          setUploadCompletion(true);
+          setShouldRedirect(true);
+          setNewTranscriptId(response.transcriptId);
+          props.handleSaveForm(response.transcript);
+
+          return;
+        } else {
+          console.log('response.success not true');
+          setIsUploading(false);
+          setShouldRedirect(false);
+          setNotificationMessage();
+
+          return;
+        }
+      });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     const form = event.currentTarget;
     event.preventDefault();
     event.stopPropagation();
 
-    return (!form.checkValidity()) ? setValidationStatus(true) : sendRequest();
+    return (!form.checkValidity()) ? setValidationStatus(true) : await sendRequest();
   };
 
-  return (
+  return (<>
+    {/* { notificationMessage } */}
     <Form
       noValidate
       validated={ isValidated }
@@ -120,6 +162,7 @@ const TranscriptForm = ({ ...props }) => {
         </Button>
       </Modal.Footer>
     </Form>
+  </>
   );
 };
 
