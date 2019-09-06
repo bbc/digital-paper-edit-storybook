@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run storybook",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build:component": "webpack --config webpack.config.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -26,6 +26,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.8.2",
     "@fortawesome/free-solid-svg-icons": "^5.10.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "babel-jest": "^24.9.0",
     "bootstrap": "^4.3.1",
     "bootstrap-css-only": "^4.3.1",
     "chroma-js": "^2.0.3",
@@ -34,6 +35,9 @@
     "cuid": "^2.1.6",
     "downloadjs": "^1.4.7",
     "edl_composer": "^1.0.3",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.4.0",
     "express": "^4.17.1",
     "gel-typography": "^2.0.5",
     "node-sass": "^4.12.0",
@@ -64,6 +68,26 @@
     "eslint": "^6.2.2",
     "eslint-plugin-react": "^7.14.3",
     "gh-pages": "^2.0.1",
+    "jest": "^24.9.0",
     "storybook-react-router": "^1.0.5"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "setupFiles": [
+      "./packages/testSetup.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "moduleNameMapper": {
+      ".*\\.(css|scss|sass)$": "<rootDir>/tools/jest/styleMock.js",
+      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/jest/assetMock.js"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ]
   }
 }
