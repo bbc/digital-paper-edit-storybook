@@ -9,7 +9,8 @@ export const breadcrumbItems = {
     link: '/projects',
   }, {
     name: 'Example project name'
-  } ], paperEdits: [ {
+  } ],
+paperEdits: [ {
     name: 'Projects',
     link: '/projects'
   },
