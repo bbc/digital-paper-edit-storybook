@@ -10,21 +10,17 @@ export const breadcrumbItems = {
   }, {
     name: 'Example project name'
   } ],
-paperEdits: [ {
+  paperEdits: [ {
     name: 'Projects',
     link: '/projects'
-  },
-  {
+  }, {
     name: 'Project: The Sample',
     link: '/projects/the-sample'
-  },
-  {
+  }, {
     name: 'PaperEdits',
-  },
-  {
+  }, {
     name: 'Example programme title'
-  }
-  ]
+  } ]
 };
 
 storiesOf('Breadcrumb', module)
