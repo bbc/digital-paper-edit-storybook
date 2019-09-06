@@ -66,7 +66,7 @@ const ItemForm = (props) => {
           onChange={ (e) => setDescription(e.target.value) }
         />
         <Form.Text className="text-muted">
-            Chose an optional description
+            Choose an optional description
         </Form.Text>
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       </Form.Group>
