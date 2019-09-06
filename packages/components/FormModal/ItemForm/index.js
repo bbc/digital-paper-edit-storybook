@@ -8,7 +8,7 @@ const ItemForm = (props) => {
 
   const [ description, setDescription ] = useState(props.description);
 
-  const [ isValidated, setFormValidation ] = useState(false);
+  const [ isValidated, setIsValidated ] = useState(false);
 
   const [ title, setTitle ] = useState(props.title);
 
