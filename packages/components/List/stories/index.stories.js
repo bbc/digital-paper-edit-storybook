@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import List from '../index.js';
-import SearchBar from '../../SearchBar';
+import SearchBar from '../SearchBar';
 
 import { item, cardActions } from '../../SimpleCard/stories/index.stories.js';
 import { transcriptItems } from '../../TranscriptCard/stories/index.stories.js';
