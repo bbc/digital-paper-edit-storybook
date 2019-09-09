@@ -3,7 +3,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import ProgrammeScriptContainer from '../index.js';
-import ProgrammeElements from '../ProgrammeElements';
 
 export const handleReorderActions = action('Handle reorder');
 export const handleDeleteActions = action('Handle delete');
@@ -11,42 +10,41 @@ export const handleEditActions = action('Handle edit');
 
 const items = [
   {
+    type: 'title',
+    text: 'An immense Achievement'
+  },
+  {
     type: 'paper-cut',
     id: 1,
-    speaker: 'loud',
-    words: [ { text:'sdf', start: 0, end: 1 } ]
+    speaker: 'Mr Loud',
+    words: [ { text:'Greatest day of my life was when I wrote this text.', start: 0, end: 1 } ]
+  },
+  {
+    type: 'note',
+    text: 'Maybe a little bit obnoxious'
+  },
+  {
+    type: 'insert',
+    text: 'Insert New Selection here'
   },
   {
     type: 'paper-cut',
     id: 2,
-    speaker: 'loud',
-    words: [ { text:'sdf', start: 0, end: 1 } ]
-  },
-  {
-    type: 'title',
-    text: 'WOW'
+    speaker: 'Mrs Loud',
+    words: [ { text:'Greatest day of my life was when I spoke this text.', start: 0, end: 1 } ]
   },
   {
     type: 'voice-over',
-    text: 'insert VO'
+    text: 'link: wonderful times of the Loud family'
   },
-  {
-    type: 'note',
-    text: 'note'
-  },
-  {
-    type: 'insert',
-    text: 'omg'
-  }
 ];
 
-export const elements = ProgrammeElements(items, handleEditActions, handleDeleteActions);
-console.log(elements);
+// export const elements = ProgrammeElements(items, handleEditActions, handleDeleteActions);
 
 storiesOf('ProgrammeScript', module)
   .add('Default', () =>
     <ProgrammeScriptContainer
-      elements={ elements }
+      items={ items }
       handleDelete={ handleDeleteActions }
       handleEdit={ handleEditActions }
       handleReorder={ handleReorderActions }
