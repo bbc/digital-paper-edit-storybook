@@ -5,7 +5,6 @@ import ItemForm from './ItemForm/index.js';
 
 const ItemFormModal = (props) => {
 
-  console.log('modal props', props);
 
   const [ showModal, toggleShowModal ] = useState(props.showModal);
 
