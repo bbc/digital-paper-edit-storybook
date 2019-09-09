@@ -56,7 +56,7 @@ const List = ({ projectItems, handleEdit, handleDelete }) => {
     if (item.display && item.status) {
       return (
         <TranscriptCard
-          transcriptItem={ item }
+          item={ item }
           handleEdit={ handleEdit }
           handleDelete={ handleDeleteItem }
         />

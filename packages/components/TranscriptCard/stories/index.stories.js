@@ -6,7 +6,7 @@ import StoryRouter from 'storybook-react-router';
 import TranscriptCard from '../index.js';
 
 export const transcriptItems = [ {
-  id: '1',
+  id: 1,
   key: 'transcript_key_1',
   title: 'Title - Done Transcript',
   description: 'This transcript has finished processing.',
@@ -15,7 +15,7 @@ export const transcriptItems = [ {
   status: 'done',
   display: true
 }, {
-  id: '2',
+  id: 2,
   key: 'transcript_key_2',
   title: 'Title - In Progress Transcript',
   description: 'This transcript is still being generated.',
@@ -24,7 +24,7 @@ export const transcriptItems = [ {
   status: 'in-progress',
   display: true
 }, {
-  id: '1234',
+  id: 3,
   key: 'transcript_key_3',
   title: 'Title - Error Transcript',
   description: 'Transcript generation failed for this card.',
@@ -43,7 +43,7 @@ storiesOf('Transcript Card', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <TranscriptCard
-          { ...transcriptItems[0] }
+          item = { transcriptItems[0] }
           handleEdit={ transcriptCardActions.handleEdit }
           handleDelete={ transcriptCardActions.handleDelete }
         />
@@ -54,7 +54,7 @@ storiesOf('Transcript Card', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <TranscriptCard
-          { ...transcriptItems[1] }
+          item={ transcriptItems[1] }
           handleEdit={ transcriptCardActions.handleEdit }
           handleDelete={ transcriptCardActions.handleDelete }
         />
@@ -65,7 +65,7 @@ storiesOf('Transcript Card', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <TranscriptCard
-          { ...transcriptItems[2] }
+          item= { transcriptItems[2] }
           handleEdit={ transcriptCardActions.handleEdit }
           handleDelete={ transcriptCardActions.handleDelete }
         />

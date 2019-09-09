@@ -28,6 +28,7 @@ export const items = [ {
 } ];
 
 export const transItems = transcriptItems;
+console.log(transItems);
 
 storiesOf('List', module)
   .addDecorator(StoryRouter())
