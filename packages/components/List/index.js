@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SimpleCard from '../SimpleCard';
 import SearchBar from '../SearchBar';
+import TranscriptCard from '../TranscriptCard';
 
 const List = ({ projectItems, handleEdit, handleDelete }) => {
 
+  console.log(projectItems);
   const [ items, setItems ] = useState(projectItems);
 
   const includesText = (text, subsetText) => {
@@ -51,7 +53,16 @@ const List = ({ projectItems, handleEdit, handleDelete }) => {
   };
 
   const listItems = items.map((item) => {
-    if (item.display) {
+    if (item.display && item.status) {
+      return (
+        <TranscriptCard
+          transcriptItem={ item }
+          handleEdit={ handleEdit }
+          handleDelete={ handleDeleteItem }
+        />
+      );
+    }
+    else if (item.display) {
       return (
         <SimpleCard
           key={ item.id }

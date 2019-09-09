@@ -7,6 +7,7 @@ import List from '../index.js';
 import SearchBar from '../../SearchBar';
 
 import { item, cardActions } from '../../SimpleCard/stories/index.stories.js';
+import { transcriptItems } from '../../TranscriptCard/stories/index.stories.js';
 
 export const searchActions = actions({ handleSearch: 'Handle search' });
 
@@ -26,21 +27,36 @@ export const items = [ {
   url: '/projects/1/transcripts/5678'
 } ];
 
+export const transItems = transcriptItems;
+
 storiesOf('List', module)
   .addDecorator(StoryRouter())
-  .add('With Simple Cards', () =>
-    <List
-      projectItems={ items }
-      { ...cardActions }
-      { ...searchActions }
-    />
+  .add('Simple Cards', () => {
+    return (
+      <section style={ { height: '90vh', overflow: 'scroll' } }>
+        <List
+          projectItems={ items }
+          { ...cardActions }
+          { ...searchActions }
+        />
+      </section>
+    );
+  })
+  .add('Transcript Cards', () =>
+    <section style={ { height: '100%', overflow: 'scroll' } }>
+      <List
+        projectItems={ transItems }
+        { ...cardActions }
+        { ...searchActions }
+      />
+    </section>
   );
 
 storiesOf('List/Search Bar', module)
   .addDecorator(StoryRouter())
   .add('Default', () => {
     return (
-      <section style={ { height: '75vh', overflow: 'scroll' } }>
+      <section style={ { height: '90vh', overflow: 'scroll' } }>
         <SearchBar
           { ...searchActions }
         />
