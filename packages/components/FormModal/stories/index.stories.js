@@ -8,13 +8,13 @@ import ItemForm from '../ItemForm';
 
 export const modalItems = [ {
   id: 1,
-  isNewItemModalShow: true,
+  showModal: true,
   title: 'Example Transcript Title',
   description: 'This is a sample card description. This is fun!',
   url: '/projects/1/transcripts/1234',
   modalTitle: 'Edit Project',
 }, {
-  isNewItemModalShow: true,
+  showModal: true,
   modalTitle: 'New Project',
   id: 2
 } ];

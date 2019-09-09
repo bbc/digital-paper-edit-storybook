@@ -5,7 +5,9 @@ import ItemForm from './ItemForm/index.js';
 
 const ItemFormModal = (props) => {
 
-  const [ showModal, setShowModal ] = useState(props.showModal);
+  console.log('modal props', props);
+
+  const [ showModal, toggleShowModal ] = useState(props.showModal);
 
   return (
     <Modal show={ showModal } onHide={ () => toggleShowModal(!showModal) }>
@@ -25,7 +27,7 @@ ItemFormModal.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string,
   description: PropTypes.string,
-  isNewItemModalShow: PropTypes.bool.isRequired,
+  showModal: PropTypes.bool.isRequired,
   modalTitle: PropTypes.string.isRequired,
   handleSaveForm: PropTypes.func.isRequired,
 };
