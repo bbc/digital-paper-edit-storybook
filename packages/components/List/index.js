@@ -5,6 +5,7 @@ import SearchBar from './SearchBar';
 
 const List = ({ projectItems, handleEdit, handleDelete }) => {
 
+  console.log(projectItems);
   const [ items, setItems ] = useState(projectItems);
 
   const includesText = (text, subsetText) => {
@@ -51,7 +52,16 @@ const List = ({ projectItems, handleEdit, handleDelete }) => {
   };
 
   const listItems = items.map((item) => {
-    if (item.display) {
+    if (item.display && item.status) {
+      return (
+        <TranscriptCard
+          transcriptItem={ item }
+          handleEdit={ handleEdit }
+          handleDelete={ handleDeleteItem }
+        />
+      );
+    }
+    else if (item.display) {
       return (
         <SimpleCard
           key={ item.id }

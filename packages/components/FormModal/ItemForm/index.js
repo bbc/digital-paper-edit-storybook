@@ -16,9 +16,12 @@ const ItemForm = (props) => {
     const form = event.currentTarget;
     event.preventDefault();
     event.stopPropagation();
-    if (!form.checkValidity()) {
+
+    const formIsValid = form.checkValidity();
+
+    if (!formIsValid) {
       setIsValidated(true);
-    } else if (form.checkValidity()) {
+    } else if (formIsValid) {
       setIsValidated(true);
       const editedProject = {
         title: title,
