@@ -13,10 +13,13 @@ const ItemForm = (props) => {
   const [ title, setTitle ] = useState(props.title);
 
   const handleSubmit = (event) => {
+    const form = event.currentTarget;
     event.preventDefault();
     event.stopPropagation();
-
-    if (isValidated) {
+    if (!form.checkValidity()) {
+      setIsValidated(true);
+    } else if (form.checkValidity()) {
+      setIsValidated(true);
       const editedProject = {
         title: title,
         description: description,
@@ -24,9 +27,7 @@ const ItemForm = (props) => {
       };
 
       props.handleSaveForm(editedProject);
-    } else if (!isValidated) {
-      setIsValidated(true);
-    };
+    }
   };
 
   return (
@@ -80,7 +81,7 @@ ItemForm.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string,
   description: PropTypes.string,
-  showModal: PropTypes.bool.isRequired,
+  isNewItemModalShow: PropTypes.bool.isRequired,
   modalTitle: PropTypes.string.isRequired,
   handleSaveForm: PropTypes.func.isRequired,
 };
