@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  sortableElement,
-} from 'react-sortable-hoc';
+import { SortableElement } from 'react-sortable-hoc';
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -14,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import SortableHandle from './SortableHandle';
 
-const SortableElement = sortableElement(({ value, index, handleDelete, handleEdit }) => {
+const SortableItem = SortableElement(({ value, index, handleDelete, handleEdit }) => {
 
   const EditIcon = (
     <FontAwesomeIcon
@@ -53,4 +51,4 @@ const SortableElement = sortableElement(({ value, index, handleDelete, handleEdi
   );
 });
 
-export default SortableElement;
+export default SortableItem;

@@ -1,23 +1,54 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { actions } from '@storybook/addon-actions';
-import ProgrammeScriptContainer from '../../ProgrammeScriptContainer/';
+import { action } from '@storybook/addon-actions';
+import ProgrammeScriptContainer from '../index.js';
+import ProgrammeElements from '../ProgrammeElements';
 
-export const handleReorderActions = actions({ handleReorder: 'Handle reorder' });
-export const handleDeleteActions = actions({ handleDelete: 'Handle delete' });
-export const handleEditActions = actions({ handleEdit: 'Handle edit' });
+export const handleReorderActions = action('Handle reorder');
+export const handleDeleteActions = action('Handle delete');
+export const handleEditActions = action('Handle edit');
 
-export const items = [
-
+const items = [
+  {
+    type: 'paper-cut',
+    id: 1,
+    speaker: 'loud',
+    words: [ { text:'sdf', start: 0, end: 1 } ]
+  },
+  {
+    type: 'paper-cut',
+    id: 2,
+    speaker: 'loud',
+    words: [ { text:'sdf', start: 0, end: 1 } ]
+  },
+  {
+    type: 'title',
+    text: 'WOW'
+  },
+  {
+    type: 'voice-over',
+    text: 'insert VO'
+  },
+  {
+    type: 'note',
+    text: 'note'
+  },
+  {
+    type: 'insert',
+    text: 'omg'
+  }
 ];
+
+export const elements = ProgrammeElements(items, handleEditActions, handleDeleteActions);
+console.log(elements);
 
 storiesOf('ProgrammeScript', module)
   .add('Default', () =>
     <ProgrammeScriptContainer
-      elements={ items }
-      handleReorder={ handleReorderActions }
+      elements={ elements }
       handleDelete={ handleDeleteActions }
       handleEdit={ handleEditActions }
+      handleReorder={ handleReorderActions }
     />
   );

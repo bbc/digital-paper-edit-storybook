@@ -18,7 +18,8 @@ const PaperCut = (props) => {
           title={ `stat: ${ w.start }- end: ${ w.end }` }
           data-start={ w.start }
           data-end={ w.end }
-        >{w.text} </span>);});
+        >{w.text}
+        </span>);});
   }
 
   return (
