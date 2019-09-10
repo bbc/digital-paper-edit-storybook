@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Simple Card should render correctly 1`] = `
+<Card
+  body={false}
+  style={
+    Object {
+      "marginBottom": "1em",
+      "width": "100%",
+    }
+  }
+>
+  <CardBody>
+    <ForwardRef
+      noGutters={false}
+    >
+      <withRouter(LinkContainer)
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+        to="sample/url/is/here"
+      >
+        <Col
+          sm={10}
+          xs={8}
+        >
+          <CardTitle>
+            Default Title String
+          </CardTitle>
+        </Col>
+      </withRouter(LinkContainer)>
+      <Col
+        sm={1}
+        xs={2}
+      >
+        <CardLink>
+          <Button
+            active={false}
+            aria-label="Edit button"
+            disabled={false}
+            onClick={[Function]}
+            size="sm"
+            type="button"
+            variant="outline-secondary"
+          >
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={false}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [
+                    512,
+                    512,
+                    Array [],
+                    "f304",
+                    "M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z",
+                  ],
+                  "iconName": "pen",
+                  "prefix": "fas",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              symbol={false}
+              title=""
+              transform={null}
+            />
+          </Button>
+        </CardLink>
+      </Col>
+      <Col
+        sm={1}
+        xs={2}
+      >
+        <CardLink>
+          <Button
+            active={false}
+            aria-label="Delete button"
+            disabled={false}
+            onClick={[Function]}
+            size="sm"
+            type="button"
+            variant="outline-secondary"
+          >
+            <FontAwesomeIcon
+              border={false}
+              className=""
+              fixedWidth={false}
+              flip={null}
+              icon={
+                Object {
+                  "icon": Array [
+                    448,
+                    512,
+                    Array [],
+                    "f1f8",
+                    "M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z",
+                  ],
+                  "iconName": "trash",
+                  "prefix": "fas",
+                }
+              }
+              inverse={false}
+              listItem={false}
+              mask={null}
+              pull={null}
+              pulse={false}
+              rotation={null}
+              size={null}
+              spin={false}
+              symbol={false}
+              title=""
+              transform={null}
+            />
+          </Button>
+        </CardLink>
+      </Col>
+    </ForwardRef>
+    <ForwardRef
+      noGutters={false}
+    >
+      <Col
+        sm={11}
+        xs={10}
+      >
+        <CardSubtitle
+          className="mb-2 text-muted"
+        >
+          This is a default description string
+        </CardSubtitle>
+      </Col>
+    </ForwardRef>
+  </CardBody>
+</Card>
+`;
