@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
 
-const CustomAlert = ( { props } ) => {
+const CustomAlert = ({ ...props } ) => {
 
   const [ showAlert, toggleShowAlert ] = useState(props.show);
 

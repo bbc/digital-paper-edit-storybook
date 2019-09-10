@@ -16,12 +16,12 @@ export const transcriptFormProps = {
   projectId: 123,
   title: 'Sample Transcript Title',
   description: 'Sample Transcript Description',
-  id: 456
+  id: 456,
+  uploadCompleted: false
 };
 
 export const transcriptFormActions = actions(
   {
-    handleSaveForm: 'Form saved',
     handleCloseModal: 'Modal closed',
     handleSubmitForm: 'Form submitted' }
 );
@@ -32,7 +32,7 @@ storiesOf('Transcript Form / Custom Alert', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <CustomAlert
-          props={ alertProps }
+          { ...alertProps }
         />
       </section>
     );

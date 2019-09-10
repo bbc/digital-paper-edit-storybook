@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import TranscriptWrapper from './TranscriptWrapper/index.js';
 import CustomAlert from './CustomAlert';
 
 const TranscriptForm = ({ ...props }) => {
@@ -11,15 +11,13 @@ const TranscriptForm = ({ ...props }) => {
   const [ description, setDescription ] = useState(props.description);
   const [ isValidated, setValidationStatus ] = useState(false);
   const [ formData, setFormData ] = useState({});
-  const [ isUploading, setIsUploading ] = useState(false);
-  const [ uploadCompleted, setUploadCompletion ] = useState(null);
-  const [ redirect, setShouldRedirect ] = useState(false);
-  const [ transcriptId, setNewTranscriptId ] = useState(null);
-  const [ notificationMessage, updateNotificationMessage ] = useState(null);
+  const [ uploadCompleted, setUploadCompletion ] = useState(props.uploadCompleted);
+  const [ notificationMessage, updateNotificationMessage ] = useState(props.notification);
 
-  const setNotificationMessage = () => {
-    if (!uploadCompleted) {
+  useEffect(() => {
+    if (!props.uploadCompleted) {
       const alert = <CustomAlert
+        show={ true }
         dismissable={ true }
         variant={ 'danger' }
         heading={ 'Error could not contact the server' }
@@ -27,37 +25,29 @@ const TranscriptForm = ({ ...props }) => {
       />;
       updateNotificationMessage(alert);
     }
-  };
-
-  const handleTitleChange = event => {
-    setTitle(event.target.value);
-  };
-
-  const handleDescriptionChange = event => {
-    setDescription(event.target.value);
-  };
+  }, [ uploadCompleted ]);
 
   const handleFileUpload = e => {
-    const files = Array.from(e.target.files);
-    const file = files[0];
-    const tmpObj = {
+    const file = e.target.files[0];
+
+    if (!title) {
+      setTitle(file.name);
+    }
+
+    const fileObj = {
       title: title,
       description: description,
       file: file,
       type: file.type
     };
-    if (file.path) {
-      tmpObj.path = file.path;
-    }
-    setFormData(tmpObj);
 
-    if (!title) {
-      setTitle(file.name);
+    if (file.path) {
+      fileObj.path = file.path;
     }
+    setFormData(fileObj);
   };
 
-  const sendRequest = async () => {
-
+  const sendRequest = () => {
     const tmpObj = {
       ...formData,
       title: title,
@@ -65,42 +55,25 @@ const TranscriptForm = ({ ...props }) => {
     };
 
     setFormData(tmpObj);
-    props.handleSaveForm(formData);
-    props.handleSubmitForm(formData);
-
-    await TranscriptWrapper(formData, props.projectId)
-      .then((response) => {
-        console.log('inside then');
-        if (response.success === true) {
-          console.log('inside where success is true');
-          setIsUploading(false);
-          setUploadCompletion(true);
-          setShouldRedirect(true);
-          setNewTranscriptId(response.transcriptId);
-          props.handleSaveForm(response.transcript);
-
-          return;
-        } else {
-          console.log('response.success not true');
-          setIsUploading(false);
-          setShouldRedirect(false);
-          setNotificationMessage();
-
-          return;
-        }
-      });
+    props.handleSubmitForm(tmpObj);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     const form = event.currentTarget;
     event.preventDefault();
     event.stopPropagation();
 
-    return (!form.checkValidity()) ? setValidationStatus(true) : await sendRequest();
+    if (!form.checkValidity()) {
+      setValidationStatus(true);
+    }
+    else {
+      setValidationStatus(true);
+      sendRequest();
+    }
   };
 
   return (<>
-    {/* { notificationMessage } */}
+    { notificationMessage }
     <Form
       noValidate
       validated={ isValidated }
@@ -113,7 +86,7 @@ const TranscriptForm = ({ ...props }) => {
           type="text"
           placeholder="Enter a transcript title"
           value={ title }
-          onChange={ e => handleTitleChange(e) }
+          onChange={ e => setTitle(e.target.value) }
         />
         <Form.Text className="text-muted">
             Chose a title for your Transcript
@@ -130,7 +103,7 @@ const TranscriptForm = ({ ...props }) => {
           type="text"
           placeholder="Enter a Transcript description"
           value={ description }
-          onChange={ e => handleDescriptionChange(e) }
+          onChange={ e => setDescription(e.target.value) }
         />
         <Form.Text className="text-muted">
                 Chose an optional description for your Transcript
@@ -164,6 +137,26 @@ const TranscriptForm = ({ ...props }) => {
     </Form>
   </>
   );
+};
+
+TranscriptForm.propTypes = {
+  id: PropTypes.number.isRequired,
+  projectId: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  uploadCompleted: PropTypes.bool.isRequired,
+  handleSubmitForm: PropTypes.func.isRequired,
+};
+
+TranscriptForm.defaultProps = {
+  id: 456,
+  projectId: 123,
+  title: 'Sample Transcript Title',
+  description: 'Sample Transcript Description',
+  uploadCompleted: true,
+  handleSubmitForm: () => {
+    console.log('Form submitted');
+  },
 };
 
 export default TranscriptForm;
