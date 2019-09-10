@@ -55,7 +55,8 @@ const TranscriptForm = ({ ...props }) => {
     };
 
     setFormData(tmpObj);
-    props.handleSubmitForm(tmpObj);
+
+    props.handleSaveForm(tmpObj);
   };
 
   const handleSubmit = (event) => {
@@ -68,6 +69,7 @@ const TranscriptForm = ({ ...props }) => {
     }
     else {
       setValidationStatus(true);
+
       sendRequest();
     }
   };
@@ -154,8 +156,8 @@ TranscriptForm.defaultProps = {
   title: 'Sample Transcript Title',
   description: 'Sample Transcript Description',
   uploadCompleted: true,
-  handleSubmitForm: () => {
-    console.log('Form submitted');
+  handleSaveForm: () => {
+    console.log('Form saved');
   },
 };
 

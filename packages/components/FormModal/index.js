@@ -1,12 +1,28 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap/Modal';
-import ItemForm from './ItemForm/index.js';
+import ItemForm from '../ItemForm/index.js';
+import TranscriptForm from '../TranscriptForm/index.js';
 
 const ItemFormModal = (props) => {
 
-
   const [ showModal, toggleShowModal ] = useState(props.showModal);
+
+  const form = () => {
+    if (props.type === 'transcript') {
+      return (
+        <TranscriptForm
+          { ...props }
+        />
+      );
+    } else {
+      return (
+        <ItemForm
+          { ...props }
+        />
+      );
+    }
+  };
 
   return (
     <Modal show={ showModal } onHide={ () => toggleShowModal(!showModal) }>
@@ -14,9 +30,7 @@ const ItemFormModal = (props) => {
         <Modal.Title>{props.modalTitle}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <ItemForm
-          { ...props }
-        />
+        {form()}
       </Modal.Body>
     </Modal>
   );

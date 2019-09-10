@@ -6,7 +6,6 @@ import TranscriptCard from '../TranscriptCard';
 
 const List = ({ projectItems, handleEdit, handleDelete }) => {
 
-  console.log(projectItems);
   const [ items, setItems ] = useState(projectItems);
 
   const includesText = (text, subsetText) => {

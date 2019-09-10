@@ -5,6 +5,8 @@ import StoryRouter from 'storybook-react-router';
 import CustomAlert from '../CustomAlert/index.js';
 import TranscriptForm from '../index.js';
 
+import { modalActions } from '../../FormModal/stories/index.stories.js';
+
 export const alertProps = {
   variant: 'danger',
   heading: 'Error could not contact the server',
@@ -17,14 +19,8 @@ export const transcriptFormProps = {
   title: 'Sample Transcript Title',
   description: 'Sample Transcript Description',
   id: 456,
-  uploadCompleted: false
+  uploadCompleted: true
 };
-
-export const transcriptFormActions = actions(
-  {
-    handleCloseModal: 'Modal closed',
-    handleSubmitForm: 'Form submitted' }
-);
 
 storiesOf('Transcript Form / Custom Alert', module)
   .addDecorator(StoryRouter())
@@ -44,8 +40,19 @@ storiesOf('Transcript Form', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <TranscriptForm
-          { ...transcriptFormActions }
+          { ...modalActions }
           { ...transcriptFormProps }
+        />
+      </section>
+    );
+  })
+  .add('Transcript Error', () => {
+    return (
+      <section style={ { height: '90vh', overflow: 'scroll' } }>
+        <TranscriptForm
+          { ...modalActions }
+          { ...transcriptFormProps }
+          uploadCompleted={ false }
         />
       </section>
     );
