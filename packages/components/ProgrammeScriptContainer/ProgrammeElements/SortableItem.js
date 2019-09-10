@@ -19,7 +19,6 @@ const SortableItem = SortableElement(({ value, index, handleDelete, handleEdit }
       className={ 'text-muted' }
       icon={ faPen }
       onClick={ () => { handleEdit(index); } }>
-
     </FontAwesomeIcon>
   );
 
