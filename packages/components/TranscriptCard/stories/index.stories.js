@@ -43,9 +43,8 @@ storiesOf('Transcript Card', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <TranscriptCard
-          item = { transcriptItems[0] }
-          handleEdit={ transcriptCardActions.handleEdit }
-          handleDelete={ transcriptCardActions.handleDelete }
+          { ...transcriptItems[0] }
+          { ...transcriptCardActions }
         />
       </section>
     );
@@ -54,9 +53,8 @@ storiesOf('Transcript Card', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <TranscriptCard
-          item={ transcriptItems[1] }
-          handleEdit={ transcriptCardActions.handleEdit }
-          handleDelete={ transcriptCardActions.handleDelete }
+          { ...transcriptItems[1] }
+          { ...transcriptCardActions }
         />
       </section>
     );
@@ -65,9 +63,8 @@ storiesOf('Transcript Card', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <TranscriptCard
-          item= { transcriptItems[2] }
-          handleEdit={ transcriptCardActions.handleEdit }
-          handleDelete={ transcriptCardActions.handleDelete }
+          { ...transcriptItems[2] }
+          { ...transcriptCardActions }
         />
       </section>
     );

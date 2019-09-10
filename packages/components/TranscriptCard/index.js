@@ -24,12 +24,12 @@ const TranscriptCard = (props) => {
     const confirmationPrompt = confirm(confirmDeleteText);
 
     if (confirmationPrompt) {
-      props.handleDelete ? props.handleDelete(props.item.id) : alert(cancelDeleteText);
+      props.handleDelete ? props.handleDelete(props.id) : alert(cancelDeleteText);
     }
   };
 
   const handleEditClick = () => {
-    props.handleEdit(props.item.id);
+    props.handleEdit(props.id);
   };
 
   const iconStatus = {
@@ -39,12 +39,12 @@ const TranscriptCard = (props) => {
   };
 
   const setDescription = () => {
-    if (props.item.status === 'error') {
+    if (props.status === 'error') {
       return (
         <>
           <Alert variant='danger'>
             <FontAwesomeIcon icon={ faExclamationTriangle } />
-            {props.item.errorMessage}
+            {props.errorMessage}
           </Alert>
           <Badge variant='danger'>
             Error
@@ -53,16 +53,16 @@ const TranscriptCard = (props) => {
       );
     }
     else {
-      const badgeText = (props.item.status.charAt(0).toUpperCase() + props.item.status.slice(1)).replace('-', ' ');
+      const badgeText = (props.status.charAt(0).toUpperCase() + props.status.slice(1)).replace('-', ' ');
 
       return (
-        <Badge variant={ iconStatus[props.item.status] }>{badgeText}</Badge>
+        <Badge variant={ iconStatus[props.status] }>{badgeText}</Badge>
       );
     };
   };
 
   const setStatusIcon = () => {
-    if (props.item.status === 'in-progress') {
+    if (props.status === 'in-progress') {
       return (
         <Button variant="info" size="sm" disabled>
           <Spinner
@@ -76,25 +76,25 @@ const TranscriptCard = (props) => {
       );
     } else {
       return (
-        <Button variant={ iconStatus[props.item.status] } size="sm" disabled>
-          <FontAwesomeIcon icon={ props.item.status === 'danger' ? faExclamationTriangle : faCheck } />
+        <Button variant={ iconStatus[props.status] } size="sm" disabled>
+          <FontAwesomeIcon icon={ props.status === 'danger' ? faExclamationTriangle : faCheck } />
         </Button>
       );
     };
   };
 
-  const title = props.item.status && props.item.status === 'done' ? <a href={ `${ props.item.url }` }> {props.item.title}</a> : props.item.title;
+  const title = props.status && props.status === 'done' ? <a href={ `${ props.url }` }> {props.title}</a> : props.title;
 
   return (
     <Card
-      border={ props.item.status && props.item.status === 'danger' ? status : null }
+      border={ props.status && props.status === 'danger' ? status : null }
       style={ { width: '100%', marginBottom: '2em' } }
     >
       <Card.Body>
         <Row>
           <Col xs={ 12 } sm={ 9 }>
             <Card.Title>
-              {props.item.icon ? props.item.icon : ''} {title}
+              {props.icon ? props.icon : ''} {title}
             </Card.Title>
           </Col>
           <Col xs={ 2 } sm={ 1 }>
@@ -126,7 +126,7 @@ const TranscriptCard = (props) => {
         <Row>
           <Col xs={ 12 }>
             <Card.Subtitle className="mb-2 text-muted">
-              {props.item.subtitle}
+              {props.subtitle}
             </Card.Subtitle>
           </Col>
         </Row>
