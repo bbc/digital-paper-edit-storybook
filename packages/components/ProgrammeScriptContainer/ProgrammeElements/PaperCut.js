@@ -12,7 +12,6 @@ const PaperCut = (props) => {
     words = props.words.map((w) => {
       return (
         <span
-        // TODO: add w.id to words to us as index?
           key={ cuid() }
           className="words"
           title={ `stat: ${ w.start }- end: ${ w.end }` }
