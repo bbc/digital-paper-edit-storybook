@@ -7,7 +7,6 @@ import TitleHeading from './TitleHeading';
 import Note from './Note';
 
 import SortableItem from './SortableItem';
-import SortableInsert from './SortableInsert';
 
 const adaptAddedElement = (type, text) => {
   switch (type) {
