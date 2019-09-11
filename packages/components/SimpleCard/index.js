@@ -17,7 +17,7 @@ const SimpleCard = (props) => {
     const confirmDeleteText = "Click OK if you wish to delete or cancel if you don't";
     const cancelDeleteText = 'All is good, it was not deleted';
     const confirmationPrompt = window.confirm(confirmDeleteText);
-    
+
     if (confirmationPrompt) {
       props.handleDelete ? props.handleDelete(props.id) : alert(cancelDeleteText);
     }
