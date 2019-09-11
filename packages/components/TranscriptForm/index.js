@@ -108,7 +108,7 @@ const TranscriptForm = ({ ...props }) => {
           onChange={ e => setDescription(e.target.value) }
         />
         <Form.Text className="text-muted">
-                Chose an optional description for your Transcript
+                Choose an optional description for your Transcript
         </Form.Text>
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         <Form.Control.Feedback type="invalid">
