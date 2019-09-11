@@ -6,9 +6,10 @@ import ProgrammeElements from './ProgrammeElements';
 
 const SortableList = SortableContainer(({ children }) => {
   return (
-    <li>
+    <ul style={ { listStyle: 'none', padding: '0px' } }>
       {children}
-    </li>);
+    </ul>
+  );
 });
 
 const ProgrammeScriptContainer = (props) => {

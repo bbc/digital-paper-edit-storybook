@@ -15,7 +15,7 @@ import SortableHandle from './SortableHandle';
 
 const SortableInsert = SortableElement(({ text }) => {
   return (
-    <li>
+    <ul style={ { listStyle: 'none', padding: '0px' } }>
       <Row>
         <Col xs={ 1 } sm={ 1 } md={ 1 } ld={ 1 } xl={ 1 } style={ { backgroundColor: 'orange' } }>
           <SortableHandle />
@@ -32,7 +32,7 @@ const SortableInsert = SortableElement(({ text }) => {
           <FontAwesomeIcon style={ { color: 'white' } } icon={ faArrowAltCircleLeft } />
         </Col>
       </Row>
-    </li>
+    </ul>
   );
 });
 

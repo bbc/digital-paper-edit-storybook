@@ -31,7 +31,7 @@ const SortableItem = SortableElement(({ value, index, handleDelete, handleEdit }
   );
 
   return (
-    <li>
+    <ul style={ { listStyle: 'none', padding: '0px' } }>
       <Row>
         <Col xs={ 1 } sm={ 1 } md={ 1 } ld={ 1 } xl={ 1 } >
           <SortableHandle />
@@ -46,7 +46,7 @@ const SortableItem = SortableElement(({ value, index, handleDelete, handleEdit }
           {handleDelete ? DeleteIcon : null}
         </Col>
       </Row>
-    </li>
+    </ul>
   );
 });
 

@@ -26,19 +26,25 @@ const adaptAddedElement = (type, text) => {
 
 const ProgrammeElements = (elements, handleEdit, handleDelete) => {
   return elements.map((el, index) => {
+    const key = cuid();
     const type = el.type;
+    const text = el.text;
 
     if (type === 'insert') {
-      console.log('insert returning');
-
-      return (<SortableInsert text={ el.text } /> );
+      return (
+        <SortableInsert
+          key={ key }
+          index={ index }
+          text={ text }
+        />
+      );
 
     }
 
     if (type === 'paper-cut') {
       return (
         <SortableItem
-          key={ cuid() }
+          key={ key }
           index={ index }
           value={
             <PaperCut
@@ -46,7 +52,6 @@ const ProgrammeElements = (elements, handleEdit, handleDelete) => {
               words={ el.words }
             />
           }
-          type={ type }
           handleDelete={ handleDelete }
           handleEdit={ null }
         />);
@@ -54,9 +59,9 @@ const ProgrammeElements = (elements, handleEdit, handleDelete) => {
 
     return (
       <SortableItem
-        key={ cuid() }
+        key={ key }
         index={ index }
-        value={ adaptAddedElement(type, el.text) }
+        value={ adaptAddedElement(type, text) }
         handleDelete={ handleDelete }
         handleEdit={ handleEdit }
       />
