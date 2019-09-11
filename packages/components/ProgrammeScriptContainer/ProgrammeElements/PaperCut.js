@@ -39,7 +39,6 @@ const PaperCut = (props) => {
           {/* <FontAwesomeIcon icon={ faTag } />TagExample */}
         </Col>
         <Col sm={ 9 }>
-          {/* <p>{ JSON.stringify(this.props.words) }</p> */}
           { words }
         </Col>
       </Row>
