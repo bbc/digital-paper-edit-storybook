@@ -14,13 +14,11 @@ const ProgrammeScriptContainer = (props) => {
     setElements(result);
   };
 
-  const SortableList = SortableContainer(({ children }) => {
-    return (
-      <ul style={ { listStyle: 'none', padding: '0px' } }>
-        {children}
-      </ul>
-    );
-  });
+  const SortableList = SortableContainer(({ children }) =>
+    <ul style={ { listStyle: 'none', padding: '0px' } }>
+      {children}
+    </ul>
+  );
 
   return (
     <SortableList useDragHandle onSortEnd={ onSortEnd }>
