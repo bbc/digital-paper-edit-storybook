@@ -39,7 +39,6 @@ const items = [
   },
 ];
 
-// export const elements = ProgrammeElements(items, handleEditActions, handleDeleteActions);
 
 storiesOf('ProgrammeScript', module)
   .add('Default', () =>
