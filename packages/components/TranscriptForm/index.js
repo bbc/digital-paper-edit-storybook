@@ -128,7 +128,7 @@ const TranscriptForm = ({ ...props }) => {
         </Form.Text>
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         <Form.Control.Feedback type="invalid">
-            Please chose a audio or video file to upload
+            Please choose a audio or video file to upload
         </Form.Control.Feedback>
       </Form.Group>
       <Modal.Footer>
