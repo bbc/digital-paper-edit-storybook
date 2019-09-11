@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import SortableHandle from './SortableHandle';
 
-const SortableItem = SortableElement(({ value, index, handleDelete, handleEdit }) => {
+const SortableItem = SortableElement(({ value, index, handleDelete, handleEdit, backgroundColour, textColour }) => {
 
   const EditIcon = (
     <FontAwesomeIcon
@@ -31,13 +31,15 @@ const SortableItem = SortableElement(({ value, index, handleDelete, handleEdit }
   );
 
   return (
-    <ul style={ { listStyle: 'none', padding: '0px' } }>
-      <Row>
+    <li style={ { listStyle: 'none' } }>
+      <Row style={ { backgroundColor: backgroundColour } }>
         <Col xs={ 1 } sm={ 1 } md={ 1 } ld={ 1 } xl={ 1 } >
           <SortableHandle />
         </Col>
         <Col xs={ 8 } sm={ 9 } md={ 9 } ld={ 9 } xl={ 9 } >
-          {value}
+          <span style={ { color: textColour } }>
+            {value}
+          </span>
         </Col>
         <Col xs={ 1 } sm={ 1 } md={ 1 } ld={ 1 } xl={ 1 } >
           {handleEdit ? EditIcon : null}
@@ -46,7 +48,7 @@ const SortableItem = SortableElement(({ value, index, handleDelete, handleEdit }
           {handleDelete ? DeleteIcon : null}
         </Col>
       </Row>
-    </ul>
+    </li>
   );
 });
 

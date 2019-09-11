@@ -32,10 +32,12 @@ const ProgrammeElements = (elements, handleEdit, handleDelete) => {
 
     if (type === 'insert') {
       return (
-        <SortableInsert
+        <SortableItem
           key={ key }
           index={ index }
-          text={ text }
+          value={ text }
+          backgroundColour="orange"
+          textColour="white"
         />
       );
 
