@@ -95,7 +95,7 @@ const TranscriptForm = ({ ...props }) => {
         </Form.Text>
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         <Form.Control.Feedback type="invalid">
-            Please chose a title for your transcript
+            Please choose a title for your transcript
         </Form.Control.Feedback>
       </Form.Group>
 
