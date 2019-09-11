@@ -4,14 +4,6 @@ import arrayMove from 'array-move';
 import { SortableContainer, } from 'react-sortable-hoc';
 import ProgrammeElements from './ProgrammeElements';
 
-const SortableList = SortableContainer(({ children }) => {
-  return (
-    <ul style={ { listStyle: 'none', padding: '0px' } }>
-      {children}
-    </ul>
-  );
-});
-
 const ProgrammeScriptContainer = (props) => {
   const programmeElements = ProgrammeElements(props.items, props.handleEdit, props.handleDelete);
   const [ elements, setElements ] = useState(programmeElements);
@@ -21,6 +13,14 @@ const ProgrammeScriptContainer = (props) => {
     props.handleReorder(result);
     setElements(result);
   };
+
+  const SortableList = SortableContainer(({ children }) => {
+    return (
+      <ul style={ { listStyle: 'none', padding: '0px' } }>
+        {children}
+      </ul>
+    );
+  });
 
   return (
     <SortableList useDragHandle onSortEnd={ onSortEnd }>
