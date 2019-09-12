@@ -35,7 +35,7 @@ storiesOf('List', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <List
-          projectItems={ items }
+          items={ items }
           { ...cardActions }
           { ...searchActions }
         />
@@ -45,7 +45,7 @@ storiesOf('List', module)
   .add('Transcript Cards', () =>
     <section style={ { height: '100%', overflow: 'scroll' } }>
       <List
-        projectItems={ transItems }
+        items={ transItems }
         { ...cardActions }
         { ...searchActions }
       />

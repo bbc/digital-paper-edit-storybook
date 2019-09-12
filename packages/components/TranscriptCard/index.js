@@ -24,7 +24,7 @@ const TranscriptCard = (props) => {
     const confirmationPrompt = confirm(confirmDeleteText);
 
     if (confirmationPrompt) {
-      return props.handleDelete ? props.handleDelete(props.id) : alert(cancelDeleteText);
+      props.handleDelete ? props.handleDelete(props.id) : alert(cancelDeleteText);
     }
   };
 
@@ -42,11 +42,13 @@ const TranscriptCard = (props) => {
     if (props.status === 'error') {
       return (
         <>
-          <Alert variant="danger">
-            <FontAwesomeIcon icon={ faExclamationTriangle } />{' '}
+          <Alert variant='danger'>
+            <FontAwesomeIcon icon={ faExclamationTriangle } />
             {props.errorMessage}
           </Alert>
-          <Badge variant="danger">Error</Badge>
+          <Badge variant='danger'>
+            Error
+          </Badge>
         </>
       );
     }
@@ -139,7 +141,7 @@ const TranscriptCard = (props) => {
 };
 
 TranscriptCard.propTypes = {
-  key: PropTypes.string.isRequired,
+  key: PropTypes.string,
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,

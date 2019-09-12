@@ -31,7 +31,7 @@ const CustomBreadcrumb = (props) => {
 };
 
 CustomBreadcrumb.propTypes = {
-  items: PropTypes.list,
+  items: PropTypes.array,
 };
 
 CustomBreadcrumb.defaultProps = {

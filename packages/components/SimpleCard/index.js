@@ -17,7 +17,7 @@ const SimpleCard = (props) => {
     const confirmDeleteText = "Click OK if you wish to delete or cancel if you don't";
     const cancelDeleteText = 'All is good, it was not deleted';
     const confirmationPrompt = window.confirm(confirmDeleteText);
-    
+
     if (confirmationPrompt) {
       props.handleDelete ? props.handleDelete(props.id) : alert(cancelDeleteText);
     }
@@ -76,7 +76,7 @@ const SimpleCard = (props) => {
 };
 
 SimpleCard.propTypes = {
-  key: PropTypes.string.isRequired,
+  key: PropTypes.string,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
