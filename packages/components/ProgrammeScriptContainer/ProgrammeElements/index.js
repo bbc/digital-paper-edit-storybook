@@ -11,7 +11,7 @@ import SortableItem from './SortableItem';
 const adaptAddedElement = (type, text) => {
   switch (type) {
   case 'title':
-    return (<TitleHeading text={ text } />);
+    return <TitleHeading text={ text } />;
   case 'voice-over':
     return <VoiceOver text={ text } />;
   case 'note':

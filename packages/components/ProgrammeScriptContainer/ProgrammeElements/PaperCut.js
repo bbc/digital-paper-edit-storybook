@@ -14,7 +14,7 @@ const PaperCut = (props) => {
         <span
           key={ cuid() }
           className="words"
-          title={ `stat: ${ w.start }- end: ${ w.end }` }
+          title={ `start: ${ w.start }- end: ${ w.end }` }
           data-start={ w.start }
           data-end={ w.end }
         >
@@ -25,7 +25,6 @@ const PaperCut = (props) => {
   }
 
   return (
-    <>
       <Row>
         <Col sm={ 3 } className={ 'text-truncate text-muted' }
           // TODO: could add timecode from eg -  ${ shortTimecode(this.props.words[0].start) }
@@ -39,11 +38,9 @@ const PaperCut = (props) => {
           {/* <FontAwesomeIcon icon={ faTag } />TagExample */}
         </Col>
         <Col sm={ 9 }>
-          {/* <p>{ JSON.stringify(this.props.words) }</p> */}
           { words }
         </Col>
       </Row>
-    </>
   );
 };
 

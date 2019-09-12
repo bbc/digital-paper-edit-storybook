@@ -33,18 +33,18 @@ const SortableItem = SortableElement(({ value, handleFns, colourOpts }) => {
   return (
     <li style={ { listStyle: 'none' } }>
       <Row style={ { backgroundColor: colourOpts.background } }>
-        <Col xs={ 1 } sm={ 1 } md={ 1 } ld={ 1 } xl={ 1 } >
+        <Col xs={ 1 } >
           <SortableHandle />
         </Col>
-        <Col xs={ 8 } sm={ 9 } md={ 9 } ld={ 9 } xl={ 9 } >
+        <Col xs={ 8 } sm={ 9 } >
           <span style={ { color: colourOpts.text } }>
             {value}
           </span>
         </Col>
-        <Col xs={ 1 } sm={ 1 } md={ 1 } ld={ 1 } xl={ 1 } >
+        <Col xs={ 1 } >
           {handleFns.edit ? EditIcon : null}
         </Col>
-        <Col xs={ 1 } sm={ 1 } md={ 1 } ld={ 1 } xl={ 1 } >
+        <Col xs={ 1 } >
           {handleFns.delete ? DeleteIcon : null}
         </Col>
       </Row>
