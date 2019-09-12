@@ -24,25 +24,37 @@ const adaptAddedElement = (type, text) => {
 };
 
 const ProgrammeElements = (elements, handleEdit, handleDelete) => {
+
   return elements.map((el, index) => {
     const key = cuid();
     const type = el.type;
     const text = el.text;
 
+    const handleFns = {
+      edit: () => { handleEdit(index);},
+      delete: () => { handleDelete(index);}
+    };
+
     if (type === 'insert') {
+      const colourOpts = {
+        background: 'orange',
+        text: 'white'
+      };
+
       return (
         <SortableItem
           key={ key }
           index={ index }
           value={ text }
-          backgroundColour="orange"
-          textColour="white"
+          colourOpts={ colourOpts }
         />
       );
 
     }
 
     if (type === 'paper-cut') {
+      handleFns.edit = null;
+
       return (
         <SortableItem
           key={ key }
@@ -53,8 +65,7 @@ const ProgrammeElements = (elements, handleEdit, handleDelete) => {
               words={ el.words }
             />
           }
-          handleDelete={ handleDelete }
-          handleEdit={ null }
+          handleFns={ handleFns }
         />);
     }
 
@@ -63,8 +74,7 @@ const ProgrammeElements = (elements, handleEdit, handleDelete) => {
         key={ key }
         index={ index }
         value={ adaptAddedElement(type, text) }
-        handleDelete={ handleDelete }
-        handleEdit={ handleEdit }
+        handleFns={ handleFns }
       />
     );
   });
