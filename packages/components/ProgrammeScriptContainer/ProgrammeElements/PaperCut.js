@@ -14,7 +14,7 @@ const PaperCut = (props) => {
         <span
           key={ cuid() }
           className="words"
-          title={ `stat: ${ w.start }- end: ${ w.end }` }
+          title={ `start: ${ w.start }- end: ${ w.end }` }
           data-start={ w.start }
           data-end={ w.end }
         >
