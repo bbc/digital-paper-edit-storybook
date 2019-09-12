@@ -33,7 +33,7 @@ const SortableItem = SortableElement(({ value, index, handleDelete, handleEdit, 
   return (
     <li style={ { listStyle: 'none' } }>
       <Row style={ { backgroundColor: backgroundColour } }>
-        <Col xs={ 1 } sm={ 1 } md={ 1 } ld={ 1 } xl={ 1 } >
+        <Col xs={ 1 }>
           <SortableHandle />
         </Col>
         <Col xs={ 8 } sm={ 9 } md={ 9 } ld={ 9 } xl={ 9 } >
