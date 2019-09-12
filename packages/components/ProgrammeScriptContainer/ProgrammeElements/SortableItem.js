@@ -44,7 +44,7 @@ const SortableItem = SortableElement(({ value, index, handleDelete, handleEdit, 
         <Col xs={ 1 }>
           {handleEdit ? EditIcon : null}
         </Col>
-        <Col xs={ 1 } sm={ 1 } md={ 1 } ld={ 1 } xl={ 1 } >
+        <Col xs={ 1 }>
           {handleDelete ? DeleteIcon : null}
         </Col>
       </Row>
