@@ -80,7 +80,7 @@ const SimpleCard = (props) => {
 };
 
 SimpleCard.propTypes = {
-  key: PropTypes.string.isRequired,
+  key: PropTypes.string,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,

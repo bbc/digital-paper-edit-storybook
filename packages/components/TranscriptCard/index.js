@@ -141,7 +141,7 @@ const TranscriptCard = (props) => {
 };
 
 TranscriptCard.propTypes = {
-  key: PropTypes.string.isRequired,
+  key: PropTypes.string,
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
