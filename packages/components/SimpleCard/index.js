@@ -19,7 +19,11 @@ const SimpleCard = (props) => {
     const confirmationPrompt = window.confirm(confirmDeleteText);
 
     if (confirmationPrompt) {
-      props.handleDelete ? props.handleDelete(props.id) : alert(cancelDeleteText);
+      if (props.handleDelete) {
+        props.handleDelete(props.id);
+      } else {
+        alert(cancelDeleteText);
+      }
     }
   };
 
