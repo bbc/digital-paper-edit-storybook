@@ -36,7 +36,7 @@ const SortableItem = SortableElement(({ value, index, handleDelete, handleEdit, 
         <Col xs={ 1 }>
           <SortableHandle />
         </Col>
-        <Col xs={ 8 } sm={ 9 } md={ 9 } ld={ 9 } xl={ 9 } >
+        <Col xs={ 8 } sm={ 9 } >
           <span style={ { color: textColour } }>
             {value}
           </span>
