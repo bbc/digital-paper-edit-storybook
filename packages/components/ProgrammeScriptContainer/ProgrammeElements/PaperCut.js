@@ -25,7 +25,6 @@ const PaperCut = (props) => {
   }
 
   return (
-    <>
       <Row>
         <Col sm={ 3 } className={ 'text-truncate text-muted' }
           // TODO: could add timecode from eg -  ${ shortTimecode(this.props.words[0].start) }
