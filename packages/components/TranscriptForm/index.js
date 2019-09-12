@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import CustomAlert from './CustomAlert';
 
 const TranscriptForm = ({ ...props }) => {
 
@@ -11,21 +10,6 @@ const TranscriptForm = ({ ...props }) => {
   const [ description, setDescription ] = useState(props.description);
   const [ isValidated, setValidationStatus ] = useState(false);
   const [ formData, setFormData ] = useState({});
-  const [ uploadCompleted, setUploadCompletion ] = useState(props.uploadCompleted);
-  const [ notificationMessage, updateNotificationMessage ] = useState(props.notification);
-
-  useEffect(() => {
-    if (!props.uploadCompleted) {
-      const alert = <CustomAlert
-        show={ true }
-        dismissable={ true }
-        variant={ 'danger' }
-        heading={ 'Error could not contact the server' }
-        message={ <p>There was an error trying to create this transcript on the server</p> }
-      />;
-      updateNotificationMessage(alert);
-    }
-  }, [ uploadCompleted ]);
 
   const handleFileUpload = e => {
     const file = e.target.files[0];
@@ -41,9 +25,6 @@ const TranscriptForm = ({ ...props }) => {
       type: file.type
     };
 
-    if (file.path) {
-      fileObj.path = file.path;
-    }
     setFormData(fileObj);
   };
 
@@ -63,19 +44,14 @@ const TranscriptForm = ({ ...props }) => {
     const form = event.currentTarget;
     event.preventDefault();
     event.stopPropagation();
+    setValidationStatus(true);
 
-    if (!form.checkValidity()) {
-      setValidationStatus(true);
-    }
-    else {
-      setValidationStatus(true);
-
+    if (form.checkValidity()) {
       sendRequest();
     }
   };
 
   return (<>
-    { notificationMessage }
     <Form
       noValidate
       validated={ isValidated }
@@ -146,8 +122,7 @@ TranscriptForm.propTypes = {
   projectId: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
-  uploadCompleted: PropTypes.bool.isRequired,
-  handleSubmitForm: PropTypes.func.isRequired,
+  handleSaveForm: PropTypes.func.isRequired,
 };
 
 TranscriptForm.defaultProps = {
@@ -155,7 +130,6 @@ TranscriptForm.defaultProps = {
   projectId: 123,
   title: 'Sample Transcript Title',
   description: 'Sample Transcript Description',
-  uploadCompleted: true,
   handleSaveForm: () => {
     console.log('Form saved');
   },
