@@ -41,7 +41,6 @@ const PaperCut = (props) => {
           { words }
         </Col>
       </Row>
-    </>
   );
 };
 
