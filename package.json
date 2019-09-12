@@ -26,6 +26,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.8.2",
     "@fortawesome/free-solid-svg-icons": "^5.10.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "@storybook/addon-knobs": "^5.1.11",
     "array-move": "^2.1.0",
     "bootstrap": "^4.3.1",
     "bootstrap-css-only": "^4.3.1",
