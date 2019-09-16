@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoContextProgressBar should be possible to activate button with Spacebar 1`] = `
+<VideoContextProgressBar
+  videoContext={Object {}}
+>
+  <ProgressBar
+    onClick={[Function]}
+    percentage={0}
+  >
+    <div
+      className="progressBar"
+    >
+      <Filler
+        percentage={0}
+      >
+        <div
+          className="filler"
+          style={
+            Object {
+              "width": "0%",
+            }
+          }
+        />
+      </Filler>
+    </div>
+  </ProgressBar>
+</VideoContextProgressBar>
+`;
+
+exports[`VideoContextProgressBar should render correctly 1`] = `
+<Fragment>
+  <ProgressBar
+    onClick={[Function]}
+    percentage={0}
+  />
+</Fragment>
+`;
+
+exports[`VideoContextProgressBar should render correctly in "debug" mode 1`] = `
+<Fragment>
+  <ProgressBar
+    onClick={[Function]}
+    percentage={0}
+  />
+</Fragment>
+`;
