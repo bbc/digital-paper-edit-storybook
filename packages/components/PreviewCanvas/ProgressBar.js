@@ -4,7 +4,6 @@ import Filler from './Filler';
 const ProgressBar = (props) => {
 
   return (
-    // <div onClick={ props.onClick } className={ styles.progressBar }>
     <div onClick={ props.onClick }
       style={ {
         position: 'relative',
