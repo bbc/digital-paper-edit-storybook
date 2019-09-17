@@ -1,6 +1,5 @@
 import React from 'react';
 import Filler from './Filler';
-// import styles from './ProgressBar.module.css';
 
 const ProgressBar = (props) => {
 
