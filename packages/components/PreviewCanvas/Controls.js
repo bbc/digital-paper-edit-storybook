@@ -43,7 +43,7 @@ const Controls = (props) => {
         </Button>
       </Col>
       <Col
-        sm={ 6 } md={ 6 } ld={ 6 } xl={ 6 }
+        sm={ 6 }
       >
         <Button
           size="sm"
