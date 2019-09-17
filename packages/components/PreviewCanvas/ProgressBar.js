@@ -6,7 +6,13 @@ const ProgressBar = (props) => {
 
   return (
     // <div onClick={ props.onClick } className={ styles.progressBar }>
-    <div onClick={ props.onClick } >
+    <div onClick={ props.onClick }
+      style={ {
+        position: 'relative',
+        height: '12px',
+        width: '100%',
+        opacity: '1'
+      } } >
       <Filler percentage={ props.percentage }></Filler>
     </div>
 
