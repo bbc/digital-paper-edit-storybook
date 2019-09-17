@@ -6,7 +6,7 @@ const Filler = (props) => {
     background: 'red',
     height: '100%',
     borderRadius: 'inherit'
-  } }></div>;
+  } } />;
 };
 
 export default Filler;
