@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import VideoContextProgressBar from './VideoContextProgressBar';
 import Controls from '../Controls';
