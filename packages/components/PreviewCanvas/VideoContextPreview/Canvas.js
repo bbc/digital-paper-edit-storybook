@@ -4,7 +4,6 @@ import React, { useRef, useEffect, useState } from 'react';
 const Canvas = (props) => {
   const ref = props.ref;
 
-  // const [ videoContext, setVideoContext ] = useState();
 
   useEffect(() => {
     if (props.videoContextRef && props.videoContext) {
