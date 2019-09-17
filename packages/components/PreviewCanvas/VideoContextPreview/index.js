@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useRef, useState, useEffect } from 'react';
-import Canvas from './Canvas';
+import React, { useState, useEffect } from 'react';
 import VideoContextProgressBar from './VideoContextProgressBar';
 import Controls from '../Controls';
 import Row from 'react-bootstrap/Row';
@@ -9,9 +8,6 @@ import VideoContext from 'videocontext';
 
 const VideoContextPreview = (props) => {
   const [ videoContext, setVideoContext ] = useState();
-  // const [ handlePlay, setHandlePlay ] = useState(console.log('handlePlay'));
-  // const [ handleStop, setHandleStop ] = useState(console.log('handleStop'));
-  // const [ handlePause, setHandlePause ] = useState(console.log('handlePause'));
 
   const updateVideoContext = (media) => {
     media.forEach(({ type, sourceStart, start, duration, src }) => {
@@ -64,9 +60,9 @@ const VideoContextPreview = (props) => {
       </Row>
       <Row style={ { marginTop: '0.4em' } }>
         <Controls
-          handlePlay={ videoContext ? videoContext.play : console.log('sdf') }
-          handlePause={ videoContext ? videoContext.pause : console.log('sdf') }
-          handleStop={ videoContext ? handleStop : console.log('ASdfs') }
+          handlePlay={ videoContext ? () => videoContext.play() : console.log('handlePlay') }
+          handlePause={ videoContext ? () => videoContext.pause() : console.log('handlePause') }
+          handleStop={ videoContext ? () => handleStop() : console.log('handleStop') }
         />
       </Row>
     </>
