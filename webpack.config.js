@@ -6,7 +6,15 @@ module.exports = {
   mode: 'production',
   devtool: 'source-map',
   entry: {
-    DPESimpleCard: './packages/components/SimpleCard/index.js'
+    Breadcrumb: './packages/components/Breadcrumb/index.js',
+    CustomAlert: './packages/components/CustomAlert/index.js',
+    FormModal: './packages/components/FormModal/index.js',
+    ItemForm: './packages/components/ItemForm/index.js',
+    List: './packages/components/List/index.js',
+    SearchBar: './packages/components/List/SearchBar/index.js',
+    PreviewCanvas: './packages/components/PreviewCanvas/index.js',
+    ProgrammeScriptContainer: './packages/components/ProgrammeScriptContainer/index.js',
+    SimpleCard: './packages/components/SimpleCard/index.js'
   },
   output: {
     path: path.resolve('dist'),

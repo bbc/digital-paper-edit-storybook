@@ -56,7 +56,9 @@
     "videocontext": "^0.53.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.5",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
     "@storybook/addon-a11y": "^5.0.8",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-links": "^5.1.9",
@@ -72,7 +74,9 @@
     "eslint-plugin-react": "^7.14.3",
     "gh-pages": "^2.0.1",
     "jest": "^24.9.0",
-    "storybook-react-router": "^1.0.5"
+    "storybook-react-router": "^1.0.5",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9"
   },
   "jest": {
     "transform": {
