@@ -13,7 +13,7 @@ const VideoContextProgressBar = (props) => {
 
   const handleClick = ({ nativeEvent: { offsetX } }) => {
     videoContext.currentTime = (offsetX / width) * videoContext.duration;
-    const p = getPercentage(videoContext.currentTime, videoContext.duration);
+    const percent = getPercentage(videoContext.currentTime, videoContext.duration);
     setPercentage(p);
   };
 
