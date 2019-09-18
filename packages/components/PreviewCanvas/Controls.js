@@ -31,8 +31,6 @@ const Controls = (props) => {
   return (
     <>
       <Col sm={ 6 }>
-        sm={ 6 } md={ 6 } ld={ 6 } xl={ 6 }
-      >
         <Button
           size="sm"
           block
