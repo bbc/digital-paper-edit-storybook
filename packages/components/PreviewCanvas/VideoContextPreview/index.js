@@ -37,6 +37,10 @@ const VideoContextPreview = (props) => {
     updateVideoContext(props.playlist);
   }
 
+  const secondsToHHMMSSFormat = (seconds) => {
+    return new Date(seconds * 1000).toISOString().substr(11, 8);
+  };
+
   return (
     <>
       <Row
@@ -63,7 +67,7 @@ const VideoContextPreview = (props) => {
         />
       </Row>
       <Row className={ 'justify-content-center' }>
-        Total duration: {videoContext ? videoContext.duration : 0} seconds
+        Total duration: {videoContext ? secondsToHHMMSSFormat(videoContext.duration) : '00:00:00'}
       </Row>
     </>
   );
