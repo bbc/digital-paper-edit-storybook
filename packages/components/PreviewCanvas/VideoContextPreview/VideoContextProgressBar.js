@@ -25,7 +25,7 @@ const VideoContextProgressBar = (props) => {
 
   useEffect(() => {
     const fillerAnimation = () => {
-      const p = getPercentage(videoContext.currentTime, videoContext.duration);
+      const percent = getPercentage(videoContext.currentTime, videoContext.duration);
       setPercentage(p);
       requestAnimationFrame(fillerAnimation);
     };
