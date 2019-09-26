@@ -15,7 +15,6 @@ const VideoContextPreview = (props) => {
       node.stopAt(start + duration);
       node.connect(videoContext.destination);
     });
-
   };
 
   const handleStop = () => {
@@ -36,8 +35,11 @@ const VideoContextPreview = (props) => {
 
   if (videoContext) {
     updateVideoContext(props.playlist);
-
   }
+
+  const secondsToHHMMSSFormat = (seconds) => {
+    return new Date(seconds * 1000).toISOString().substr(11, 8);
+  };
 
   return (
     <>
@@ -63,6 +65,9 @@ const VideoContextPreview = (props) => {
           handlePause={ videoContext ? () => videoContext.pause() : console.log('handlePause') }
           handleStop={ videoContext ? () => handleStop() : console.log('handleStop') }
         />
+      </Row>
+      <Row className={ 'justify-content-center' }>
+        Total duration: {videoContext ? secondsToHHMMSSFormat(videoContext.duration) : '00:00:00'}
       </Row>
     </>
   );
