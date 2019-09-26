@@ -13,8 +13,22 @@ module.exports = {
     List: './packages/components/List/index.js',
     SearchBar: './packages/components/List/SearchBar/index.js',
     PreviewCanvas: './packages/components/PreviewCanvas/index.js',
+    VideoContextPreview: './packages/components/PreviewCanvas/VideoContextPreview/index.js',
+    VideoContextProgressBar: './packages/components/PreviewCanvas/VideoContextPreview/VideoContextProgressBar.js',
+    Controls: './packages/components/PreviewCanvas/Controls.js',
+    Filler: './packages/components/PreviewCanvas/Filler.js',
+    ProgressBar: './packages/components/PreviewCanvas/ProgressBar.js',
     ProgrammeScriptContainer: './packages/components/ProgrammeScriptContainer/index.js',
-    SimpleCard: './packages/components/SimpleCard/index.js'
+    ProgrammeElements: './packages/components/ProgrammeScriptContainer/ProgrammeElements/index.js',
+    Note: './packages/components/ProgrammeScriptContainer/ProgrammeElements/Note.js',
+    PaperCut: './packages/components/ProgrammeScriptContainer/ProgrammeElements/PaperCut.js',
+    SortableHandle: './packages/components/ProgrammeScriptContainer/ProgrammeElements/SortableHandle.js',
+    SortableItem: './packages/components/ProgrammeScriptContainer/ProgrammeElements/SortableItem.js',
+    TitleHeading: './packages/components/ProgrammeScriptContainer/ProgrammeElements/TitleHeading.js',
+    VoiceOver: './packages/components/ProgrammeScriptContainer/ProgrammeElements/VoiceOver.js',
+    SimpleCard: './packages/components/SimpleCard/index.js',
+    TranscriptCard: './packages/components/TranscriptCard/index.js',
+    TranscriptForm: './packages/components/TranscriptForm/index.js',
   },
   output: {
     path: path.resolve('dist'),
@@ -27,7 +41,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.module.css$/,
+        test: /\.css$/,
         use: [
           {
             loader: 'style-loader'
