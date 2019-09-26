@@ -4,7 +4,7 @@ import { actions } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import FormModal from '../index.js';
 
-export const modalItems = [ {
+const modalItems = [ {
   id: 1,
   itemType: 'project',
   showModal: true,
@@ -27,7 +27,7 @@ export const modalItems = [ {
   type: 'transcript'
 } ];
 
-export const modalActions = actions({ handleSaveForm: 'Form saved' });
+const modalActions = actions({ handleSaveForm: 'Form saved' });
 
 storiesOf('Form Modal', module)
   .addDecorator(StoryRouter())

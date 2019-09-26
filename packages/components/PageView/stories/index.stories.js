@@ -1,19 +1,10 @@
 import React from 'react';
-
 import { storiesOf } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
-import List from '../index.js';
-import SearchBar from '../SearchBar';
+import PageView from '..';
 
-const cardActions = actions({
-  handleEdit: 'Edit button clicked',
-  handleDelete: 'Delete button clicked'
-});
-
-const searchActions = actions({ handleSearch: 'Handle search' });
-
-const items = [ {
+const projectItems = [ {
   id: '1234',
   key: 'abc123',
   title: 'Sample Simple Card Title One',
@@ -57,42 +48,33 @@ const transcriptItems = [ {
   errorMessage: 'Something has gone wrong with your transcription',
   display: true
 } ];
+const modalActions = actions({ handleSaveForm: 'Form saved' });
 
-const transItems = transcriptItems;
-
-storiesOf('List', module)
+storiesOf('PageView', module)
   .addDecorator(StoryRouter())
-  .add('Simple Cards', () => {
+  .add('Project View', () => {
     return (
-      <section style={ { height: '90vh', overflow: 'scroll' } }>
-        <List
-          items={ items }
-          handleEdit={ cardActions.handleEdit }
-          handleDelete={ cardActions.handleDelete }
-          handleSearch={ searchActions.handleSearch }
-        />
-      </section>
+      <PageView
+        handleDelete={ actions('handleDelete') }
+        handleEdit={ actions('handleEdit') }
+        handleShowModal={ actions('handleShowModal') }
+        handleUpdateList={ actions('handleUpdateList') }
+        items={ projectItems }
+        model="Project"
+        handleSaveForm={ modalActions.handleSaveForm }
+      />
     );
   })
-  .add('Transcript Cards', () =>
-    <section style={ { height: '100%', overflow: 'scroll' } }>
-      <List
-        items={ transItems }
-        handleEdit={ cardActions.handleEdit }
-        handleDelete={ cardActions.handleDelete }
-        handleSearch={ searchActions.handleSearch }
-      />
-    </section>
-  );
-
-storiesOf('List/Search Bar', module)
-  .addDecorator(StoryRouter())
-  .add('Default', () => {
+  .add('Transcripts View', () => {
     return (
-      <section style={ { height: '90vh', overflow: 'scroll' } }>
-        <SearchBar
-          handleSearch={ searchActions.handleSearch }
-        />
-      </section>
+      <PageView
+        handleDelete={ actions('handleDelete') }
+        handleEdit={ actions('handleEdit') }
+        handleShowModal={ actions('handleShowModal') }
+        handleUpdateList={ actions('handleUpdateList') }
+        items={ transcriptItems }
+        model="Transcripts"
+        handleSaveForm={ modalActions.handleSaveForm }
+      />
     );
   });
