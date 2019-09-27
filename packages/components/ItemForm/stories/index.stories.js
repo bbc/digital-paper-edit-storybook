@@ -6,7 +6,7 @@ import { actions } from '@storybook/addon-actions';
 
 const modalItems = [ {
   id: 1,
-  itemType: 'project',
+  type: 'project',
   showModal: true,
   title: 'Example Project Title',
   description: 'This is a sample card description. This is fun!',

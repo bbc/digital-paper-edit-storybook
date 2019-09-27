@@ -1,10 +1,19 @@
 import React from 'react';
+
 import { storiesOf } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
-import PageView from '..';
+import List from '../../List';
+import SearchBar from '..';
 
-const projectItems = [ {
+const cardActions = actions({
+  handleEdit: 'Edit button clicked',
+  handleDelete: 'Delete button clicked'
+});
+
+const searchActions = actions({ handleSearch: 'Handle search' });
+
+const items = [ {
   id: '1234',
   key: 'abc123',
   title: 'Sample Simple Card Title One',
@@ -49,30 +58,42 @@ const transcriptItems = [ {
   display: true
 } ];
 
-const modalActions = actions({ handleSaveForm: 'Form saved' });
-const searchActions = actions({ handleSearch: 'Handle search' });
-
-storiesOf('PageView', module)
+storiesOf('Search Bar', module)
   .addDecorator(StoryRouter())
-  .add('Project View', () => {
+  .add('Default', () => {
     return (
-      <PageView
-        items={ projectItems }
-        model="Project"
-        // handleShowModal={ actions('handleShowModal') }
-        // handleUpdateList={ actions('handleUpdateList') }
-        // handleSaveForm={ modalActions.handleSaveForm }
-      />
+      <section style={ { height: '90vh', overflow: 'scroll' } }>
+        <SearchBar
+          handleSearch={ searchActions.handleSearch }
+        />
+      </section>
     );
   })
-  .add('Transcripts View', () => {
+  .add('Projects Search', () => {
     return (
-      <PageView
-        items={ transcriptItems }
-        model="Transcript"
-        // handleShowModal={ actions('handleShowModal') }
-        // handleUpdateList={ actions('handleUpdateList') }
-        // handleSaveForm={ modalActions.handleSaveForm }
-      />
+      <section style={ { height: '90vh', overflow: 'scroll' } }>
+        <SearchBar
+          handleSearch={ searchActions.handleSearch }
+        />
+        <List
+          items={ items }
+          handleEdit={ cardActions.handleEdit }
+          handleDelete={ cardActions.handleDelete }
+        />
+      </section>
+    );
+  })
+  .add('Transcripts Search', () => {
+    return (
+      <section style={ { height: '90vh', overflow: 'scroll' } }>
+        <SearchBar
+          handleSearch={ searchActions.handleSearch }
+        />
+        <List
+          items={ transcriptItems }
+          handleEdit={ cardActions.handleEdit }
+          handleDelete={ cardActions.handleDelete }
+        />
+      </section>
     );
   });

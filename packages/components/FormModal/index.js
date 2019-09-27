@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap/Modal';
 import ItemForm from '../ItemForm/index.js';
@@ -8,8 +7,9 @@ import TranscriptForm from '../TranscriptForm/index.js';
 const ItemFormModal = (props) => {
 
   const [ showModal, toggleShowModal ] = useState(props.showModal);
+  const type = props.type.toLowerCase();
 
-  const form = (props.type === 'transcript') ? <TranscriptForm { ...props }/> : <ItemForm { ...props }/>;
+  const form = (type === 'transcript') ? <TranscriptForm { ...props }/> : <ItemForm { ...props }/>;
 
   return (
     <Modal show={ showModal } onHide={ () => toggleShowModal(!showModal) }>
@@ -24,21 +24,21 @@ const ItemFormModal = (props) => {
 };
 
 ItemFormModal.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string,
   description: PropTypes.string,
-  showModal: PropTypes.bool.isRequired,
-  modalTitle: PropTypes.string.isRequired,
   handleSaveForm: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  showModal: PropTypes.bool,
+  modalTitle: PropTypes.string.isRequired,
+  showModal: PropTypes.bool.isRequired,
+  title: PropTypes.string,
+  type: PropTypes.any
 };
 
 ItemFormModal.defaultProps = {
-  handleSaveForm: () => {
-    console.log('Handling a project save');
-  },
   id: 1,
-  isNewItemModalShow: false,
+  showModal: false,
   modalTitle: 'New Project',
+  type: 'Project'
 };
 
 export default ItemFormModal;

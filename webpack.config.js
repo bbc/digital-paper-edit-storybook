@@ -11,7 +11,7 @@ module.exports = {
     FormModal: './packages/components/FormModal/index.js',
     ItemForm: './packages/components/ItemForm/index.js',
     List: './packages/components/List/index.js',
-    SearchBar: './packages/components/List/SearchBar/index.js',
+    SearchBar: './packages/components/SearchBar/index.js',
     PreviewCanvas: './packages/components/PreviewCanvas/index.js',
     VideoContextPreview: './packages/components/PreviewCanvas/VideoContextPreview/index.js',
     VideoContextProgressBar: './packages/components/PreviewCanvas/VideoContextPreview/VideoContextProgressBar.js',

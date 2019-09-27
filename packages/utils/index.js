@@ -1,5 +1,11 @@
-const includesText = (textOne, textTwo) => {
-  return textOne.toLowerCase().trim().includes(textTwo.toLowerCase().trim());
+const inText = (findText, sourceText) => {
+  return findText.toLowerCase().trim().includes(sourceText.toLowerCase().trim());
 };
 
-export { includesText } ;
+const anyInText = (arr, sourceText) => {
+  return arr.find(findText => {
+    return inText(findText, sourceText);
+  });
+};
+
+export { inText, anyInText } ;

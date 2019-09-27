@@ -4,14 +4,11 @@ import { storiesOf } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import List from '../index.js';
-import SearchBar from '../SearchBar';
 
 const cardActions = actions({
-  handleEdit: 'Edit button clicked',
-  handleDelete: 'Delete button clicked'
+  handleEditItem: 'Edit button clicked',
+  handleDeleteItem: 'Delete button clicked'
 });
-
-const searchActions = actions({ handleSearch: 'Handle search' });
 
 const items = [ {
   id: '1234',
@@ -67,9 +64,8 @@ storiesOf('List', module)
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <List
           items={ items }
-          handleEdit={ cardActions.handleEdit }
-          handleDelete={ cardActions.handleDelete }
-          handleSearch={ searchActions.handleSearch }
+          handleEditItem={ cardActions.handleEditItem }
+          handleDeleteItem={ cardActions.handleDeleteItem }
         />
       </section>
     );
@@ -78,21 +74,8 @@ storiesOf('List', module)
     <section style={ { height: '100%', overflow: 'scroll' } }>
       <List
         items={ transItems }
-        handleEdit={ cardActions.handleEdit }
-        handleDelete={ cardActions.handleDelete }
-        handleSearch={ searchActions.handleSearch }
+        handleEditItem={ cardActions.handleEditItem }
+        handleDeleteItem={ cardActions.handleDeleteItem }
       />
     </section>
   );
-
-storiesOf('List/Search Bar', module)
-  .addDecorator(StoryRouter())
-  .add('Default', () => {
-    return (
-      <section style={ { height: '90vh', overflow: 'scroll' } }>
-        <SearchBar
-          handleSearch={ searchActions.handleSearch }
-        />
-      </section>
-    );
-  });
