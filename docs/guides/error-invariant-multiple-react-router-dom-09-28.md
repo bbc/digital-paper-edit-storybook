@@ -20,9 +20,9 @@ From [this](https://github.com/marmelab/react-admin/issues/3078) this is how it 
 </BrowserRouter>
 ```
 
-### Use Webpack to sort it out
+### Use Webpack to remove dupes in Client
 
-Was also advised to do [this](https://gist.github.com/StringEpsilon/88c7b049c891425232aaf88e7c882e05) but since our setup is CRA, it's quite a few hurdles to jump. If you have webpack, []() this section from the [webpack](https://webpack.js.org/guides/code-splitting/#prevent-duplication) is useful.
+Was also advised to do [this](https://gist.github.com/StringEpsilon/88c7b049c891425232aaf88e7c882e05) but since our setup is CRA in DPE-client, it's quite a few hurdles to jump. If you have webpack, from the [webpack](https://webpack.js.org/guides/code-splitting/#prevent-duplication) is useful to understand to prevent dupes.
 
 ### peerDependencies
 
@@ -30,4 +30,47 @@ Was also advised to do [this](https://gist.github.com/StringEpsilon/88c7b049c891
 > Peer dependencies are a special type of dependency that would only ever come up if you were publishing your own package.
 > Having a peer dependency means that your package needs a dependency that is the same exact dependency as the person installing your package. This is useful for packages like react that need to have a single copy of react-dom that is also used by the person installing it.
 
-Going to try this, but this will require changes when actively developing and running storybook as storybook is run at "production".
+This also wouldn't work due to us actively developing storybook. It doesn't prevent webpack from packaging in the react-routers.
+
+### Solution: Update Storybook webpack to remove react, react-router and react-router-dom
+
+You can prevent Webpack to bundle things that should not be duped.
+See package.json:
+
+```js
+  resolve: {
+    alias: {
+      'react': path.resolve(__dirname, './node_modules/react'),
+      'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+      'react-router': path.resolve(__dirname, './node_modules/react-router'),
+      'react-router-dom': path.resolve(__dirname, './node_modules/react-router-dom')
+    }
+  },
+  externals: {
+    // Don't bundle react or react-dom or react-router
+    react: {
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'React',
+      root: 'React'
+    },
+    'react-dom': {
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'ReactDOM',
+      root: 'ReactDOM'
+    },
+    'react-router': {
+      commonjs: 'react-router',
+      commonjs2: 'react-router',
+      amd: 'ReactRouter',
+      root: 'ReactRouter'
+    },
+    'react-router-dom': {
+      commonjs: 'react-router-dom',
+      commonjs2: 'react-router-dom',
+      amd: 'ReactRouterDOM',
+      root: 'ReactRouterDOM'
+    }
+  }
+```

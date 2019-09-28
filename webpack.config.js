@@ -72,11 +72,12 @@ module.exports = {
     alias: {
       'react': path.resolve(__dirname, './node_modules/react'),
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+      'react-router': path.resolve(__dirname, './node_modules/react-router'),
       'react-router-dom': path.resolve(__dirname, './node_modules/react-router-dom')
     }
   },
   externals: {
-    // Don't bundle react or react-dom
+    // Don't bundle react or react-dom or react-router
     react: {
       commonjs: 'react',
       commonjs2: 'react',
@@ -88,6 +89,12 @@ module.exports = {
       commonjs2: 'react-dom',
       amd: 'ReactDOM',
       root: 'ReactDOM'
+    },
+    'react-router': {
+      commonjs: 'react-router',
+      commonjs2: 'react-router',
+      amd: 'ReactRouter',
+      root: 'ReactRouter'
     },
     'react-router-dom': {
       commonjs: 'react-router-dom',
