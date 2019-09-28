@@ -4,7 +4,7 @@
 
 Turns out that this error "Error: Invariant failed" is because how [React Router v4](https://www.sitepoint.com/react-router-v4-complete-guide/) and [React Router v5]() is different. With the new v5 there can only be one Router, because it's using the new React Context API to do some routing. See here for another [explanation](https://gist.github.com/StringEpsilon/88c7b049c891425232aaf88e7c882e05#explanation)
 
-Why we need two Routers is that we our very own Breadcrumb has LinkContainer, which depends on using the React-Router-Dom. So, when the component is published, it then also bundles the React-Router dependency. When we import the Breadcrumb, since we already have a React-Router in the main DPE-client repository, it breaks.
+Why we need two Routers is that Breadcrumb component has LinkContainer, which depends on React-Router-Dom. So, when the component is published, it then also bundles the React-Router dependency. When we import the Breadcrumb, since we already have a React-Router in the main DPE-client repository, it creates two Contexts in React. The routes created using a different Context cannot be found by React, and so it throws the `Invariant failed: You should not use <Route> outside a <Router>`.
 
 ## Suggestions
 
