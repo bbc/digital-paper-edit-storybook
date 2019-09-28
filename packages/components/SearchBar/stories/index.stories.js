@@ -7,8 +7,8 @@ import List from '../../List';
 import SearchBar from '..';
 
 const cardActions = actions({
-  handleEdit: 'Edit button clicked',
-  handleDelete: 'Delete button clicked'
+  handleEditItem: 'Edit button clicked',
+  handleDeleteItem: 'Delete button clicked'
 });
 
 const searchActions = actions({ handleSearch: 'Handle search' });

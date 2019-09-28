@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import SimpleCard from '../SimpleCard';
 import TranscriptCard from '../TranscriptCard';
+import cuid from 'cuid';
 
 const List = (props) => {
 
-  const [ items, setItems ] = useState(props.items);
+  const [ items, setItems ] = useState([]);
 
   useEffect(() => {
     if (items.length === 0) {
@@ -18,11 +19,12 @@ const List = (props) => {
   }, [ props.items ]);
 
   const listItems = items.map((item) => {
+    const key = 'card-' + cuid();
     if (item.display && item.status) {
       return (
         <TranscriptCard
           { ...item }
-          key={ item.key }
+          key={ key }
           handleEditItem={ props.handleEditItem }
           handleDeleteItem={ props.handleDeleteItem }
         />
@@ -32,7 +34,7 @@ const List = (props) => {
       return (
         <SimpleCard
           { ...item }
-          key={ item.key }
+          key={ key }
           handleEditItem={ props.handleEditItem }
           handleDeleteItem={ props.handleDeleteItem }
         />
