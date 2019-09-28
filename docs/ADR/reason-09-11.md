@@ -1,8 +1,8 @@
 # Storybook Business Decision
 
-* Status: Accepted
-* Deciders: Pietro and Eimi
-* Date: 2019-08 (Sometime)
+- Status: Accepted
+- Deciders: Pietro and Eimi
+- Date: 2019-08 (Sometime)
 
 ## Context and Problem Statement
 
@@ -20,8 +20,7 @@ Currently we have to clone and run local servers to demonstrate the components i
 
 Overly complicated components are difficult to test. We need to break them down and isolate the components so that it is easier to understand and extend. We can also easily define the interface of the components. This will help people contribute and maintain DPE.
 
-Additionally this [post](https://www.conductor.com/nightlight/how-to-use-react-storybook/
-) explains anti-pattern scenarios that we want to avoid:
+Additionally this [post](https://www.conductor.com/nightlight/how-to-use-react-storybook/) explains anti-pattern scenarios that we want to avoid:
 
 > Here's a typical situation: you're going through the specs of a new page that you have to develop. All the components look familiar and you've seen them used elsewhere. You plan your tasks based on an understanding that some components have already been implemented. After agreeing on the timing and starting a new sprint, you dig around in the code a bit and are horrified to realize that the existing components are not appropriate for reuse. Now you have three options, none of which are great:
 >
