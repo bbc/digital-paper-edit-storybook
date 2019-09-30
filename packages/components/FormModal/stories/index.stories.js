@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { actions } from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import FormModal from '../index.js';
 
@@ -29,10 +29,18 @@ const modalItems = [
     modalTitle: 'New Transcript',
     id: 3,
     type: 'Transcript'
+  },
+  {
+    projectId: 1234,
+    title: '',
+    description: '',
+    uploadCompleted: true,
+    showModal: false,
+    modalTitle: 'New Transcript',
+    id: 4,
+    type: 'Transcript'
   }
 ];
-
-const modalActions = actions({ handleSaveForm: 'Form saved' });
 
 storiesOf('Form Modal', module)
   .addDecorator(StoryRouter())
@@ -40,7 +48,8 @@ storiesOf('Form Modal', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <FormModal
-          { ...modalActions }
+          handleSaveForm={ action('Form saved') }
+          handleOnHide={ action('Close modal') }
           { ...modalItems[0] }
         />
       </section>
@@ -50,7 +59,8 @@ storiesOf('Form Modal', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <FormModal
-          { ...modalActions }
+          handleSaveForm={ action('Form saved') }
+          handleOnHide={ action('Close modal') }
           { ...modalItems[1] }
         />
       </section>
@@ -60,8 +70,20 @@ storiesOf('Form Modal', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <FormModal
-          { ...modalActions }
+          handleSaveForm={ action('Form saved') }
+          handleOnHide={ action('Close modal') }
           { ...modalItems[2] }
+        />
+      </section>
+    );
+  })
+  .add('Not shown Transcript Modal', () => {
+    return (
+      <section style={ { height: '90vh', overflow: 'scroll' } }>
+        <FormModal
+          handleSaveForm={ action('Form saved') }
+          handleOnHide={ action('Close modal') }
+          { ...modalItems[3] }
         />
       </section>
     );

@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
-import PageView from '..';
+import Workspace from '..';
 
 const projectItems = [ {
   id: '1234',
@@ -49,30 +49,32 @@ const transcriptItems = [ {
   display: true
 } ];
 
-const modalActions = actions({ handleSaveForm: 'Form saved' });
-const searchActions = actions({ handleSearch: 'Handle search' });
-
-storiesOf('PageView', module)
+storiesOf('Workspace', module)
   .addDecorator(StoryRouter())
-  .add('Project View', () => {
+  .add('Tabular View', () => {
     return (
-      <PageView
-        items={ projectItems }
-        model="Project"
-        // handleShowModal={ actions('handleShowModal') }
-        // handleUpdateList={ actions('handleUpdateList') }
-        // handleSaveForm={ modalActions.handleSaveForm }
+      <Workspace
+        mode="tab"
+        transcripts={ transcriptItems }
+        paperEdits={ projectItems }
+        name="Project"
+        handleSaveTranscript={ actions('handleSave') }
+        handleDeleteTranscript={ actions('handleDelete') }
+        handleSavePaperEdit={ actions('handleSave') }
+        handleDeletePaperEdit={ actions('handleDelete') }
       />
     );
-  })
-  .add('Transcripts View', () => {
+  }).add('Split View', () => {
     return (
-      <PageView
-        items={ transcriptItems }
-        model="Transcript"
-        // handleShowModal={ actions('handleShowModal') }
-        // handleUpdateList={ actions('handleUpdateList') }
-        // handleSaveForm={ modalActions.handleSaveForm }
+      <Workspace
+        mode="split"
+        transcripts={ transcriptItems }
+        paperEdits={ projectItems }
+        name="Project"
+        handleSaveTranscript={ actions('handleSave') }
+        handleDeleteTranscript={ actions('handleDelete') }
+        handleSavePaperEdit={ actions('handleSave') }
+        handleDeletePaperEdit={ actions('handleDelete') }
       />
     );
   });
