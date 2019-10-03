@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { actions } from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import Workspace from '..';
 
@@ -10,6 +10,7 @@ const projectItems = [ {
   title: 'Sample Simple Card Title One',
   description: 'This is a sample card description. This is fun!',
   display: true,
+  url: '/projects/1/transcripts/1234'
 }, {
   id: '5678',
   key: 'def456',
@@ -54,27 +55,31 @@ storiesOf('Workspace', module)
   .add('Tabular View', () => {
     return (
       <Workspace
+        id={ 1 }
         mode="tab"
         transcripts={ transcriptItems }
         paperEdits={ projectItems }
         name="Project"
-        handleSaveTranscript={ actions('handleSave') }
-        handleDeleteTranscript={ actions('handleDelete') }
-        handleSavePaperEdit={ actions('handleSave') }
-        handleDeletePaperEdit={ actions('handleDelete') }
+        handleSaveTranscript={ action('handleSaveTranscript') }
+        handleDeleteTranscript={ action('handleDeleteTranscript') }
+        handleSavePaperEdit={ action('handleSavePaperEdit') }
+        handleDeletePaperEdit={ action('handleDeletePaperEdit') }
       />
     );
   }).add('Split View', () => {
     return (
       <Workspace
+        id={ 1 }
         mode="split"
         transcripts={ transcriptItems }
         paperEdits={ projectItems }
         name="Project"
-        handleSaveTranscript={ actions('handleSave') }
-        handleDeleteTranscript={ actions('handleDelete') }
-        handleSavePaperEdit={ actions('handleSave') }
-        handleDeletePaperEdit={ actions('handleDelete') }
+        handleSearch={ action('handleSearch') }
+        toggleShowModal={ action('handleToggle') }
+        handleSaveTranscript={ action('handleSaveTranscript') }
+        handleDeleteTranscript={ action('handleDeleteTranscript') }
+        handleSavePaperEdit={ action('handleSavePaperEdit') }
+        handleDeletePaperEdit={ action('handleDeletePaperEdit') }
       />
     );
   });

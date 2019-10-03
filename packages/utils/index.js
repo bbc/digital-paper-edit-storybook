@@ -8,4 +8,22 @@ const anyInText = (arr, sourceText) => {
   });
 };
 
-export { inText, anyInText } ;
+const updateItem = (id, newItem, items) => {
+  const newItems = items;
+  const index = items.findIndex(item => item.id === id);
+  Object.assign(newItems[index], newItem);
+
+  return newItems;
+};
+
+const deleteItem = (id, items) => {
+  const newItems = items.filter(item => item.id !== id);
+
+  return newItems;
+};
+
+const addItem = (item, items) => {
+  return [ ...items, item ];
+};
+
+export { inText, anyInText, updateItem, deleteItem, addItem } ;

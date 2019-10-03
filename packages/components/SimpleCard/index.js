@@ -19,8 +19,8 @@ const SimpleCard = (props) => {
     const confirmationPrompt = window.confirm(confirmDeleteText);
 
     if (confirmationPrompt) {
-      if (props.handleDelete) {
-        props.handleDelete(props.id);
+      if (props.handleDeleteItem) {
+        props.handleDeleteItem(props.id);
       } else {
         alert(cancelDeleteText);
       }
@@ -28,7 +28,7 @@ const SimpleCard = (props) => {
   };
 
   const handleEditText = () => {
-    props.handleEdit(props.id);
+    props.handleEditItem(props.id);
   };
 
   return (
@@ -80,28 +80,18 @@ const SimpleCard = (props) => {
 };
 
 SimpleCard.propTypes = {
-  key: PropTypes.string,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   description: PropTypes.string,
-  handleEdit: PropTypes.func,
-  handleDelete: PropTypes.func,
+  handleEditItem: PropTypes.func.isRequired,
+  handleDeleteItem: PropTypes.func.isRequired,
   showLinkPath: PropTypes.func
 };
 
 SimpleCard.defaultProps = {
-  key: 'key_1234',
-  id: '1234',
-  title: 'Default Title String',
-  description: 'This is a default description string',
-  url: 'sample/url/is/here',
-  handleEdit: () => {
-    console.log('Edit button clicked');
-  },
-  handleDelete: () => {
-    console.log('Delete button clicked');
-  },
+  title: '',
+  description: ''
 };
 
 export default SimpleCard;

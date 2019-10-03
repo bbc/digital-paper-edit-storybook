@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import ItemForm from '../ItemForm/index.js';
 import TranscriptForm from '../TranscriptForm/index.js';
 
-const ItemFormModal = (props) => {
+const FormModal = (props) => {
 
   const [ showModal, setShowModal ] = useState();
   const type = props.type.toLowerCase();
@@ -30,7 +30,7 @@ const ItemFormModal = (props) => {
   );
 };
 
-ItemFormModal.propTypes = {
+FormModal.propTypes = {
   handleOnHide: PropTypes.func.isRequired,
   handleSaveForm: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
@@ -41,9 +41,9 @@ ItemFormModal.propTypes = {
   type: PropTypes.string
 };
 
-ItemFormModal.defaultProps = {
+FormModal.defaultProps = {
   showModal: false,
   type: 'Project'
 };
 
-export default ItemFormModal;
+export default FormModal;

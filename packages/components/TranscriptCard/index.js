@@ -24,12 +24,17 @@ const TranscriptCard = (props) => {
     const confirmationPrompt = confirm(confirmDeleteText);
 
     if (confirmationPrompt) {
-      props.handleDelete ? props.handleDelete(props.id) : alert(cancelDeleteText);
+      if (props.handleDeleteItem) {
+        props.handleDeleteItem(props.id);
+      } else {
+        alert(cancelDeleteText);
+      }
+
     }
   };
 
   const handleEditClick = () => {
-    props.handleEdit(props.id);
+    props.handleEditItem(props.id);
   };
 
   const iconStatus = {
@@ -141,32 +146,22 @@ const TranscriptCard = (props) => {
 };
 
 TranscriptCard.propTypes = {
-  key: PropTypes.string,
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
   description: PropTypes.string,
-  subtitle: PropTypes.string,
-  status: PropTypes.string,
-  url: PropTypes.string,
   errorMessage: PropTypes.string,
-  handleEdit: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired
+  handleDeleteItem: PropTypes.func.isRequired,
+  handleEditItem: PropTypes.func.isRequired,
+  icon: PropTypes.any,
+  id: PropTypes.number.isRequired,
+  status: PropTypes.string,
+  subtitle: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string
 };
 
 TranscriptCard.defaultProps = {
-  key: 'key_1234',
-  id: '1234',
-  title: 'Default Title String',
-  description: 'This is a default description string',
-  subtitle: 'This is a default subtitle',
-  status: 'done',
-  url: '/test/path/here',
-  handleEdit: () => {
-    console.log('Edit button clicked');
-  },
-  handleDelete: () => {
-    console.log('Delete button clicked');
-  }
+  title: '',
+  description: '',
+  subtitle: '',
 };
 
 export default TranscriptCard;

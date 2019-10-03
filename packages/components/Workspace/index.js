@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import ItemsContainer from '../ItemsContainer';
 import Breadcrumb from '../Breadcrumb';
 import PropTypes from 'prop-types';
+import TabularWorkspace from './TabularWorkspace';
+import SplitWorkspace from './SplitWorkspace';
 
 const genBreadcrumb = (name) => [
   {
@@ -21,59 +20,18 @@ const genBreadcrumb = (name) => [
 const Workspace = (props) => {
   const name = props.name;
   const mode = props.mode;
-  const [ active, setActive ] = useState('transcripts');
   let workspace;
 
   if (mode === 'tab') {
-    workspace = (
-      <Tabs
-        id="controlled-tab-example"
-        activeKey={ active }
-        onSelect={ tab => setActive(tab) }
-      >
-        <Tab eventKey="transcripts" title="Transcripts">
-          <Container style={ { marginBottom: '5em', marginTop: '1em' } }>
-            <ItemsContainer
-              type={ 'Transcript' }
-              items={ props.transcripts }
-              handleSave={ () => props.handleSaveTranscript }
-              handleDelete={ () => props.handleDeleteTranscript }/>
-          </Container>
-        </Tab>
 
-        <Tab eventKey="paperedits" title="Paper Edits">
-          <Container style={ { marginBottom: '5em', marginTop: '1em' } }>
-            <ItemsContainer
-              type={ 'PaperEdit' }
-              items={ props.paperEdits }
-              handleSave={ () => props.handleSavePaperEdit }
-              handleDelete={ () => props.handleDeletePaperEdit } />
-          </Container>
-        </Tab>
-      </Tabs>
-    );
-  } else {
     workspace = (
-      <>
-        <Row>
-          <Col>
-            <h2>Transcripts</h2>
-            <ItemsContainer
-              type={ 'Transcript' }
-              items={ props.transcripts }
-              handleSave={ () => props.handleSaveTranscript }
-              handleDelete={ () => props.handleDeleteTranscript }/>
-          </Col>
-          <Col>
-            <h2>Paper Edits</h2>
-            <ItemsContainer
-              type={ 'PaperEdit' }
-              items={ props.paperEdits }
-              handleSave={ () => props.handleSavePaperEdit }
-              handleDelete={ () => props.handleDeletePaperEdit } />
-          </Col>
-        </Row>
-      </>
+      <TabularWorkspace { ...props }/>
+    );
+
+  } else if (mode === 'split') {
+    // need to change form to show two options
+    workspace = (
+      <SplitWorkspace { ...props }/>
     );
   }
 
@@ -94,10 +52,14 @@ Workspace.propTypes = {
   handleDeleteTranscript: PropTypes.func,
   handleSavePaperEdit: PropTypes.func,
   handleSaveTranscript: PropTypes.func,
+  handleSearch: PropTypes.func,
+  handleSaveForm: PropTypes.func,
   mode: PropTypes.string,
   name: PropTypes.string,
   paperEdits: PropTypes.array,
-  transcripts: PropTypes.array
+  toggleShowModal: PropTypes.any,
+  transcripts: PropTypes.array,
+  id: PropTypes.any
 };
 
 export default Workspace;
