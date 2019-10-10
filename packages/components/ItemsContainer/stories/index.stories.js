@@ -53,7 +53,7 @@ const transcriptItems = [
   }
 ];
 
-storiesOf('ItemsContainer', module)
+storiesOf('ItemsContainer - Demo only (not published on NPM)', module)
   .addDecorator(StoryRouter())
   .add('Project View', () => {
     return (

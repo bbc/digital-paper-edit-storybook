@@ -50,7 +50,7 @@ const transcriptItems = [ {
   display: true
 } ];
 
-storiesOf('Workspace', module)
+storiesOf('Workspace - Demo only (not published on NPM)', module)
   .addDecorator(StoryRouter())
   .add('Tabular View', () => {
     return (
