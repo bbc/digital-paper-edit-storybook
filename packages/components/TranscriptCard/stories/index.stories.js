@@ -5,7 +5,7 @@ import { actions } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import TranscriptCard from '../index.js';
 
-export const transcriptItems = [ {
+const transcriptItems = [ {
   id: 1,
   key: 'transcript_key_1',
   title: 'Title - Done Transcript',
@@ -35,26 +35,33 @@ export const transcriptItems = [ {
   display: true
 } ];
 
-export const transcriptCardActions = actions({ handleEdit: 'Edit button clicked', handleDelete: 'Delete button clicked' });
+const transcriptCardActions = actions({
+  handleEdit: 'Edit button clicked',
+  handleDelete: 'Delete button clicked'
+});
+
+const style = { height: '90vh', overflow: 'scroll' };
 
 storiesOf('Transcript Card', module)
   .addDecorator(StoryRouter())
   .add('Success', () => {
     return (
-      <section style={ { height: '90vh', overflow: 'scroll' } }>
+      <section style={ style }>
         <TranscriptCard
           { ...transcriptItems[0] }
-          { ...transcriptCardActions }
+          handleEdit={ transcriptCardActions.handleEdit }
+          handleDelete={ transcriptCardActions.handleDelete }
         />
       </section>
     );
   })
   .add('In Progress', () => {
     return (
-      <section style={ { height: '90vh', overflow: 'scroll' } }>
+      <section style={ style }>
         <TranscriptCard
           { ...transcriptItems[1] }
-          { ...transcriptCardActions }
+          handleEdit={ transcriptCardActions.handleEdit }
+          handleDelete={ transcriptCardActions.handleDelete }
         />
       </section>
     );
@@ -64,7 +71,8 @@ storiesOf('Transcript Card', module)
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <TranscriptCard
           { ...transcriptItems[2] }
-          { ...transcriptCardActions }
+          handleEdit={ transcriptCardActions.handleEdit }
+          handleDelete={ transcriptCardActions.handleDelete }
         />
       </section>
     );

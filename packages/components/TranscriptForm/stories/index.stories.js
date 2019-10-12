@@ -2,8 +2,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import StoryRouter from 'storybook-react-router';
 import TranscriptForm from '../index.js';
+import { actions } from '@storybook/addon-actions';
 
-import { modalActions } from '../../FormModal/stories/index.stories.js';
+const modalActions = actions({ handleSaveForm: 'Form saved' });
 
 const transcriptFormProps = {
   projectId: 123,
@@ -19,7 +20,7 @@ storiesOf('Transcript Form', module)
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <TranscriptForm
-          { ...modalActions }
+          handleSaveForm={ modalActions.handleSaveForm }
           { ...transcriptFormProps }
         />
       </section>

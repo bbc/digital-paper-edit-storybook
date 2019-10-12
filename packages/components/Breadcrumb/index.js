@@ -35,11 +35,15 @@ CustomBreadcrumb.propTypes = {
 };
 
 CustomBreadcrumb.defaultProps = {
-  items: [ {
-    name: 'Projects',
-    link: '/projects',
-  }, {
-    name: 'Sample Project Name'
-  } ] };
+  items: [
+    {
+      name: 'Projects',
+      link: '/projects',
+    },
+    {
+      name: 'Sample Project Name'
+    }
+  ]
+};
 
 export default CustomBreadcrumb;

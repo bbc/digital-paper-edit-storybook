@@ -1,21 +1,16 @@
 import React from 'react';
-
 import { storiesOf } from '@storybook/react';
-import { actions } from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
-import List from '../index.js';
+import Workspace from '..';
 
-const cardActions = actions({
-  handleEditItem: 'Edit button clicked',
-  handleDeleteItem: 'Delete button clicked'
-});
-
-const items = [ {
+const projectItems = [ {
   id: '1234',
   key: 'abc123',
   title: 'Sample Simple Card Title One',
   description: 'This is a sample card description. This is fun!',
   display: true,
+  url: '/projects/1/transcripts/1234'
 }, {
   id: '5678',
   key: 'def456',
@@ -55,27 +50,36 @@ const transcriptItems = [ {
   display: true
 } ];
 
-const transItems = transcriptItems;
-
-storiesOf('List', module)
+storiesOf('Workspace - Demo only (not published on NPM)', module)
   .addDecorator(StoryRouter())
-  .add('Simple Cards', () => {
+  .add('Tabular View', () => {
     return (
-      <section style={ { height: '90vh', overflow: 'scroll' } }>
-        <List
-          items={ items }
-          handleEditItem={ cardActions.handleEditItem }
-          handleDeleteItem={ cardActions.handleDeleteItem }
-        />
-      </section>
-    );
-  })
-  .add('Transcript Cards', () =>
-    <section style={ { height: '100%', overflow: 'scroll' } }>
-      <List
-        items={ transItems }
-        handleEditItem={ cardActions.handleEditItem }
-        handleDeleteItem={ cardActions.handleDeleteItem }
+      <Workspace
+        id={ 1 }
+        mode="tab"
+        transcripts={ transcriptItems }
+        paperEdits={ projectItems }
+        name="Project"
+        handleSaveTranscript={ action('handleSaveTranscript') }
+        handleDeleteTranscript={ action('handleDeleteTranscript') }
+        handleSavePaperEdit={ action('handleSavePaperEdit') }
+        handleDeletePaperEdit={ action('handleDeletePaperEdit') }
       />
-    </section>
-  );
+    );
+  }).add('Split View', () => {
+    return (
+      <Workspace
+        id={ 1 }
+        mode="split"
+        transcripts={ transcriptItems }
+        paperEdits={ projectItems }
+        name="Project"
+        handleSearch={ action('handleSearch') }
+        toggleShowModal={ action('handleToggle') }
+        handleSaveTranscript={ action('handleSaveTranscript') }
+        handleDeleteTranscript={ action('handleDeleteTranscript') }
+        handleSavePaperEdit={ action('handleSavePaperEdit') }
+        handleDeletePaperEdit={ action('handleDeletePaperEdit') }
+      />
+    );
+  });

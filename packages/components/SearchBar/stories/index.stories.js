@@ -3,12 +3,15 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
-import List from '../index.js';
+import List from '../../List';
+import SearchBar from '..';
 
 const cardActions = actions({
   handleEditItem: 'Edit button clicked',
   handleDeleteItem: 'Delete button clicked'
 });
+
+const searchActions = actions({ handleSearch: 'Handle search' });
 
 const items = [ {
   id: '1234',
@@ -55,27 +58,42 @@ const transcriptItems = [ {
   display: true
 } ];
 
-const transItems = transcriptItems;
-
-storiesOf('List', module)
+storiesOf('Search Bar', module)
   .addDecorator(StoryRouter())
-  .add('Simple Cards', () => {
+  .add('Default', () => {
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
-        <List
-          items={ items }
-          handleEditItem={ cardActions.handleEditItem }
-          handleDeleteItem={ cardActions.handleDeleteItem }
+        <SearchBar
+          handleSearch={ searchActions.handleSearch }
         />
       </section>
     );
   })
-  .add('Transcript Cards', () =>
-    <section style={ { height: '100%', overflow: 'scroll' } }>
-      <List
-        items={ transItems }
-        handleEditItem={ cardActions.handleEditItem }
-        handleDeleteItem={ cardActions.handleDeleteItem }
-      />
-    </section>
-  );
+  .add('Projects Search', () => {
+    return (
+      <section style={ { height: '90vh', overflow: 'scroll' } }>
+        <SearchBar
+          handleSearch={ searchActions.handleSearch }
+        />
+        <List
+          items={ items }
+          handleEdit={ cardActions.handleEdit }
+          handleDelete={ cardActions.handleDelete }
+        />
+      </section>
+    );
+  })
+  .add('Transcripts Search', () => {
+    return (
+      <section style={ { height: '90vh', overflow: 'scroll' } }>
+        <SearchBar
+          handleSearch={ searchActions.handleSearch }
+        />
+        <List
+          items={ transcriptItems }
+          handleEdit={ cardActions.handleEdit }
+          handleDelete={ cardActions.handleDelete }
+        />
+      </section>
+    );
+  });

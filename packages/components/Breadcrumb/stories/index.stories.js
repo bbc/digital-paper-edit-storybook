@@ -4,23 +4,31 @@ import StoryRouter from 'storybook-react-router';
 import Breadcrumb from '../index.js';
 
 export const breadcrumbItems = {
-  projects: [ {
-    name: 'Projects',
-    link: '/projects',
-  }, {
-    name: 'Example project name'
-  } ],
-  paperEdits: [ {
-    name: 'Projects',
-    link: '/projects'
-  }, {
-    name: 'Project: The Sample',
-    link: '/projects/the-sample'
-  }, {
-    name: 'PaperEdits',
-  }, {
-    name: 'Example programme title'
-  } ]
+  projects: [
+    {
+      name: 'Projects',
+      link: '/projects',
+    },
+    {
+      name: 'Example project name'
+    }
+  ],
+  paperEdits: [
+    {
+      name: 'Projects',
+      link: '/projects'
+    },
+    {
+      name: 'Project: The Sample',
+      link: '/projects/the-sample'
+    },
+    {
+      name: 'PaperEdits',
+    },
+    {
+      name: 'Example programme title'
+    }
+  ]
 };
 
 storiesOf('Breadcrumb', module)

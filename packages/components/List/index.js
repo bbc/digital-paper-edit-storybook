@@ -1,50 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import SimpleCard from '../SimpleCard';
-import SearchBar from './SearchBar';
 import TranscriptCard from '../TranscriptCard';
+import cuid from 'cuid';
 
 const List = (props) => {
 
-  const [ items, setItems ] = useState(props.items);
+  const [ items, setItems ] = useState([]);
 
-  const includesText = (text, subsetText) => {
-    return text.toLowerCase().includes(subsetText.toLowerCase().trim());
-  };
-
-  const handleDeleteItem = (itemId) => {
-    const updatedList = items.filter((item) => {
-      return item.id !== itemId;
-    });
-    props.handleDelete(itemId);
-    setItems(updatedList);
-  };
-
-  const handleDisplay = (item, searchText) => {
-    if (
-      includesText(item.title, searchText) ||
-            includesText(item.description, searchText)
-    ) {
-      item.display = true;
-    } else {
-      item.display = false;
+  useEffect(() => {
+    if (items.length === 0) {
+      setItems(props.items);
     }
 
-    return item;
-  };
+    return () => {
 
-  const handleSearchItem = searchText => {
-    const results = items.filter(item => handleDisplay(item, searchText));
-    setItems(results);
-  };
+    };
+  }, [ props.items ]);
 
   const listItems = items.map((item) => {
+    const key = 'card-' + cuid();
     if (item.display && item.status) {
       return (
         <TranscriptCard
           { ...item }
-          handleEdit={ props.handleEdit(item.id) }
-          handleDelete={ handleDeleteItem }
+          key={ key }
+          handleEditItem={ () => props.handleEditItem }
+          handleDeleteItem={ () => props.handleDeleteItem }
         />
       );
     }
@@ -52,19 +34,17 @@ const List = (props) => {
       return (
         <SimpleCard
           { ...item }
-          handleEdit={ props.handleEdit(item.id) }
-          handleDelete={ handleDeleteItem }
+          key={ key }
+          handleEditItem={ () => props.handleEditItem }
+          handleDeleteItem={ () => props.handleDeleteItem }
         />
       );}
 
     return null;
-  }).filter(item => {
-    return item !== null;
   });
 
   return (
     <section style={ { height: '75vh', overflow: 'scroll' } }>
-      {items !== null && items.length !== 0 ? <SearchBar handleSearch={ handleSearchItem }/> : null}
       {listItems}
     </section>
   );
@@ -72,27 +52,8 @@ const List = (props) => {
 
 List.propTypes = {
   items: PropTypes.array.isRequired,
-  handleEdit: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired,
-};
-
-List.defaultProps = {
-  items: [
-    {
-      id: '1234',
-      key: 'abc123',
-      title: 'Sample Simple Card Title One',
-      description: 'This is a sample card description. This is fun!',
-      display: true,
-      url: '/projects/1/transcripts/5678'
-    }
-  ],
-  handleEdit: () => {
-    console.log('Edit button clicked');
-  },
-  handleDelete: () => {
-    console.log('Delete button clicked');
-  },
+  handleEditItem: PropTypes.func.isRequired,
+  handleDeleteItem: PropTypes.func.isRequired,
 };
 
 export default List;
