@@ -25,8 +25,8 @@ const List = (props) => {
         <TranscriptCard
           { ...item }
           key={ key }
-          handleEditItem={ () => props.handleEditItem }
-          handleDeleteItem={ () => props.handleDeleteItem }
+          handleEditItem={ props.handleEditItem }
+          handleDeleteItem={ props.handleDeleteItem }
         />
       );
     }
@@ -35,8 +35,8 @@ const List = (props) => {
         <SimpleCard
           { ...item }
           key={ key }
-          handleEditItem={ () => props.handleEditItem }
-          handleDeleteItem={ () => props.handleDeleteItem }
+          handleEditItem={ props.handleEditItem }
+          handleDeleteItem={ props.handleDeleteItem }
         />
       );}
 

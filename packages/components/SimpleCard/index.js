@@ -14,16 +14,10 @@ import 'bootstrap-css-only/css/bootstrap.css';
 
 const SimpleCard = (props) => {
   const handleDeleteText = () => {
-    const confirmDeleteText = "Click OK if you wish to delete or cancel if you don't";
-    const cancelDeleteText = 'All is good, it was not deleted';
-    const confirmationPrompt = window.confirm(confirmDeleteText);
-
-    if (confirmationPrompt) {
-      if (props.handleDeleteItem) {
-        props.handleDeleteItem(props.id);
-      } else {
-        alert(cancelDeleteText);
-      }
+    const message = 'Do you want to delete your item?';
+    const confirmDelete = window.confirm(message);
+    if (confirmDelete) {
+      props.handleDeleteItem(props.id);
     }
   };
 
