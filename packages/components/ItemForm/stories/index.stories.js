@@ -5,7 +5,7 @@ import ItemForm from '../index.js';
 import { actions } from '@storybook/addon-actions';
 
 const modalItems = [ {
-  id: 1,
+  id: '1',
   type: 'project',
   showModal: true,
   title: 'Example Project Title',
@@ -15,15 +15,15 @@ const modalItems = [ {
 }, {
   showModal: true,
   modalTitle: 'New Project',
-  id: 2
+  id: '2'
 }, {
-  projectId: 123,
+  projectId: '123',
   title: '',
   description: '',
   uploadCompleted: true,
   showModal: true,
   modalTitle: 'New Transcript',
-  id: 3,
+  id: '3',
   type: 'transcript'
 } ];
 

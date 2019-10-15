@@ -18,18 +18,17 @@ import {
 const TranscriptCard = (props) => {
 
   const handleDeleteClick = () => {
-    const confirmDeleteText = "Click OK if you wish to delete or cancel if you don't";
-    const cancelDeleteText = 'All is good, it was not deleted';
+    const confirmDeleteText = 'Are you sure you want to delete?';
+    const cancelDeleteText = 'Cancelled delete';
 
     const confirmationPrompt = confirm(confirmDeleteText);
 
     if (confirmationPrompt) {
       if (props.handleDeleteItem) {
         props.handleDeleteItem(props.id);
-      } else {
-        alert(cancelDeleteText);
       }
-
+    } else {
+      alert(cancelDeleteText);
     }
   };
 
@@ -105,7 +104,7 @@ const TranscriptCard = (props) => {
           <Col xs={ 2 } sm={ 1 }>
             <Card.Link>
               <Button
-                onClick={ () => handleEditClick() }
+                onClick={ handleEditClick }
                 variant="outline-secondary"
                 size="sm"
               >
@@ -116,7 +115,7 @@ const TranscriptCard = (props) => {
           <Col xs={ 2 } sm={ 1 }>
             <Card.Link>
               <Button
-                onClick={ () => handleDeleteClick() }
+                onClick={ handleDeleteClick }
                 variant="outline-secondary"
                 size="sm"
               >
@@ -151,11 +150,11 @@ TranscriptCard.propTypes = {
   handleDeleteItem: PropTypes.func.isRequired,
   handleEditItem: PropTypes.func.isRequired,
   icon: PropTypes.any,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   status: PropTypes.string,
   subtitle: PropTypes.string,
   title: PropTypes.string.isRequired,
-  url: PropTypes.string
+  url: PropTypes.string.isRequired
 };
 
 TranscriptCard.defaultProps = {

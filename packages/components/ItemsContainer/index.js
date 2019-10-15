@@ -40,14 +40,13 @@ const ItemsContainer = (props) => {
     dispatchForm({ type: 'reset' });
   };
 
-  const handleEditItem = (id) => {
+  const handleEditItem = async (id) => {
     const item = items.find((i) => i.id === id);
     dispatchForm({
       type: 'update',
       payload: item
     });
     setShowModal(true);
-    props.handleSave(item);
   };
 
   const handleDeleteItem = (id) => {
@@ -92,8 +91,8 @@ const ItemsContainer = (props) => {
     showItems = (
       <List
         items={ items }
-        handleEditItem={ () => handleEditItem }
-        handleDeleteItem={ () => handleDeleteItem }
+        handleEditItem={ handleEditItem }
+        handleDeleteItem={ handleDeleteItem }
       />
     );
 
@@ -101,7 +100,6 @@ const ItemsContainer = (props) => {
     showItems = (<i>There are no {type}s, create a new one to get started.</i>);
   }
 
-  // not actually linked to any buttons...
   return (
     <>
       <Row>
@@ -122,7 +120,7 @@ const ItemsContainer = (props) => {
         modalTitle={ formData.id ? `Edit ${ type }` : `New ${ type }` }
         showModal={ showModal }
         handleOnHide={ toggleShowModal }
-        handleSaveForm={ () => handleSaveForm }
+        handleSaveForm={ handleSaveForm }
         type={ type.toLowerCase() }
       />
     </>
@@ -130,8 +128,8 @@ const ItemsContainer = (props) => {
 };
 
 ItemsContainer.propTypes = {
-  handleSave: PropTypes.any,
-  handleDelete: PropTypes.any,
+  handleSave: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
   items: PropTypes.array.isRequired,
   type: PropTypes.string
 };

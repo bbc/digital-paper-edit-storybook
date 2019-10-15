@@ -6,9 +6,9 @@ import Modal from 'react-bootstrap/Modal';
 
 const ItemForm = (props) => {
 
-  const [ description, setDescription ] = useState();
+  const [ description, setDescription ] = useState('');
   const [ isValidated, setIsValidated ] = useState(false);
-  const [ title, setTitle ] = useState();
+  const [ title, setTitle ] = useState('');
 
   useEffect (() => {
     setDescription(props.description);
@@ -86,7 +86,7 @@ const ItemForm = (props) => {
 };
 
 ItemForm.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
   showModal: PropTypes.bool,
@@ -95,8 +95,7 @@ ItemForm.propTypes = {
 };
 
 ItemForm.defaultProps = {
-  showModal: false,
-  modalTitle: 'New Project',
+  showModal: false
 };
 
 export default ItemForm;

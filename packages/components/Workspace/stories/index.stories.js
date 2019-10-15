@@ -4,8 +4,9 @@ import { action } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import Workspace from '..';
 
-const projectItems = [ {
+const paperEditItems = [ {
   id: '1234',
+  projectId: '5678',
   key: 'abc123',
   title: 'Sample Simple Card Title One',
   description: 'This is a sample card description. This is fun!',
@@ -13,6 +14,7 @@ const projectItems = [ {
   url: '/projects/1/transcripts/1234'
 }, {
   id: '5678',
+  projectId: '5678',
   key: 'def456',
   title: 'Sample Simple Card Title Two',
   description: 'This is a sample card description. This is fun!',
@@ -21,7 +23,8 @@ const projectItems = [ {
 } ];
 
 const transcriptItems = [ {
-  id: 1,
+  id: '1',
+  projectId: '5678',
   key: 'transcript_key_1',
   title: 'Title - Done Transcript',
   description: 'This transcript has finished processing.',
@@ -30,7 +33,8 @@ const transcriptItems = [ {
   status: 'done',
   display: true
 }, {
-  id: 2,
+  id: '2',
+  projectId: '5678',
   key: 'transcript_key_2',
   title: 'Title - In Progress Transcript',
   description: 'This transcript is still being generated.',
@@ -39,7 +43,8 @@ const transcriptItems = [ {
   status: 'in-progress',
   display: true
 }, {
-  id: 3,
+  id: '3',
+  projectId: '5678',
   key: 'transcript_key_3',
   title: 'Title - Error Transcript',
   description: 'Transcript generation failed for this card.',
@@ -55,10 +60,10 @@ storiesOf('Workspace - Demo only (not published on NPM)', module)
   .add('Tabular View', () => {
     return (
       <Workspace
-        id={ 1 }
+        id={ '1' }
         mode="tab"
         transcripts={ transcriptItems }
-        paperEdits={ projectItems }
+        paperEdits={ paperEditItems }
         name="Project"
         handleSaveTranscript={ action('handleSaveTranscript') }
         handleDeleteTranscript={ action('handleDeleteTranscript') }
@@ -69,10 +74,10 @@ storiesOf('Workspace - Demo only (not published on NPM)', module)
   }).add('Split View', () => {
     return (
       <Workspace
-        id={ 1 }
+        id={ '1' }
         mode="split"
         transcripts={ transcriptItems }
-        paperEdits={ projectItems }
+        paperEdits={ paperEditItems }
         name="Project"
         handleSearch={ action('handleSearch') }
         toggleShowModal={ action('handleToggle') }

@@ -6,7 +6,7 @@ import StoryRouter from 'storybook-react-router';
 import TranscriptCard from '../index.js';
 
 const transcriptItems = [ {
-  id: 1,
+  id: '1',
   key: 'transcript_key_1',
   title: 'Title - Done Transcript',
   description: 'This transcript has finished processing.',
@@ -15,7 +15,7 @@ const transcriptItems = [ {
   status: 'done',
   display: true
 }, {
-  id: 2,
+  id: '2',
   key: 'transcript_key_2',
   title: 'Title - In Progress Transcript',
   description: 'This transcript is still being generated.',
@@ -24,7 +24,7 @@ const transcriptItems = [ {
   status: 'in-progress',
   display: true
 }, {
-  id: 3,
+  id: '3',
   key: 'transcript_key_3',
   title: 'Title - Error Transcript',
   description: 'Transcript generation failed for this card.',
@@ -49,8 +49,8 @@ storiesOf('Transcript Card', module)
       <section style={ style }>
         <TranscriptCard
           { ...transcriptItems[0] }
-          handleEdit={ transcriptCardActions.handleEdit }
-          handleDelete={ transcriptCardActions.handleDelete }
+          handleEditItem={ transcriptCardActions.handleEdit }
+          handleDeleteItem={ transcriptCardActions.handleDelete }
         />
       </section>
     );
@@ -60,8 +60,8 @@ storiesOf('Transcript Card', module)
       <section style={ style }>
         <TranscriptCard
           { ...transcriptItems[1] }
-          handleEdit={ transcriptCardActions.handleEdit }
-          handleDelete={ transcriptCardActions.handleDelete }
+          handleEditItem={ transcriptCardActions.handleEdit }
+          handleDeleteItem={ transcriptCardActions.handleDelete }
         />
       </section>
     );
@@ -71,8 +71,8 @@ storiesOf('Transcript Card', module)
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <TranscriptCard
           { ...transcriptItems[2] }
-          handleEdit={ transcriptCardActions.handleEdit }
-          handleDelete={ transcriptCardActions.handleDelete }
+          handleEditItem={ transcriptCardActions.handleEdit }
+          handleDeleteItem={ transcriptCardActions.handleDelete }
         />
       </section>
     );

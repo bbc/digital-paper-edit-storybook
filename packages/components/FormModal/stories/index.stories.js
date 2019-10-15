@@ -6,7 +6,7 @@ import FormModal from '../index.js';
 
 const modalItems = [
   {
-    id: 1,
+    id: '1',
     type: 'Project',
     showModal: true,
     title: 'Example Project Title',
@@ -17,27 +17,27 @@ const modalItems = [
   {
     showModal: true,
     modalTitle: 'New Project',
-    id: 2,
+    id: '2',
     type: 'Project'
   },
   {
-    projectId: 123,
+    projectId: '123',
     title: '',
     description: '',
     uploadCompleted: true,
     showModal: true,
     modalTitle: 'New Transcript',
-    id: 3,
+    id: '3',
     type: 'Transcript'
   },
   {
-    projectId: 1234,
+    projectId: '1234',
     title: '',
     description: '',
     uploadCompleted: true,
     showModal: false,
     modalTitle: 'New Transcript',
-    id: 4,
+    id: '4',
     type: 'Transcript'
   }
 ];

@@ -1,27 +1,32 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { actions } from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import ItemContainer from '..';
 
-const projectItems = [ {
-  id: '1234',
-  key: 'abc123',
-  title: 'Sample Simple Card Title One',
-  description: 'This is a sample card description. This is fun!',
-  display: true,
-}, {
-  id: '5678',
-  key: 'def456',
-  title: 'Sample Simple Card Title Two',
-  description: 'This is a sample card description. This is fun!',
-  display: true,
-  url: '/projects/1/transcripts/5678'
-} ];
+const projectItems = [
+  {
+    id: '1234',
+    key: 'abc123',
+    title: 'Sample Simple Card Title One',
+    description: 'This is a sample card description. This is fun!',
+    url: '/projects/1/transcripts/5678',
+    display: true,
+  },
+  {
+    id: '5678',
+    key: 'def456',
+    title: 'Sample Simple Card Title Two',
+    description: 'This is a sample card description. This is fun!',
+    display: true,
+    url: '/projects/1/transcripts/5678'
+  }
+];
 
 const transcriptItems = [
   {
-    id: 1,
+    id: '1',
+    projectId: 'p1',
     key: 'transcript_key_1',
     title: 'Title - Done Transcript',
     description: 'This transcript has finished processing.',
@@ -31,7 +36,8 @@ const transcriptItems = [
     display: true
   },
   {
-    id: 2,
+    id: '2',
+    projectId: 'p1',
     key: 'transcript_key_2',
     title: 'Title - In Progress Transcript',
     description: 'This transcript is still being generated.',
@@ -41,7 +47,8 @@ const transcriptItems = [
     display: true
   },
   {
-    id: 3,
+    id: '3',
+    projectId: 'p1',
     key: 'transcript_key_3',
     title: 'Title - Error Transcript',
     description: 'Transcript generation failed for this card.',
@@ -60,8 +67,8 @@ storiesOf('ItemsContainer - Demo only (not published on NPM)', module)
       <ItemContainer
         items={ projectItems }
         model="Project"
-        handleSave={ actions('handleSave') }
-        handleDelete={ actions('handleDelete') }
+        handleSave={ action('handleSave') }
+        handleDelete={ action('handleDelete') }
       />
     );
   })
@@ -70,8 +77,8 @@ storiesOf('ItemsContainer - Demo only (not published on NPM)', module)
       <ItemContainer
         items={ transcriptItems }
         model="Transcript"
-        handleSave={ actions('handleSave') }
-        handleDelete={ actions('handleDelete') }
+        handleSave={ action('handleSave') }
+        handleDelete={ action('handleDelete') }
       />
     );
   });

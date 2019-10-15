@@ -7,10 +7,10 @@ import { actions } from '@storybook/addon-actions';
 const modalActions = actions({ handleSaveForm: 'Form saved' });
 
 const transcriptFormProps = {
-  projectId: 123,
+  projectId: '123',
   title: 'Sample Transcript Title',
   description: 'Sample Transcript Description',
-  id: 456,
+  id: '456',
   uploadCompleted: true
 };
 

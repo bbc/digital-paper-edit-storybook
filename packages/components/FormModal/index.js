@@ -8,7 +8,9 @@ const FormModal = (props) => {
 
   const [ showModal, setShowModal ] = useState();
   const type = props.type.toLowerCase();
-  const form = (type === 'transcript') ? <TranscriptForm { ...props }/> : <ItemForm { ...props }/>;
+  const form = (type === 'transcript') ?
+    <TranscriptForm { ...props }/> :
+    <ItemForm { ...props }/>;
 
   useLayoutEffect(() => {
     setShowModal(props.showModal);
@@ -21,7 +23,9 @@ const FormModal = (props) => {
   return (
     <Modal show={ showModal } onHide={ props.handleOnHide }>
       <Modal.Header closeButton>
-        <Modal.Title>{props.modalTitle}</Modal.Title>
+        <Modal.Title>
+          {props.modalTitle}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {form}
@@ -33,7 +37,7 @@ const FormModal = (props) => {
 FormModal.propTypes = {
   handleOnHide: PropTypes.func.isRequired,
   handleSaveForm: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string,
   modalTitle: PropTypes.string.isRequired,
   title: PropTypes.string,
   description: PropTypes.string,

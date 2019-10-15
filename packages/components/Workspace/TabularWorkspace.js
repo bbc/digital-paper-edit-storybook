@@ -19,8 +19,8 @@ const TabularWorkspace = (props) => {
           <ItemsContainer
             type={ 'Transcript' }
             items={ props.transcripts }
-            handleSave={ () => props.handleSaveTranscript }
-            handleDelete={ () => props.handleDeleteTranscript }/>
+            handleSave={ props.handleSaveTranscript }
+            handleDelete={ props.handleDeleteTranscript }/>
         </Container>
       </Tab>
 
@@ -29,8 +29,8 @@ const TabularWorkspace = (props) => {
           <ItemsContainer
             type={ 'PaperEdit' }
             items={ props.paperEdits }
-            handleSave={ () => props.handleSavePaperEdit }
-            handleDelete={ () => props.handleDeletePaperEdit } />
+            handleSave={ props.handleSavePaperEdit }
+            handleDelete={ props.handleDeletePaperEdit } />
         </Container>
       </Tab>
     </Tabs>

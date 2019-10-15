@@ -19,6 +19,7 @@ const items = [ {
   title: 'Sample Simple Card Title One',
   description: 'This is a sample card description. This is fun!',
   display: true,
+  url: '/projects/1/transcripts/1234'
 }, {
   id: '5678',
   key: 'def456',
@@ -29,7 +30,7 @@ const items = [ {
 } ];
 
 const transcriptItems = [ {
-  id: 1,
+  id: '1234',
   key: 'transcript_key_1',
   title: 'Title - Done Transcript',
   description: 'This transcript has finished processing.',
@@ -38,7 +39,7 @@ const transcriptItems = [ {
   status: 'done',
   display: true
 }, {
-  id: 2,
+  id: '5645',
   key: 'transcript_key_2',
   title: 'Title - In Progress Transcript',
   description: 'This transcript is still being generated.',
@@ -47,7 +48,7 @@ const transcriptItems = [ {
   status: 'in-progress',
   display: true
 }, {
-  id: 3,
+  id: '2456',
   key: 'transcript_key_3',
   title: 'Title - Error Transcript',
   description: 'Transcript generation failed for this card.',
@@ -77,8 +78,8 @@ storiesOf('Search Bar', module)
         />
         <List
           items={ items }
-          handleEdit={ cardActions.handleEdit }
-          handleDelete={ cardActions.handleDelete }
+          handleEditItem={ cardActions.handleEditItem }
+          handleDeleteItem={ cardActions.handleDeleteItem }
         />
       </section>
     );
@@ -91,8 +92,8 @@ storiesOf('Search Bar', module)
         />
         <List
           items={ transcriptItems }
-          handleEdit={ cardActions.handleEdit }
-          handleDelete={ cardActions.handleDelete }
+          handleEditItem={ cardActions.handleEditItem }
+          handleDeleteItem={ cardActions.handleDeleteItem }
         />
       </section>
     );

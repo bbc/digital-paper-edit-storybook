@@ -118,21 +118,10 @@ const TranscriptForm = ({ ...props }) => {
 };
 
 TranscriptForm.propTypes = {
-  id: PropTypes.number.isRequired,
-  projectId: PropTypes.number.isRequired,
+  id: PropTypes.string,
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   handleSaveForm: PropTypes.func.isRequired,
-};
-
-TranscriptForm.defaultProps = {
-  id: 456,
-  projectId: 123,
-  title: 'Sample Transcript Title',
-  description: 'Sample Transcript Description',
-  handleSaveForm: () => {
-    console.log('Form saved');
-  },
 };
 
 export default TranscriptForm;

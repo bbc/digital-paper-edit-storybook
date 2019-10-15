@@ -15,6 +15,7 @@ const items = [ {
   key: 'abc123',
   title: 'Sample Simple Card Title One',
   description: 'This is a sample card description. This is fun!',
+  url: '/projects/1/transcripts/1234',
   display: true,
 }, {
   id: '5678',
@@ -26,7 +27,7 @@ const items = [ {
 } ];
 
 const transcriptItems = [ {
-  id: 1,
+  id: '1',
   key: 'transcript_key_1',
   title: 'Title - Done Transcript',
   description: 'This transcript has finished processing.',
@@ -35,7 +36,7 @@ const transcriptItems = [ {
   status: 'done',
   display: true
 }, {
-  id: 2,
+  id: '3',
   key: 'transcript_key_2',
   title: 'Title - In Progress Transcript',
   description: 'This transcript is still being generated.',
@@ -44,7 +45,7 @@ const transcriptItems = [ {
   status: 'in-progress',
   display: true
 }, {
-  id: 3,
+  id: '4',
   key: 'transcript_key_3',
   title: 'Title - Error Transcript',
   description: 'Transcript generation failed for this card.',
