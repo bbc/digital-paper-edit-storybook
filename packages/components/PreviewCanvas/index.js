@@ -7,10 +7,18 @@ const PreviewCanvas = (props) => {
 
   return (
     <VideoContextPreview
+      width={ props.width }
+      height={ props.height }
       canvasRef={ canvasRef }
       playlist={ props.playlist }
     />
   );
+};
+
+PreviewCanvas.propTypes = {
+  height: PropTypes.any,
+  playlist: PropTypes.array,
+  width: PropTypes.any
 };
 
 PreviewCanvas.defaultProps = {
