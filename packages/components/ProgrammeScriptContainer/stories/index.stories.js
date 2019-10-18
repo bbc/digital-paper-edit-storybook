@@ -2,7 +2,9 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import ProgrammeScriptContainer from '../index.js';
+import SortableInsertContainer from '../SortableInsertContainer';
+import OptimoStyleContainer from '../OptimoStyleContainer';
+import OptimoStyleElement from '../OptimoStyleElement';
 
 export const handleReorderActions = action('Handle reorder');
 export const handleDeleteActions = action('Handle delete');
@@ -39,9 +41,17 @@ const items = [
   },
 ];
 
-storiesOf('ProgrammeScript', module)
+storiesOf('ProgrammeScriptContainer', module)
   .add('Default', () =>
-    <ProgrammeScriptContainer
+    <SortableInsertContainer
+      items={ items }
+      handleDelete={ handleDeleteActions }
+      handleEdit={ handleEditActions }
+      handleReorder={ handleReorderActions }
+    />
+  )
+  .add('Optimo Style Container', () =>
+    <OptimoStyleContainer
       items={ items }
       handleDelete={ handleDeleteActions }
       handleEdit={ handleEditActions }
