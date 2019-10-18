@@ -17,7 +17,7 @@ const PreviewCanvas = (props) => {
 
 PreviewCanvas.propTypes = {
   playlist: PropTypes.array,
-  width: PropTypes.any
+  width: PropTypes.number
 };
 
 PreviewCanvas.defaultProps = {

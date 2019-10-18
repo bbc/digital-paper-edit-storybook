@@ -50,7 +50,7 @@ const VideoContextPreview = (props) => {
         <canvas
           ref={ props.canvasRef }
           width={ props.width }
-          height={ (9 / 16) * props.width }
+          height={ props.width * 0.5625 }
         />
       </Row>
       <Row
@@ -61,9 +61,9 @@ const VideoContextPreview = (props) => {
       </Row>
       <Row style={ { marginTop: '0.4em' } }>
         <Controls
-          handlePlay={ videoContext ? () => videoContext.play() : console.log('handlePlay') }
-          handlePause={ videoContext ? () => videoContext.pause() : console.log('handlePause') }
-          handleStop={ videoContext ? () => handleStop() : console.log('handleStop') }
+          handlePlay={ videoContext ? () => videoContext.play() : () => console.log('handlePlay') }
+          handlePause={ videoContext ? () => videoContext.pause() : () => console.log('handlePause') }
+          handleStop={ videoContext ? () => handleStop() : () => console.log('handleStop') }
         />
       </Row>
       <Row className={ 'justify-content-center' }>
