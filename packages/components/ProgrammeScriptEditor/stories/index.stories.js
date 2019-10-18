@@ -50,6 +50,7 @@ const playlist = [
 storiesOf('ProgrammeScriptEditor (not published)', module)
   .add('Default', () =>
     <ProgrammeScriptEditor
+      title={ 'title' }
       playlist={ playlist }
       items={ items }
       handleDelete={ handleDeleteActions }

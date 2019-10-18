@@ -50,7 +50,7 @@ const VideoContextPreview = (props) => {
         <canvas
           ref={ props.canvasRef }
           width={ props.width }
-          height={ props.height }
+          height={ (9 / 16) * props.width }
         />
       </Row>
       <Row
@@ -75,16 +75,13 @@ const VideoContextPreview = (props) => {
 
 VideoContextPreview.propTypes = {
   canvasRef: PropTypes.any,
-  height: PropTypes.number,
   playlist: PropTypes.array,
   videoContext: PropTypes.any,
-  width: PropTypes.number
+  width: PropTypes.any
 };
 
 VideoContextPreview.defaultProps = {
-  playlist: [],
-  width : 640,
-  height : 360,
+  playlist: []
 };
 
 export default VideoContextPreview;
