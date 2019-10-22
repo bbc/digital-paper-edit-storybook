@@ -1,6 +1,6 @@
 {
   "name": "@bbc/digital-paper-edit-react-components",
-  "version": "1.2.7",
+  "version": "1.2.12",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -44,9 +44,7 @@
     "react-bootstrap": "^1.0.0-beta.11",
     "react-color": "^2.17.1",
     "react": "^16.9.0",
-    "react-router": "^5.1.1",
     "react-router-bootstrap": "^0.25.0",
-    "react-router-dom": "^5.1.1",
     "react-select": "^2.4.3",
     "react-sortable-hoc": "^1.10.1",
     "sass-loader": "^7.1.0",
@@ -78,6 +76,10 @@
     "storybook-react-router": "^1.0.5",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.9"
+  },
+  "peerDependencies": {
+    "react-router": "^5.1.1",
+    "react-router-dom": "^5.1.1"
   },
   "jest": {
     "transform": {
