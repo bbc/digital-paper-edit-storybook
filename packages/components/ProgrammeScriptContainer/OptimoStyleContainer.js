@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import arrayMove from 'array-move';
 import { SortableContainer, } from 'react-sortable-hoc';
-import OptimoStyleElement from './OptimoStyleElement';
+import OptimoStyleElements from './OptimoStyleElements';
 import cuid from 'cuid';
 import ExpandableMenu from './ExpandableMenu';
 
@@ -21,17 +21,17 @@ const OptimoStyleContainer = (props) => {
     </ul>
   );
 
-  const elements = (
+  const elements = OptimoStyleElements(items);
+  const elementsList = (
     <li style={ { listStyle: 'none' } }>
       <ExpandableMenu />
-      <OptimoStyleElement key={ cuid() } index={ 0 } item={ items[0] } />
-      <OptimoStyleElement key={ cuid() } index={ 1 } item={ items[2] } />
+      {elements}
     </li>
   );
 
   return (
     <SortableList useDragHandle onSortEnd={ onSortEnd }>
-      {elements}
+      {elementsList}
     </SortableList>
   );
 

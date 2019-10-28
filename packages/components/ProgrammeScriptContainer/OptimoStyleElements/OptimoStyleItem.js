@@ -1,22 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import SortableHandle from './ProgrammeElements/SortableHandle';
+import SortableHandle from './SortableHandle';
 import { SortableElement } from 'react-sortable-hoc';
-import ExpandableMenu from './ExpandableMenu';
+import ExpandableMenu from '../ExpandableMenu';
 
-const OptimoStyleElement = SortableElement((props) => {
-
-  console.log(props.item);
+const OptimoStyleItem = SortableElement((props) => {
   const el = (
     <Row>
       <Col xs={ 1 }>
       </Col>
 
       <Col xs={ 7 }>
-        {props.item.text}
+        {props.value}
       </Col>
 
       <Col>
@@ -34,4 +31,4 @@ const OptimoStyleElement = SortableElement((props) => {
   );
 });
 
-export default OptimoStyleElement;
+export default OptimoStyleItem;

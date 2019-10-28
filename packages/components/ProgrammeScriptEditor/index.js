@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSync,
 } from '@fortawesome/free-solid-svg-icons';
-import ProgrammeScriptContainer from '../ProgrammeScriptContainer';
+import ProgrammeScriptContainer from '../ProgrammeScriptContainer/SortableInsertContainer';
 import PreviewCanvas from '../PreviewCanvas';
 
 class ProgramScript extends Component {

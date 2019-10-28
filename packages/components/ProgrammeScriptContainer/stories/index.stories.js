@@ -4,7 +4,6 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import SortableInsertContainer from '../SortableInsertContainer';
 import OptimoStyleContainer from '../OptimoStyleContainer';
-import OptimoStyleElement from '../OptimoStyleElement';
 
 export const handleReorderActions = action('Handle reorder');
 export const handleDeleteActions = action('Handle delete');

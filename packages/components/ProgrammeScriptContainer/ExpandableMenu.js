@@ -27,6 +27,7 @@ const ExpandableMenu = () => {
         aria-expanded={ formOpen }
         variant="light">
         <FontAwesomeIcon icon={ faHeading } />
+        Heading
       </Button>
     );
   };
@@ -38,6 +39,7 @@ const ExpandableMenu = () => {
         aria-expanded={ formOpen }
         variant="light">
         <FontAwesomeIcon icon={ faQuoteLeft } />
+        Link / Voice Over
       </Button>
     );
   };
@@ -50,6 +52,7 @@ const ExpandableMenu = () => {
         aria-expanded={ formOpen }
         variant="light">
         <FontAwesomeIcon icon={ faStickyNote } />
+        Notes
       </Button>
     );
   };
