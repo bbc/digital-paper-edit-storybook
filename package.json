@@ -6,19 +6,21 @@
   "scripts": {
     "start": "npm run storybook",
     "test": "jest",
-    "build:component": "webpack --config webpack.config.js",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "build:storybook": "rimraf build && build-storybook -c .storybook -o build",
-    "deploy:ghpages": "rimraf build && npm run build:storybook && gh-pages -d build",
-    "publish:public": "npm run build:component && rm ./dist/package.json || true && cp package.json ./dist/package.json && rm ./dist/README.md || true && cp README.md ./dist/README.md || true && npm publish dist --access public",
-    "publish:dry:run": "npm publish --dry-run",
-    "lint:fix": "eslint ./packages/* --fix"
+    "storybook": "start-storybook -p 6006 -s public",
+    "build": "webpack --config webpack.config.js",
+    "buildw": "webpack --config webpack.config.js --watch",
+    "build-storybook": "build-storybook -s public",
+    "build-storybook-docs": "build-storybook -s public --docs",
+    "clean": "rimraf dist storybook-static",
+    "deploy:ghpages": "npm run build-storybook-docs && gh-pages -d public",
+    "publish:public": "npm run build && rm ./dist/package.json || true && cp package.json ./dist/package.json && rm ./dist/README.md || true && cp README.md ./dist/README.md || true && npm publish dist --access public",
+    "publish:dry": "npm publish --dry-run",
+    "release": "auto shipit"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
-  "author": "",
+  "author": "BBC",
   "license": "ISC",
   "dependencies": {
     "@bbc/react-transcript-editor": "^1.0.4",
@@ -28,6 +30,8 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@storybook/addon-knobs": "^5.1.11",
     "array-move": "^2.1.0",
+    "auto": "^7.4.3",
+    "babel-loader": "^8.0.6",
     "bootstrap": "^4.3.1",
     "bootstrap-css-only": "^4.3.1",
     "chroma-js": "^2.0.3",
@@ -40,12 +44,16 @@
     "express": "^4.17.1",
     "gel-typography": "^2.0.5",
     "node-sass": "^4.13.0",
+    "polished": "^3.4.1",
+    "prettier": "^1.18.2",
     "prop-types": "^15.7.2",
     "randomcolor": "^0.5.4",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.11",
     "react-color": "^2.17.1",
+    "react-router": "^5.1.1",
     "react-router-bootstrap": "^0.25.0",
+    "react-router-dom": "^5.1.1",
     "react-select": "^2.4.3",
     "react-sortable-hoc": "^1.10.1",
     "sass-loader": "^7.1.0",
@@ -56,6 +64,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/plugin-transform-react-jsx": "^7.7.4",
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
     "@storybook/addon-a11y": "^5.0.8",
@@ -66,19 +75,20 @@
     "@storybook/react": "^5.1.9",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
-    "enzyme-to-json": "^3.4.0",
-    "babel-loader": "^8.0.6",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.4.0",
     "eslint": "^6.2.2",
     "eslint-plugin-react": "^7.14.3",
     "gh-pages": "^2.0.1",
     "jest": "^24.9.0",
+    "prettier": "^1.18.2",
     "storybook-react-router": "^1.0.5",
     "webpack": "^4.40.2",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.10"
   },
   "peerDependencies": {
+    "react": "^16.12.0",
     "react-router": "^5.1.1",
     "react-router-dom": "^5.1.1"
   },
@@ -87,10 +97,7 @@
       "^.+\\.jsx?$": "babel-jest"
     },
     "setupFiles": [
-      "./packages/testSetup.js"
-    ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
+      "./testSetup.js"
     ],
     "moduleNameMapper": {
       ".*\\.(css|scss|sass)$": "<rootDir>/tools/jest/styleMock.js",

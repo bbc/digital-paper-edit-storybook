@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 
-import { anyInText } from '../../utils';
+import { anyInText } from '../utils';
 import List from '../List';
 import SearchBar from '../SearchBar';
 import FormModal from '../FormModal';
@@ -27,21 +27,21 @@ const formReducer = (state = initialFormState, { type, payload }) => {
   }
 };
 
-const ItemsContainer = (props) => {
+const ItemsContainer = props => {
   const type = props.type;
   const [ items, setItems ] = useState([]);
 
   const [ showModal, setShowModal ] = useState(false);
   const [ formData, dispatchForm ] = useReducer(formReducer, initialFormState);
 
-  const handleSaveForm = (item) => {
+  const handleSaveForm = item => {
     props.handleSave(item);
     setShowModal(false);
     dispatchForm({ type: 'reset' });
   };
 
-  const handleEditItem = async (id) => {
-    const item = items.find((i) => i.id === id);
+  const handleEditItem = async id => {
+    const item = items.find(i => i.id === id);
     dispatchForm({
       type: 'update',
       payload: item
@@ -49,7 +49,7 @@ const ItemsContainer = (props) => {
     setShowModal(true);
   };
 
-  const handleDeleteItem = (id) => {
+  const handleDeleteItem = id => {
     props.handleDelete(id);
   };
 
@@ -77,10 +77,7 @@ const ItemsContainer = (props) => {
       setItems(props.items);
     }
 
-    return () => {
-
-    };
-
+    return () => {};
   }, [ items, props.items ]);
 
   let searchEl;
@@ -95,22 +92,22 @@ const ItemsContainer = (props) => {
         handleDeleteItem={ handleDeleteItem }
       />
     );
-
   } else {
-    showItems = (<i>There are no {type}s, create a new one to get started.</i>);
+    showItems = <i>There are no {type}s, create a new one to get started.</i>;
   }
 
   return (
     <>
       <Row>
-        <Col sm={ 9 } >
-          {searchEl}
-        </Col>
-        <Col xs={ 12 } sm={ 3 } >
-          <Button onClick={ toggleShowModal }
+        <Col sm={ 9 }>{searchEl}</Col>
+        <Col xs={ 12 } sm={ 3 }>
+          <Button
+            onClick={ toggleShowModal }
             variant="outline-secondary"
-            size="sm" block>
-                New {type}
+            size="sm"
+            block
+          >
+            New {type}
           </Button>
         </Col>
       </Row>

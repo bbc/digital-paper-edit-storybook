@@ -6,32 +6,37 @@ module.exports = {
   mode: 'production',
   devtool: 'source-map',
   entry: {
-    Breadcrumb: './packages/components/Breadcrumb/index.js',
-    CustomAlert: './packages/components/CustomAlert/index.js',
-    FormModal: './packages/components/FormModal/index.js',
-    ItemForm: './packages/components/ItemForm/index.js',
-    List: './packages/components/List/index.js',
-    SearchBar: './packages/components/SearchBar/index.js',
-    PreviewCanvas: './packages/components/PreviewCanvas/index.js',
-    VideoContextPreview: './packages/components/PreviewCanvas/VideoContextPreview/index.js',
-    VideoContextProgressBar: './packages/components/PreviewCanvas/VideoContextPreview/VideoContextProgressBar.js',
-    Controls: './packages/components/PreviewCanvas/Controls.js',
-    Filler: './packages/components/PreviewCanvas/Filler.js',
-    ProgressBar: './packages/components/PreviewCanvas/ProgressBar.js',
-    ProgrammeScriptContainer: './packages/components/ProgrammeScriptContainer/index.js',
-    ProgrammeElements: './packages/components/ProgrammeScriptContainer/ProgrammeElements/index.js',
-    Note: './packages/components/ProgrammeScriptContainer/ProgrammeElements/Note.js',
-    PaperCut: './packages/components/ProgrammeScriptContainer/ProgrammeElements/PaperCut.js',
-    SortableHandle: './packages/components/ProgrammeScriptContainer/ProgrammeElements/SortableHandle.js',
-    SortableItem: './packages/components/ProgrammeScriptContainer/ProgrammeElements/SortableItem.js',
-    TitleHeading: './packages/components/ProgrammeScriptContainer/ProgrammeElements/TitleHeading.js',
-    VoiceOver: './packages/components/ProgrammeScriptContainer/ProgrammeElements/VoiceOver.js',
-    SimpleCard: './packages/components/SimpleCard/index.js',
-    TranscriptCard: './packages/components/TranscriptCard/index.js',
-    TranscriptForm: './packages/components/TranscriptForm/index.js',
+    Breadcrumb: './src/Breadcrumb/index.js',
+    CustomAlert: './src/CustomAlert/index.js',
+    FormModal: './src/FormModal/index.js',
+    ItemForm: './src/ItemForm/index.js',
+    List: './src/List/index.js',
+    SearchBar: './src/SearchBar/index.js',
+    PreviewCanvas: './src/PreviewCanvas/index.js',
+    VideoContextPreview: './src/PreviewCanvas/VideoContextPreview/index.js',
+    VideoContextProgressBar:
+      './src/PreviewCanvas/VideoContextPreview/VideoContextProgressBar.js',
+    Controls: './src/PreviewCanvas/Controls.js',
+    Filler: './src/PreviewCanvas/Filler.js',
+    ProgressBar: './src/PreviewCanvas/ProgressBar.js',
+    ProgrammeScriptContainer: './src/ProgrammeScriptContainer/index.js',
+    ProgrammeElements:
+      './src/ProgrammeScriptContainer/ProgrammeElements/index.js',
+    Note: './src/ProgrammeScriptContainer/ProgrammeElements/Note.js',
+    PaperCut: './src/ProgrammeScriptContainer/ProgrammeElements/PaperCut.js',
+    SortableHandle:
+      './src/ProgrammeScriptContainer/ProgrammeElements/SortableHandle.js',
+    SortableItem:
+      './src/ProgrammeScriptContainer/ProgrammeElements/SortableItem.js',
+    TitleHeading:
+      './src/ProgrammeScriptContainer/ProgrammeElements/TitleHeading.js',
+    VoiceOver: './src/ProgrammeScriptContainer/ProgrammeElements/VoiceOver.js',
+    SimpleCard: './src/SimpleCard/index.js',
+    TranscriptCard: './src/TranscriptCard/index.js',
+    TranscriptForm: './src/TranscriptForm/index.js'
   },
   output: {
-    path: path.resolve('dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     libraryTarget: 'commonjs2'
   },
@@ -56,7 +61,7 @@ module.exports = {
       },
       {
         test: /\.(js|jsx)$/,
-        include: path.resolve(__dirname, 'packages'),
+        include: path.resolve(__dirname, 'src'),
         // TODO: because it uses entry point to determine graph of dependencies, might not be needed to exclude test ans sample files?
         exclude: /(node_modules|bower_components|build|dist|demo|.storybook)/,
         use: {
@@ -70,10 +75,13 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'react': path.resolve(__dirname, './node_modules/react'),
+      react: path.resolve(__dirname, './node_modules/react'),
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
       'react-router': path.resolve(__dirname, './node_modules/react-router'),
-      'react-router-dom': path.resolve(__dirname, './node_modules/react-router-dom')
+      'react-router-dom': path.resolve(
+        __dirname,
+        './node_modules/react-router-dom'
+      )
     }
   },
   externals: {
