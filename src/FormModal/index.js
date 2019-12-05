@@ -4,32 +4,29 @@ import Modal from 'react-bootstrap/Modal';
 import ItemForm from '../ItemForm/index.js';
 import TranscriptForm from '../TranscriptForm/index.js';
 
-const FormModal = (props) => {
-
+const FormModal = props => {
   const [ showModal, setShowModal ] = useState();
   const type = props.type.toLowerCase();
-  const form = (type === 'transcript') ?
-    <TranscriptForm { ...props }/> :
-    <ItemForm { ...props }/>;
+
+  const form =
+    type === 'transcript' && !props.id ? (
+      <TranscriptForm { ...props } />
+    ) : (
+      <ItemForm { ...props } />
+    );
 
   useLayoutEffect(() => {
     setShowModal(props.showModal);
 
-    return () => {
-
-    };
+    return () => {};
   }, [ props.showModal ]);
 
   return (
     <Modal show={ showModal } onHide={ props.handleOnHide }>
       <Modal.Header closeButton>
-        <Modal.Title>
-          {props.modalTitle}
-        </Modal.Title>
+        <Modal.Title>{props.modalTitle}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        {form}
-      </Modal.Body>
+      <Modal.Body>{form}</Modal.Body>
     </Modal>
   );
 };
