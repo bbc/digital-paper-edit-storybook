@@ -1,6 +1,6 @@
 {
   "name": "@bbc/digital-paper-edit-react-components",
-  "version": "1.2.15",
+  "version": "1.2.16",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "publish-ghpages": "mkdir -p build-storybook && npm run build-storybook-docs && gh-pages -d storybook-static",
     "cp": "cp package.json ./dist/package.json && cp README.md ./dist/README.md ",
     "prepare": "npm run clean && npm run build && npm run cp",
-    "publish": "npm run prepare && npm publish dist --access public",
+    "publish-public": "npm run prepare && npm publish dist --access public",
     "publish-dry": "npm publish --dry-run",
     "release": "auto shipit"
   },
