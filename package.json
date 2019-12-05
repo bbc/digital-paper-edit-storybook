@@ -1,12 +1,8 @@
 {
   "name": "@bbc/digital-paper-edit-react-components",
-  "version": "1.2.18",
+  "version": "1.2.19",
   "description": "",
-  "main": "dist/index.js",
-  "files": [
-    "dist/index.js",
-    "dist/*"
-  ],
+  "main": "index.js",
   "scripts": {
     "start": "npm run storybook",
     "test": "jest",
@@ -20,9 +16,9 @@
     "clean": "rimraf dist storybook-static",
     "publish-ghpages": "mkdir -p build-storybook && npm run build-storybook-docs && gh-pages -d storybook-static",
     "cp": "cp package.json ./dist/package.json && cp README.md ./dist/README.md ",
-    "prepare": "npm run clean && npm run build",
-    "publish-public": "npm publish dist --access public",
-    "publish-dry": "npm publish --dry-run",
+    "prepare": "npm run clean",
+    "publish-public": "npm run build && npm run cp && npm publish dist --access public",
+    "publish-dry": "npm run build && npm run cp && npm publish dist --dry-run",
     "release": "auto shipit"
   },
   "eslintConfig": {
