@@ -14,7 +14,7 @@
     "build-storybook": "build-storybook -s public",
     "build-storybook-docs": "build-storybook -s public --docs",
     "clean": "rimraf dist storybook-static",
-    "publish-ghpages": "mkdir -p build-storybook && npm run build-storybook-docs && gh-pages -d storybook-static",
+    "publish-ghpages": "mkdir -p build-storybook && npm run build-storybook && gh-pages -d storybook-static",
     "cp": "cp package.json ./dist/package.json && cp README.md ./dist/README.md ",
     "prepare": "npm run clean",
     "publish-public": "npm run build && npm run cp && npm publish dist --access public",
