@@ -29,10 +29,11 @@ const formReducer = (state = initialFormState, { type, payload }) => {
 
 const ItemsContainer = props => {
   const type = props.type;
-  const [ items, setItems ] = useState([]);
-
+  const [ showingItems, setShowingItems ] = useState([]);
   const [ showModal, setShowModal ] = useState(false);
   const [ formData, dispatchForm ] = useReducer(formReducer, initialFormState);
+
+  // modal
 
   const handleSaveForm = item => {
     props.handleSave(item);
@@ -40,8 +41,8 @@ const ItemsContainer = props => {
     dispatchForm({ type: 'reset' });
   };
 
-  const handleEditItem = async id => {
-    const item = items.find(i => i.id === id);
+  const handleEditItem = id => {
+    const item = props.items.find(i => i.id === id);
     dispatchForm({
       type: 'update',
       payload: item
@@ -49,9 +50,15 @@ const ItemsContainer = props => {
     setShowModal(true);
   };
 
-  const handleDeleteItem = id => {
-    props.handleDelete(id);
+  const toggleShowModal = () => {
+    setShowModal(!showModal);
   };
+
+  const handleOnHide = () => {
+    setShowModal(false);
+  };
+
+  // search
 
   const handleFilterDisplay = (item, text) => {
     if (anyInText([ item.title, item.description ], text)) {
@@ -64,42 +71,31 @@ const ItemsContainer = props => {
   };
 
   const handleSearch = text => {
-    const results = items.map(item => handleFilterDisplay(item, text));
-    setItems(results);
+    const results = props.items.map(item => handleFilterDisplay(item, text));
+    setShowingItems(results.filter(item => item.display));
   };
 
-  const toggleShowModal = () => {
-    setShowModal(!showModal);
+  // generic
+
+  const handleDeleteItem = id => {
+    props.handleDelete(id);
   };
 
   useEffect(() => {
-    if (items.length === 0) {
-      setItems(props.items);
-    }
+    setShowingItems(props.items);
+    console.log(showingItems);
 
-    return () => {};
-  }, [ items, props.items ]);
-
-  let searchEl;
-  let showItems;
-
-  if (items.length > 0) {
-    searchEl = <SearchBar handleSearch={ handleSearch } />;
-    showItems = (
-      <List
-        items={ items }
-        handleEditItem={ handleEditItem }
-        handleDeleteItem={ handleDeleteItem }
-      />
-    );
-  } else {
-    showItems = <i>There are no {type}s, create a new one to get started.</i>;
-  }
+    return () => {
+      setShowingItems([]);
+    };
+  }, [ props.items ]);
 
   return (
     <>
       <Row>
-        <Col sm={ 9 }>{searchEl}</Col>
+        <Col sm={ 9 }>
+          <SearchBar handleSearch={ handleSearch } />
+        </Col>
         <Col xs={ 12 } sm={ 3 }>
           <Button
             onClick={ toggleShowModal }
@@ -111,22 +107,32 @@ const ItemsContainer = props => {
           </Button>
         </Col>
       </Row>
-      {showItems}
+
+      {showingItems.length > 0 ? (
+        <List
+          items={ showingItems }
+          handleEditItem={ handleEditItem }
+          handleDeleteItem={ handleDeleteItem }
+        />
+      ) : (
+        <i>There are no {type}s, create a new one to get started.</i>
+      )}
+
       <FormModal
         { ...formData }
         modalTitle={ formData.id ? `Edit ${ type }` : `New ${ type }` }
         showModal={ showModal }
-        handleOnHide={ toggleShowModal }
+        handleOnHide={ handleOnHide }
         handleSaveForm={ handleSaveForm }
-        type={ type.toLowerCase() }
+        type={ type }
       />
     </>
   );
 };
 
 ItemsContainer.propTypes = {
-  handleSave: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired,
+  handleSave: PropTypes.any,
+  handleDelete: PropTypes.any,
   items: PropTypes.array.isRequired,
   type: PropTypes.string
 };
