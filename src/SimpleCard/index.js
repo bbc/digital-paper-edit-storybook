@@ -6,13 +6,10 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTrash,
-  faPen
-} from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap-css-only/css/bootstrap.css';
 
-const SimpleCard = (props) => {
+const SimpleCard = props => {
   const handleDeleteText = () => {
     const message = 'Do you want to delete your item?';
     const confirmDelete = window.confirm(message);
@@ -31,9 +28,7 @@ const SimpleCard = (props) => {
         <Row>
           <LinkContainer to={ `${ props.url }` } style={ { cursor: 'pointer' } }>
             <Col xs={ 8 } sm={ 10 }>
-              <Card.Title>
-                {props.title}
-              </Card.Title>
+              <Card.Title>{props.title}</Card.Title>
             </Col>
           </LinkContainer>
           <Col xs={ 2 } sm={ 1 }>
@@ -56,7 +51,7 @@ const SimpleCard = (props) => {
                 size="sm"
                 aria-label="Delete button"
               >
-                <FontAwesomeIcon icon={ faTrash }/>
+                <FontAwesomeIcon icon={ faTrash } />
               </Button>
             </Card.Link>
           </Col>
