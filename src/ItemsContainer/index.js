@@ -83,7 +83,6 @@ const ItemsContainer = props => {
 
   useEffect(() => {
     setShowingItems(props.items);
-    console.log(showingItems);
 
     return () => {
       setShowingItems([]);
