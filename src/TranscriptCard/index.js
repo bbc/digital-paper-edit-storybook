@@ -1,25 +1,92 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import Badge from 'react-bootstrap/Badge';
-import Alert from 'react-bootstrap/Alert';
-import Spinner from 'react-bootstrap/Spinner';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import Badge from "react-bootstrap/Badge";
+import Alert from "react-bootstrap/Alert";
+import ProgressBar from "../ProgressBar";
+import Spinner from "react-bootstrap/Spinner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrash,
   faCheck,
   faExclamationTriangle,
   faPen
-} from '@fortawesome/free-solid-svg-icons';
+} from "@fortawesome/free-solid-svg-icons";
 
-const TranscriptCard = (props) => {
+const TranscriptCard = props => {
+  const statusSwitch = status => {
+    switch (status) {
+      case "error":
+        return {
+          variant: "danger",
+          icon: <FontAwesomeIcon icon={faExclamationTriangle} />,
+          message: props.message,
+          text: "Error",
+          title: props.title,
+          border: "danger"
+        };
+      case "in-progress":
+        return {
+          variant: "info",
+          text: "In progress",
+          icon: (
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+          ),
+          title: props.title,
+          border: "secondary"
+        };
+      case "uploading":
+        return {
+          variant: "info",
+          text: "In progress",
+          icon: <FontAwesomeIcon icon={faExclamationTriangle} />,
+          title: props.title,
+          border: "secondary",
+
+          message:
+            "Do not move away from or refresh this page until upload is complete!"
+        };
+      case "done":
+        return {
+          variant: "success",
+          text: "Done",
+          icon: <FontAwesomeIcon icon={faCheck} />,
+          border: "secondary",
+          title: <a href={`${props.url}`}>{props.title}</a>
+        };
+      default:
+        return {
+          variant: "info",
+          text: "",
+          icon: (
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+          ),
+          title: props.title,
+          border: "secondary"
+        };
+    }
+  };
+
+  // const [progress, setProgress] = useState(0)
 
   const handleDeleteClick = () => {
-    const confirmDeleteText = 'Are you sure you want to delete?';
-    const cancelDeleteText = 'Cancelled delete';
+    const confirmDeleteText = "Are you sure you want to delete?";
+    const cancelDeleteText = "Cancelled delete";
 
     const confirmationPrompt = confirm(confirmDeleteText);
 
@@ -36,108 +103,76 @@ const TranscriptCard = (props) => {
     props.handleEditItem(props.id);
   };
 
-  const iconStatus = {
-    'in-progress': 'info',
-    'done': 'success',
-    'error': 'danger'
-  };
-
   const setDescription = () => {
-    if (props.status === 'error') {
-      return (
-        <>
-          <Alert variant='danger'>
-            <FontAwesomeIcon icon={ faExclamationTriangle } />
-            {props.errorMessage}
-          </Alert>
-          <Badge variant='danger'>
-            Error
-          </Badge>
-        </>
+    let Message;
+
+    if (statusConfig.message) {
+      Message = (
+        <Alert variant={statusConfig.variant}>
+          {statusConfig.icon} {statusConfig.message}
+          {props.status === "uploading" ? (
+            <ProgressBar progress={props.progress} />
+          ) : null}
+        </Alert>
       );
     }
-    else {
-      const badgeText = (props.status.charAt(0).toUpperCase() + props.status.slice(1)).replace('-', ' ');
 
-      return (
-        <Badge variant={ iconStatus[props.status] }>{badgeText}</Badge>
-      );
-    };
+    return (
+      <>
+        {Message ? Message : null}
+        <Badge variant={statusConfig.variant}>{statusConfig.text}</Badge>
+      </>
+    );
   };
 
-  const setStatusIcon = () => {
-    if (props.status === 'in-progress') {
-      return (
-        <Button variant="info" size="sm" disabled>
-          <Spinner
-            as="span"
-            animation="border"
-            size="sm"
-            role="status"
-            aria-hidden="true"
-          />
-        </Button>
-      );
-    } else {
-      return (
-        <Button variant={ iconStatus[props.status] } size="sm" disabled>
-          <FontAwesomeIcon icon={ props.status === 'danger' ? faExclamationTriangle : faCheck } />
-        </Button>
-      );
-    };
-  };
-
-  const title = props.status && props.status === 'done' ? <a href={ `${ props.url }` }> {props.title}</a> : props.title;
+  const statusConfig = statusSwitch(props.status);
 
   return (
     <Card
-      border={ props.status && props.status === 'danger' ? status : null }
-      style={ { width: '100%', marginBottom: '2em' } }
+      border={statusConfig.border}
+      style={{ width: "100%", marginBottom: "2em" }}
     >
       <Card.Body>
         <Row>
-          <Col xs={ 12 } sm={ 9 }>
-            <Card.Title>
-              {props.icon ? props.icon : ''} {title}
+          <Col xs={8} sm={10}>
+            <Card.Title style={{ color: "#757575" }}>
+              {props.icon ? props.icon : ""} {statusConfig.title}
             </Card.Title>
           </Col>
-          <Col xs={ 2 } sm={ 1 }>
+          <Col xs={2} sm={1}>
             <Card.Link>
               <Button
-                onClick={ handleEditClick }
+                onClick={handleEditClick}
                 variant="outline-secondary"
                 size="sm"
+                aria-label="Edit title and description"
               >
-                <FontAwesomeIcon icon={ faPen } />
+                <FontAwesomeIcon icon={faPen} />
               </Button>
             </Card.Link>
           </Col>
-          <Col xs={ 2 } sm={ 1 }>
+          <Col xs={2} sm={1}>
             <Card.Link>
               <Button
-                onClick={ handleDeleteClick }
+                onClick={handleDeleteClick}
                 variant="outline-secondary"
                 size="sm"
+                aria-label="Delete transcript"
               >
-                <FontAwesomeIcon icon={ faTrash } />
+                <FontAwesomeIcon icon={faTrash} />
               </Button>
             </Card.Link>
-          </Col>
-          <Col xs={ 1 }>
-            {setStatusIcon()}
           </Col>
         </Row>
         <Row>
-          <Col xs={ 12 }>
+          <Col xs={12}>
             <Card.Subtitle className="mb-2 text-muted">
-              {props.subtitle}
+              {props.description}
             </Card.Subtitle>
           </Col>
         </Row>
         <Row>
-          <Col xs={ 12 }>
-            {setDescription()}
-          </Col>
+          <Col xs={12}>{setDescription()}</Col>
         </Row>
       </Card.Body>
     </Card>
@@ -146,21 +181,20 @@ const TranscriptCard = (props) => {
 
 TranscriptCard.propTypes = {
   description: PropTypes.string,
-  errorMessage: PropTypes.string,
+  message: PropTypes.string,
   handleDeleteItem: PropTypes.func.isRequired,
   handleEditItem: PropTypes.func.isRequired,
   icon: PropTypes.any,
   id: PropTypes.string.isRequired,
   status: PropTypes.string,
-  subtitle: PropTypes.string,
   title: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired
+  url: PropTypes.string.isRequired,
+  progress: PropTypes.number
 };
 
 TranscriptCard.defaultProps = {
-  title: '',
-  description: '',
-  subtitle: '',
+  title: "",
+  description: ""
 };
 
-export default TranscriptCard;
+export default React.memo(TranscriptCard);

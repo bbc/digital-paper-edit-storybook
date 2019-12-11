@@ -25,8 +25,7 @@ const formReducer = (state = initialFormState, { type, payload }) => {
   }
 };
 
-const SplitWorkspace = (props) => {
-
+const SplitWorkspace = props => {
   const [ showModal, setShowModal ] = useState(false);
   const [ formData, dispatchForm ] = useReducer(formReducer, initialFormState);
 
@@ -37,28 +36,33 @@ const SplitWorkspace = (props) => {
           <SearchBar handleSearch={ props.handleSearch } />
         </Col>
         <Col sm={ 2 }>
-          <Button onClick={ props.toggleShowModal }
+          <Button
+            onClick={ props.toggleShowModal }
             variant="outline-secondary"
-            size="sm" block>
-              New Item
+            size="sm"
+            block
+          >
+            New Item
           </Button>
-
         </Col>
       </Row>
       <Row>
         <Col>
           <h2>Transcripts</h2>
           <List
+            type={ 'Transcript' }
             items={ props.transcripts }
             handleEditItem={ () => props.handleSaveTranscript }
-            handleDeleteItem={ () => props.handleDeleteTranscript }/>
+            handleDeleteItem={ () => props.handleDeleteTranscript }
+          />
         </Col>
         <Col>
           <h2>Paper Edits</h2>
           <List
             items={ props.paperEdits }
             handleEditItem={ () => props.handleSavePaperEdit }
-            handleDeleteItem={ () => props.handleDeletePaperEdit } />
+            handleDeleteItem={ () => props.handleDeletePaperEdit }
+          />
         </Col>
       </Row>
       <FormModal
@@ -83,7 +87,8 @@ SplitWorkspace.propTypes = {
   id: PropTypes.any,
   paperEdits: PropTypes.any,
   toggleShowModal: PropTypes.any,
-  transcripts: PropTypes.any
+  transcripts: PropTypes.any,
+  type: PropTypes.any
 };
 
 export default SplitWorkspace;

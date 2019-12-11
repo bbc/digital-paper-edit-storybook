@@ -1,6 +1,6 @@
 {
   "name": "@bbc/digital-paper-edit-react-components",
-  "version": "1.2.19",
+  "version": "1.3.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,13 +8,13 @@
     "test": "jest",
     "storybook": "start-storybook -p 6006 -s public",
     "build": "webpack --config webpack.config.js --mode production",
-    "dev": "webpack --config webpack.dev.config.js --mode development",
+    "dev": "webpack --watch --config webpack.dev.config.js --mode development",
     "linked": "npm run clean && npm run dev && npm run cp",
     "buildw": "webpack --config webpack.config.js --watch",
     "build-storybook": "build-storybook -s public",
     "build-storybook-docs": "build-storybook -s public --docs",
     "clean": "rimraf dist storybook-static",
-    "publish-ghpages": "mkdir -p build-storybook && npm run build-storybook-docs && gh-pages -d storybook-static",
+    "publish-ghpages": "mkdir -p build-storybook && npm run build-storybook && gh-pages -d storybook-static",
     "cp": "cp package.json ./dist/package.json && cp README.md ./dist/README.md ",
     "prepare": "npm run clean",
     "publish-public": "npm run build && npm run cp && npm publish dist --access public",

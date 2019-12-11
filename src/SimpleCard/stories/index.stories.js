@@ -4,14 +4,9 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import SimpleCard from '../index.js';
+import { items } from '../../dummy';
 
-export const item = {
-  id: '1234',
-  key: 'abc123',
-  title: 'Sample Simple Card Title',
-  description: 'This is a sample card description. This is fun!',
-  url: '/projects/1/transcripts/1234'
-};
+const item = items[0];
 
 storiesOf('Simple Card', module)
   .addDecorator(StoryRouter())
