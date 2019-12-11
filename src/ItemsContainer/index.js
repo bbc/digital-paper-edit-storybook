@@ -112,6 +112,7 @@ const ItemsContainer = props => {
           items={ showingItems }
           handleEditItem={ handleEditItem }
           handleDeleteItem={ handleDeleteItem }
+          type={ type }
         />
       ) : (
         <i>There are no {type}s, create a new one to get started.</i>

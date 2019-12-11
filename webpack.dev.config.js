@@ -32,7 +32,8 @@ module.exports = {
     VoiceOver: './src/ProgrammeScriptContainer/ProgrammeElements/VoiceOver.js',
     SimpleCard: './src/SimpleCard/index.js',
     TranscriptCard: './src/TranscriptCard/index.js',
-    TranscriptForm: './src/TranscriptForm/index.js'
+    TranscriptForm: './src/TranscriptForm/index.js',
+    ProgressBar: './src/ProgressBar/index.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

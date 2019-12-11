@@ -3,17 +3,13 @@ import PropTypes from 'prop-types';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faSearch,
-} from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const SearchBar = ({ handleSearch }) => {
-
   const [ toggleSearchInput, setToggleShowInput ] = useState(false);
-
   const [ searchValue, setSearchValue ] = useState('');
 
-  const handleSearchInputChanges = (e) => {
+  const handleSearchInputChanges = e => {
     handleSearch(e.target.value);
     setSearchValue(e.target.value);
   };
@@ -40,13 +36,13 @@ const SearchBar = ({ handleSearch }) => {
 };
 
 SearchBar.propTypes = {
-  handleSearch: PropTypes.func.isRequired,
+  handleSearch: PropTypes.func.isRequired
 };
 
 SearchBar.defaultProps = {
   handleSearch: () => {
     console.log('Searching...');
-  },
+  }
 };
 
-export default SearchBar;
+export default React.memo(SearchBar);

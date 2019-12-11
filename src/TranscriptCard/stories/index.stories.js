@@ -5,47 +5,7 @@ import { actions } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import TranscriptCard from '../index.js';
 import { withKnobs, number } from '@storybook/addon-knobs';
-
-const transcriptItems = [
-  {
-    id: '1',
-    key: 'transcript_key_1',
-    title: 'Title - Done Transcript',
-    description: 'Description 1.',
-    url: '/projects/1/transcripts/',
-    status: 'done',
-    display: true
-  },
-  {
-    id: '2',
-    key: 'transcript_key_2',
-    title: 'Title - In Progress Transcript',
-    description: 'This transcript is still being generated.',
-    url: '/projects/1/transcripts/',
-    status: 'in-progress',
-    display: true
-  },
-  {
-    id: '3',
-    key: 'transcript_key_3',
-    title: 'Title - Error Transcript',
-    description: 'Transcript generation failed for this card.',
-    url: '/projects/1/transcripts/',
-    status: 'error',
-    errorMessage: 'Something has gone wrong with your transcription',
-    display: true
-  },
-  {
-    id: '4',
-    key: 'transcript_key_4',
-    title: 'Title - Uploading Transcript',
-    description: 'This transcript is still being generated.',
-    errorMessage: 'Please keep this page open until the file is uploaded.',
-    url: '/projects/1/transcripts/',
-    status: 'uploading',
-    display: true
-  }
-];
+import { transcriptItems } from '../../dummy';
 
 const transcriptCardActions = actions({
   handleEdit: 'Edit button clicked',

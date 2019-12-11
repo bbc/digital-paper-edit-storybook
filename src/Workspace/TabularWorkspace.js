@@ -5,7 +5,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import PropTypes from 'prop-types';
 
-const TabularWorkspace = (props) => {
+const TabularWorkspace = props => {
   const [ active, setActive ] = useState('transcripts');
 
   return (
@@ -20,7 +20,8 @@ const TabularWorkspace = (props) => {
             type={ 'Transcript' }
             items={ props.transcripts }
             handleSave={ props.handleSaveTranscript }
-            handleDelete={ props.handleDeleteTranscript }/>
+            handleDelete={ props.handleDeleteTranscript }
+          />
         </Container>
       </Tab>
 
@@ -30,7 +31,8 @@ const TabularWorkspace = (props) => {
             type={ 'PaperEdit' }
             items={ props.paperEdits }
             handleSave={ props.handleSavePaperEdit }
-            handleDelete={ props.handleDeletePaperEdit } />
+            handleDelete={ props.handleDeletePaperEdit }
+          />
         </Container>
       </Tab>
     </Tabs>

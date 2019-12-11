@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import SimpleCard from '../SimpleCard';
 import TranscriptCard from '../TranscriptCard';
@@ -6,19 +6,23 @@ import cuid from 'cuid';
 
 const List = props => {
   const items = props.items;
+  const type = props.type.toLowerCase();
 
   const listItems = items.map(item => {
     const key = 'card-' + cuid();
-    if (item.display && item.status) {
-      return (
-        <TranscriptCard
-          { ...item }
-          key={ key }
-          handleEditItem={ props.handleEditItem }
-          handleDeleteItem={ props.handleDeleteItem }
-        />
-      );
-    } else if (item.display) {
+
+    if (item.display) {
+      if (type === 'transcript') {
+        return (
+          <TranscriptCard
+            { ...item }
+            key={ key }
+            handleEditItem={ props.handleEditItem }
+            handleDeleteItem={ props.handleDeleteItem }
+          />
+        );
+      }
+
       return (
         <SimpleCard
           { ...item }
@@ -42,7 +46,12 @@ const List = props => {
 List.propTypes = {
   items: PropTypes.array.isRequired,
   handleEditItem: PropTypes.func.isRequired,
-  handleDeleteItem: PropTypes.func.isRequired
+  handleDeleteItem: PropTypes.func.isRequired,
+  type: PropTypes.string
 };
 
-export default List;
+List.defaultProps = {
+  type: ''
+};
+
+export default React.memo(List);
