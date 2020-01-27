@@ -10,12 +10,14 @@
 
 # production
 /build
+/storybook-static
 
 # component to distribute to npm 
 /dist
 
 # misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local

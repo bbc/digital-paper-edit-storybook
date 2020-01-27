@@ -1,19 +1,8 @@
-// import { configure } from '@storybook/react';
-
-// // automatically import all files ending in *.stories.js
-// const req = require.context('../stories', true, /\.stories\.js$/);
-// function loadStories() {
-//   req.keys().forEach(filename => req(filename));
-// }
-
-// configure(loadStories, module);
 
 import { configure, addDecorator, addParameters } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 
-// automatically import all files ending in *.stories.js
-// https://webpack.js.org/guides/dependency-management/
-const components = require.context('../packages/components/', true, /.stories.js$/);
+const components = require.context('../src/', true, /.stories.js$/);
 // const demo = require.context('../demo/', true, /.stories.js$/);
 const styles = require.context('./styles', true, /\.scss$/);
 
