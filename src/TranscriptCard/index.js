@@ -130,7 +130,7 @@ const TranscriptCard = props => {
   return (
     <Card
       border={statusConfig.border}
-      style={{ width: "100%", marginBottom: "2em" }}
+      style={{ width: "100%", marginBottom: "1em" }}
     >
       <Card.Body>
         <Row>
