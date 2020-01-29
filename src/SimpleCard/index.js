@@ -23,7 +23,10 @@ const SimpleCard = props => {
   };
 
   return (
-    <Card style={ { width: '100%', marginBottom: '1em' } }>
+    <Card 
+    // border={'secondary'} 
+    style={ { width: '100%', marginBottom: '1em' } }
+    >
       <Card.Body>
         <Row>
           <LinkContainer to={ `${ props.url }` } style={ { cursor: 'pointer' } }>
