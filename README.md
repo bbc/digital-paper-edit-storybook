@@ -1,6 +1,6 @@
 # Digital Paper Edit - React Components Catalogue
 
-[The Storybook](https://bbc.github.io/digital-paper-edit-storybook/?path=/story/breadcrumb--projects)
+[The Storybook](https://pietrop.github.io/digital-paper-edit-storybook/?path=/story/breadcrumb--projects)
 
 ---> _Work in progress_ <--
 
@@ -16,11 +16,11 @@ See [here](https://github.com/bbc/digital-paper-edit-client#project-architecture
 _How to build and run the code/app_ -->
 
 ```sh
-git clone git@github.com:bbc/digital-paper-edit-react-components.git
+git clone git@github.com:pietrop/digital-paper-edit-storybook.git
 ```
 
 ```sh
-cd digital-paper-edit-react-components
+cd digital-paper-edit-storybook
 ```
 
 Optional step to setup [nvm](https://github.com/nvm-sh/nvm) to use node version 10, otherwise just use node version 10
@@ -37,19 +37,31 @@ npm install
 
 ## Usage - development
 
+Start the storybook 
+
 ```sh
-npm run start
+npm start
 ```
 
-Server API is listening on [`http://localhost:6006/`](http://localhost:6006)
+[Storybook](https://storybook.js.org/) is at [`http://localhost:6006/`](http://localhost:6006)
 
-- [ ] TODO: available on npm
 
-<!-- Available on `npm` [npm - `@bbc/react-transcript-editor`](https://www.npmjs.com/package/@bbc/react-transcript-editor) -->
+## Usage - production
 
-<!-- ```
-npm install @bbc/react-transcript-editor
-``` -->
+```sh
+npm install @pietrop/digital-paper-edit-storybook
+```
+
+<!-- Example of import
+
+```js
+import 'Breadcrumb' from '@pietrop/digital-paper-edit-storybook/Breadcrumb'
+
+<Breadcrumb />
+```
+
+ -->
+
 
 ## System Architecture
 
@@ -73,16 +85,13 @@ _Linting, github pre-push hook - optional_ -->
 Node version is set in node version manager [`.nvmrc`](https://github.com/creationix/nvm#nvmrc)
 
 ## Build
-
 <!-- _How to run build_ -->
 
-- [ ] TODO
+To transpile `./src` and create a build in the `./dist` folder, run:
 
-<!-- > To transpile `./packages` and create a build in the `./dist` folder, run:
-
+```sh
+npm run build
 ```
-npm run build:component
-``` -->
 
 ## Demo & storybook
 
@@ -94,7 +103,7 @@ npm run build:component
 To build the storybook as a static site
 
 ```sh
-npm run build:storybook
+npm run build-storybook
 ```
 
 ## Publish storybook & demo to github pages
@@ -102,19 +111,13 @@ npm run build:storybook
 This github repository uses [github pages](https://pages.github.com/) to host the storybook and the demo of the component. **Make sure to commit and push any changes to MASTER before deploying to github pages.**
 
 ```sh
-npm run deploy:ghpages
+npm run publish-ghpages
 ```
 
 Alternatively, if you simply want to build the demo locally in the `build` folder then just
 
 ```sh
-npm run build:storybook
-```
-
-you can then run this command to serve the static site locally
-
-```sh
-npm run build:storybook:serve
+npm run build-storybook
 ```
 
 ## Tests
@@ -127,33 +130,25 @@ Test coverage using [`jest`](https://jestjs.io/), to run tests
 npm run test
 ```
 
-During development you can use
-
-```
-npm run test:watch
-```
-
 ## Travis CI
 
-- [ ] TODO
-
-<!-- On commit this repo uses the [.travis.yml](./.travis.yml) config tu run the automated test on [travis CI](https://travis-ci.org/bbc/react-transcript-editor). -->
+On commit this repo uses the [.travis.yml](./.travis.yml) config tu run the automated test on [travis CI](https://travis-ci.org/pietrop/digital-paper-edit-storybook).
 
 ## Deployment
 
 <!-- _How to deploy the code/app into test/staging/production_ -->
 
-- [ ] TODO
+To push to [npm - `@bbc/digital-paper-edit-storybook`](https://www.npmjs.com/package/@pietrop/digital-paper-edit-storybook)
 
-<!-- To push to [npm - `@bbc/react-transcript-editor`](https://www.npmjs.com/package/@bbc/react-transcript-editor)
+login into npm 
 
 ```
-npm publish:public
+npm run publish-public
 ```
 
-This runs `npm run build:component` and `npm publish --access public` under the hood
+This runs `npm run build` and `npm publish --access public` under the hood
 
-> Note that only `README.md` and the `dist` folders are published to npm. -->
+> Note that only `README.md` and the `dist` folders are published to npm.
 
 ## Contributing
 
