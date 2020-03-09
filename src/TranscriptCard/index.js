@@ -42,7 +42,7 @@ const TranscriptCard = props => {
             />
           ),
           title: props.title,
-          border: "secondary"
+          border: "info"
         };
       case "uploading":
         return {
@@ -50,8 +50,7 @@ const TranscriptCard = props => {
           text: "In progress",
           icon: <FontAwesomeIcon icon={faExclamationTriangle} />,
           title: props.title,
-          border: "secondary",
-
+          border: "info",
           message:
             "Do not move away from or refresh this page until upload is complete!"
         };
@@ -60,7 +59,7 @@ const TranscriptCard = props => {
           variant: "success",
           text: "Done",
           icon: <FontAwesomeIcon icon={faCheck} />,
-          border: "secondary",
+          // border: "secondary",
           title: <a href={`${props.url}`}>{props.title}</a>
         };
       default:
@@ -77,7 +76,7 @@ const TranscriptCard = props => {
             />
           ),
           title: props.title,
-          border: "secondary"
+          // border: "info"
         };
     }
   };
@@ -130,7 +129,7 @@ const TranscriptCard = props => {
   return (
     <Card
       border={statusConfig.border}
-      style={{ width: "100%", marginBottom: "2em" }}
+      style={{ width: "100%", marginBottom: "1em" }}
     >
       <Card.Body>
         <Row>

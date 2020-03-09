@@ -1,10 +1,7 @@
 ---
 name: Question
 about: Ask a question about this project
-title: ''
+title: ""
 labels: question
-assignees: pietrop
-
----
-
-<!-- _where applicable, please provide context and use case around your question._ -->
+assignees: bbc
+---<!-- _where applicable, please provide context and use case around your question._ -->

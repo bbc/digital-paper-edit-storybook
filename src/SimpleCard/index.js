@@ -23,12 +23,15 @@ const SimpleCard = props => {
   };
 
   return (
-    <Card style={ { width: '100%', marginBottom: '1em' } }>
+    <Card 
+    // border={'secondary'} 
+    style={ { width: '100%', marginBottom: '1em' } }
+    >
       <Card.Body>
         <Row>
           <LinkContainer to={ `${ props.url }` } style={ { cursor: 'pointer' } }>
             <Col xs={ 8 } sm={ 10 }>
-              <Card.Title>{props.title}</Card.Title>
+              <Card.Title style={{ color: "#007bff" }}>{props.title}</Card.Title>
             </Col>
           </LinkContainer>
           <Col xs={ 2 } sm={ 1 }>
