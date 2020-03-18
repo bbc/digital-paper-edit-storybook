@@ -37,7 +37,7 @@ const CustomAlert = ({ ...props } ) => {
 CustomAlert.propTypes = {
   show: PropTypes.bool.isRequired,
   heading: PropTypes.string,
-  message: PropTypes.string,
+  message: PropTypes.any,
   vatiant: PropTypes.string,
 };
 

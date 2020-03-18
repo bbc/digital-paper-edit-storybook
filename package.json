@@ -9,7 +9,7 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build": "webpack --config webpack.config.js --mode production",
     "dev": "webpack --watch --config webpack.dev.config.js --mode development",
-    "linked": "npm run clean && npm run dev && npm run cp",
+    "linked": "npm run clean && mkdir -p dist && npm run cp && npm run dev && npm run cp",
     "buildw": "webpack --config webpack.config.js --watch",
     "build-storybook": "build-storybook -s public",
     "build-storybook-docs": "build-storybook -s public --docs",

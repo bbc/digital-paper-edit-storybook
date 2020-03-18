@@ -76,24 +76,24 @@ module.exports = {
   resolve: {
     alias: {
       react: path.resolve(
-        '../../digital-paper-edit-firebase/node_modules/react'
+        '../digital-paper-edit-firebase/node_modules/react'
       ),
       'react-dom': path.resolve(
-        '../../digital-paper-edit-firebase/node_modules/react-dom'
+        '../digital-paper-edit-firebase/node_modules/react-dom'
       ),
       'react-router': path.resolve(
-        '../../digital-paper-edit-firebase/node_modules/react-router'
+        '../digital-paper-edit-firebase/node_modules/react-router'
       ),
       'react-router-dom': path.resolve(
-        '../../digital-paper-edit-firebase/node_modules/react-router-dom'
+        '../digital-paper-edit-firebase/node_modules/react-router-dom'
       )
     },
     symlinks: false
   },
   externals: {
-    react: 'commonjs react',
-    'react-dom': 'commonjs react-dom',
-    'react-router': 'commonjs react-router',
-    'react-router-dom': 'commonjs react-router-dom'
+    react: 'react',
+    'react-dom': 'react-dom',
+    'react-router': 'react-router',
+    'react-router-dom': 'react-router-dom'
   }
 };
