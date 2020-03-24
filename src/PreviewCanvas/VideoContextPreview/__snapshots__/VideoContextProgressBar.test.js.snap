@@ -48,6 +48,12 @@ exports[`VideoContextProgressBar should be possible to activate button with Spac
 
 exports[`VideoContextProgressBar should fully render 1`] = `ReactWrapper {}`;
 
+exports[`VideoContextProgressBar should render 1`] = `
+<VideoContextProgressBar
+  videoContext={Object {}}
+/>
+`;
+
 exports[`VideoContextProgressBar should render correctly 1`] = `
 <div
   style={

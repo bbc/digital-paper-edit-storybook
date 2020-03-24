@@ -81,11 +81,10 @@
     "@storybook/addon-viewport": "^5.0.8",
     "@storybook/addons": "^5.1.9",
     "@storybook/react": "^5.3.14",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^10.0.1",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
-    "enzyme-to-json": "^3.4.0",
     "eslint": "^6.2.2",
     "eslint-plugin-react": "^7.14.3",
     "gh-pages": "^2.0.1",
@@ -104,8 +103,8 @@
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
     },
-    "setupFiles": [
-      "./testSetup.js"
+    "setupFilesAfterEnv": [
+      "<rootDir>/config/jest/setup.js"
     ],
     "moduleNameMapper": {
       ".*\\.(css|scss|sass)$": "<rootDir>/tools/jest/styleMock.js",
