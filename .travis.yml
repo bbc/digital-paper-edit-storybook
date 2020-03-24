@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "12.13"
+before_deploy: "publish-ghpages"
+deploy:
+  provider: npm
+  email: eimi.okuno@bbc.co.uk
+  api_key: lmNPMqFtnGgYrKq6fFVzUis6JRk10/19+OwExo9Z70y2AmeYZySQenu0Ir2YgyU2Hq6oVaYn7N4wRYt90cRLYg8r8LVIA6pmm7QOPt+TJbEqre4CSSBvDjFZbO45Bpsx/Et0kNtNH6xWR/6N7CW+VTlNTMHL/2J6c2FmRP5AmPHnEIio1Ju//ghl7KM+qvoO0dOaBrYr09T2uc4DhjiGk3+NtYvxiCkHrFrZyW7iLHVqbfZQu+PaVTXL2788/yIqpaCvaAGVc6jzZwvp3xUWrrKqWTHuNhAzveCBiZRpaF/HGG1QEJtHdl+/nGed1hKDaCzXZS3uhAj1SVJRVv57CWdte9rQAe2QjAtRWbXq4JtNrhw8XCRoi+BowzUuUDTi4HpPcV6D3PfRwQIaSLbZEpHSAtpd5ikta8HOlC4tYz2iUXJBDOP92DsT8A3iZVdXrq8glyXi1BaKU7FLu/7GXpqDURGwLuJNr564pMd/ADewqXNWcckymCz/elw1UOKb7///5AgFk4IInev7NkwuG/5cw1NKrjnSe+mXE2E5Ig8+xnIjleflUiNM8z8J10cFhwj8AKMboCb0AepPHFTe8oXmu/bs8J1tgnX2eeMVZ55QUPRx8Bhf5Fk/+HjfQrJGrXFZvKmP6OXVFbVZQofzc00GTJzWsBFD8TN7lzhpU0M=
+  on:
+    branch: release
+after_deploy: "publish-public"
