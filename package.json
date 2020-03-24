@@ -116,10 +116,6 @@
       "jsx",
       "json"
     ],
-    "verbose": true,
-   "publishConfig": {
-    "access": "public"
-  }
-
+    "verbose": true
   }
 }
