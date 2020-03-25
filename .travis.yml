@@ -1,7 +1,9 @@
 language: node_js
 node_js:
   - "12.13"
-before_deploy: npm i
+before_install:
+  - npm i -g rimraf
+  - npm i -g webpack
 deploy:
   provider: npm
   email: eimi.okuno@bbc.co.uk
