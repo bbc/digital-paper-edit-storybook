@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-- '12.13'
-  #before_deploy: npm run publish-ghpages
+  - "12.13"
+before_deploy: npm i
 deploy:
   provider: npm
   email: eimi.okuno@bbc.co.uk
