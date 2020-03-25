@@ -125,29 +125,39 @@ npm run build-storybook
 
 Test coverage using [`jest`](https://jestjs.io/), to run tests
 
-```
+```sh
 npm run test
 ```
 
 ## Travis CI
 
-On commit this repo uses the [.travis.yml](./.travis.yml) config tu run the automated test on [travis CI](https://travis-ci.org/bbc/digital-paper-edit-storybook).
+On commit, - this repo uses the [.travis.yml](./.travis.yml) config to run the automated test on [travis CI](https://travis-ci.org/bbc/digital-paper-edit-storybook).
 
 ## Deployment
 
-<!-- _How to deploy the code/app into test/staging/production_ -->
+### NPM
+
+> Note that only `README.md` and the `dist` folders are published to NPM.
+
+#### New releases
+
+1. Go into the `release` branch and pull the new changes from `master`.
+2. Commit or push changes to the remote branch of `release`
+3. Find corresponding changes in [Travis](https://travis-ci.org/github/bbc/digital-paper-edit-storybook)
+
+If you had to make changes in `release`, make sure that the `release` is equivalent to `master`!
+
+#### Locally, using the NPM cli
 
 To push to [npm - `@bbc/digital-paper-edit-storybook`](https://www.npmjs.com/package/@bbc/digital-paper-edit-storybook)
 
 login into npm
 
-```
+```bash
 npm run publish-public
 ```
 
 This runs `npm run build` and `npm publish --access public` under the hood
-
-> Note that only `README.md` and the `dist` folders are published to npm.
 
 ## Contributing
 
