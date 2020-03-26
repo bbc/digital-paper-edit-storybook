@@ -5,6 +5,10 @@ import Row from 'react-bootstrap/Row';
 import PropTypes from 'prop-types';
 import VideoContext from 'videocontext';
 
+const secondsToHHMMSSFormat = (seconds) => {
+  return new Date(seconds * 1000).toISOString().substr(11, 8);
+};
+
 const VideoContextPreview = (props) => {
   const [ videoContext, setVideoContext ] = useState();
 
@@ -30,16 +34,11 @@ const VideoContextPreview = (props) => {
     if (props.canvasRef && props.canvasRef.current) {
       setVideoContext(new VideoContext(props.canvasRef.current));
     }
-
   }, [ props.canvasRef ]);
 
   if (videoContext) {
     updateVideoContext(props.playlist);
   }
-
-  const secondsToHHMMSSFormat = (seconds) => {
-    return new Date(seconds * 1000).toISOString().substr(11, 8);
-  };
 
   return (
     <>
