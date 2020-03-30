@@ -11,17 +11,23 @@ const VideoContextProgressBar = (props) => {
   const [ videoContext, setVideoContext ] = useState();
   const [ width, setWidth ] = useState(0);
 
+  let offsetWidth;
+
+  if (ref.current) {
+    offsetWidth = ref.current.offsetWidth;
+  }
+
   const handleClick = ({ nativeEvent: { offsetX } }) => {
     videoContext.currentTime = (offsetX / width) * videoContext.duration;
     const percent = getPercentage(videoContext.currentTime, videoContext.duration);
     setPercentage(percent);
   };
 
-  useLayoutEffect(() => {
-    if (ref.current) {
-      setWidth(ref.current.offsetWidth);
+  useEffect(() => {
+    if (offsetWidth !== width) {
+      setWidth(offsetWidth);
     }
-  }, [ ref ]);
+  }, [ offsetWidth ]);
 
   useEffect(() => {
     const fillerAnimation = () => {
