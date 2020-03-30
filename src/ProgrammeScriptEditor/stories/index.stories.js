@@ -3,7 +3,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import ProgrammeScriptEditor from '../index.js';
-import PreviewCanvas from '../../PreviewCanvas';
 import { programmeScript } from '../../dummy';
 export const handleReorderActions = action('Handle reorder');
 export const handleDeleteActions = action('Handle delete');
