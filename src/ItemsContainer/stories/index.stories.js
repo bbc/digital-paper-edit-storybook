@@ -15,7 +15,7 @@ storiesOf('ItemsContainer - Demo only (not published on NPM)', module)
     return (
       <ItemsContainer
         items={ pItems }
-        model="Project"
+        type="Project"
         handleSave={ action('handleSave') }
         handleDelete={ action('handleDelete') }
       />

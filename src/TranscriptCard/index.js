@@ -10,6 +10,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import ProgressBar from '../ProgressBar';
 import Spinner from 'react-bootstrap/Spinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import {
   faTrash,
   faCheck,
@@ -18,75 +19,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const TranscriptCard = props => {
-  const statusSwitch = status => {
-    switch (status) {
-    case 'error':
-      return {
-        variant: 'danger',
-        icon: <FontAwesomeIcon icon={ faExclamationTriangle } />,
-        message: props.message,
-        text: 'Error',
-        title: props.title,
-        border: 'danger'
-      };
-    case 'in-progress':
-      return {
-        variant: 'info',
-        text: 'In progress',
-        icon: (
-          <Spinner
-            as="span"
-            animation="border"
-            size="sm"
-            role="status"
-            aria-hidden="true"
-          />
-        ),
-        title: props.title,
-        border: 'info'
-      };
-    case 'uploading':
-      return {
-        variant: 'info',
-        text: 'In progress',
-        icon: <FontAwesomeIcon icon={ faExclamationTriangle } />,
-        title: props.title,
-        border: 'info',
-        message:
-            'Do not move away from or refresh this page until upload is complete!'
-      };
-    case 'done':
-      return {
-        variant: 'success',
-        text: 'Done',
-        icon: <FontAwesomeIcon icon={ faCheck } />,
-        // border: "secondary",
-        title: props.title
-        // url: `${props.url}`
-        // title: <a href={`${props.url}`}>{props.title}</a>
-      };
-    default:
-      return {
-        variant: 'info',
-        text: '',
-        icon: (
-          <Spinner
-            as="span"
-            animation="border"
-            size="sm"
-            role="status"
-            aria-hidden="true"
-          />
-        ),
-        title: props.title,
-        // border: "info"
-      };
-    }
-  };
 
-  // const [progress, setProgress] = useState(0)
-
-  const handleDeleteClick = () => {
+  const handleDelete = () => {
     const confirmDeleteText = 'Are you sure you want to delete?';
     const cancelDeleteText = 'Cancelled delete';
 
@@ -101,98 +35,261 @@ const TranscriptCard = props => {
     }
   };
 
-  const handleEditClick = () => {
+  const handleEdit = () => {
     props.handleEditItem(props.id);
   };
 
-  const setDescription = () => {
-    let Message;
-
-    if (statusConfig.message) {
-      Message = (
-        <Alert variant={ statusConfig.variant }>
-          {statusConfig.icon} {statusConfig.message}
-          {props.status === 'uploading' ? (
-            <ProgressBar progress={ props.progress } />
-          ) : null}
-        </Alert>
-      );
-    }
-
+  const ErrorCard = () => {
     return (
-      <>
-        {Message ? Message : null}
-        <Badge variant={ statusConfig.variant }>{statusConfig.text}</Badge>
-      </>
+      <Card
+        border={ 'danger' }
+        style={ { width: '100%', marginBottom: '1em' } }
+      >
+        <Card.Body>
+          <Row>
+            <Col xs={ 8 } sm={ 10 }>
+              <Card.Title style={ { color: '#757575' } }>
+                <FontAwesomeIcon icon={ faExclamationTriangle } /> {props.title}
+              </Card.Title>
+            </Col>
+            <Col xs={ 2 } sm={ 1 }>
+              <Card.Link>
+                <Button
+                  onClick={ handleEdit }
+                  variant="outline-secondary"
+                  size="sm"
+                  aria-label="Edit button"
+                >
+                  <FontAwesomeIcon icon={ faPen } />
+                </Button>
+              </Card.Link>
+            </Col>
+            <Col xs={ 2 } sm={ 1 }>
+              <Card.Link>
+                <Button
+                  onClick={ handleDelete }
+                  variant="outline-secondary"
+                  size="sm"
+                  aria-label="Delete button"
+                >
+                  <FontAwesomeIcon icon={ faTrash } />
+                </Button>
+              </Card.Link>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={ 12 }>
+              <Card.Subtitle className="mb-2 text-muted">
+                {props.description}
+              </Card.Subtitle>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={ 12 }>
+              <Alert variant={ 'danger' }>
+                <FontAwesomeIcon icon={ faExclamationTriangle } /> {props.message}
+              </Alert>
+              <Badge variant={ 'danger' }>Error</Badge>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
     );
   };
 
-  const statusConfig = statusSwitch(props.status);
-  let TranscriptCardTitle;
+  const InProgressCard = () => {
+    return (
+      <Card
+        border={ 'info' }
+        style={ { width: '100%', marginBottom: '1em' } }
+      >
+        <Card.Body>
+          <Row>
+            <Col xs={ 8 } sm={ 10 }>
+              <Card.Title style={ { color: '#757575' } }>
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                /> {props.title}
+              </Card.Title>
+            </Col>
+            <Col xs={ 2 } sm={ 1 }>
+              <Card.Link>
+                <Button
+                  onClick={ handleEdit }
+                  variant="outline-secondary"
+                  size="sm"
+                  aria-label="Edit button"
+                >
+                  <FontAwesomeIcon icon={ faPen } />
+                </Button>
+              </Card.Link>
+            </Col>
+            <Col xs={ 2 } sm={ 1 }>
+              <Card.Link>
+                <Button
+                  onClick={ handleDelete }
+                  variant="outline-secondary"
+                  size="sm"
+                  aria-label="Delete button"
+                >
+                  <FontAwesomeIcon icon={ faTrash } />
+                </Button>
+              </Card.Link>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={ 12 }>
+              <Card.Subtitle className="mb-2 text-muted">
+                {props.description}
+              </Card.Subtitle>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={ 12 }>
+              <Badge variant={ 'info' }>In progress</Badge>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
+    );
+  };
+
+  const UploadingCard = () => {
+    return (
+      <Card
+        border={ 'info' }
+        style={ { width: '100%', marginBottom: '1em' } }
+      >
+        <Card.Body>
+          <Row>
+            <Col xs={ 8 } sm={ 10 }>
+              <Card.Title style={ { color: '#757575' } }>
+                {props.icon ? props.icon : ''} {props.title}
+              </Card.Title>
+            </Col>
+
+            <Col xs={ 2 } sm={ 1 }>
+              <Card.Link>
+                <Button
+                  onClick={ handleEdit }
+                  variant="outline-secondary"
+                  size="sm"
+                  aria-label="Edit button"
+                >
+                  <FontAwesomeIcon icon={ faPen } />
+                </Button>
+              </Card.Link>
+            </Col>
+            <Col xs={ 2 } sm={ 1 }>
+              <Card.Link>
+                <Button
+                  onClick={ handleDelete }
+                  variant="outline-secondary"
+                  size="sm"
+                  aria-label="Delete button"
+                >
+                  <FontAwesomeIcon icon={ faTrash } />
+                </Button>
+              </Card.Link>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={ 12 }>
+              <Card.Subtitle className="mb-2 text-muted">
+                {props.description}
+              </Card.Subtitle>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={ 12 }>
+              <Alert variant={ 'info' }>
+                <FontAwesomeIcon icon={ faExclamationTriangle } />  Do not move away from or refresh this page until upload is complete!
+                <ProgressBar progress={ props.progress } />
+              </Alert>
+              <Badge variant={ 'info' }>In progress</Badge>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
+    );
+  };
+
+  const DoneCard = () => {
+    return (
+      <Card
+        border={ '' }
+        style={ { width: '100%', marginBottom: '1em' } }
+      >
+        <Card.Body>
+          <Row>
+            <LinkContainer to={ props.url } style={ { cursor: 'pointer' } }>
+              <Col xs={ 8 } sm={ 10 }>
+                <Card.Title style={ { color: '#007bff' } }>
+                  <FontAwesomeIcon icon={ faCheck } /> {props.title}</Card.Title>
+              </Col>
+            </LinkContainer>
+            <Col xs={ 2 } sm={ 1 }>
+              <Card.Link>
+                <Button
+                  onClick={ handleEdit }
+                  variant="outline-secondary"
+                  size="sm"
+                  aria-label="Edit button"
+                >
+                  <FontAwesomeIcon icon={ faPen } />
+                </Button>
+              </Card.Link>
+            </Col>
+            <Col xs={ 2 } sm={ 1 }>
+              <Card.Link>
+                <Button
+                  onClick={ handleDelete }
+                  variant="outline-secondary"
+                  size="sm"
+                  aria-label="Delete button"
+                >
+                  <FontAwesomeIcon icon={ faTrash } />
+                </Button>
+              </Card.Link>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={ 12 }>
+              <Card.Subtitle className="mb-2 text-muted">
+                {props.description}
+              </Card.Subtitle>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={ 12 }>
+              <Badge variant={ 'success' }>Done</Badge>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
+    );
+  };
+
+  let card;
+
   if (props.status === 'done') {
-    TranscriptCardTitle = (
-      <LinkContainer to={ props.url } style={ { cursor: 'pointer' } }>
-        <Col xs={ 8 } sm={ 10 }>
-          <Card.Title style={ { color: '#007bff' } }>
-            {props.icon ? props.icon : ''} {statusConfig.title}</Card.Title>
-        </Col>
-      </LinkContainer>
-    );
-  } else {
-    TranscriptCardTitle = (
-      <Col xs={ 8 } sm={ 10 }>
-        <Card.Title style={ { color: '#757575' } }>
-          {props.icon ? props.icon : ''} {statusConfig.title}
-        </Card.Title>
-      </Col>
-    );
+    card = DoneCard();
+  } else if (props.status === 'in-progress') {
+    card = InProgressCard();
+  } else if (props.status === 'error') {
+    card = ErrorCard();
+  } else if (props.status === 'uploading') {
+    card = UploadingCard();
   }
 
   return (
-    <Card
-      border={ statusConfig.border }
-      style={ { width: '100%', marginBottom: '1em' } }
-    >
-      <Card.Body>
-        <Row>
-          {TranscriptCardTitle}
-          <Col xs={ 2 } sm={ 1 }>
-            <Card.Link>
-              <Button
-                onClick={ handleEditClick }
-                variant="outline-secondary"
-                size="sm"
-                aria-label="Edit title and description"
-              >
-                <FontAwesomeIcon icon={ faPen } />
-              </Button>
-            </Card.Link>
-          </Col>
-          <Col xs={ 2 } sm={ 1 }>
-            <Card.Link>
-              <Button
-                onClick={ handleDeleteClick }
-                variant="outline-secondary"
-                size="sm"
-                aria-label="Delete transcript"
-              >
-                <FontAwesomeIcon icon={ faTrash } />
-              </Button>
-            </Card.Link>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={ 12 }>
-            <Card.Subtitle className="mb-2 text-muted">
-              {props.description}
-            </Card.Subtitle>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={ 12 }>{setDescription()}</Col>
-        </Row>
-      </Card.Body>
-    </Card>
+    <>
+      {card}
+    </>
   );
 };
 
