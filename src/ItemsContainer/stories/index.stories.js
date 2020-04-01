@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
 import ItemsContainer from '..';
+import SortableItemsContainer from '../SortableItemsContainer';
 import { items, transcriptItems } from '../../dummy';
 import { withKnobs, object } from '@storybook/addon-knobs';
 
@@ -15,7 +16,7 @@ storiesOf('ItemsContainer - Demo only (not published on NPM)', module)
     return (
       <ItemsContainer
         items={ pItems }
-        model="Project"
+        type="Project"
         handleSave={ action('handleSave') }
         handleDelete={ action('handleDelete') }
       />
@@ -37,4 +38,22 @@ storiesOf('ItemsContainer - Demo only (not published on NPM)', module)
         handleDelete={ action('handleDelete') }
       />
     );
-  });
+  }).add('Sortable Transcript View', () => {
+
+    const tItems = [
+      object('item 1', transcriptItems[0]),
+      object('item 2', transcriptItems[1]),
+      object('item 3', transcriptItems[2]),
+      object('item 4', transcriptItems[3])
+    ];
+
+    return (
+      <SortableItemsContainer
+        items={ tItems }
+        type="Transcript"
+        handleSave={ action('handleSave') }
+        handleDelete={ action('handleDelete') }
+      />
+    );
+  })
+;
