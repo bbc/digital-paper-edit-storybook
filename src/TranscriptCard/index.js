@@ -3,18 +3,17 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import Alert from 'react-bootstrap/Alert';
 import { LinkContainer } from 'react-router-bootstrap';
 import ProgressBar from '../ProgressBar';
 import Spinner from 'react-bootstrap/Spinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CardDottedMenu from '../CardDottedMenu';
+
 import {
-  faTrash,
   faCheck,
   faExclamationTriangle,
-  faPen
 } from '@fortawesome/free-solid-svg-icons';
 
 const TranscriptCard = props => {
@@ -86,7 +85,7 @@ const TranscriptCard = props => {
 
   // const [progress, setProgress] = useState(0)
 
-  const handleDeleteClick = () => {
+  const handleDelete = () => {
     const confirmDeleteText = 'Are you sure you want to delete?';
     const cancelDeleteText = 'Cancelled delete';
 
@@ -101,11 +100,11 @@ const TranscriptCard = props => {
     }
   };
 
-  const handleEditClick = () => {
+  const handleEdit = () => {
     props.handleEditItem(props.id);
   };
 
-  const setDescription = () => {
+  const setDescription = (statusConfig) => {
     let Message;
 
     if (statusConfig.message) {
@@ -132,7 +131,7 @@ const TranscriptCard = props => {
   if (props.status === 'done') {
     TranscriptCardTitle = (
       <LinkContainer to={ props.url } style={ { cursor: 'pointer' } }>
-        <Col xs={ 8 } sm={ 10 }>
+        <Col xs={ 6 }>
           <Card.Title style={ { color: '#007bff' } }>
             {props.icon ? props.icon : ''} {statusConfig.title}</Card.Title>
         </Col>
@@ -140,7 +139,7 @@ const TranscriptCard = props => {
     );
   } else {
     TranscriptCardTitle = (
-      <Col xs={ 8 } sm={ 10 }>
+      <Col xs={ 6 }>
         <Card.Title style={ { color: '#757575' } }>
           {props.icon ? props.icon : ''} {statusConfig.title}
         </Card.Title>
@@ -156,29 +155,17 @@ const TranscriptCard = props => {
       <Card.Body>
         <Row>
           {TranscriptCardTitle}
-          <Col xs={ 2 } sm={ 1 }>
-            <Card.Link>
-              <Button
-                onClick={ handleEditClick }
-                variant="outline-secondary"
-                size="sm"
-                aria-label="Edit title and description"
-              >
-                <FontAwesomeIcon icon={ faPen } />
-              </Button>
-            </Card.Link>
+          <Col xs={ 2 }>
+            <p style={ { fontSize:'0.8em', color: '#757575' } }>Created {props.created}</p>
           </Col>
-          <Col xs={ 2 } sm={ 1 }>
-            <Card.Link>
-              <Button
-                onClick={ handleDeleteClick }
-                variant="outline-secondary"
-                size="sm"
-                aria-label="Delete transcript"
-              >
-                <FontAwesomeIcon icon={ faTrash } />
-              </Button>
-            </Card.Link>
+          <Col xs={ 2 }>
+            <p style={ { fontSize:'0.8em', color: '#757575' } }>Updated {props.updated}</p>
+          </Col>
+          <Col xs={ 1 }>
+            <CardDottedMenu
+              handleEdit={ handleEdit }
+              handleDelete={ handleDelete }
+            />
           </Col>
         </Row>
         <Row>
@@ -189,7 +176,7 @@ const TranscriptCard = props => {
           </Col>
         </Row>
         <Row>
-          <Col xs={ 12 }>{setDescription()}</Col>
+          <Col xs={ 12 }>{setDescription(statusConfig)}</Col>
         </Row>
       </Card.Body>
     </Card>
@@ -206,7 +193,9 @@ TranscriptCard.propTypes = {
   status: PropTypes.string,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
-  progress: PropTypes.number
+  progress: PropTypes.number,
+  created: PropTypes.string,
+  updated: PropTypes.string
 };
 
 TranscriptCard.defaultProps = {

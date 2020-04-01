@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import { LinkContainer } from 'react-router-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
+import CardDottedMenu from '../CardDottedMenu';
 import 'bootstrap-css-only/css/bootstrap.css';
 
 const SimpleCard = props => {
-  const handleDeleteText = () => {
+  const handleDelete = () => {
     const message = 'Do you want to delete your item?';
     const confirmDelete = window.confirm(message);
     if (confirmDelete) {
@@ -18,45 +16,27 @@ const SimpleCard = props => {
     }
   };
 
-  const handleEditText = () => {
+  const handleEdit = () => {
     props.handleEditItem(props.id);
   };
 
   return (
     <Card
-    // border={'secondary'}
       style={ { width: '100%', marginBottom: '1em' } }
     >
       <Card.Body>
         <Row>
           <LinkContainer to={ props.url } style={ { cursor: 'pointer' } }>
-            <Col xs={ 8 } sm={ 10 }>
+            <Col xs={ 10 }>
               <Card.Title style={ { color: '#007bff' } }>{props.title}</Card.Title>
             </Col>
           </LinkContainer>
-          <Col xs={ 2 } sm={ 1 }>
-            <Card.Link>
-              <Button
-                onClick={ handleEditText }
-                variant="outline-secondary"
-                size="sm"
-                aria-label="Edit button"
-              >
-                <FontAwesomeIcon icon={ faPen } />
-              </Button>
-            </Card.Link>
-          </Col>
-          <Col xs={ 2 } sm={ 1 }>
-            <Card.Link>
-              <Button
-                onClick={ handleDeleteText }
-                variant="outline-secondary"
-                size="sm"
-                aria-label="Delete button"
-              >
-                <FontAwesomeIcon icon={ faTrash } />
-              </Button>
-            </Card.Link>
+
+          <Col xs={ 1 }>
+            <CardDottedMenu
+              handleEdit={ handleEdit }
+              handleDelete={ handleDelete }
+            />
           </Col>
         </Row>
         <Row>

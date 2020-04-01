@@ -6,7 +6,9 @@ const items = [
     title: 'Sample Simple Card Title One',
     description: 'This is a sample card description. This is fun!',
     display: true,
-    url: '/projects/1/transcripts/1234'
+    url: '/projects/1/transcripts/1234',
+    created:'01/01/2020 00:12',
+    updated:'01/01/2020 00:23'
   },
   {
     id: '5678',
@@ -15,7 +17,9 @@ const items = [
     title: 'Sample Simple Card Title Two',
     description: 'This is a sample card description. This is fun!',
     display: true,
-    url: '/projects/1/transcripts/5678'
+    url: '/projects/1/transcripts/5678',
+    created: '01/01/2020 00:12',
+    updated: '01/01/2020 00:23'
   }
 ];
 
@@ -29,7 +33,9 @@ const transcriptItems = [
     projectId: '1',
     created: { seconds: 1576057570, nanoseconds: 390000000 },
     status: 'done',
-    display: true
+    display: true,
+    created:'01/01/2020 00:12',
+    updated:'01/01/2020 00:23'
   },
   {
     id: '3',
@@ -41,7 +47,9 @@ const transcriptItems = [
     created: { seconds: 1576057570, nanoseconds: 390000000 },
 
     status: 'in-progress',
-    display: true
+    display: true,
+    created:'01/01/2020 00:12',
+    updated:'01/01/2020 00:23'
   },
   {
     id: '4',
@@ -54,7 +62,9 @@ const transcriptItems = [
     projectId: '1',
     created: { seconds: 1576057570, nanoseconds: 390000000 },
     updated: null,
-    display: true
+    display: true,
+    created:'01/01/2020 00:12',
+    updated:'01/01/2020 00:23'
   },
   {
     id: '5',
@@ -68,7 +78,9 @@ const transcriptItems = [
     projectId: '1',
     created: { seconds: 1576057570, nanoseconds: 390000000 },
     status: 'uploading',
-    updated: null
+    updated: null,
+    created:'01/01/2020 00:12',
+    updated:'01/01/2020 00:23'
   }
 ];
 
