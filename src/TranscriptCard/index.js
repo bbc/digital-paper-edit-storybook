@@ -37,6 +37,13 @@ const TranscriptCard = props => {
     props.handleEditItem(props.id);
   };
 
+  const DoneBadge = <Badge variant={ 'success' }>Done</Badge>;
+  const InProgressBadge = <Badge variant={ 'info' }>In progress</Badge>;
+  const ErrorBadge = <Badge variant={ 'danger' }>Error</Badge>;
+
+  const Created = <p style={ { fontSize:'0.8em', color: '#757575' } }>Created {props.created}</p>;
+  const Updated = <p style={ { fontSize:'0.8em', color: '#757575' } }>Updated {props.updated}</p>;
+
   const ErrorCard = () => {
     return (
       <Card
@@ -51,10 +58,10 @@ const TranscriptCard = props => {
               </Card.Title>
             </Col>
             <Col xs={ 2 }>
-              <p style={ { fontSize:'0.8em', color: '#757575' } }>Created {props.created}</p>
+              {Created}
             </Col>
             <Col xs={ 2 }>
-              <p style={ { fontSize:'0.8em', color: '#757575' } }>Updated {props.updated}</p>
+              {Updated}
             </Col>
             <Col xs={ 1 }>
               <CardDottedMenu
@@ -75,7 +82,7 @@ const TranscriptCard = props => {
               <Alert variant={ 'danger' }>
                 <FontAwesomeIcon icon={ faExclamationTriangle } /> {props.message}
               </Alert>
-              <Badge variant={ 'danger' }>Error</Badge>
+              {ErrorBadge}
             </Col>
           </Row>
         </Card.Body>
@@ -103,10 +110,10 @@ const TranscriptCard = props => {
               </Card.Title>
             </Col>
             <Col xs={ 2 }>
-              <p style={ { fontSize:'0.8em', color: '#757575' } }>Created {props.created}</p>
+              {Created}
             </Col>
             <Col xs={ 2 }>
-              <p style={ { fontSize:'0.8em', color: '#757575' } }>Updated {props.updated}</p>
+              {Updated}
             </Col>
             <Col xs={ 1 }>
               <CardDottedMenu
@@ -124,7 +131,7 @@ const TranscriptCard = props => {
           </Row>
           <Row>
             <Col xs={ 12 }>
-              <Badge variant={ 'info' }>In progress'}</Badge>
+              {InProgressBadge}
             </Col>
           </Row>
         </Card.Body>
@@ -146,10 +153,10 @@ const TranscriptCard = props => {
               </Card.Title>
             </Col>
             <Col xs={ 2 }>
-              <p style={ { fontSize:'0.8em', color: '#757575' } }>Created {props.created}</p>
+              {Created}
             </Col>
             <Col xs={ 2 }>
-              <p style={ { fontSize:'0.8em', color: '#757575' } }>Updated {props.updated}</p>
+              {Updated}
             </Col>
             <Col xs={ 1 }>
               <CardDottedMenu
@@ -171,7 +178,7 @@ const TranscriptCard = props => {
                 <FontAwesomeIcon icon={ faExclamationTriangle } />  Do not move away from or refresh this page until upload is complete!
                 <ProgressBar progress={ props.progress } />
               </Alert>
-              <Badge variant={ 'info' }>In progress</Badge>
+              {InProgressBadge}
             </Col>
           </Row>
         </Card.Body>
@@ -179,10 +186,6 @@ const TranscriptCard = props => {
     );
 
   };
-
-  const DoneBadge = () => <Badge variant={ 'success' }>Done</Badge>;
-  const InProgressBadge = () => <Badge variant={ 'info' }>In progress</Badge>;
-  const ErrorBadge = () => <Badge variant={ 'danger' }>Error</Badge>;
 
   const DoneCard = () => {
     return (
@@ -199,10 +202,10 @@ const TranscriptCard = props => {
               </Col>
             </LinkContainer>
             <Col xs={ 2 }>
-              <p style={ { fontSize:'0.8em', color: '#757575' } }>Created {props.created}</p>
+              {Created}
             </Col>
             <Col xs={ 2 }>
-              <p style={ { fontSize:'0.8em', color: '#757575' } }>Updated {props.updated}</p>
+              {Updated}
             </Col>
             <Col xs={ 1 }>
               <CardDottedMenu
@@ -220,7 +223,7 @@ const TranscriptCard = props => {
           </Row>
           <Row>
             <Col xs={ 12 }>
-              <Badge variant={ 'success' }>Done</Badge>
+              {DoneBadge}
             </Col>
           </Row>
         </Card.Body>
