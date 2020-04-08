@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "12.13"
+before_install:
+  npm i -g rimraf
 deploy:
   provider: npm
   email: eimi.okuno@bbc.co.uk
