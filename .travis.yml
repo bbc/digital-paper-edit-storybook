@@ -2,8 +2,11 @@ language: node_js
 node_js:
   - "12.13"
 before_install:
-  - npm i -g rimraf
-  - npm i -g webpack
+  npm i -g rimraf
+before_deploy:
+  - npm run build
+  - npm run cp
+  - cd dist
 deploy:
   provider: npm
   email: eimi.okuno@bbc.co.uk
@@ -11,4 +14,3 @@ deploy:
     secure: pKBL17horvtDr+5vx2DoGZMQtyoN1vWwDOzOC5qMG+LJx1i3ATAiWggR0x43fVyPLBFN7oRXuHTdRnL0KFUlCZ3DgvW/9C/OHE46+4j5DqrlR4nHWihDSMmYcGuy9+9uJYgXki7ZHt/rrOn6ClSni9Hyxe9+wIqy0D6nzarCcRpAch+ZbYXGn0rUNv50a8G7lpfzt+1edXyyHwHnZce/xZXOQ5B2lFrbGnA/N9OxF+Vh1cO7IPua3nekj+BXp7fcSAaFcWS+KjEGfWglBOXP7pTNxg42SGd2pVOAvYN6oNhlGpoi8ELGm7sKhewVgmWqALR4Q085asR9gvkYx9rLxIi+GSqBfdTARDvwjSltCPXohoeQYfatnxX+e47rJJf1YnTHwsNZuyit4hl3WqqWgXNUHF75h4dmUzQUwBoMNUu/zVZcrv/CA0h0dXIoujbJmQgnFq7NasWA9fNxQTyp8jk+k6ACvsz/xELPiXQLIWEUn7qA/+v7kh5qnJOT5npizjpSnFINY190SIheX/2/qnBVYX+pOUvOx25RiqrQmj+nGnrv1oQNvuM8lsiXwLp5+BM0tl4MgqGme2BVWLNYTejanwgRnIy0MVKESpA3xP0xSiLyZwZSs1fZd59iI2WONwML+wzMbzQtYVxjYMGy05uZ7oUBSyjoPM0crof6Ayc=
   on:
     branch: release
-after_deploy: npm run publish-public

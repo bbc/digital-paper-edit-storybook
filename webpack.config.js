@@ -1,6 +1,7 @@
 // based on https://itnext.io/how-to-package-your-react-component-for-distribution-via-npm-d32d4bf71b4f
 // and http://jasonwatmore.com/post/2018/04/14/react-npm-how-to-publish-a-react-component-to-npm
 const path = require('path');
+console.log(__dirname)
 
 module.exports = {
   devtool: 'source-map',
@@ -60,13 +61,18 @@ module.exports = {
         ]
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.m?(js|jsx)$/,
         include: path.resolve(__dirname, 'src'),
         // TODO: because it uses entry point to determine graph of dependencies, might not be needed to exclude test ans sample files?
-        exclude: /(node_modules|bower_components|build|dist|demo|storybook-static)/,
-        use: {
-          loader: 'babel-loader'
-        }
+        exclude: /(node_modules|bower_components|build|dist|demo|.storybook|storybook-static)/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [ '@babel/preset-env', '@babel/preset-react' ]
+            }
+          }
+        ]
       }
     ]
   },
@@ -83,29 +89,9 @@ module.exports = {
   },
   externals: {
     // Don't bundle react or react-dom or react-router
-    react: {
-      commonjs: 'react',
-      commonjs2: 'react',
-      amd: 'React',
-      root: 'React'
-    },
-    'react-dom': {
-      commonjs: 'react-dom',
-      commonjs2: 'react-dom',
-      amd: 'ReactDOM',
-      root: 'ReactDOM'
-    },
-    'react-router': {
-      commonjs: 'react-router',
-      commonjs2: 'react-router',
-      amd: 'ReactRouter',
-      root: 'ReactRouter'
-    },
-    'react-router-dom': {
-      commonjs: 'react-router-dom',
-      commonjs2: 'react-router-dom',
-      amd: 'ReactRouterDOM',
-      root: 'ReactRouterDOM'
-    }
+    react: 'react',
+    'react-dom': 'react-dom',
+    'react-router': 'react-router',
+    'react-router-dom': 'react-router-dom'
   }
 };
