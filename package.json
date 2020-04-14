@@ -74,7 +74,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
     "@babel/plugin-transform-react-jsx": "^7.7.4",
     "@babel/preset-env": "^7.9.5",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-react": "^7.9.4",
     "@storybook/addon-a11y": "^5.0.8",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-links": "^5.1.9",
