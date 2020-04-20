@@ -21,17 +21,12 @@ import {
 const TranscriptCard = props => {
 
   const handleDelete = () => {
-    const confirmDeleteText = 'Are you sure you want to delete?';
-    const cancelDeleteText = 'Cancelled delete';
+    const confirmed = confirm('Are you sure you want to delete?');
 
-    const confirmationPrompt = confirm(confirmDeleteText);
-
-    if (confirmationPrompt) {
+    if (confirmed) {
       if (props.handleDeleteItem) {
         props.handleDeleteItem(props.id);
       }
-    } else {
-      alert(cancelDeleteText);
     }
   };
 
