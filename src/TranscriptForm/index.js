@@ -53,6 +53,22 @@ const TranscriptForm = ({ ...props }) => {
   return (
     <>
       <Form noValidate validated={ isValidated } onSubmit={ e => handleSubmit(e) }>
+        <Form.Group controlId="formTranscriptMediaFile">
+          <Form.Control
+            required
+            type="file"
+            label="Upload"
+            accept="audio/*,video/*"
+            onChange={ e => handleFileUpload(e) }
+          />
+          <Form.Text className="text-muted">
+            Select an audio or video file to upload
+          </Form.Text>
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Please choose a audio or video file to upload
+          </Form.Control.Feedback>
+        </Form.Group>
         <Form.Group controlId="formTranscriptTitle">
           <Form.Label>Title</Form.Label>
           <Form.Control
@@ -85,22 +101,6 @@ const TranscriptForm = ({ ...props }) => {
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           <Form.Control.Feedback type="invalid">
             Please choose a description for your transcript
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group controlId="formTranscriptMediaFile">
-          <Form.Control
-            required
-            type="file"
-            label="Upload"
-            accept="audio/*,video/*"
-            onChange={ e => handleFileUpload(e) }
-          />
-          <Form.Text className="text-muted">
-            Select an audio or video file to upload
-          </Form.Text>
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          <Form.Control.Feedback type="invalid">
-            Please choose a audio or video file to upload
           </Form.Control.Feedback>
         </Form.Group>
         <Modal.Footer>
