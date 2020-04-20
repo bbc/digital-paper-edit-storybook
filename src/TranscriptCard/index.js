@@ -208,7 +208,7 @@ const TranscriptCard = props => {
             <Col xs={ 12 }>
               <Alert variant={ 'info' }>
                 <FontAwesomeIcon icon={ faExclamationTriangle } />  Do not move away from or refresh this page until upload is complete!
-                <ProgressBar progress={ props.progress } />
+                {typeof(props.progress) === 'number' ? <ProgressBar progress={ props.progress } /> : null}
               </Alert>
               <Badge variant={ 'info' }>In progress</Badge>
             </Col>
