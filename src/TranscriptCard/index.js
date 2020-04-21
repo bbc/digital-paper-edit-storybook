@@ -3,19 +3,17 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import Alert from 'react-bootstrap/Alert';
 import { LinkContainer } from 'react-router-bootstrap';
 import ProgressBar from '../ProgressBar';
 import Spinner from 'react-bootstrap/Spinner';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CardDottedMenu from '../CardDottedMenu';
 
 import {
-  faTrash,
   faCheck,
   faExclamationTriangle,
-  faPen
 } from '@fortawesome/free-solid-svg-icons';
 
 const TranscriptCard = props => {
@@ -34,6 +32,13 @@ const TranscriptCard = props => {
     props.handleEditItem(props.id);
   };
 
+  const DoneBadge = <Badge variant={ 'success' }>Done</Badge>;
+  const InProgressBadge = <Badge variant={ 'info' }>In progress</Badge>;
+  const ErrorBadge = <Badge variant={ 'danger' }>Error</Badge>;
+
+  const Created = <p style={ { fontSize:'0.8em', color: '#757575' } }>Created {props.created}</p>;
+  const Updated = <p style={ { fontSize:'0.8em', color: '#757575' } }>Updated {props.updated}</p>;
+
   const ErrorCard = () => {
     return (
       <Card
@@ -42,34 +47,22 @@ const TranscriptCard = props => {
       >
         <Card.Body>
           <Row>
-            <Col xs={ 8 } sm={ 10 }>
+            <Col xs={ 6 }>
               <Card.Title style={ { color: '#757575' } }>
                 <FontAwesomeIcon icon={ faExclamationTriangle } /> {props.title}
               </Card.Title>
             </Col>
-            <Col xs={ 2 } sm={ 1 }>
-              <Card.Link>
-                <Button
-                  onClick={ handleEdit }
-                  variant="outline-secondary"
-                  size="sm"
-                  aria-label="Edit button"
-                >
-                  <FontAwesomeIcon icon={ faPen } />
-                </Button>
-              </Card.Link>
+            <Col xs={ 2 }>
+              {Created}
             </Col>
-            <Col xs={ 2 } sm={ 1 }>
-              <Card.Link>
-                <Button
-                  onClick={ handleDelete }
-                  variant="outline-secondary"
-                  size="sm"
-                  aria-label="Delete button"
-                >
-                  <FontAwesomeIcon icon={ faTrash } />
-                </Button>
-              </Card.Link>
+            <Col xs={ 2 }>
+              {Updated}
+            </Col>
+            <Col xs={ 1 }>
+              <CardDottedMenu
+                handleEdit={ handleEdit }
+                handleDelete={ handleDelete }
+              />
             </Col>
           </Row>
           <Row>
@@ -84,7 +77,7 @@ const TranscriptCard = props => {
               <Alert variant={ 'danger' }>
                 <FontAwesomeIcon icon={ faExclamationTriangle } /> {props.message}
               </Alert>
-              <Badge variant={ 'danger' }>Error</Badge>
+              {ErrorBadge}
             </Col>
           </Row>
         </Card.Body>
@@ -100,7 +93,7 @@ const TranscriptCard = props => {
       >
         <Card.Body>
           <Row>
-            <Col xs={ 8 } sm={ 10 }>
+            <Col xs={ 6 }>
               <Card.Title style={ { color: '#757575' } }>
                 <Spinner
                   as="span"
@@ -111,29 +104,17 @@ const TranscriptCard = props => {
                 /> {props.title}
               </Card.Title>
             </Col>
-            <Col xs={ 2 } sm={ 1 }>
-              <Card.Link>
-                <Button
-                  onClick={ handleEdit }
-                  variant="outline-secondary"
-                  size="sm"
-                  aria-label="Edit button"
-                >
-                  <FontAwesomeIcon icon={ faPen } />
-                </Button>
-              </Card.Link>
+            <Col xs={ 2 }>
+              {Created}
             </Col>
-            <Col xs={ 2 } sm={ 1 }>
-              <Card.Link>
-                <Button
-                  onClick={ handleDelete }
-                  variant="outline-secondary"
-                  size="sm"
-                  aria-label="Delete button"
-                >
-                  <FontAwesomeIcon icon={ faTrash } />
-                </Button>
-              </Card.Link>
+            <Col xs={ 2 }>
+              {Updated}
+            </Col>
+            <Col xs={ 1 }>
+              <CardDottedMenu
+                handleEdit={ handleEdit }
+                handleDelete={ handleDelete }
+              />
             </Col>
           </Row>
           <Row>
@@ -145,7 +126,7 @@ const TranscriptCard = props => {
           </Row>
           <Row>
             <Col xs={ 12 }>
-              <Badge variant={ 'info' }>In progress</Badge>
+              {InProgressBadge}
             </Col>
           </Row>
         </Card.Body>
@@ -161,35 +142,22 @@ const TranscriptCard = props => {
       >
         <Card.Body>
           <Row>
-            <Col xs={ 8 } sm={ 10 }>
+            <Col xs={ 6 }>
               <Card.Title style={ { color: '#757575' } }>
                 {props.icon ? props.icon : ''} {props.title}
               </Card.Title>
             </Col>
-
-            <Col xs={ 2 } sm={ 1 }>
-              <Card.Link>
-                <Button
-                  onClick={ handleEdit }
-                  variant="outline-secondary"
-                  size="sm"
-                  aria-label="Edit button"
-                >
-                  <FontAwesomeIcon icon={ faPen } />
-                </Button>
-              </Card.Link>
+            <Col xs={ 2 }>
+              {Created}
             </Col>
-            <Col xs={ 2 } sm={ 1 }>
-              <Card.Link>
-                <Button
-                  onClick={ handleDelete }
-                  variant="outline-secondary"
-                  size="sm"
-                  aria-label="Delete button"
-                >
-                  <FontAwesomeIcon icon={ faTrash } />
-                </Button>
-              </Card.Link>
+            <Col xs={ 2 }>
+              {Updated}
+            </Col>
+            <Col xs={ 1 }>
+              <CardDottedMenu
+                handleEdit={ handleEdit }
+                handleDelete={ handleDelete }
+              />
             </Col>
           </Row>
           <Row>
@@ -205,12 +173,13 @@ const TranscriptCard = props => {
                 <FontAwesomeIcon icon={ faExclamationTriangle } />  Do not move away from or refresh this page until upload is complete!
                 {typeof(props.progress) === 'number' ? <ProgressBar progress={ props.progress } /> : null}
               </Alert>
-              <Badge variant={ 'info' }>In progress</Badge>
+              {InProgressBadge}
             </Col>
           </Row>
         </Card.Body>
       </Card>
     );
+
   };
 
   const DoneCard = () => {
@@ -222,34 +191,22 @@ const TranscriptCard = props => {
         <Card.Body>
           <Row>
             <LinkContainer to={ props.url } style={ { cursor: 'pointer' } }>
-              <Col xs={ 8 } sm={ 10 }>
+              <Col xs={ 6 }>
                 <Card.Title style={ { color: '#007bff' } }>
                   <FontAwesomeIcon icon={ faCheck } /> {props.title}</Card.Title>
               </Col>
             </LinkContainer>
-            <Col xs={ 2 } sm={ 1 }>
-              <Card.Link>
-                <Button
-                  onClick={ handleEdit }
-                  variant="outline-secondary"
-                  size="sm"
-                  aria-label="Edit button"
-                >
-                  <FontAwesomeIcon icon={ faPen } />
-                </Button>
-              </Card.Link>
+            <Col xs={ 2 }>
+              {Created}
             </Col>
-            <Col xs={ 2 } sm={ 1 }>
-              <Card.Link>
-                <Button
-                  onClick={ handleDelete }
-                  variant="outline-secondary"
-                  size="sm"
-                  aria-label="Delete button"
-                >
-                  <FontAwesomeIcon icon={ faTrash } />
-                </Button>
-              </Card.Link>
+            <Col xs={ 2 }>
+              {Updated}
+            </Col>
+            <Col xs={ 1 }>
+              <CardDottedMenu
+                handleEdit={ handleEdit }
+                handleDelete={ handleDelete }
+              />
             </Col>
           </Row>
           <Row>
@@ -261,7 +218,7 @@ const TranscriptCard = props => {
           </Row>
           <Row>
             <Col xs={ 12 }>
-              <Badge variant={ 'success' }>Done</Badge>
+              {DoneBadge}
             </Col>
           </Row>
         </Card.Body>
@@ -298,7 +255,9 @@ TranscriptCard.propTypes = {
   status: PropTypes.string,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
-  progress: PropTypes.number
+  progress: PropTypes.number,
+  created: PropTypes.string,
+  updated: PropTypes.string
 };
 
 TranscriptCard.defaultProps = {
