@@ -11,6 +11,7 @@ const PreviewCanvas = props => {
       width={ props.width }
       canvasRef={ canvasRef }
       playlist={ props.playlist }
+      currentTime={ props.currentTime }
     />
   );
 };

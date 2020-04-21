@@ -36,6 +36,18 @@ const VideoContextPreview = (props) => {
     }
   }, [ props.canvasRef ]);
 
+  useEffect(() => {
+    if (props.currentTime) {
+
+      setVideoContext(vc => {
+        vc.currentTime = props.currentTime;
+        videoContext.play();
+
+        return vc;
+      });
+    }
+  }, [ props.currentTime, videoContext ]);
+
   if (videoContext) {
     updateVideoContext(props.playlist);
   }
@@ -76,7 +88,8 @@ VideoContextPreview.propTypes = {
   canvasRef: PropTypes.any,
   playlist: PropTypes.array,
   videoContext: PropTypes.any,
-  width: PropTypes.any
+  width: PropTypes.any,
+  currentTime: PropTypes.any
 };
 
 VideoContextPreview.defaultProps = {
