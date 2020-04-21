@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useRef } from 'react';
-import VideoContextPreview from './VideoContextPreview';
+import VideoContextPreview from '@bbc/digital-paper-edit-storybook/PreviewCanvas';
 import PropTypes from 'prop-types';
 
 const PreviewCanvas = props => {
