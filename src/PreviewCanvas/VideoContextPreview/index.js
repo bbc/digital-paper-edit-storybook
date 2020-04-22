@@ -12,6 +12,29 @@ const secondsToHHMMSSFormat = (seconds) => {
 const VideoContextPreview = (props) => {
   const [ videoContext, setVideoContext ] = useState();
 
+  useEffect(() => {
+
+    const updateVideoContext = (mediaItems) => {
+      videoContext.reset();
+      mediaItems.forEach((media) => {
+        const { type, sourceStart, start, duration, src } = media;
+        const node = videoContext[type](src, sourceStart);
+        node.startAt(start);
+        node.stopAt(start + duration);
+        node.connect(videoContext.destination);
+      });
+    };
+
+    if (props.canvasRef && props.canvasRef.current) {
+      setVideoContext(new VideoContext(props.canvasRef.current));
+    }
+
+    if (videoContext) {
+      updateVideoContext(props.playlist);
+    }
+
+  }, [ props.canvasRef, props.playlist ]);
+
   const updateVideoContext = (media) => {
     media.forEach(({ type, sourceStart, start, duration, src }) => {
       const node = videoContext[type](src, sourceStart);
@@ -29,12 +52,6 @@ const VideoContextPreview = (props) => {
       return vc;
     });
   };
-
-  useEffect(() => {
-    if (props.canvasRef && props.canvasRef.current) {
-      setVideoContext(new VideoContext(props.canvasRef.current));
-    }
-  }, [ props.canvasRef ]);
 
   if (videoContext) {
     updateVideoContext(props.playlist);
@@ -56,14 +73,14 @@ const VideoContextPreview = (props) => {
         className={ 'justify-content-center' }
         style={ { backgroundColor: 'lightgrey' } }
       >
-        <VideoContextProgressBar videoContext={ videoContext }/>
+        {videoContext ? <VideoContextProgressBar videoContext={ videoContext }/> : null}
       </Row>
       <Row style={ { marginTop: '0.4em' } }>
-        <Controls
-          handlePlay={ videoContext ? () => videoContext.play() : () => console.log('handlePlay') }
-          handlePause={ videoContext ? () => videoContext.pause() : () => console.log('handlePause') }
-          handleStop={ videoContext ? () => handleStop() : () => console.log('handleStop') }
-        />
+        {videoContext ? <Controls
+          handlePlay={ () => videoContext.play() }
+          handlePause={ () => videoContext.pause() }
+          handleStop={ () => handleStop() }
+        /> : null}
       </Row>
       <Row className={ 'justify-content-center' }>
         Total duration: {videoContext ? secondsToHHMMSSFormat(videoContext.duration) : '00:00:00'}

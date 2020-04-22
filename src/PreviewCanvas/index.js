@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 
 const PreviewCanvas = props => {
   const canvasRef = useRef();
+  const { playlist, width } = props;
 
   return (
     <VideoContextPreview
-      width={ props.width }
+      width={ width }
       canvasRef={ canvasRef }
-      playlist={ props.playlist }
+      playlist={ playlist }
     />
   );
 };
