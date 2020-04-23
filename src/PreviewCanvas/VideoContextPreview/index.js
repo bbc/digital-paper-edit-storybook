@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import VideoContextProgressBar from './VideoContextProgressBar';
 import Controls from '../Controls';
 import Row from 'react-bootstrap/Row';
@@ -98,8 +98,9 @@ const VideoContextPreview = (props) => {
 };
 
 VideoContextPreview.propTypes = {
+  canvasRef: PropTypes.any,
   playlist: PropTypes.array,
-  width: PropTypes.any,
+  width: PropTypes.number
 };
 
 export default VideoContextPreview;
