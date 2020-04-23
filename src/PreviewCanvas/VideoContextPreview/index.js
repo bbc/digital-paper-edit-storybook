@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import VideoContextProgressBar from './VideoContextProgressBar';
 import Controls from '../Controls';
 import Row from 'react-bootstrap/Row';
@@ -10,52 +10,55 @@ const secondsToHHMMSSFormat = (seconds) => {
 };
 
 const VideoContextPreview = (props) => {
+  const canvasRef = props.canvasRef;
   const [ videoContext, setVideoContext ] = useState();
+  const [ duration, setDuration ] = useState(0);
+  const [ sourceNodes, setSourceNodes ] = useState([]);
 
   useEffect(() => {
+    if (canvasRef && canvasRef.current) {
+      setVideoContext(new VideoContext(canvasRef.current));
+    }
+  }, [ canvasRef ]);
 
-    const updateVideoContext = (mediaItems) => {
-      videoContext.reset();
-      mediaItems.forEach((media) => {
-        const { type, sourceStart, start, duration, src } = media;
-        const node = videoContext[type](src, sourceStart);
+  useEffect(() => {
+    const updateVideoContext = () => {
+      const vc = new VideoContext(canvasRef.current);
+      props.playlist.forEach((media) => {
+        const {
+          type,
+          sourceStart,
+          start,
+          duration: mediaDuration,
+          src,
+        } = media;
+        const end = start + mediaDuration;
+        const node = vc[type](src, sourceStart);
+
         node.startAt(start);
-        node.stopAt(start + duration);
-        node.connect(videoContext.destination);
+        node.stopAt(end);
+        node.connect(vc.destination);
       });
+      setVideoContext(vc);
+      setDuration(vc.duration);
+      setSourceNodes(vc._sourceNodes);
     };
 
-    if (props.canvasRef && props.canvasRef.current) {
-      setVideoContext(new VideoContext(props.canvasRef.current));
+    // we will always add or remove, not edit in-place
+    if (sourceNodes.length !== props.playlist.length) {
+      updateVideoContext();
     }
 
-    if (videoContext) {
-      updateVideoContext(props.playlist);
-    }
-
-  }, [ props.canvasRef, props.playlist ]);
-
-  const updateVideoContext = (media) => {
-    media.forEach(({ type, sourceStart, start, duration, src }) => {
-      const node = videoContext[type](src, sourceStart);
-      node.startAt(start);
-      node.stopAt(start + duration);
-      node.connect(videoContext.destination);
-    });
-  };
+  }, [ props.playlist, videoContext ]);
 
   const handleStop = () => {
     videoContext.pause();
-    setVideoContext(vc => {
+    setVideoContext((vc) => {
       vc.currentTime = 0;
 
       return vc;
     });
   };
-
-  if (videoContext) {
-    updateVideoContext(props.playlist);
-  }
 
   return (
     <>
@@ -64,7 +67,7 @@ const VideoContextPreview = (props) => {
         style={ { backgroundColor: 'black' } }
       >
         <canvas
-          ref={ props.canvasRef }
+          ref={ canvasRef }
           width={ props.width }
           height={ props.width * 0.5625 }
         />
@@ -73,31 +76,30 @@ const VideoContextPreview = (props) => {
         className={ 'justify-content-center' }
         style={ { backgroundColor: 'lightgrey' } }
       >
-        {videoContext ? <VideoContextProgressBar videoContext={ videoContext }/> : null}
+        {videoContext ? (
+          <VideoContextProgressBar videoContext={ videoContext } />
+        ) : null}
       </Row>
       <Row style={ { marginTop: '0.4em' } }>
-        {videoContext ? <Controls
-          handlePlay={ () => videoContext.play() }
-          handlePause={ () => videoContext.pause() }
-          handleStop={ () => handleStop() }
-        /> : null}
+        {videoContext ? (
+          <Controls
+            handlePlay={ () => videoContext.play() }
+            handlePause={ () => videoContext.pause() }
+            handleStop={ () => handleStop() }
+          />
+        ) : null}
       </Row>
+
       <Row className={ 'justify-content-center' }>
-        Total duration: {videoContext ? secondsToHHMMSSFormat(videoContext.duration) : '00:00:00'}
+        Total duration: {secondsToHHMMSSFormat(duration)}
       </Row>
     </>
   );
 };
 
 VideoContextPreview.propTypes = {
-  canvasRef: PropTypes.any,
   playlist: PropTypes.array,
-  videoContext: PropTypes.any,
-  width: PropTypes.any
-};
-
-VideoContextPreview.defaultProps = {
-  playlist: []
+  width: PropTypes.any,
 };
 
 export default VideoContextPreview;
