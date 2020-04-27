@@ -8,7 +8,6 @@ import ProgrammeScriptContainer from '../ProgrammeScriptContainer';
 import PreviewCanvas from '../PreviewCanvas';
 
 const ProgrammeScriptEditor = (props) => {
-  console.log('PSE props : : ', props);
   const Heading = (
     <h2
       title={ `Programme Script Title: ${ props.title }` }>
