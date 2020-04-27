@@ -10,47 +10,67 @@ const secondsToHHMMSSFormat = (seconds) => {
 };
 
 const VideoContextPreview = (props) => {
+  const { canvasRef, currentTime } = props;
   const [ videoContext, setVideoContext ] = useState();
-
-  const updateVideoContext = (media) => {
-    media.forEach(({ type, sourceStart, start, duration, src }) => {
-      const node = videoContext[type](src, sourceStart);
-      node.startAt(start);
-      node.stopAt(start + duration);
-      node.connect(videoContext.destination);
-    });
-  };
-
-  const handleStop = () => {
-    videoContext.pause();
-    setVideoContext(vc => {
-      vc.currentTime = 0;
-
-      return vc;
-    });
-  };
+  const [ duration, setDuration ] = useState(0);
+  const [ sourceNodes, setSourceNodes ] = useState([]);
 
   useEffect(() => {
-    if (props.canvasRef && props.canvasRef.current) {
-      setVideoContext(new VideoContext(props.canvasRef.current));
+    if (canvasRef && canvasRef.current) {
+      setVideoContext(new VideoContext(canvasRef.current));
     }
-  }, [ props.canvasRef ]);
+  }, [ canvasRef ]);
 
   useEffect(() => {
-    if (props.currentTime) {
+    const updateVideoContext = () => {
+      const vc = new VideoContext(canvasRef.current);
+      props.playlist.forEach((media) => {
+        const {
+          type,
+          sourceStart,
+          start,
+          duration: mediaDuration,
+          src,
+        } = media;
+        const end = start + mediaDuration;
+        const node = vc[type](src, sourceStart);
+
+        node.startAt(start);
+        node.stopAt(end);
+        node.connect(vc.destination);
+      });
+      setVideoContext(vc);
+      setDuration(vc.duration);
+      setSourceNodes(vc._sourceNodes);
+    };
+
+    // we will always add or remove, not edit in-place
+    if (sourceNodes.length !== props.playlist.length) {
+      updateVideoContext();
+    }
+
+  }, [ props.playlist, videoContext ]);
+
+  useEffect(() => {
+    if (currentTime) {
 
       setVideoContext(vc => {
-        vc.currentTime = props.currentTime;
+        vc.currentTime = currentTime;
         videoContext.play();
 
         return vc;
       });
     }
-  }, [ props.currentTime, videoContext ]);
+  }, [ currentTime, videoContext ]);
 
-  if (videoContext) {
-    updateVideoContext(props.playlist);
-  }
+  const handleStop = () => {
+    videoContext.pause();
+    setVideoContext((vc) => {
+      vc.currentTime = 0;
+
+      return vc;
+    });
+  };
 
   return (
     <>
@@ -59,7 +79,7 @@ const VideoContextPreview = (props) => {
         style={ { backgroundColor: 'black' } }
       >
         <canvas
-          ref={ props.canvasRef }
+          ref={ canvasRef }
           width={ props.width }
           height={ props.width * 0.5625 }
         />
@@ -68,17 +88,22 @@ const VideoContextPreview = (props) => {
         className={ 'justify-content-center' }
         style={ { backgroundColor: 'lightgrey' } }
       >
-        <VideoContextProgressBar videoContext={ videoContext }/>
+        {videoContext ? (
+          <VideoContextProgressBar videoContext={ videoContext } />
+        ) : null}
       </Row>
       <Row style={ { marginTop: '0.4em' } }>
-        <Controls
-          handlePlay={ videoContext ? () => videoContext.play() : () => console.log('handlePlay') }
-          handlePause={ videoContext ? () => videoContext.pause() : () => console.log('handlePause') }
-          handleStop={ videoContext ? () => handleStop() : () => console.log('handleStop') }
-        />
+        {videoContext ? (
+          <Controls
+            handlePlay={ () => videoContext.play() }
+            handlePause={ () => videoContext.pause() }
+            handleStop={ () => handleStop() }
+          />
+        ) : null}
       </Row>
+
       <Row className={ 'justify-content-center' }>
-        Total duration: {videoContext ? secondsToHHMMSSFormat(videoContext.duration) : '00:00:00'}
+        Total duration: {secondsToHHMMSSFormat(duration)}
       </Row>
     </>
   );
@@ -87,13 +112,8 @@ const VideoContextPreview = (props) => {
 VideoContextPreview.propTypes = {
   canvasRef: PropTypes.any,
   playlist: PropTypes.array,
-  videoContext: PropTypes.any,
-  width: PropTypes.any,
-  currentTime: PropTypes.any
-};
-
-VideoContextPreview.defaultProps = {
-  playlist: []
+  width: PropTypes.number,
+  currentTime: PropTypes.number
 };
 
 export default VideoContextPreview;

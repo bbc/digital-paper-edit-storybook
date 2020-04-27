@@ -27,6 +27,7 @@ const ProgrammeScriptContainer = (props) => {
   const handleDoubleClickOnProgrammeScript = (e) => {
     if (e.target.className === 'words') {
       const wordCurrentTime = e.target.dataset.start;
+      console.log('currentTime: : ', wordCurrentTime);
       setTimeOnClick(wordCurrentTime);
     }
   };

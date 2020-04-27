@@ -5,21 +5,22 @@ import PropTypes from 'prop-types';
 
 const PreviewCanvas = props => {
   const canvasRef = useRef();
-  console.log('Inside PreviewCanvas');
+  const { playlist, width, currentTime } = props;
 
   return (
     <VideoContextPreview
-      width={ props.width }
+      width={ width }
       canvasRef={ canvasRef }
-      playlist={ props.playlist }
-      currentTime={ props.currentTime }
+      currentTime={ currentTime }
+      playlist={ playlist }
     />
   );
 };
 
 PreviewCanvas.propTypes = {
   playlist: PropTypes.array,
-  width: PropTypes.number
+  width: PropTypes.number,
+  currentTime: PropTypes.number
 };
 
 PreviewCanvas.defaultProps = {
