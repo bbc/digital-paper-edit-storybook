@@ -9,8 +9,12 @@ import PreviewCanvas from '../PreviewCanvas';
 const ProgrammeScriptContainer = (props) => {
   const [ items, setItems ] = useState(props.items);
   const [ timeOnClick, setTimeOnClick ] = useState();
-  const width = props.width;
-  const playlist = props.playlist;
+  const width = useState(150);
+  const playlist = [
+    { type: 'video', start: 0, sourceStart: 30, duration: 10, src: 'https://download.ted.com/talks/MorganVague_2018X.mp4' },
+    { type: 'video', start: 10, sourceStart: 40, duration: 10, src: 'https://download.ted.com/talks/IvanPoupyrev_2019.mp4' },
+    { type: 'video', start: 20, sourceStart: 50, duration: 10, src: 'https://download.ted.com/talks/KateDarling_2018S-950k.mp4' },
+  ];
 
   const previewCardRef = useRef();
 
@@ -23,7 +27,6 @@ const ProgrammeScriptContainer = (props) => {
   const handleDoubleClickOnProgrammeScript = (e) => {
     if (e.target.className === 'words') {
       const wordCurrentTime = e.target.dataset.start;
-      console.log('wordCurrentTime::', wordCurrentTime);
       setTimeOnClick(wordCurrentTime);
     }
   };
@@ -58,8 +61,6 @@ ProgrammeScriptContainer.propTypes = {
   handleDelete: PropTypes.func,
   handleEdit: PropTypes.func,
   handleReorder: PropTypes.func,
-  width: PropTypes.number,
-  playlist: PropTypes.array
 };
 
 export default ProgrammeScriptContainer;
