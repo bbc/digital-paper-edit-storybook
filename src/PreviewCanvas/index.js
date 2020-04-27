@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 const PreviewCanvas = props => {
   const canvasRef = useRef();
+  console.log('Inside PreviewCanvas');
 
   return (
     <VideoContextPreview

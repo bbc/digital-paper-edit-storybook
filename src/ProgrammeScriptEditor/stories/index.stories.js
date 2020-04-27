@@ -7,6 +7,7 @@ import { programmeScript } from '../../dummy';
 export const handleReorderActions = action('Handle reorder');
 export const handleDeleteActions = action('Handle delete');
 export const handleEditActions = action('Handle edit');
+export const handleDoubleClickActions = action('Handle double-click');
 
 const items = programmeScript;
 
@@ -44,6 +45,7 @@ storiesOf('ProgrammeScriptEditor (not published)', module).add(
       handleDelete={ handleDeleteActions }
       handleEdit={ handleEditActions }
       handleReorder={ handleReorderActions }
+      handleDoubleClick={ handleDoubleClickActions }
     />
   )
 );

@@ -8,6 +8,7 @@ import ProgrammeScriptContainer from '../ProgrammeScriptContainer';
 import PreviewCanvas from '../PreviewCanvas';
 
 const ProgrammeScriptEditor = (props) => {
+  console.log('PSE props : : ', props);
   const Heading = (
     <h2
       title={ `Programme Script Title: ${ props.title }` }>
@@ -17,7 +18,7 @@ const ProgrammeScriptEditor = (props) => {
   const ProgrammeCard = (
     <Card>
       <Card.Header>
-        <PreviewCanvas width={ 300 } playlist={ props.playlist } />
+        <PreviewCanvas width={ 300 } playlist={ props.playlist } current={ props.currentTime }/>
       </Card.Header>
 
       <Card.Body>
@@ -60,7 +61,8 @@ ProgrammeScriptEditor.propTypes = {
   handleReorder: PropTypes.any,
   items: PropTypes.any,
   playlist: PropTypes.any,
-  title: PropTypes.any
+  title: PropTypes.any,
+  currentTime: PropTypes.any
 };
 
 export default ProgrammeScriptEditor;

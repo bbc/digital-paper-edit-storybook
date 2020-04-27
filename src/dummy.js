@@ -138,12 +138,48 @@ const programmeScript = [
   {
     type: 'paper-cut',
     id: 2,
+    start: 0.0,
+    end: 3.8,
     speaker: 'Mrs Loud',
     words: [
       {
-        text: 'Greatest day of my life was when I spoke this text.',
-        start: 0,
-        end: 1
+        speaker: 'TBC',
+        text: 'Saddle ',
+        start: 0.7,
+        end: 1.24,
+      },
+      {
+        speaker: 'TBC',
+        text: 'with ',
+        start: 1.24,
+        end: 1.55,
+      }, {
+        speaker: 'TBC',
+        text: 'has ',
+        start: 1.55,
+        end: 1.75
+      }, {
+        speaker: 'TBC',
+        text: 'a ',
+        start: 1.75,
+        end: 1.82,
+      }, {
+        text: 'stark ',
+        start: 1.82,
+        end: 2.47,
+        type: 'word',
+        speaker: 'TBC',
+      }, {
+        text: 'beauty',
+        start: 2.48,
+        end: 3.07,
+        speaker: 'TBC',
+      }, {
+        text: '.',
+        start: null,
+        end: null,
+        speaker: 'TBC',
+        type: 'punct'
       }
     ]
   },
