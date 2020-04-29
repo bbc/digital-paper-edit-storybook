@@ -13,7 +13,6 @@ const VideoContextPreview = (props) => {
   const canvasRef = props.canvasRef;
   const [ videoContext, setVideoContext ] = useState();
   const [ duration, setDuration ] = useState(0);
-  const [ sourceNodes, setSourceNodes ] = useState([]);
 
   useEffect(() => {
     if (canvasRef && canvasRef.current) {
@@ -23,8 +22,8 @@ const VideoContextPreview = (props) => {
 
   useEffect(() => {
     const updateVideoContext = () => {
-      const vc = new VideoContext(canvasRef.current);
-      props.playlist.forEach((media) => {
+      videoContext.reset();
+      const connectVideoContext = (media) => {
         const {
           type,
           sourceStart,
@@ -33,22 +32,22 @@ const VideoContextPreview = (props) => {
           src,
         } = media;
         const end = start + mediaDuration;
-        const node = vc[type](src, sourceStart);
+        const node = videoContext[type](src, sourceStart);
 
         node.startAt(start);
         node.stopAt(end);
-        node.connect(vc.destination);
-      });
-      setVideoContext(vc);
-      setDuration(vc.duration);
-      setSourceNodes(vc._sourceNodes);
+        node.connect(videoContext.destination);
+      };
+      props.playlist.forEach((media) =>
+        connectVideoContext(media, videoContext)
+      );
+
+      setDuration(videoContext.duration);
     };
 
-    // we will always add or remove, not edit in-place
-    if (sourceNodes.length !== props.playlist.length) {
+    if (videoContext) {
       updateVideoContext();
     }
-
   }, [ props.playlist, videoContext ]);
 
   const handleStop = () => {
@@ -59,6 +58,8 @@ const VideoContextPreview = (props) => {
       return vc;
     });
   };
+
+  const formattedDuration = secondsToHHMMSSFormat(duration);
 
   return (
     <>
@@ -91,7 +92,7 @@ const VideoContextPreview = (props) => {
       </Row>
 
       <Row className={ 'justify-content-center' }>
-        Total duration: {secondsToHHMMSSFormat(duration)}
+        Total duration: {formattedDuration}
       </Row>
     </>
   );
@@ -100,7 +101,7 @@ const VideoContextPreview = (props) => {
 VideoContextPreview.propTypes = {
   canvasRef: PropTypes.any,
   playlist: PropTypes.array,
-  width: PropTypes.number
+  width: PropTypes.number,
 };
 
 export default VideoContextPreview;
