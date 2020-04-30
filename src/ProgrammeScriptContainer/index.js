@@ -49,7 +49,6 @@ const ProgrammeScriptContainer = (props) => {
       </article>
     </Card>
   );
-
 };
 
 ProgrammeScriptContainer.propTypes = {
