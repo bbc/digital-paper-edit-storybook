@@ -55,7 +55,7 @@ const VideoContextPreview = (props) => {
 
       setVideoContext(vc => {
         vc.currentTime = currentTime;
-        videoContext.play();
+        vc.play();
 
         return vc;
       });
