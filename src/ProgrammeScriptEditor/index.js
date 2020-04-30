@@ -16,23 +16,17 @@ const ProgrammeScriptEditor = (props) => {
 
   const ProgrammeCard = (
     <Card>
-      <Card.Header>
-        <PreviewCanvas width={ 300 } playlist={ props.playlist } current={ props.currentTime }/>
-      </Card.Header>
+      <article
+        style={ { height: '60vh', overflow: 'scroll' } }
+      >
+        <ProgrammeScriptContainer
+          items={ props.items }
+          handleReorder={ props.handleReorder }
+          handleDelete={ props.handleDelete }
+          handleEdit={ props.handleEdit }
+        />
 
-      <Card.Body>
-        <article
-          style={ { height: '60vh', overflow: 'scroll' } }
-        >
-          <ProgrammeScriptContainer
-            items={ props.items }
-            handleReorder={ props.handleReorder }
-            handleDelete={ props.handleDelete }
-            handleEdit={ props.handleEdit }
-          />
-
-        </article>
-      </Card.Body>
+      </article>
     </Card>
   );
 
