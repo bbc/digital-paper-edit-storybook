@@ -38,6 +38,17 @@ storiesOf('Transcript Card', module)
         />
       </section>
     );
+  }).add('In Progress with message', () => {
+    return (
+      <section style={ style }>
+        <TranscriptCard
+          { ...transcriptItems[1] }
+          message="Fixing up a Martini..."
+          handleEditItem={ transcriptCardActions.handleEdit }
+          handleDeleteItem={ transcriptCardActions.handleDelete }
+        />
+      </section>
+    );
   })
   .add('Uploading', () => {
     const defaultProgress = 32;

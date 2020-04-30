@@ -145,6 +145,10 @@ const TranscriptCard = props => {
           </Row>
           <Row>
             <Col xs={ 12 }>
+              {props.message ?
+                <Alert variant={ 'info' }>
+                  {props.message}
+                </Alert> : null}
               <Badge variant={ 'info' }>In progress</Badge>
             </Col>
           </Row>
