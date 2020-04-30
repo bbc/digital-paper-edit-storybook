@@ -121,9 +121,73 @@ const programmeScript = [
     speaker: 'Mr Loud',
     words: [
       {
-        text: 'Greatest day of my life was when I wrote this text.',
+        text: 'Despite ',
         start: 0,
-        end: 1
+        end: 0.529
+      },
+      {
+        text: 'our ',
+        start: 0.529,
+        end: 0.679
+      },
+      {
+        text: 'best ',
+        start: 0.679,
+        end: 1.089
+      }, {
+        text: 'efforts ',
+        start: 1.089,
+        end: 1.829
+      }, {
+        text: 'only ',
+        start: 1.829,
+        end: 2.279
+      },
+      {
+        text: '9% ',
+        start: 2.279,
+        end: 3.419
+      },
+      {
+        text: 'of ',
+        start: 3.429,
+        end: 3.599
+      }, {
+        text: 'all ',
+        start: 3.609,
+        end: 3.949
+      }, {
+        text: 'plastic ',
+        start: 3.949,
+        end: 4.48
+      },
+      {
+        text: 'we ',
+        start: 4.48,
+        end: 4.709
+      },
+      {
+        text: 'use ',
+        start: 4.8,
+        end: 5.279
+      }, {
+        text: 'winds ',
+        start: 5.289,
+        end: 5.91
+      }, {
+        text: 'up ',
+        start: 5.91,
+        end: 6.109
+      },
+      {
+        text: 'being ',
+        start: 6.12,
+        end: 6.37
+      },
+      {
+        text: 'recycled. ',
+        start: 6.37,
+        end: 7.34
       }
     ]
   },
@@ -138,13 +202,38 @@ const programmeScript = [
   {
     type: 'paper-cut',
     id: 2,
+    start: 0.0,
+    end: 3.8,
     speaker: 'Mrs Loud',
     words: [
       {
-        text: 'Greatest day of my life was when I spoke this text.',
-        start: 0,
-        end: 1
-      }
+        speaker: 'TBC',
+        text: 'And ',
+        start: 8.45,
+        end: 8.65,
+      },
+      {
+        speaker: 'TBC',
+        text: 'even ',
+        start: 8.65,
+        end: 8.96,
+      }, {
+        speaker: 'TBC',
+        text: 'worse ',
+        start: 8.96,
+        end: 9.7
+      }, {
+        speaker: 'TBC',
+        text: 'plastic ',
+        start: 9.7,
+        end: 10.2,
+      }, {
+        text: 'is ',
+        start: 10.2,
+        end: 10.3,
+        type: 'word',
+        speaker: 'TBC',
+      },
     ]
   },
   {

@@ -7,8 +7,7 @@ import { programmeScript } from '../../dummy';
 export const handleReorderActions = action('Handle reorder');
 export const handleDeleteActions = action('Handle delete');
 export const handleEditActions = action('Handle edit');
-
-const items = programmeScript;
+export const handleDoubleClickActions = action('Handle double-click');
 
 const playlist = [
   {
@@ -17,20 +16,6 @@ const playlist = [
     sourceStart: 30,
     duration: 10,
     src: 'https://download.ted.com/talks/MorganVague_2018X.mp4'
-  },
-  {
-    type: 'video',
-    start: 10,
-    sourceStart: 40,
-    duration: 10,
-    src: 'https://download.ted.com/talks/IvanPoupyrev_2019.mp4'
-  },
-  {
-    type: 'video',
-    start: 20,
-    sourceStart: 50,
-    duration: 10,
-    src: 'https://download.ted.com/talks/KateDarling_2018S-950k.mp4'
   }
 ];
 
@@ -40,10 +25,11 @@ storiesOf('ProgrammeScriptEditor (not published)', module).add(
     <ProgrammeScriptEditor
       title={ 'title' }
       playlist={ playlist }
-      items={ items }
+      items={ programmeScript }
       handleDelete={ handleDeleteActions }
       handleEdit={ handleEditActions }
       handleReorder={ handleReorderActions }
+      handleDoubleClick={ handleDoubleClickActions }
     />
   )
 );

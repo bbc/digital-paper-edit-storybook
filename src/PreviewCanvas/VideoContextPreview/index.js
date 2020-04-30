@@ -10,7 +10,7 @@ const secondsToHHMMSSFormat = (seconds) => {
 };
 
 const VideoContextPreview = (props) => {
-  const canvasRef = props.canvasRef;
+  const { canvasRef, currentTime } = props;
   const [ videoContext, setVideoContext ] = useState();
   const [ duration, setDuration ] = useState(0);
 
@@ -49,6 +49,18 @@ const VideoContextPreview = (props) => {
       updateVideoContext();
     }
   }, [ props.playlist, videoContext ]);
+
+  useEffect(() => {
+    if (currentTime) {
+
+      setVideoContext(vc => {
+        vc.currentTime = currentTime;
+        vc.play();
+
+        return vc;
+      });
+    }
+  }, [ currentTime, videoContext ]);
 
   const handleStop = () => {
     videoContext.pause();
@@ -102,6 +114,7 @@ VideoContextPreview.propTypes = {
   canvasRef: PropTypes.any,
   playlist: PropTypes.array,
   width: PropTypes.number,
+  currentTime: PropTypes.number
 };
 
 export default VideoContextPreview;
