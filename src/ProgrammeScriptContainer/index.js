@@ -9,7 +9,7 @@ import PreviewCanvas from '../PreviewCanvas';
 const ProgrammeScriptContainer = (props) => {
   const [ items, setItems ] = useState(props.items);
   const [ timeOnClick, setTimeOnClick ] = useState();
-  const width = useState(150);
+  const width = useState(300);
   const playlist = [
     { type: 'video', start: 0, sourceStart: 30, duration: 10, src: 'https://download.ted.com/talks/MorganVague_2018X.mp4' },
     { type: 'video', start: 10, sourceStart: 40, duration: 10, src: 'https://download.ted.com/talks/IvanPoupyrev_2019.mp4' },
