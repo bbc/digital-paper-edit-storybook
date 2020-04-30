@@ -17,10 +17,11 @@ const ProgrammeScriptEditor = (props) => {
   const ProgrammeCard = (
     <Card>
       <article
-        style={ { height: '60vh', overflow: 'scroll' } }
+        style={ { height: '100%', overflow: 'scroll' } }
       >
         <ProgrammeScriptContainer
           items={ props.items }
+          playlist={ props.playlist }
           handleReorder={ props.handleReorder }
           handleDelete={ props.handleDelete }
           handleEdit={ props.handleEdit }
