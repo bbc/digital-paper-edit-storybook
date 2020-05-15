@@ -6,7 +6,6 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     Breadcrumb: './src/Breadcrumb/index.js',
-    CustomAlert: './src/CustomAlert/index.js',
     FormModal: './src/FormModal/index.js',
     ItemForm: './src/ItemForm/index.js',
     List: './src/List/index.js',
