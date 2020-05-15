@@ -4,19 +4,19 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-const ItemForm = (props) => {
+const ExportForm = (props) => {
 
-  const [ description, setDescription ] = useState('');
+  const [ fileName, setFileName ] = useState('');
+  const [ folderPath, setFolderPath ] = useState('');
   const [ isValidated, setIsValidated ] = useState(false);
-  const [ title, setTitle ] = useState('');
 
   useEffect (() => {
-    setDescription(props.description);
-    setTitle(props.title);
+    setFileName(props.fileName);
+    setFolderPath(props.folderPath);
 
     return () => {
     };
-  }, [ props.description, props.title ]);
+  }, [ props.fileName, props.folderPath ]);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -27,13 +27,12 @@ const ItemForm = (props) => {
     setIsValidated(true);
 
     if (formIsValid) {
-      const editedProject = {
-        title: title,
-        description: description,
+      const validatedForm = {
+        fileName: fileName,
         id: props.id
       };
 
-      props.handleSaveForm(editedProject);
+      props.handleSaveForm(validatedForm);
     }
   };
 
@@ -43,59 +42,59 @@ const ItemForm = (props) => {
       validated={ isValidated }
       onSubmit={ handleSubmit }
     >
-      <Form.Group controlId="formBasicEmail">
+      <Form.Group controlId="formFileName">
         <Form.Label>Title</Form.Label>
         <Form.Control
           required
           type="text"
-          name="title"
-          placeholder="Enter a project title"
-          value={ title }
-          onChange={ (e) => setTitle(e.target.value) }
+          name="fileName"
+          placeholder="Enter export name"
+          value={ fileName }
+          onChange={ (e) => setFileName(e.target.value) }
         />
         <Form.Text className="text-muted">
-            Choose a title
+          Enter export file name
         </Form.Text>
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         <Form.Control.Feedback type="invalid">
-            Please choose a title
+          Please enter export file name
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Description</Form.Label>
+      <Form.Group controlId="formFolderPath">
+        <Form.Label>Folder Location</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter a project description"
-          value={ description }
-          name="description"
-          onChange={ (e) => setDescription(e.target.value) }
+          placeholder="Enter a folder location where your Audio or Video is located"
+          value={ folderPath }
+          name="folderPath"
+          onChange={ (e) => setFolderPath(e.target.value) }
         />
         <Form.Text className="text-muted">
-            Choose an optional description
+          Please enter a folder location where your Audio or Video file is located
         </Form.Text>
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       </Form.Group>
       <Modal.Footer>
         <Button variant="primary" type="submit">
-            Save
+          Save
         </Button>
       </Modal.Footer>
     </Form>
   );
 };
 
-ItemForm.propTypes = {
+ExportForm.propTypes = {
   id: PropTypes.string,
-  title: PropTypes.string,
-  description: PropTypes.string,
+  fileName: PropTypes.string,
+  folderPath: PropTypes.string,
   showModal: PropTypes.bool,
   modalTitle: PropTypes.string,
   handleSaveForm: PropTypes.func.isRequired,
 };
 
-ItemForm.defaultProps = {
-  showModal: false
+ExportForm.defaultProps = {
+  showModal: false,
 };
 
-export default ItemForm;
+export default ExportForm;

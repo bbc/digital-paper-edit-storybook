@@ -1,6 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import List from '../List';
-import FormModal from '../FormModal';
+import ItemFormModal from '../ItemFormModal';
+import TranscriptFormModal from '../TranscriptFormModal';
 import SearchBar from '../SearchBar';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
@@ -10,7 +11,7 @@ import PropTypes from 'prop-types';
 const initialFormState = {
   title: '',
   description: '',
-  id: null
+  id: null,
 };
 
 const formReducer = (state = initialFormState, { type, payload }) => {
@@ -25,9 +26,15 @@ const formReducer = (state = initialFormState, { type, payload }) => {
   }
 };
 
-const SplitWorkspace = props => {
-  const [ showModal, setShowModal ] = useState(false);
+const SplitWorkspace = (props) => {
+  const [ showPaperEditModal, setShowPaperEditModal ] = useState(false);
+  const [ showTranscriptModal, setShowTranscriptModal ] = useState(false);
   const [ formData, dispatchForm ] = useReducer(formReducer, initialFormState);
+
+  const toggleShowTranscriptModal = () =>
+    setShowTranscriptModal(!showTranscriptModal);
+  const toggleShowPaperEditModal = () =>
+    setShowPaperEditModal(!showPaperEditModal);
 
   return (
     <>
@@ -37,12 +44,21 @@ const SplitWorkspace = props => {
         </Col>
         <Col sm={ 2 }>
           <Button
-            onClick={ props.toggleShowModal }
+            onClick={ toggleShowTranscriptModal }
             variant="outline-secondary"
             size="sm"
             block
           >
-            New Item
+            New Transcript
+          </Button>
+
+          <Button
+            onClick={ toggleShowPaperEditModal }
+            variant="outline-secondary"
+            size="sm"
+            block
+          >
+            New Paper Edit
           </Button>
         </Col>
       </Row>
@@ -52,26 +68,32 @@ const SplitWorkspace = props => {
           <List
             type={ 'Transcript' }
             items={ props.transcripts }
-            handleEditItem={ () => props.handleSaveTranscript }
-            handleDeleteItem={ () => props.handleDeleteTranscript }
+            handleEditItem={ props.handleSaveTranscript }
+            handleDeleteItem={ props.handleDeleteTranscript }
           />
         </Col>
         <Col>
           <h2>Paper Edits</h2>
           <List
             items={ props.paperEdits }
-            handleEditItem={ () => props.handleSavePaperEdit }
-            handleDeleteItem={ () => props.handleDeletePaperEdit }
+            handleEditItem={ props.handleSavePaperEdit }
+            handleDeleteItem={ props.handleDeletePaperEdit }
           />
         </Col>
       </Row>
-      <FormModal
+      <TranscriptFormModal
         { ...formData }
-        id={ props.id }
-        modalTitle={ 'New Item' }
-        showModal={ showModal }
-        handleOnHide={ props.toggleShowModal }
-        handleSaveForm={ () => props.handleSaveForm }
+        modalTitle={ 'New Transcript' }
+        showModal={ showTranscriptModal }
+        handleOnHide={ toggleShowTranscriptModal }
+        handleSaveForm={ props.handleSaveForm }
+      />
+      <ItemFormModal
+        { ...formData }
+        modalTitle={ 'New Paper Edit' }
+        showModal={ showPaperEditModal }
+        handleOnHide={ toggleShowPaperEditModal }
+        handleSaveForm={ props.handleSaveForm }
       />
     </>
   );
@@ -86,9 +108,8 @@ SplitWorkspace.propTypes = {
   handleSearch: PropTypes.any,
   id: PropTypes.any,
   paperEdits: PropTypes.any,
-  toggleShowModal: PropTypes.any,
   transcripts: PropTypes.any,
-  type: PropTypes.any
+  type: PropTypes.any,
 };
 
 export default SplitWorkspace;

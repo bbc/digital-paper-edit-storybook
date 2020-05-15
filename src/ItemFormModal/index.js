@@ -1,19 +1,10 @@
 import React, { useState, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap/Modal';
-import ItemForm from '../ItemForm/index.js';
-import TranscriptForm from '../TranscriptForm/index.js';
+import ItemForm from './ItemForm';
 
-const FormModal = props => {
+const ItemFormModal = props => {
   const [ showModal, setShowModal ] = useState();
-  const type = props.type.toLowerCase();
-
-  const form =
-    type === 'transcript' && !props.id ? (
-      <TranscriptForm { ...props } />
-    ) : (
-      <ItemForm { ...props } />
-    );
 
   useLayoutEffect(() => {
     setShowModal(props.showModal);
@@ -26,12 +17,14 @@ const FormModal = props => {
       <Modal.Header closeButton>
         <Modal.Title>{props.modalTitle}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>{form}</Modal.Body>
+      <Modal.Body>
+        <ItemForm { ...props } />
+      </Modal.Body>
     </Modal>
   );
 };
 
-FormModal.propTypes = {
+ItemFormModal.propTypes = {
   handleOnHide: PropTypes.func.isRequired,
   handleSaveForm: PropTypes.func.isRequired,
   id: PropTypes.string,
@@ -39,12 +32,10 @@ FormModal.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   showModal: PropTypes.bool,
-  type: PropTypes.string
 };
 
-FormModal.defaultProps = {
+ItemFormModal.defaultProps = {
   showModal: false,
-  type: 'Project'
 };
 
-export default FormModal;
+export default ItemFormModal;

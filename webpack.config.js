@@ -7,8 +7,7 @@ module.exports = {
   entry: {
     Breadcrumb: './src/Breadcrumb/index.js',
     CustomAlert: './src/CustomAlert/index.js',
-    FormModal: './src/FormModal/index.js',
-    ItemForm: './src/ItemForm/index.js',
+    ItemFormModal: './src/ItemFormModal/index.js',
     List: './src/List/index.js',
     SearchBar: './src/SearchBar/index.js',
     PreviewCanvas: './src/PreviewCanvas/index.js',
@@ -32,7 +31,7 @@ module.exports = {
     VoiceOver: './src/ProgrammeScriptContainer/ProgrammeElements/VoiceOver.js',
     SimpleCard: './src/SimpleCard/index.js',
     TranscriptCard: './src/TranscriptCard/index.js',
-    TranscriptForm: './src/TranscriptForm/index.js',
+    TranscriptFormModal: './src/TranscriptFormModal/index.js',
     ProgressBar: './src/ProgressBar/index.js'
   },
   output: {

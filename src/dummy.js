@@ -75,7 +75,6 @@ const transcriptItems = [
 const modalItems = [
   {
     id: '1',
-    type: 'Project',
     showModal: true,
     title: 'Example Project Title',
     description: 'This is a sample card description. This is fun!',
@@ -86,7 +85,6 @@ const modalItems = [
     showModal: true,
     modalTitle: 'New Project',
     id: '2',
-    type: 'Project'
   },
   {
     projectId: '123',
@@ -96,7 +94,6 @@ const modalItems = [
     showModal: true,
     modalTitle: 'New Transcript',
     id: '3',
-    type: 'Transcript'
   },
   {
     projectId: '1234',
@@ -106,7 +103,6 @@ const modalItems = [
     showModal: false,
     modalTitle: 'New Transcript',
     id: '4',
-    type: 'Transcript'
   }
 ];
 

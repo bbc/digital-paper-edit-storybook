@@ -7,7 +7,8 @@ import PropTypes from 'prop-types';
 import { anyInText } from '../utils';
 import List from '../List';
 import SearchBar from '../SearchBar';
-import FormModal from '../FormModal';
+import ItemFormModal from '../ItemFormModal';
+import TranscriptFormModal from '../TranscriptFormModal';
 
 const initialFormState = {
   title: '',
@@ -118,14 +119,22 @@ const ItemsContainer = props => {
         <i>There are no {type}s, create a new one to get started.</i>
       )}
 
-      <FormModal
-        { ...formData }
-        modalTitle={ formData.id ? `Edit ${ type }` : `New ${ type }` }
-        showModal={ showModal }
-        handleOnHide={ handleOnHide }
-        handleSaveForm={ handleSaveForm }
-        type={ type }
-      />
+      { type.toLowerCase() === 'transcript' && !formData.id ?
+        <TranscriptFormModal
+          { ...formData }
+          modalTitle={ formData.id ? `Edit ${ type }` : `New ${ type }` }
+          showModal={ showModal }
+          handleOnHide={ handleOnHide }
+          handleSaveForm={ handleSaveForm }
+        /> :
+        <ItemFormModal
+          { ...formData }
+          modalTitle={ formData.id ? `Edit ${ type }` : `New ${ type }` }
+          showModal={ showModal }
+          handleOnHide={ handleOnHide }
+          handleSaveForm={ handleSaveForm }
+        />
+      }
     </>
   );
 };

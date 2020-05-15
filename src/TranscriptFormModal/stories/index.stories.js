@@ -2,37 +2,15 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
-import FormModal from '../index.js';
+import TranscriptFormModal from '../index.js';
 import { modalItems } from '../../dummy';
 
-storiesOf('Form Modal', module)
+storiesOf('Transcript Form Modal', module)
   .addDecorator(StoryRouter())
-  .add('Edit project', () => {
-    return (
-      <section style={ { height: '90vh', overflow: 'scroll' } }>
-        <FormModal
-          handleSaveForm={ action('Form saved') }
-          handleOnHide={ action('Close modal') }
-          { ...modalItems[0] }
-        />
-      </section>
-    );
-  })
-  .add('New project', () => {
-    return (
-      <section style={ { height: '90vh', overflow: 'scroll' } }>
-        <FormModal
-          handleSaveForm={ action('Form saved') }
-          handleOnHide={ action('Close modal') }
-          { ...modalItems[1] }
-        />
-      </section>
-    );
-  })
   .add('New Transcript', () => {
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
-        <FormModal
+        <TranscriptFormModal
           handleSaveForm={ action('Form saved') }
           handleOnHide={ action('Close modal') }
           { ...modalItems[2] }
@@ -43,7 +21,7 @@ storiesOf('Form Modal', module)
   .add('Not shown Transcript Modal', () => {
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
-        <FormModal
+        <TranscriptFormModal
           handleSaveForm={ action('Form saved') }
           handleOnHide={ action('Close modal') }
           { ...modalItems[3] }
