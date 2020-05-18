@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     Breadcrumb: './src/Breadcrumb/index.js',
     ItemFormModal: './src/ItemFormModal/index.js',
+    ExportFormModal: './src/ExportFormModal/index.js',
     List: './src/List/index.js',
     SearchBar: './src/SearchBar/index.js',
     PreviewCanvas: './src/PreviewCanvas/index.js',

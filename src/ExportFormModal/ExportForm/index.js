@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,
+  // useLayoutEffect, useRef
+} from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -10,12 +12,20 @@ const ExportForm = (props) => {
   const [ exportPath, setExportPath ] = useState('');
   const [ isValidated, setIsValidated ] = useState(false);
   // const textRef = useRef();
+  // const [ textWidth, setTextWidth ] = useState(-1);
 
   useEffect(() => {
     setExportPath(props.exportPath);
 
     return () => {};
   }, [ props.exportPath ]);
+
+  // useLayoutEffect(() => {
+  //   // I don't think it can be null at this point, but better safe than sorry
+  //   if (textRef.current) {
+  //     setTextWidth(window.getComputedStyle(textRef.current).width);
+  //   }
+  // });
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -43,7 +53,7 @@ const ExportForm = (props) => {
   //   </ul>
   // );
 
-  const truncate = (input) => input.length > 7 ? `${ input.substring(0, 5) }...` : input;
+  // const truncate = (input) => input.length > 7 ? `${ input.substring(0, 5) }...` : input;
 
   // const isOverflown = ({ clientWidth, clientHeight, scrollWidth, scrollHeight }) => {
   //   return scrollHeight > clientHeight || scrollWidth > clientWidth;
@@ -55,7 +65,9 @@ const ExportForm = (props) => {
 
       return <>
         <Form.Group as={ Row } controlId="formFilePaths">
-          <Form.Label column sm={ 2 }>{truncate(item)}</Form.Label>
+          <Form.Label
+          // ref={ textRef }
+            column sm={ 2 }>{item}</Form.Label>
           <Col sm={ 10 }>
             <Form.Control
               key={ itemPath }
@@ -72,6 +84,8 @@ const ExportForm = (props) => {
         </Form.Group>
       </>;
     });
+
+  // console.log(textWidth);
 
   return (
     <>
