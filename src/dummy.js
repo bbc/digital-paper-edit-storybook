@@ -72,6 +72,49 @@ const transcriptItems = [
   }
 ];
 
+const exportItems = [
+  {
+    type: 'EDL',
+    showModal: true,
+    exportPath: 'C:FilePath\\Great\\EDL\\Project',
+    items: [ 'one.mp3', 'two.mp4' ]
+  },
+  {
+    type: 'ADL',
+    showModal: true,
+    exportPath: 'C:FilePath\\ADL\\Project',
+    items: [ 'one.mp3', 'two.mp4' ]
+  },
+  {
+    showModal: true,
+    exportPath: '/Users/Path',
+    type: 'FCP XML',
+    items: [ 'one.mp3', 'two.mp4' ],
+    isWindows: false
+  },
+  {
+    showModal: false,
+    exportPath: '/Users/Path',
+    type: 'FCP XML',
+    items: [ 'one.mp3', 'two.mp4' ],
+    isWindows: false
+  },
+  {
+    showModal: true,
+    exportPath: '',
+    type: 'FCP XML',
+    items: [ ],
+    isWindows: false
+  },
+  {
+    showModal: true,
+    exportPath: '',
+    type: 'FCP XML',
+    items: [ 'one.mp3' ],
+    isWindows: false
+  },
+];
+
 const modalItems = [
   {
     id: '1',
@@ -149,4 +192,4 @@ const programmeScript = [
   }
 ];
 
-export { items, transcriptItems, modalItems, programmeScript };
+export { items, transcriptItems, modalItems, exportItems, programmeScript };

@@ -15,7 +15,7 @@ const ExportFormModal = props => {
   return (
     <Modal show={ showModal } onHide={ props.handleOnHide }>
       <Modal.Header closeButton>
-        <Modal.Title>{props.modalTitle}</Modal.Title>
+        <Modal.Title>Export {props.type}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <ExportForm { ...props } />
@@ -27,11 +27,10 @@ const ExportFormModal = props => {
 ExportFormModal.propTypes = {
   handleOnHide: PropTypes.func.isRequired,
   handleSaveForm: PropTypes.func.isRequired,
-  id: PropTypes.string,
-  modalTitle: PropTypes.string.isRequired,
-  title: PropTypes.string,
-  description: PropTypes.string,
+  exportPath: PropTypes.string,
+  items: PropTypes.array,
   showModal: PropTypes.bool,
+  type: PropTypes.string.isRequired
 };
 
 ExportFormModal.defaultProps = {

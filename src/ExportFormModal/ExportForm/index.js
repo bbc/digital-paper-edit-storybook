@@ -3,20 +3,37 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import BootstrapSwitchButton from 'bootstrap-switch-button-react';
 
 const ExportForm = (props) => {
-
-  const [ fileName, setFileName ] = useState('');
-  const [ folderPath, setFolderPath ] = useState('');
+  const [ exportPath, setExportPath ] = useState('');
   const [ isValidated, setIsValidated ] = useState(false);
+  const [ isWindows, setIsWindows ] = useState(props.isWindows);
 
-  useEffect (() => {
-    setFileName(props.fileName);
-    setFolderPath(props.folderPath);
+  const WINDOWS_PLACEHOLDER = 'D:\\Example\\Path';
+  const WINDOWS_PATH_JOIN = '\\';
+  const UNIX_PLACEHOLDER = '/Example/Path';
+  const UNIX_PATH_JOIN = '/';
+  const [ placeholder, setPlaceholder ] = useState(WINDOWS_PLACEHOLDER);
+  const [ pathJoin, setPathJoin ] = useState(WINDOWS_PATH_JOIN);
 
-    return () => {
-    };
-  }, [ props.fileName, props.folderPath ]);
+  useEffect(() => {
+    setExportPath(props.exportPath);
+
+    return () => {};
+  }, [ props.exportPath ]);
+
+  useEffect(() => {
+    if (isWindows) {
+      setPlaceholder(WINDOWS_PLACEHOLDER);
+      setPathJoin(WINDOWS_PATH_JOIN);
+    } else {
+      setPlaceholder(UNIX_PLACEHOLDER);
+      setPathJoin(UNIX_PATH_JOIN);
+    }
+
+    return () => {};
+  }, [ isWindows ]);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -28,73 +45,78 @@ const ExportForm = (props) => {
 
     if (formIsValid) {
       const validatedForm = {
-        fileName: fileName,
-        id: props.id
+        exportPath: exportPath,
       };
 
       props.handleSaveForm(validatedForm);
     }
   };
 
+  const FilesList = (
+    <ul>
+      {props.items.map((item) => <li key={ `${ item }` }>{exportPath}{pathJoin}{item}</li>)}
+    </ul>
+  );
+
   return (
+    <>
+      <BootstrapSwitchButton
+        checked={ isWindows }
+        onlabel='Windows'
+        onstyle='success'
+        offlabel='Mac/Linux'
+        offstyle='info'
+        style='w-100'
+        onChange={ setIsWindows }
+      />
+      <Form noValidate validated={ isValidated } onSubmit={ handleSubmit }>
+        <Form.Group controlId="formFileName">
+          <Form.Label>Project Folder Directory</Form.Label>
 
-    <Form noValidate
-      validated={ isValidated }
-      onSubmit={ handleSubmit }
-    >
-      <Form.Group controlId="formFileName">
-        <Form.Label>Title</Form.Label>
-        <Form.Control
-          required
-          type="text"
-          name="fileName"
-          placeholder="Enter export name"
-          value={ fileName }
-          onChange={ (e) => setFileName(e.target.value) }
-        />
-        <Form.Text className="text-muted">
-          Enter export file name
-        </Form.Text>
-        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        <Form.Control.Feedback type="invalid">
-          Please enter export file name
-        </Form.Control.Feedback>
-      </Form.Group>
+          <Form.Control
+            required
+            type="text"
+            name="fileName"
+            placeholder={ placeholder }
+            value={ exportPath }
+            onChange={ (e) => setExportPath(e.target.value) }
+          />
+          <Form.Text className="text-muted">
+            The folder path of the video and audio for the project.
+          </Form.Text>
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Please enter a valid file path.
+          </Form.Control.Feedback>
+        </Form.Group>
+        {props.items.length > 0 ?
+          <>
+            The { props.type } will have the following content paths:
+            { FilesList }
+          </> : null}
 
-      <Form.Group controlId="formFolderPath">
-        <Form.Label>Folder Location</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter a folder location where your Audio or Video is located"
-          value={ folderPath }
-          name="folderPath"
-          onChange={ (e) => setFolderPath(e.target.value) }
-        />
-        <Form.Text className="text-muted">
-          Please enter a folder location where your Audio or Video file is located
-        </Form.Text>
-        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-      </Form.Group>
-      <Modal.Footer>
-        <Button variant="primary" type="submit">
-          Save
-        </Button>
-      </Modal.Footer>
-    </Form>
+        <Modal.Footer>
+          <Button variant="primary" type="submit">
+            Save
+          </Button>
+        </Modal.Footer>
+      </Form>
+    </>
   );
 };
 
 ExportForm.propTypes = {
-  id: PropTypes.string,
-  fileName: PropTypes.string,
-  folderPath: PropTypes.string,
+  exportPath: PropTypes.any,
+  handleSaveForm: PropTypes.func,
+  items: PropTypes.array,
   showModal: PropTypes.bool,
-  modalTitle: PropTypes.string,
-  handleSaveForm: PropTypes.func.isRequired,
+  type: PropTypes.any,
+  isWindows: PropTypes.bool
 };
 
 ExportForm.defaultProps = {
   showModal: false,
+  isWindows: true
 };
 
 export default ExportForm;
