@@ -75,12 +75,14 @@ const transcriptItems = [
 const exportItems = [
   {
     type: 'EDL',
+    isWindows: true,
     showModal: true,
     exportPath: 'C:FilePath\\Great\\EDL\\Project',
-    items: [ 'one.mp3', 'two.mp4' ]
+    items: [ 'supercalifragalisticexpelialidocious.mp3', 'two.mp4' ]
   },
   {
     type: 'ADL',
+    isWindows: true,
     showModal: true,
     exportPath: 'C:FilePath\\ADL\\Project',
     items: [ 'one.mp3', 'two.mp4' ]

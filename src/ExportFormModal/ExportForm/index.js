@@ -2,38 +2,20 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
-import BootstrapSwitchButton from 'bootstrap-switch-button-react';
 
 const ExportForm = (props) => {
   const [ exportPath, setExportPath ] = useState('');
   const [ isValidated, setIsValidated ] = useState(false);
-  const [ isWindows, setIsWindows ] = useState(props.isWindows);
-
-  const WINDOWS_PLACEHOLDER = 'D:\\Example\\Path';
-  const WINDOWS_PATH_JOIN = '\\';
-  const UNIX_PLACEHOLDER = '/Example/Path';
-  const UNIX_PATH_JOIN = '/';
-  const [ placeholder, setPlaceholder ] = useState(WINDOWS_PLACEHOLDER);
-  const [ pathJoin, setPathJoin ] = useState(WINDOWS_PATH_JOIN);
+  // const textRef = useRef();
 
   useEffect(() => {
     setExportPath(props.exportPath);
 
     return () => {};
   }, [ props.exportPath ]);
-
-  useEffect(() => {
-    if (isWindows) {
-      setPlaceholder(WINDOWS_PLACEHOLDER);
-      setPathJoin(WINDOWS_PATH_JOIN);
-    } else {
-      setPlaceholder(UNIX_PLACEHOLDER);
-      setPathJoin(UNIX_PATH_JOIN);
-    }
-
-    return () => {};
-  }, [ isWindows ]);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -52,32 +34,56 @@ const ExportForm = (props) => {
     }
   };
 
-  const FilesList = (
-    <ul>
-      {props.items.map((item) => <li key={ `${ item }` }>{exportPath}{pathJoin}{item}</li>)}
-    </ul>
-  );
+  // const FilesList = (
+  //   <ul>
+  //     {props.items.map((item) =>
+  //       <li key={ `${ item }` }>
+  //         {exportPath}{pathJoin}{item}
+  //       </li>)}
+  //   </ul>
+  // );
+
+  const truncate = (input) => input.length > 7 ? `${ input.substring(0, 5) }...` : input;
+
+  // const isOverflown = ({ clientWidth, clientHeight, scrollWidth, scrollHeight }) => {
+  //   return scrollHeight > clientHeight || scrollWidth > clientWidth;
+  // };
+
+  const EditableFilesInputs =
+    props.items.map((item) => {
+      const itemPath = `${ exportPath }${ props.pathJoin }${ item }`;
+
+      return <>
+        <Form.Group as={ Row } controlId="formFilePaths">
+          <Form.Label column sm={ 2 }>{truncate(item)}</Form.Label>
+          <Col sm={ 10 }>
+            <Form.Control
+              key={ itemPath }
+              size="sm"
+              type='text'
+              defaultValue={ itemPath }
+              placeholder={ itemPath }
+            />
+          </Col>
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          <Form.Control.Feedback type="invalid">
+            Please enter a valid file path.
+          </Form.Control.Feedback>
+        </Form.Group>
+      </>;
+    });
 
   return (
     <>
-      <BootstrapSwitchButton
-        checked={ isWindows }
-        onlabel='Windows'
-        onstyle='success'
-        offlabel='Mac/Linux'
-        offstyle='info'
-        style='w-100'
-        onChange={ setIsWindows }
-      />
-      <Form noValidate validated={ isValidated } onSubmit={ handleSubmit }>
-        <Form.Group controlId="formFileName">
-          <Form.Label>Project Folder Directory</Form.Label>
 
+      <Form noValidate validated={ isValidated } onSubmit={ handleSubmit }>
+        <Form.Group controlId="formFolderDirectory">
+          <Form.Label>Project Folder Directory</Form.Label>
           <Form.Control
             required
             type="text"
             name="fileName"
-            placeholder={ placeholder }
+            placeholder={ props.placeholder }
             value={ exportPath }
             onChange={ (e) => setExportPath(e.target.value) }
           />
@@ -89,11 +95,12 @@ const ExportForm = (props) => {
             Please enter a valid file path.
           </Form.Control.Feedback>
         </Form.Group>
+
         {props.items.length > 0 ?
-          <>
-            The { props.type } will have the following content paths:
-            { FilesList }
-          </> : null}
+          <Form.Group controlId="formFilePaths">
+            <Form.Label>Files paths</Form.Label>
+            { EditableFilesInputs }
+          </Form.Group> : null}
 
         <Modal.Footer>
           <Button variant="primary" type="submit">
@@ -108,15 +115,16 @@ const ExportForm = (props) => {
 ExportForm.propTypes = {
   exportPath: PropTypes.any,
   handleSaveForm: PropTypes.func,
+  isWindows: PropTypes.bool,
   items: PropTypes.array,
+  pathJoin: PropTypes.any,
+  placeholder: PropTypes.any,
   showModal: PropTypes.bool,
-  type: PropTypes.any,
-  isWindows: PropTypes.bool
+  type: PropTypes.any
 };
 
 ExportForm.defaultProps = {
   showModal: false,
-  isWindows: true
 };
 
 export default ExportForm;
