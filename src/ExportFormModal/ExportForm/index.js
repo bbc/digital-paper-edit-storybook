@@ -11,25 +11,25 @@ import Modal from 'react-bootstrap/Modal';
 const ExportForm = (props) => {
   const [ scriptExportPath, setScriptExportPath ] = useState(null); // Where ADL / EDL gets saved
   const [ isValidated, setIsValidated ] = useState(false);
-  const [ filesExportPath, setFilesExportPath ] = useState(null); // Where paths for files get saved
+  const [ filesLocations, setFilesLocations ] = useState(null); // Where paths for files get saved
   // const textRef = useRef();
   // const [ textWidth, setTextWidth ] = useState(-1);
 
   useEffect(() => {
 
     const setItems = () => {
-      const fileExportList = [];
+      const programmeScriptMedia = [];
       props.items.forEach((item) => {
-        const exportObj = {
+        const mediaFile = {
           fileName: item.fileName,
           srcFolderPath: item.srcFolderPath
         };
-        fileExportList.push(exportObj);
+        programmeScriptMedia.push(mediaFile);
       });
-      setFilesExportPath(fileExportList);
+      setFilesLocations(programmeScriptMedia);
     };
 
-    if (!filesExportPath) {
+    if (!filesLocations) {
       setItems();
     }
 
@@ -38,7 +38,7 @@ const ExportForm = (props) => {
     }
 
     return () => {};
-  }, [ filesExportPath, props.exportPath, props.items, scriptExportPath ]);
+  }, [ filesLocations, props.exportPath, props.items, scriptExportPath ]);
 
   // useLayoutEffect(() => {
   //   // I don't think it can be null at this point, but better safe than sorry
@@ -55,18 +55,18 @@ const ExportForm = (props) => {
     const formIsValid = form.checkValidity();
     setIsValidated(true);
 
-    const filesClone = filesExportPath;
+    const filesClone = filesLocations;
     filesClone.forEach((file) => {
       if (!file.srcFolderPath) {
         file.srcFolderPath = `${ scriptExportPath }${ props.pathJoin }${ file.fileName }`;
       }
-      setFilesExportPath(filesClone);
+      setFilesLocations(filesClone);
     });
 
     if (formIsValid) {
       const validatedForm = {
         exportPath: scriptExportPath,
-        files: filesExportPath
+        files: filesLocations
       };
 
       console.log('validated form: ', validatedForm);
@@ -76,12 +76,12 @@ const ExportForm = (props) => {
   };
 
   const updateFilesExportPath = (e, fileName) => {
-    const exportPathClone = filesExportPath;
+    const exportPathClone = filesLocations;
     const itemToChange = exportPathClone.find((obj) => {
       return obj.fileName === fileName;
     });
     itemToChange.srcFolderPath = e;
-    setFilesExportPath(exportPathClone);
+    setFilesLocations(exportPathClone);
 
   };
 

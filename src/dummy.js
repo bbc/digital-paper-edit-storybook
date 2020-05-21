@@ -107,14 +107,30 @@ const exportItems = [
     showModal: true,
     exportPath: '/Users/Path',
     type: 'FCP XML',
-    items: [ 'one.mp3', 'two.mp4' ],
+    items: [
+      {
+        fileName: 'one.mp3',
+        srcFolderPath: null
+      }, {
+        fileName: 'two.mp4',
+        srcFolderPath: null
+      },
+    ],
     isWindows: false
   },
   {
     showModal: false,
     exportPath: '/Users/Path',
     type: 'FCP XML',
-    items: [ 'one.mp3', 'two.mp4' ],
+    items: [
+      {
+        fileName: 'one.mp3',
+        srcFolderPath: null
+      }, {
+        fileName: 'two.mp4',
+        srcFolderPath: null
+      },
+    ],
     isWindows: false
   },
   {
@@ -128,7 +144,12 @@ const exportItems = [
     showModal: true,
     exportPath: '',
     type: 'FCP XML',
-    items: [ 'one.mp3' ],
+    items: [
+      {
+        fileName: 'one.mp3',
+        srcFolderPath: null
+      },
+    ],
     isWindows: false
   },
 ];
