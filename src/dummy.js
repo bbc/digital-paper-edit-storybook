@@ -78,14 +78,30 @@ const exportItems = [
     isWindows: true,
     showModal: true,
     exportPath: 'C:FilePath\\Great\\EDL\\Project',
-    items: [ 'supercalifragalisticexpelialidocious.mp3', 'two.mp4' ]
+    items: [
+      {
+        fileName: 'supercalifragalisticexpelialidocious.mp3',
+        srcFolderPath: null
+      }, {
+        fileName: 'two.mp4',
+        srcFolderPath: null
+      },
+    ],
   },
   {
     type: 'ADL',
     isWindows: true,
     showModal: true,
     exportPath: 'C:FilePath\\ADL\\Project',
-    items: [ 'one.mp3', 'two.mp4' ]
+    items: [
+      {
+        fileName: 'supercalifragalisticexpelialidocious.mp3',
+        srcFolderPath: null
+      }, {
+        fileName: 'two.mp4',
+        srcFolderPath: null
+      },
+    ],
   },
   {
     showModal: true,

@@ -9,16 +9,36 @@ import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 
 const ExportForm = (props) => {
-  const [ exportPath, setExportPath ] = useState('');
+  const [ scriptExportPath, setScriptExportPath ] = useState(null); // Where ADL / EDL gets saved
   const [ isValidated, setIsValidated ] = useState(false);
+  const [ filesExportPath, setFilesExportPath ] = useState(null); // Where paths for files get saved
   // const textRef = useRef();
   // const [ textWidth, setTextWidth ] = useState(-1);
 
   useEffect(() => {
-    setExportPath(props.exportPath);
+
+    const setItems = () => {
+      const fileExportList = [];
+      props.items.forEach((item) => {
+        const exportObj = {
+          fileName: item.fileName,
+          srcFolderPath: item.srcFolderPath
+        };
+        fileExportList.push(exportObj);
+      });
+      setFilesExportPath(fileExportList);
+    };
+
+    if (!filesExportPath) {
+      setItems();
+    }
+
+    if (!scriptExportPath) {
+      setScriptExportPath(props.exportPath);
+    }
 
     return () => {};
-  }, [ props.exportPath ]);
+  }, [ filesExportPath, props.exportPath, props.items, scriptExportPath ]);
 
   // useLayoutEffect(() => {
   //   // I don't think it can be null at this point, but better safe than sorry
@@ -35,14 +55,40 @@ const ExportForm = (props) => {
     const formIsValid = form.checkValidity();
     setIsValidated(true);
 
+    const filesClone = filesExportPath;
+    filesClone.forEach((file) => {
+      if (!file.srcFolderPath) {
+        file.srcFolderPath = `${ scriptExportPath }${ props.pathJoin }${ file.fileName }`;
+      }
+      setFilesExportPath(filesClone);
+    });
+
     if (formIsValid) {
       const validatedForm = {
-        exportPath: exportPath,
+        exportPath: scriptExportPath,
+        files: filesExportPath
       };
+
+      console.log('validated form: ', validatedForm);
 
       props.handleSaveForm(validatedForm);
     }
   };
+
+  const updateFilesExportPath = (e, fileName) => {
+    const exportPathClone = filesExportPath;
+    const itemToChange = exportPathClone.find((obj) => {
+      return obj.fileName === fileName;
+    });
+    itemToChange.srcFolderPath = e;
+    setFilesExportPath(exportPathClone);
+
+  };
+
+  // const handleFilesExportPath = (e, fileName) => {
+
+  //   // props.setFormFilePaths(e, fileName);
+  // };
 
   // const FilesList = (
   //   <ul>
@@ -61,13 +107,13 @@ const ExportForm = (props) => {
 
   const EditableFilesInputs =
     props.items.map((item) => {
-      const itemPath = `${ exportPath }${ props.pathJoin }${ item }`;
+      const itemPath = `${ scriptExportPath }${ props.pathJoin }${ item.fileName }`;
 
       return <>
         <Form.Group as={ Row } controlId="formFilePaths">
           <Form.Label
           // ref={ textRef }
-            column sm={ 2 }>{item}</Form.Label>
+            column sm={ 2 }>{item.fileName}</Form.Label>
           <Col sm={ 10 }>
             <Form.Control
               key={ itemPath }
@@ -75,6 +121,7 @@ const ExportForm = (props) => {
               type='text'
               defaultValue={ itemPath }
               placeholder={ itemPath }
+              onChange={ (e) => updateFilesExportPath(e.target.value, item.fileName) }
             />
           </Col>
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -84,8 +131,6 @@ const ExportForm = (props) => {
         </Form.Group>
       </>;
     });
-
-  // console.log(textWidth);
 
   return (
     <>
@@ -98,8 +143,8 @@ const ExportForm = (props) => {
             type="text"
             name="fileName"
             placeholder={ props.placeholder }
-            value={ exportPath }
-            onChange={ (e) => setExportPath(e.target.value) }
+            value={ scriptExportPath }
+            onChange={ (e) => setScriptExportPath(e.target.value) }
           />
           <Form.Text className="text-muted">
             The folder path of the video and audio for the project.
