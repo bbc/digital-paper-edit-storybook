@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import StoryRouter from 'storybook-react-router';
 import ItemForm from '../index.js';
 import { actions } from '@storybook/addon-actions';
-import { modalItems } from '../../dummy';
+import { modalItems } from '../../../dummy';
 
 const modalActions = actions({ handleSaveForm: 'Form saved' });
 

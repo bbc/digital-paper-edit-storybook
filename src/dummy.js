@@ -72,10 +72,91 @@ const transcriptItems = [
   }
 ];
 
+const exportItems = [
+  {
+    type: 'EDL',
+    isWindows: true,
+    showModal: true,
+    exportPath: 'C:FilePath\\Great\\EDL\\Project',
+    items: [
+      {
+        fileName: 'supercalifragalisticexpelialidocious.mp3',
+        srcFolderPath: null
+      }, {
+        fileName: 'two.mp4',
+        srcFolderPath: null
+      },
+    ],
+  },
+  {
+    type: 'ADL',
+    isWindows: true,
+    showModal: true,
+    exportPath: 'C:FilePath\\ADL\\Project',
+    items: [
+      {
+        fileName: 'supercalifragalisticexpelialidocious.mp3',
+        srcFolderPath: null
+      }, {
+        fileName: 'two.mp4',
+        srcFolderPath: null
+      },
+    ],
+  },
+  {
+    showModal: true,
+    exportPath: '/Users/Path',
+    type: 'FCP XML',
+    items: [
+      {
+        fileName: 'one.mp3',
+        srcFolderPath: null
+      }, {
+        fileName: 'two.mp4',
+        srcFolderPath: null
+      },
+    ],
+    isWindows: false
+  },
+  {
+    showModal: false,
+    exportPath: '/Users/Path',
+    type: 'FCP XML',
+    items: [
+      {
+        fileName: 'one.mp3',
+        srcFolderPath: null
+      }, {
+        fileName: 'two.mp4',
+        srcFolderPath: null
+      },
+    ],
+    isWindows: false
+  },
+  {
+    showModal: true,
+    exportPath: '',
+    type: 'FCP XML',
+    items: [ ],
+    isWindows: false
+  },
+  {
+    showModal: true,
+    exportPath: '',
+    type: 'FCP XML',
+    items: [
+      {
+        fileName: 'one.mp3',
+        srcFolderPath: null
+      },
+    ],
+    isWindows: false
+  },
+];
+
 const modalItems = [
   {
     id: '1',
-    type: 'Project',
     showModal: true,
     title: 'Example Project Title',
     description: 'This is a sample card description. This is fun!',
@@ -86,7 +167,6 @@ const modalItems = [
     showModal: true,
     modalTitle: 'New Project',
     id: '2',
-    type: 'Project'
   },
   {
     projectId: '123',
@@ -96,7 +176,6 @@ const modalItems = [
     showModal: true,
     modalTitle: 'New Transcript',
     id: '3',
-    type: 'Transcript'
   },
   {
     projectId: '1234',
@@ -106,7 +185,6 @@ const modalItems = [
     showModal: false,
     modalTitle: 'New Transcript',
     id: '4',
-    type: 'Transcript'
   }
 ];
 
@@ -153,4 +231,4 @@ const programmeScript = [
   }
 ];
 
-export { items, transcriptItems, modalItems, programmeScript };
+export { items, transcriptItems, modalItems, exportItems, programmeScript };

@@ -6,8 +6,8 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     Breadcrumb: './src/Breadcrumb/index.js',
-    FormModal: './src/FormModal/index.js',
-    ItemForm: './src/ItemForm/index.js',
+    ItemFormModal: './src/ItemFormModal/index.js',
+    ExportFormModal: './src/ExportFormModal/index.js',
     List: './src/List/index.js',
     SearchBar: './src/SearchBar/index.js',
     PreviewCanvas: './src/PreviewCanvas/index.js',
@@ -31,7 +31,7 @@ module.exports = {
     VoiceOver: './src/ProgrammeScriptContainer/ProgrammeElements/VoiceOver.js',
     SimpleCard: './src/SimpleCard/index.js',
     TranscriptCard: './src/TranscriptCard/index.js',
-    TranscriptForm: './src/TranscriptForm/index.js',
+    TranscriptFormModal: './src/TranscriptForm/index.js',
     ProgressBar: './src/ProgressBar/index.js'
   },
   output: {

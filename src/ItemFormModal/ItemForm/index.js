@@ -54,11 +54,11 @@ const ItemForm = (props) => {
           onChange={ (e) => setTitle(e.target.value) }
         />
         <Form.Text className="text-muted">
-            Choose a title
+          Choose a title
         </Form.Text>
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         <Form.Control.Feedback type="invalid">
-            Please choose a title
+          Please choose a title
         </Form.Control.Feedback>
       </Form.Group>
 
@@ -72,13 +72,13 @@ const ItemForm = (props) => {
           onChange={ (e) => setDescription(e.target.value) }
         />
         <Form.Text className="text-muted">
-            Choose an optional description
+          Choose an optional description
         </Form.Text>
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       </Form.Group>
       <Modal.Footer>
         <Button variant="primary" type="submit">
-            Save
+          Save
         </Button>
       </Modal.Footer>
     </Form>

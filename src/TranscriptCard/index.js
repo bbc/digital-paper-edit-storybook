@@ -294,15 +294,15 @@ const TranscriptCard = props => {
 
 TranscriptCard.propTypes = {
   description: PropTypes.string,
-  message: PropTypes.string,
-  handleDeleteItem: PropTypes.func.isRequired,
-  handleEditItem: PropTypes.func.isRequired,
+  handleDeleteItem: PropTypes.func,
+  handleEditItem: PropTypes.func,
   icon: PropTypes.any,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.any,
+  message: PropTypes.any,
+  progress: PropTypes.any,
   status: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  progress: PropTypes.number
+  title: PropTypes.string,
+  url: PropTypes.any
 };
 
 TranscriptCard.defaultProps = {
