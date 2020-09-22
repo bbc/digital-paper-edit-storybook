@@ -3,7 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-react-router';
-import TranscriptCard from '../index.js';
+import TranscriptRow from '../index.js';
 import { withKnobs, number } from '@storybook/addon-knobs';
 import { transcriptItems } from '../../dummy';
 
@@ -14,13 +14,13 @@ const transcriptCardActions = actions({
 
 const style = { height: '90vh', overflow: 'scroll' };
 
-storiesOf('Transcript Card', module)
+storiesOf('Transcript Row', module)
   .addDecorator(StoryRouter())
   .addDecorator(withKnobs)
   .add('Success', () => {
     return (
       <section style={ style }>
-        <TranscriptCard
+        <TranscriptRow
           { ...transcriptItems[0] }
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
@@ -31,7 +31,7 @@ storiesOf('Transcript Card', module)
   .add('Success with time', () => {
     return (
       <section style={ style }>
-        <TranscriptCard
+        <TranscriptRow
           { ...transcriptItems[0] }
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
@@ -44,7 +44,7 @@ storiesOf('Transcript Card', module)
   .add('In Progress', () => {
     return (
       <section style={ style }>
-        <TranscriptCard
+        <TranscriptRow
           { ...transcriptItems[1] }
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
@@ -54,7 +54,7 @@ storiesOf('Transcript Card', module)
   }).add('In Progress with message', () => {
     return (
       <section style={ style }>
-        <TranscriptCard
+        <TranscriptRow
           { ...transcriptItems[1] }
           message="Fixing up a Martini..."
           handleEditItem={ transcriptCardActions.handleEdit }
@@ -68,7 +68,7 @@ storiesOf('Transcript Card', module)
 
     return (
       <section style={ style }>
-        <TranscriptCard
+        <TranscriptRow
           { ...transcriptItems[3] }
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
@@ -80,7 +80,7 @@ storiesOf('Transcript Card', module)
   .add('Failed', () => {
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
-        <TranscriptCard
+        <TranscriptRow
           { ...transcriptItems[2] }
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }

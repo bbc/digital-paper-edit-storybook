@@ -32,7 +32,7 @@ storiesOf('Workspace - Demo only (not published on NPM)', module)
         mode="split"
         transcripts={ transcriptItems }
         paperEdits={ paperEditItems }
-        name="Project"
+        name="Project Title"
         handleSearch={ action('handleSearch') }
         toggleShowModal={ action('handleToggle') }
         handleSaveTranscript={ action('handleSaveTranscript') }

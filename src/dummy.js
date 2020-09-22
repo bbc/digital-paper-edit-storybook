@@ -6,6 +6,8 @@ const items = [
     title: 'Sample Simple Card Title One',
     description: 'This is a sample card description. This is fun!',
     display: true,
+    created: { seconds: 1576057570, nanoseconds: 390000000 },
+    updated: { seconds: 1576057575, nanoseconds: 390000000 },
     url: '/projects/1/transcripts/1234'
   },
   {
@@ -15,6 +17,8 @@ const items = [
     title: 'Sample Simple Card Title Two',
     description: 'This is a sample card description. This is fun!',
     display: true,
+    created: { seconds: 1576057570, nanoseconds: 390000000 },
+    updated: { seconds: 1576057575, nanoseconds: 390000000 },
     url: '/projects/1/transcripts/5678'
   }
 ];
@@ -28,6 +32,7 @@ const transcriptItems = [
     url: '/projects/1/transcripts/',
     projectId: '1',
     created: { seconds: 1576057570, nanoseconds: 390000000 },
+    updated: { seconds: 1576057575, nanoseconds: 390000000 },
     status: 'done',
     display: true
   },
@@ -39,7 +44,7 @@ const transcriptItems = [
     url: '/projects/1/transcripts/',
     projectId: '1',
     created: { seconds: 1576057570, nanoseconds: 390000000 },
-
+    updated: { seconds: 1576057575, nanoseconds: 390000000 },
     status: 'in-progress',
     display: true
   },
@@ -53,7 +58,7 @@ const transcriptItems = [
     message: 'Something has gone wrong with your transcription',
     projectId: '1',
     created: { seconds: 1576057570, nanoseconds: 390000000 },
-    updated: null,
+    updated: { seconds: 1576057575, nanoseconds: 390000000 },
     display: true
   },
   {
@@ -67,8 +72,8 @@ const transcriptItems = [
     progress: 100,
     projectId: '1',
     created: { seconds: 1576057570, nanoseconds: 390000000 },
-    status: 'uploading',
-    updated: null
+    updated: { seconds: 1576057575, nanoseconds: 390000000 },
+    status: 'uploading'
   }
 ];
 
