@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import SimpleCard from '../SimpleCard';
 import TranscriptCard from '../TranscriptCard';
 import cuid from 'cuid';
+import ProjectRow from '../ProjectRow';
+import TranscriptRow from '../TranscriptRow';
 
+import { getISOTime } from '../utils';
 const List = props => {
   const items = props.items;
   const type = props.type.toLowerCase();
@@ -20,6 +23,45 @@ const List = props => {
             handleEditItem={ props.handleEditItem }
             handleDeleteItem={ props.handleDeleteItem }
           />
+        );
+      }
+
+      else if (type === 'row') {
+        const created = getISOTime(item.created.seconds);
+        const updated = getISOTime(item.updated.seconds);
+
+        return (
+          <>
+            <ProjectRow
+              { ...item }
+              created={ created }
+              updated={ updated }
+              key={ key }
+              handleDuplicateItem={ props.handleDuplicateItem }
+              handleEditItem={ props.handleEditItem }
+              handleDeleteItem={ props.handleDeleteItem }
+            />
+            <hr style={ { color: 'grey' } } />
+          </>
+        );
+      }
+
+      else if (type === 'trow') {
+        const created = getISOTime(item.created.seconds);
+        const updated = getISOTime(item.updated.seconds);
+
+        return (
+          <>
+            <TranscriptRow
+              { ...item }
+              created={ created }
+              updated={ updated }
+              key={ key }
+              handleEditItem={ props.handleEditItem }
+              handleDeleteItem={ props.handleDeleteItem }
+            />
+            <hr style={ { color: 'grey' } } />
+          </>
         );
       }
 
@@ -44,9 +86,10 @@ const List = props => {
 };
 
 List.propTypes = {
-  items: PropTypes.array.isRequired,
-  handleEditItem: PropTypes.func.isRequired,
   handleDeleteItem: PropTypes.func.isRequired,
+  handleDuplicateItem: PropTypes.any,
+  handleEditItem: PropTypes.func.isRequired,
+  items: PropTypes.array.isRequired,
   type: PropTypes.string
 };
 

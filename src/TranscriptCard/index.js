@@ -257,10 +257,16 @@ const TranscriptCard = props => {
             </Col>
           </Row>
           <Row>
-            <Col xs={ 12 }>
+            <Col xs={ 8 }>
               <Card.Subtitle className="mb-2 text-muted">
-                {props.description}
+                {props.description}<br/>
               </Card.Subtitle>
+            </Col>
+            <Col xs={ 2 }>
+              {props.mediaDuration ? `${ props.mediaDuration }` : null}
+            </Col>
+            <Col xs={ 2 }>
+              {props.transcriptionDuration ? `Time taken: ${ props.transcriptionDuration }` : null}
             </Col>
           </Row>
           <Row>
@@ -295,6 +301,8 @@ const TranscriptCard = props => {
 TranscriptCard.propTypes = {
   description: PropTypes.string,
   message: PropTypes.string,
+  mediaDuration: PropTypes.number,
+  transcriptionDuration: PropTypes.number,
   handleDeleteItem: PropTypes.func.isRequired,
   handleEditItem: PropTypes.func.isRequired,
   icon: PropTypes.any,

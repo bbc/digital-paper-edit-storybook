@@ -26,4 +26,12 @@ const addItem = (item, items) => {
   return [ ...items, item ];
 };
 
-export { inText, anyInText, updateItem, deleteItem, addItem } ;
+const getISOTime = (sec) => {
+  const date = new Date(0);
+  date.setUTCSeconds(sec);
+  const dateString = date.toISOString();
+
+  return dateString.split('T')[0];
+};
+
+export { inText, anyInText, updateItem, deleteItem, addItem, getISOTime } ;

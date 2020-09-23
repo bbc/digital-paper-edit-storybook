@@ -32,7 +32,9 @@ module.exports = {
     SimpleCard: './src/SimpleCard/index.js',
     TranscriptCard: './src/TranscriptCard/index.js',
     TranscriptForm: './src/TranscriptForm/index.js',
-    ProgressBar: './src/ProgressBar/index.js'
+    ProgressBar: './src/ProgressBar/index.js',
+    ProjectRow: './src/ProjectRow/index.js',
+    TranscriptRow: './src/TranscriptRow/index.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

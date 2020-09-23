@@ -25,7 +25,14 @@ const Workspace = (props) => {
   if (mode === 'tab') {
 
     workspace = (
-      <TabularWorkspace { ...props }/>
+      <>
+        <Row>
+          <Col sm={ 12 }>
+            <Breadcrumb items={ genBreadcrumb(name) } />
+          </Col>
+        </Row>
+        <TabularWorkspace { ...props }/>
+      </>
     );
 
   } else if (mode === 'split') {
@@ -36,12 +43,7 @@ const Workspace = (props) => {
   }
 
   return (
-    <Container style={ { marginBottom: '5em', marginTop: '1em' } }>
-      <Row>
-        <Col sm={ 12 }>
-          <Breadcrumb items={ genBreadcrumb(name) } />
-        </Col>
-      </Row>
+    <Container style={ { marginBottom: '5em' } }>
       { workspace }
     </Container>
   );

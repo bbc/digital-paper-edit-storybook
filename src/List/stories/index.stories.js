@@ -8,7 +8,8 @@ import { items, transcriptItems } from '../../dummy';
 
 const cardActions = actions({
   handleEditItem: 'Edit button clicked',
-  handleDeleteItem: 'Delete button clicked'
+  handleDeleteItem: 'Delete button clicked',
+  handleDuplicateItem: 'Duplicate button clicked'
 });
 
 storiesOf('List', module)
@@ -31,6 +32,17 @@ storiesOf('List', module)
         handleEditItem={ cardActions.handleEditItem }
         handleDeleteItem={ cardActions.handleDeleteItem }
         type="transcript"
+      />
+    </section>
+  ))
+  .add('Project Rows', () => (
+    <section style={ { height: '100%', overflow: 'scroll' } }>
+      <List
+        items={ items }
+        handleEditItem={ cardActions.handleEditItem }
+        handleDeleteItem={ cardActions.handleDeleteItem }
+        handleDuplicateItem={ cardActions.handleDuplicateItem }
+        type="row"
       />
     </section>
   ));
