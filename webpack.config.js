@@ -65,7 +65,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         include: path.resolve(__dirname, 'src'),
         // TODO: because it uses entry point to determine graph of dependencies, might not be needed to exclude test ans sample files?
-        exclude: /(node_modules|lib|bower_components|dist|demo|.storybook|storybook-static)/,
+        exclude: /(node_modules|lib|bower_components|dist|demo|\.storybook|storybook-static)$/,
         use: {
           loader: 'babel-loader'
         }
