@@ -6,7 +6,7 @@ before_install:
 before_deploy:
   - npm run build
   - npm run cp
-    #  - cd dist
+  - cd dist
 deploy:
   provider: npm
   email: eimi.okuno@bbc.co.uk
