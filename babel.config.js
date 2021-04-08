@@ -4,25 +4,24 @@
 module.exports = {
   presets: [
     [
-      "@babel/preset-env",
+      '@babel/preset-env',
       {
-        targets: { node: "current" },
+        targets: { node: 'current' },
       },
     ],
-    "@babel/preset-react",
+    '@babel/preset-react',
     [
-      "minify",
+      'minify',
       {
         builtIns: false,
         evaluate: false,
-        mangle: false,
-      },
-    ],
+        mangle: false
+      }
+    ]
   ],
   plugins: [
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-proposal-object-rest-spread",
-    "@babel/plugin-proposal-private-methods",
-    "@babel/plugin-transform-react-jsx",
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-proposal-object-rest-spread',
+    '@babel/plugin-transform-react-jsx',
   ],
 };
