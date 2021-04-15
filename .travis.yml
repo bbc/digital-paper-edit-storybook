@@ -1,8 +1,7 @@
 language: node_js
 node_js:
-  - "12.13"
-before_install:
-  npm i -g rimraf
+  - "12.18.4"
+before_install: npm i -g rimraf
 before_deploy:
   - npm run build
   - npm run cp
