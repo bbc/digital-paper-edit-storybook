@@ -19,7 +19,8 @@
     "publish-public": "npm run build && npm run cp && npm publish dist --access public",
     "publish-dry": "npm run build && npm run cp && npm publish dist --dry-run",
     "release": "auto shipit",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "pre-merge-commit": "lint-staged"
   },
   "eslintConfig": {
     "extends": "react-app"
