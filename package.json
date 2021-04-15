@@ -19,7 +19,7 @@
     "publish-public": "npm run build && npm run cp && npm publish dist --access public",
     "publish-dry": "npm run build && npm run cp && npm publish dist --dry-run",
     "release": "auto shipit",
-    "pre-commit": "echo \"Husky running!\""
+    "pre-commit": "lint-staged"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -83,11 +83,13 @@
     "@storybook/react": "^6.1.20",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.1.0",
-    "eslint": "^6.2.2",
-    "eslint-plugin-react": "^7.14.3",
+    "eslint": "^7.21.0",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "gh-pages": "^2.0.1",
     "husky": "^6.0.0",
     "jest": "^25.1.0",
+    "lint-staged": "^10.5.4",
     "prettier": "^1.18.2",
     "storybook-react-router": "^1.0.8",
     "webpack": "^4.44.2",
@@ -97,5 +99,11 @@
     "react": "^16.12.0",
     "react-router": "^5.1.1",
     "react-router-dom": "^5.1.1"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
