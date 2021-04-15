@@ -15,10 +15,11 @@
     "clean": "rimraf dist storybook-static test",
     "publish-ghpages": "mkdir -p build-storybook && npm run build-storybook && gh-pages -d storybook-static",
     "cp": "cp package.json ./dist/package.json && cp README.md ./dist/README.md ",
-    "prepare": "npm run clean",
+    "prepare": "npm run clean && husky install",
     "publish-public": "npm run build && npm run cp && npm publish dist --access public",
     "publish-dry": "npm run build && npm run cp && npm publish dist --dry-run",
-    "release": "auto shipit"
+    "release": "auto shipit",
+    "pre-commit": "echo \"Husky running!\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -85,6 +86,7 @@
     "eslint": "^6.2.2",
     "eslint-plugin-react": "^7.14.3",
     "gh-pages": "^2.0.1",
+    "husky": "^6.0.0",
     "jest": "^25.1.0",
     "prettier": "^1.18.2",
     "storybook-react-router": "^1.0.8",
