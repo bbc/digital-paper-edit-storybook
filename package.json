@@ -19,8 +19,8 @@
     "publish-public": "npm run build && npm run cp && npm publish dist --access public",
     "publish-dry": "npm run build && npm run cp && npm publish dist --dry-run",
     "release": "auto shipit",
-    "pre-commit": "lint-staged",
-    "pre-merge-commit": "lint-staged"
+    "pre-commit": "eslint --fix $(git diff --name-only --diff-filter=ACMRTUXB master | grep  -E \"(.js$)\") && git add .",
+    "pre-merge-commit": "eslint --fix $(git diff --name-only --diff-filter=ACMRTUXB master | grep  -E \"(.js$)\") && git add ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -90,7 +90,6 @@
     "gh-pages": "^2.0.1",
     "husky": "^6.0.0",
     "jest": "^25.1.0",
-    "lint-staged": "^10.5.4",
     "prettier": "^1.18.2",
     "storybook-react-router": "^1.0.8",
     "webpack": "^4.44.2",
@@ -100,8 +99,5 @@
     "react": "^16.12.0",
     "react-router": "^5.1.1",
     "react-router-dom": "^5.1.1"
-  },
-  "lint-staged": {
-    "src/**/*.js": "eslint --fix"
   }
 }
