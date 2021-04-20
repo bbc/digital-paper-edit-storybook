@@ -20,8 +20,8 @@
     "publish-dry": "npm run build && npm run cp && npm publish dist --dry-run",
     "release": "auto shipit",
     "postinstall": "husky install",
-    "pre-commit": "DIFFED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB --cached | grep -E \"(.js$)\") && eslint --fix $DIFFED_FILES && git add $DIFFED_FILES",
-    "pre-merge-commit": "DIFFED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB --cached | grep -E \"(.js$)\") && eslint --fix $DIFFED_FILES && git add $DIFFED_FILES"
+    "pre-commit": "DIFFED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB --cached | grep -E \"(.js$)\"); eslint --fix $DIFFED_FILES && git add $DIFFED_FILES",
+    "pre-merge-commit": "DIFFED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB --cached | grep -E \"(.js$)\"); eslint --fix $DIFFED_FILES && git add $DIFFED_FILES"
   },
   "eslintConfig": {
     "extends": "react-app"
