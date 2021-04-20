@@ -15,12 +15,13 @@
     "clean": "rimraf dist storybook-static test",
     "publish-ghpages": "mkdir -p build-storybook && npm run build-storybook && gh-pages -d storybook-static",
     "cp": "cp package.json ./dist/package.json && cp README.md ./dist/README.md ",
-    "prepare": "npm run clean && husky install",
+    "prepare": "npm run clean",
     "publish-public": "npm run build && npm run cp && npm publish dist --access public",
     "publish-dry": "npm run build && npm run cp && npm publish dist --dry-run",
     "release": "auto shipit",
-    "pre-commit": "eslint --fix $(git diff --name-only --diff-filter=ACMRTUXB master | grep  -E \"(.js$)\") && git add .",
-    "pre-merge-commit": "eslint --fix $(git diff --name-only --diff-filter=ACMRTUXB master | grep  -E \"(.js$)\") && git add ."
+    "postinstall": "husky install",
+    "pre-commit": "DIFFED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB --cached | grep -E \"(.js$)\") && eslint --fix $DIFFED_FILES && git add $DIFFED_FILES",
+    "pre-merge-commit": "DIFFED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB --cached | grep -E \"(.js$)\") && eslint --fix $DIFFED_FILES && git add $DIFFED_FILES"
   },
   "eslintConfig": {
     "extends": "react-app"
