@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "12.18.4"
+  - 12.18.4
 before_install: npm i -g rimraf
 before_deploy:
   - npm run build
@@ -8,10 +8,10 @@ before_deploy:
   - cd dist
 deploy:
   provider: npm
-  email: eimi.okuno@bbc.co.uk
+  email: allison.shultes@bbc.co.uk
   skip_cleanup: true
   api_key:
-    secure: pKBL17horvtDr+5vx2DoGZMQtyoN1vWwDOzOC5qMG+LJx1i3ATAiWggR0x43fVyPLBFN7oRXuHTdRnL0KFUlCZ3DgvW/9C/OHE46+4j5DqrlR4nHWihDSMmYcGuy9+9uJYgXki7ZHt/rrOn6ClSni9Hyxe9+wIqy0D6nzarCcRpAch+ZbYXGn0rUNv50a8G7lpfzt+1edXyyHwHnZce/xZXOQ5B2lFrbGnA/N9OxF+Vh1cO7IPua3nekj+BXp7fcSAaFcWS+KjEGfWglBOXP7pTNxg42SGd2pVOAvYN6oNhlGpoi8ELGm7sKhewVgmWqALR4Q085asR9gvkYx9rLxIi+GSqBfdTARDvwjSltCPXohoeQYfatnxX+e47rJJf1YnTHwsNZuyit4hl3WqqWgXNUHF75h4dmUzQUwBoMNUu/zVZcrv/CA0h0dXIoujbJmQgnFq7NasWA9fNxQTyp8jk+k6ACvsz/xELPiXQLIWEUn7qA/+v7kh5qnJOT5npizjpSnFINY190SIheX/2/qnBVYX+pOUvOx25RiqrQmj+nGnrv1oQNvuM8lsiXwLp5+BM0tl4MgqGme2BVWLNYTejanwgRnIy0MVKESpA3xP0xSiLyZwZSs1fZd59iI2WONwML+wzMbzQtYVxjYMGy05uZ7oUBSyjoPM0crof6Ayc=
+    secure: M9k1TDznm5Gs+c7cDu7l09EPjglXNdMPFTecliAWmGL0WUN59GxIohpPis09QTjSA7wcQSzwbDrHslyt2q9TpGcNcSEUwHCg18RLBozK6X6nRpdXiWWWLob+hOK/dJVcNIL2fIWOGzf2B/kfzPc4kZk3rOPO2HX7Ye/QT68QB9BpwWlZAyDRtxZ5k1vDdA+5eVrElDCrtD8I1iqc5TSq6S+KpChzfPNjGH/YqV9gsaBcR8wOcEGtrwtLtl9QQ/ewmSB8UxP0Z2x2hTn7m8+qbmFCU4KRV+cxP6d1ztIocw2gh/u0EgTzgDFKlr53J2Jz/L4d1RN69qpDquUS6pD7yxLNSOeHT641j8Bq6aDBOYKu/l/y7LkGjkqxT8vv7guIfI2sBvixU40DcDBucbLhAKNCb48Kp936oq+1dFFJCw7NfQ+pWMFnFLKIOy/y/x6tSjV7wWVbC/0TTH3nuGgAwXicuZdfop0/qmq7YSWnXlDTB8CdC5A1P8344k0a1jVKU7F+DinSlECF0yn7rz0pxvcGBrBMKNBTpENuypD95PhKWw2teSLuRBmmjndIUD3YsG0Gv4OqibwEdUBrmO6rLOzQegyW36IaQ9MM3oIt0T7oztIE/Vr12eHsiI25TZN4uLFPTRrCf8Hd2cnyxfg1qqc4YEmHNmyeQdlCV3ROTXI=
   on:
     branch: release
 after_deploy:
