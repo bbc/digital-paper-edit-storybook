@@ -18,7 +18,10 @@
     "prepare": "npm run clean",
     "publish-public": "npm run build && npm run cp && npm publish dist --access public",
     "publish-dry": "npm run build && npm run cp && npm publish dist --dry-run",
-    "release": "auto shipit"
+    "release": "auto shipit",
+    "postinstall": "husky install",
+    "pre-commit": "DIFFED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB --cached | grep -E \"(.js$)\"); eslint --fix $DIFFED_FILES && git add $DIFFED_FILES",
+    "pre-merge-commit": "DIFFED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB --cached | grep -E \"(.js$)\"); eslint --fix $DIFFED_FILES && git add $DIFFED_FILES"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -82,9 +85,11 @@
     "@storybook/react": "^6.1.20",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.1.0",
-    "eslint": "^6.2.2",
-    "eslint-plugin-react": "^7.14.3",
+    "eslint": "^7.21.0",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "gh-pages": "^2.0.1",
+    "husky": "^6.0.0",
     "jest": "^25.1.0",
     "prettier": "^1.18.2",
     "storybook-react-router": "^1.0.8",
