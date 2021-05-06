@@ -41,7 +41,7 @@ const List = props => {
               handleEditItem={ props.handleEditItem }
               handleDeleteItem={ props.handleDeleteItem }
             />
-            <hr style={ { color: 'grey' } } />
+            <hr style={ { color: '#c0c0c0' } } />
           </>
         );
       }
@@ -60,7 +60,7 @@ const List = props => {
               handleEditItem={ props.handleEditItem }
               handleDeleteItem={ props.handleDeleteItem }
             />
-            <hr style={ { color: 'grey' } } />
+            <hr style={ { color: '#c0c0c0' } } />
           </>
         );
       }
