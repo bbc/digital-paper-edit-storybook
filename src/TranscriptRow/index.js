@@ -12,7 +12,9 @@ import {
   faTrash,
   faExclamationTriangle,
   faPen,
-  faEllipsisH,
+  faEllipsisV,
+  faPlay,
+  faVolumeUp
 } from '@fortawesome/free-solid-svg-icons';
 
 const TranscriptRow = (props) => {
@@ -39,15 +41,16 @@ const TranscriptRow = (props) => {
         <Col xs={ 2 } sm={ 1 }>
           <Dropdown>
             <Dropdown.Toggle
+              bsPrefix="custom-menu"
               variant="secondary"
               size="sm"
               style={ {
                 borderWidth: 0,
                 backgroundColor: 'transparent',
-                color: 'grey',
+                color: 'grey'
               } }
             >
-              <FontAwesomeIcon icon={ faEllipsisH } />
+              <FontAwesomeIcon icon={ faEllipsisV } />
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item as="button" onClick={ handleEdit }>
@@ -79,21 +82,27 @@ const TranscriptRow = (props) => {
       </Row>);
   };
 
-  const SourceRow = () =>
-    <MetaRow>
-      <p>
-        Converted from {props.mediaType ? props.mediaType : 'unknown'}
-      </p>
-    </MetaRow>;
+  const SourceRow = () => {
+    const renderMediaType = (mediaType) => {
+      if (mediaType.includes('video')) {
+        return <p style={ { display: 'flex' } } ><FontAwesomeIcon icon={ faPlay } style={ { marginRight: '0.4rem' } } /><p>Video</p></p>;
+      }
+      if (mediaType.includes('audio')) {
+        return <p style={ { display: 'flex' } }><FontAwesomeIcon icon={ faVolumeUp } style={ { marginRight: '0.4rem' } }/><p>Audio</p></p>;
+      }
+    };
+
+    return (
+      <MetaRow>
+        {props.mediaType ? renderMediaType(props.mediaType) : <p>unknown</p>}
+      </MetaRow>);
+  };
 
   const TimeRow = () =>
     <MetaRow>
-      <p>
+      <p style={ { paddingBottom: '13px', borderBottom: 'solid 1px #c0c0c0' } }>
         {props.mediaDuration ? `Duration: ${ props.mediaDuration } | ` : null}
-        {props.transcriptionDuration
-          ? `Time taken: ${ props.transcriptionDuration } | `
-          : null}
-        {props.created ? `Uploaded: ${ props.created }` : null}
+        {props.created ? `Upload: ${ props.created }` : null}
       </p>
     </MetaRow>;
 
