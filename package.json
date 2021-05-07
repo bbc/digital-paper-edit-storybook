@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run storybook",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "storybook": "start-storybook -p 6006",
     "build": "webpack --config webpack.config.js --mode production",
     "dev": "webpack --watch --config webpack.dev.config.js --mode development",
