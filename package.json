@@ -15,12 +15,16 @@
     "build-storybook-docs": "build-storybook -s public --docs",
     "clean": "rm -rf dist",
     "publish-ghpages": "mkdir -p build-storybook && npm run build-storybook && gh-pages -d storybook-static",
-    "cp": "cp package.dist.json ./dist/package.json && cp README.md ./dist/README.md ",
+    "cp": "npm run package-dist && cp README.md ./dist/README.md",
+    "package-dist": "node ./tools/createDist.js",
     "prepare": "npm run clean",
     "publish-public": "npm run build && npm run cp && npm publish dist --access public",
     "publish-dry": "npm run build && npm run cp && npm publish dist --dry-run",
     "release": "auto shipit",
-    "rm-react-deps": "npm rm react react-dom react-router react-router-dom --no-save"
+    "rm-react-deps": "npm rm react react-dom react-router react-router-dom --no-save",
+    "postinstall": "husky install",
+    "pre-commit": "DIFFED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB --cached | grep -E \"(.js$)\"); eslint --fix $DIFFED_FILES && git add $DIFFED_FILES",
+    "pre-merge-commit": "DIFFED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB --cached | grep -E \"(.js$)\"); eslint --fix $DIFFED_FILES && git add $DIFFED_FILES"
   },
   "eslintConfig": {
     "extends": "react-app"
