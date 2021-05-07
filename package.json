@@ -17,6 +17,7 @@
     "publish-ghpages": "mkdir -p build-storybook && npm run build-storybook && gh-pages -d storybook-static",
     "cp": "npm run package-dist && cp README.md ./dist/README.md",
     "package-dist": "node ./tools/createDist.js",
+    "postversion": "git push --tags",
     "prepare": "npm run clean",
     "publish-public": "npm run build && npm run cp && npm publish dist --access public",
     "publish-dry": "npm run build && npm run cp && npm publish dist --dry-run",
