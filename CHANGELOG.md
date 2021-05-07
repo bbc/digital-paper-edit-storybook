@@ -1,0 +1,14 @@
+# Changelog
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Released]
+
+## [ 1.22.2 ] - 2021-04-20
+### Changed
+- I77 Updated travis.yml to replace broken Jenkins npm credentials with team member credentials
+
+## [ 1.22.1 ] - 2021-04-20
+### Changed
+- I77 Updated travis.yml to replace Eimi's npm credentials with our Jenkins credentials

@@ -84,6 +84,7 @@ const VideoContextPreview = (props) => {
       <Row style={ { marginTop: '0.4em' } }>
         {videoContext ? (
           <Controls
+            videoContext={ videoContext }
             handlePlay={ () => videoContext.play() }
             handlePause={ () => videoContext.pause() }
             handleStop={ () => handleStop() }
