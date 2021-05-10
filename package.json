@@ -1,26 +1,33 @@
 {
   "name": "@bbc/digital-paper-edit-storybook",
-  "version": "1.21.0",
+  "version": "1.23.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "npm run storybook",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "storybook": "start-storybook -p 6006",
     "build": "webpack --config webpack.config.js --mode production",
     "dev": "webpack --watch --config webpack.dev.config.js --mode development",
-    "linked": "npm run clean && mkdir -p dist && npm run rm-react-deps && npm run cp && npm run dev",
+    "link:setup": "npm run clean && mkdir -p dist && npm run rm-react-deps && npm run cp && npm run dev",
+    "link": "sh ./tools/link.sh",
+    "unlink": "sh ./tools/unlink.sh && npm i",
     "buildw": "webpack --config webpack.config.js --watch",
     "build-storybook": "build-storybook -s public",
     "build-storybook-docs": "build-storybook -s public --docs",
     "clean": "rm -rf dist",
     "publish-ghpages": "mkdir -p build-storybook && npm run build-storybook && gh-pages -d storybook-static",
-    "cp": "cp package.dist.json ./dist/package.json && cp README.md ./dist/README.md ",
+    "cp": "npm run package-dist && cp README.md ./dist/README.md",
+    "package-dist": "node ./tools/createDist.js",
+    "postversion": "git push --tags",
     "prepare": "npm run clean",
     "publish-public": "npm run build && npm run cp && npm publish dist --access public",
     "publish-dry": "npm run build && npm run cp && npm publish dist --dry-run",
     "release": "auto shipit",
-    "rm-react-deps": "npm rm react react-dom react-router react-router-dom --no-save"
+    "rm-react-deps": "npm rm react react-dom react-router react-router-dom --no-save",
+    "postinstall": "if [ \"${PWD##*/}\" = \"digital-paper-edit-storybook\" ]; then husky install; fi",
+    "pre-commit": "DIFFED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB --cached | grep -E \"(.js$)\"); eslint --fix $DIFFED_FILES && git add $DIFFED_FILES",
+    "pre-merge-commit": "DIFFED_FILES=$(git diff --name-only --diff-filter=ACMRTUXB --cached | grep -E \"(.js$)\"); eslint --fix $DIFFED_FILES && git add $DIFFED_FILES"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -83,15 +90,13 @@
     "@storybook/addon-viewport": "^6.1.20",
     "@storybook/addons": "^6.0.21",
     "@storybook/react": "^6.1.20",
-    "@testing-library/jest-dom": "^5.1.1",
-    "@testing-library/react": "^10.0.1",
     "babel-eslint": "^10.0.3",
-    "babel-jest": "^24.9.0",
     "babel-loader": "^8.1.0",
     "babel-preset-minify": "^0.5.1",
     "eslint": "^6.2.2",
     "eslint-plugin-react": "^7.14.3",
     "gh-pages": "^2.0.1",
+    "husky": "^6.0.0",
     "jest": "^25.1.0",
     "prettier": "^1.18.2",
     "storybook-react-router": "^1.0.8",
@@ -103,23 +108,5 @@
     "react-dom": "^16.12.0",
     "react-router": "^5.1.1",
     "react-router-dom": "^5.1.1"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest"
-    },
-    "setupFilesAfterEnv": [
-      "<rootDir>/config/jest/setup.js"
-    ],
-    "moduleNameMapper": {
-      ".*\\.(css|scss|sass)$": "<rootDir>/tools/jest/styleMock.js",
-      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/jest/assetMock.js"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "json"
-    ],
-    "verbose": true
   }
 }
