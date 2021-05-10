@@ -49,21 +49,18 @@ npm start
 
 In this repo, run:
 ```sh
-npm run linked
+npm run link:setup
 ```
 
 In another terminal window:
 ```sh
-cd dist
-npm link
+npm run link
 ```
 
-In the Firebase app repo, run
+When finished, run:
 ```sh
-npm link @bbc/digital-paper-edit-storybook
+npm run unlink
 ```
-
-When finished, remember to run `npm unlink @bbc/digital-paper-edit-storybook` in the Firebase repo and `npm unlink` in the dist directory of storybook (in that order).
 
 ## Usage - production
 
