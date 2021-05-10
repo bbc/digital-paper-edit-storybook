@@ -45,6 +45,23 @@ npm start
 
 [Storybook](https://storybook.js.org/) is at [`http://localhost:6006/`](http://localhost:6006)
 
+### Linking storybook to the Firebase app for development
+
+In this repo, run:
+```sh
+npm run link:setup
+```
+
+In another terminal window:
+```sh
+npm run link
+```
+
+When finished, run:
+```sh
+npm run unlink
+```
+
 ## Usage - production
 
 ```sh
