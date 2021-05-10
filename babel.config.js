@@ -6,8 +6,8 @@ module.exports = {
     [
       '@babel/preset-env',
       {
-        targets: { node: 'current' }
-      }
+        targets: { node: 'current' },
+      },
     ],
     '@babel/preset-react',
     [
@@ -15,13 +15,14 @@ module.exports = {
       {
         builtIns: false,
         evaluate: false,
-        mangle: false
-      }
-    ]
+        mangle: false,
+      },
+    ],
   ],
   plugins: [
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-object-rest-spread',
-    '@babel/plugin-transform-react-jsx'
-  ]
+    '@babel/plugin-proposal-private-methods',
+    '@babel/plugin-transform-react-jsx',
+  ],
 };
