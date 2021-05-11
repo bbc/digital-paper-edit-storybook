@@ -14,7 +14,7 @@ const createDist = async () => {
     process.exit();
   }
 
-  const { dependencies } = packageObject;
+  const { dependencies, scripts } = packageObject;
 
   const remainingDeps = depsToRemove.reduce((deps, depToRemove) => {
     // eslint-disable-next-line no-unused-vars
@@ -23,7 +23,11 @@ const createDist = async () => {
     return remaining;
   }, dependencies);
 
-  const distPackage = { ...packageObject, ...{ dependencies: remainingDeps } };
+  // Removes .git from postinstall dependencies
+  scripts.postinstall = 'husky install';
+
+  const distPackage = { ...packageObject, ...{ dependencies: remainingDeps },
+    ...{ scripts } };
 
   try {
     await fs.writeFile(path.resolve('./dist/package.json'), JSON.stringify(distPackage, null, '\t'));
