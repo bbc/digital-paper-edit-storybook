@@ -9,7 +9,7 @@ const FormModal = props => {
   const type = props.type.toLowerCase();
 
   const form =
-    type === 'transcript' && !props.id ? (
+    type === 'transcript' ? (
       <TranscriptForm { ...props } />
     ) : (
       <ItemForm { ...props } />

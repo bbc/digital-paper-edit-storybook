@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 const ItemForm = (props) => {
-
+  const type = props.type.toLowerCase();
   const [ description, setDescription ] = useState('');
   const [ isValidated, setIsValidated ] = useState(false);
   const [ title, setTitle ] = useState('');
@@ -37,48 +37,57 @@ const ItemForm = (props) => {
     }
   };
 
+  const formValues = {
+    'project': {
+      title: 'Project title',
+      titlePlaceholder: 'Enter a project title',
+      titleFeedback: 'Please choose a project title',
+      descriptionPlaceholder: 'Enter a project description (optional)'
+    },
+    'programme-script': {
+      title: 'Programme script title',
+      titlePlaceholder: 'Enter a programme script title',
+      titleFeedback: 'Please choose a programme script title',
+      descriptionPlaceholder: 'Enter a programme script description (optional)'
+    }
+  };
+
   return (
 
     <Form noValidate
       validated={ isValidated }
       onSubmit={ handleSubmit }
     >
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Title</Form.Label>
+      <Form.Group>
+        <Form.Label>{formValues[type].title}</Form.Label>
         <Form.Control
           required
           type="text"
           name="title"
-          placeholder="Enter a project title"
+          placeholder={ formValues[type].titlePlaceholder }
           value={ title }
           onChange={ (e) => setTitle(e.target.value) }
         />
-        <Form.Text className="text-muted">
-            Choose a title
-        </Form.Text>
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         <Form.Control.Feedback type="invalid">
-            Please choose a title
+          {formValues[type].titleFeedback}
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Form.Group controlId="formBasicEmail">
+      <Form.Group>
         <Form.Label>Description</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter a project description"
+          placeholder={ formValues[type].descriptionPlaceholder }
           value={ description }
           name="description"
           onChange={ (e) => setDescription(e.target.value) }
         />
-        <Form.Text className="text-muted">
-            Choose an optional description
-        </Form.Text>
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       </Form.Group>
       <Modal.Footer>
         <Button variant="primary" type="submit">
-            Save
+          Save
         </Button>
       </Modal.Footer>
     </Form>
@@ -89,13 +98,14 @@ ItemForm.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
+  type: PropTypes.string,
   showModal: PropTypes.bool,
   modalTitle: PropTypes.string,
   handleSaveForm: PropTypes.func.isRequired,
 };
 
 ItemForm.defaultProps = {
-  showModal: false
+  showModal: false,
 };
 
 export default ItemForm;

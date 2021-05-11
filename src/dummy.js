@@ -80,7 +80,7 @@ const transcriptItems = [
 const modalItems = [
   {
     id: '1',
-    type: 'Project',
+    type: 'project',
     showModal: true,
     title: 'Example Project Title',
     description: 'This is a sample card description. This is fun!',
@@ -89,9 +89,9 @@ const modalItems = [
   },
   {
     showModal: true,
-    modalTitle: 'New Project',
+    modalTitle: 'New programme script',
     id: '2',
-    type: 'Project'
+    type: 'programme-script'
   },
   {
     projectId: '123',
@@ -101,7 +101,7 @@ const modalItems = [
     showModal: true,
     modalTitle: 'New Transcript',
     id: '3',
-    type: 'Transcript'
+    type: 'transcript'
   },
   {
     projectId: '1234',
@@ -111,7 +111,7 @@ const modalItems = [
     showModal: false,
     modalTitle: 'New Transcript',
     id: '4',
-    type: 'Transcript'
+    type: 'transcript'
   }
 ];
 
