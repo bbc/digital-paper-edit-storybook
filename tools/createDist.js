@@ -3,7 +3,7 @@ const path = require('path');
 
 const createDist = async () => {
   let packageJson, packageObject;
-  const depsToRemove = [ 'react', 'react-dom', 'react-router', 'react-router-dom' ];
+  const depsToRemove = [ 'react', 'react-dom', 'react-router', 'react-router-dom', 'postinstall' ];
 
   console.log(`Removing dependencies [${ depsToRemove }] from package.json and writing to ./dist/package.json`);
   try {
