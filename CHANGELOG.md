@@ -15,3 +15,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [ 1.22.1 ] - 2021-04-20
 ### Changed
 - I77 Updated travis.yml to replace Eimi's npm credentials with our Jenkins credentials
+
+## [ 1.23.1 ] - 2021-05-11
+- I91 Replaced postinstall script in the dist folder
