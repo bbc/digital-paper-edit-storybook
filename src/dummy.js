@@ -19,7 +19,8 @@ const items = [
     display: true,
     created: { seconds: 1576057570, nanoseconds: 390000000 },
     updated: { seconds: 1576057575, nanoseconds: 390000000 },
-    url: '/projects/1/transcripts/5678'
+    url: '/projects/1/transcripts/5678',
+    mediaType: 'audio'
   }
 ];
 
@@ -34,7 +35,8 @@ const transcriptItems = [
     created: { seconds: 1576057570, nanoseconds: 390000000 },
     updated: { seconds: 1576057575, nanoseconds: 390000000 },
     status: 'done',
-    display: true
+    display: true,
+    mediaType: 'audio'
   },
   {
     id: '3',
@@ -46,7 +48,8 @@ const transcriptItems = [
     created: { seconds: 1576057570, nanoseconds: 390000000 },
     updated: { seconds: 1576057575, nanoseconds: 390000000 },
     status: 'in-progress',
-    display: true
+    display: true,
+    mediaType: 'video'
   },
   {
     id: '4',
@@ -59,7 +62,8 @@ const transcriptItems = [
     projectId: '1',
     created: { seconds: 1576057570, nanoseconds: 390000000 },
     updated: { seconds: 1576057575, nanoseconds: 390000000 },
-    display: true
+    display: true,
+    mediaType: 'audio'
   },
   {
     id: '5',
@@ -73,7 +77,8 @@ const transcriptItems = [
     projectId: '1',
     created: { seconds: 1576057570, nanoseconds: 390000000 },
     updated: { seconds: 1576057575, nanoseconds: 390000000 },
-    status: 'uploading'
+    status: 'uploading',
+    mediaType: 'video'
   }
 ];
 

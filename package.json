@@ -59,6 +59,7 @@
     "edl_composer": "^1.0.3",
     "express": "^4.17.1",
     "gel-typography": "^2.0.5",
+    "moment": "^2.29.1",
     "node-sass": "^4.13.1",
     "polished": "^3.4.1",
     "prop-types": "^15.7.2",

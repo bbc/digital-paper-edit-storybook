@@ -4,10 +4,11 @@ import BSProgressBar from 'react-bootstrap/ProgressBar';
 const ProgressBar = ({ progress }) => {
   return (
     <BSProgressBar
+      style={ {
+        color: 'green',
+        width: '100%'
+      } }
       now={ progress }
-      striped
-      animated
-      variant={ 'info' }
       label={ `${ progress }%` }
     />
   );

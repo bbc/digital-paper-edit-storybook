@@ -56,7 +56,7 @@ storiesOf('Transcript Row', module)
       <section style={ style }>
         <TranscriptRow
           { ...transcriptItems[1] }
-          message="Fixing up a Martini..."
+          message="Stripping audio..."
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
         />

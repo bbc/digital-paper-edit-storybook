@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Alert from 'react-bootstrap/Alert';
 import { LinkContainer } from 'react-router-bootstrap';
+import moment from 'moment';
 import ProgressBar from '../ProgressBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -14,8 +14,12 @@ import {
   faPen,
   faEllipsisV,
   faPlay,
-  faVolumeUp
+  faVolumeUp,
+  faCheckCircle,
+  faSyncAlt
 } from '@fortawesome/free-solid-svg-icons';
+
+moment().format();
 
 const TranscriptRow = (props) => {
   const handleDelete = () => {
@@ -30,6 +34,19 @@ const TranscriptRow = (props) => {
 
   const handleEdit = () => {
     props.handleEditItem(props.id);
+  };
+
+  const getExpiryDate = (createdDate) => {
+    const dateCreated = moment(new Date(createdDate));
+    console.log('dateCreated: ', dateCreated);
+    const dateNow = moment();
+    console.log('dateNow: ', dateNow);
+    const expiryDate = moment(new Date(dateCreated)).add(60, 'days');
+    console.log('expiryDate: ', expiryDate);
+    const daysUntilExpiry = expiryDate.diff(dateNow, 'days');
+    console.log('daysUntilExpiry: ', daysUntilExpiry);
+
+    return daysUntilExpiry;
   };
 
   const HeaderRow = ({ children }) => {
@@ -82,13 +99,37 @@ const TranscriptRow = (props) => {
       </Row>);
   };
 
+  const InProgressMessage = ({ message }) => {
+    if (message === 'Transcribing...') {
+      return (
+        <p style={ { paddingBottom: '13px', borderBottom: 'solid 1px #c0c0c0' } }>
+          <FontAwesomeIcon
+            icon={ faSyncAlt }
+            style={ { marginRight: '0.4rem' } }/>
+          <span>{message}</span>
+        </p>
+      );
+    } else if (message === 'Stripping audio...' || 'Sending media to a Speech-to-Text service...') {
+      return (
+        <p style={ { paddingBottom: '13px', borderBottom: 'solid 1px #c0c0c0' } }>
+          <FontAwesomeIcon
+            icon={ faSyncAlt }
+            style={ { marginRight: '0.4rem' } } />
+          <span>{`Transcribing: ${ message }`}</span>
+        </p>
+      );
+    }
+
+    return <p>{message}</p>;
+  };
+
   const SourceRow = () => {
     const renderMediaType = (mediaType) => {
       if (mediaType.includes('video')) {
-        return <p style={ { display: 'flex' } } ><FontAwesomeIcon icon={ faPlay } style={ { marginRight: '0.4rem' } } /><p>Video</p></p>;
+        return <p style={ { display: 'flex' } } ><FontAwesomeIcon icon={ faPlay } style={ { marginRight: '0.4rem' } } /><p>{`Video, expires in ${ getExpiryDate(props.created) } days`}</p></p>;
       }
       if (mediaType.includes('audio')) {
-        return <p style={ { display: 'flex' } }><FontAwesomeIcon icon={ faVolumeUp } style={ { marginRight: '0.4rem' } }/><p>Audio</p></p>;
+        return <p style={ { display: 'flex' } }><FontAwesomeIcon icon={ faVolumeUp } style={ { marginRight: '0.4rem' } }/><p>{`Audio, expires in ${ getExpiryDate(props.created) } days`}</p></p>;
       }
     };
 
@@ -115,9 +156,13 @@ const TranscriptRow = (props) => {
           </p>
         </HeaderRow>
         <MessageRow>
-          <Alert variant={ 'danger' } style={ { lineHeight: 'normal' } }>
-            <FontAwesomeIcon icon={ faExclamationTriangle } /> {props.message}
-          </Alert>
+          <div style={ { color: '#f76900' } }>
+            <FontAwesomeIcon icon={ faExclamationTriangle }
+              style={ {
+                marginRight: '0.4rem'
+              } }/>
+            <span>Transcription failed, please try again</span>
+          </div>
         </MessageRow>
         <TimeRow></TimeRow>
       </>
@@ -135,10 +180,14 @@ const TranscriptRow = (props) => {
 
         {props.message ? (
           <MessageRow>
-            <Alert variant={ 'info' } style={ { lineHeight: 'normal' } }>{props.message}</Alert></MessageRow>
+            <span style={ { marginBottom: '15px', display: 'block' } }>
+              This file will be automatically deleted after 60 days.
+            </span>
+            <InProgressMessage message={ props.message }/>
+          </MessageRow>
+
         ) : null}
-        <SourceRow></SourceRow>
-        <TimeRow></TimeRow>
+        {/* <TimeRow></TimeRow> */}
       </>
     );
   };
@@ -152,15 +201,18 @@ const TranscriptRow = (props) => {
           </p>
         </HeaderRow>
         <MessageRow>
-          <Alert variant={ 'info' } style={ { lineHeight: 'normal' } }>
-            <FontAwesomeIcon icon={ faExclamationTriangle } /> Do not move away
-            from or refresh this page until upload is complete!
-            {typeof props.progress === 'number' ? (
-              <ProgressBar progress={ props.progress } />
-            ) : null}
-          </Alert>
+          <FontAwesomeIcon icon={ faExclamationTriangle } /> This file will be automatically deleted after 60 days.
+          {typeof props.progress === 'number' ? (
+            <div style={ {
+              display: 'flex'
+            } }>
+              <span style={ { marginRight: '0.4rem' } }>Uploading...</span>
+              <ProgressBar
+                progress={ props.progress }
+              />
+            </div>
+          ) : null}
         </MessageRow>
-        <SourceRow></SourceRow>
         <TimeRow></TimeRow>
       </>
     );
@@ -174,11 +226,19 @@ const TranscriptRow = (props) => {
             to={ props.url }
             style={ { color: '#007bff', cursor: 'pointer' } }
           >
-            <strong>
-              <p>
+            <p style={ {
+              display: 'flex'
+            } }>
+              <FontAwesomeIcon
+                icon={ faCheckCircle }
+                style={ {
+                  color: 'green',
+                  marginRight: '0.4rem'
+                } }/>
+              <strong>
                 {props.title}
-              </p>
-            </strong>
+              </strong>
+            </p>
           </LinkContainer>
         </HeaderRow>
         <SourceRow></SourceRow>
