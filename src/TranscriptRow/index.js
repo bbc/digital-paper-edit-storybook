@@ -85,10 +85,10 @@ const TranscriptRow = (props) => {
   const SourceRow = () => {
     const renderMediaType = (mediaType) => {
       if (mediaType.includes('video')) {
-        return <p style={ { display: 'flex' } } ><FontAwesomeIcon icon={ faPlay } style={ { marginRight: '0.4rem' } } /><p>Video</p></p>;
+        return <div style={ { display: 'flex' } } ><FontAwesomeIcon icon={ faPlay } style={ { marginRight: '0.4rem' } } /><p>Video</p></div>;
       }
       if (mediaType.includes('audio')) {
-        return <p style={ { display: 'flex' } }><FontAwesomeIcon icon={ faVolumeUp } style={ { marginRight: '0.4rem' } }/><p>Audio</p></p>;
+        return <div style={ { display: 'flex' } }><FontAwesomeIcon icon={ faVolumeUp } style={ { marginRight: '0.4rem' } }/><p>Audio</p></div>;
       }
     };
 
