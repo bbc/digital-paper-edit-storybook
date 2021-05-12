@@ -18,3 +18,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [ 1.23.1 ] - 2021-05-11
 - I91 Replaced postinstall script in the dist folder
+
+## [ 1.23.2 ] - 2021-05-12
+- I91 Removed postinstall script in the dist folder
