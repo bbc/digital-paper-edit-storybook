@@ -126,10 +126,10 @@ const TranscriptRow = (props) => {
   const SourceRow = () => {
     const renderMediaType = (mediaType) => {
       if (mediaType.includes('video')) {
-        return <p style={ { display: 'flex' } } ><FontAwesomeIcon icon={ faPlay } style={ { marginRight: '0.4rem' } } /><p>{`Video, expires in ${ getExpiryDate(props.created) } days`}</p></p>;
+        return <div style={ { display: 'flex' } } ><FontAwesomeIcon icon={ faPlay } style={ { marginRight: '0.4rem' } } /><p>{`Video, expires in ${ getExpiryDate(props.created) } days`}</p></div>;
       }
       if (mediaType.includes('audio')) {
-        return <p style={ { display: 'flex' } }><FontAwesomeIcon icon={ faVolumeUp } style={ { marginRight: '0.4rem' } }/><p>{`Audio, expires in ${ getExpiryDate(props.created) } days`}</p></p>;
+        return <div style={ { display: 'flex' } }><FontAwesomeIcon icon={ faVolumeUp } style={ { marginRight: '0.4rem' } }/><p>{`Audio, expires in ${ getExpiryDate(props.created) } days`}</p></div>;
       }
     };
 
