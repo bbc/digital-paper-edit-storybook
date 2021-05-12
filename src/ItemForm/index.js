@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -6,17 +6,9 @@ import Modal from 'react-bootstrap/Modal';
 
 const ItemForm = (props) => {
   const type = props.type.toLowerCase();
-  const [ description, setDescription ] = useState('');
+  const [ description, setDescription ] = useState(props.description);
   const [ isValidated, setIsValidated ] = useState(false);
-  const [ title, setTitle ] = useState('');
-
-  useEffect (() => {
-    setDescription(props.description);
-    setTitle(props.title);
-
-    return () => {
-    };
-  }, [ props.description, props.title ]);
+  const [ title, setTitle ] = useState(props.title);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
