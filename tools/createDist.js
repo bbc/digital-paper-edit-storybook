@@ -24,7 +24,7 @@ const createDist = async () => {
   }, dependencies);
 
   // Removes .git from postinstall dependencies
-  scripts.postinstall = 'husky install';
+  delete scripts.postinstall;
 
   const distPackage = { ...packageObject, ...{ dependencies: remainingDeps },
     ...{ scripts } };
