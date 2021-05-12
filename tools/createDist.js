@@ -4,6 +4,7 @@ const path = require('path');
 const createDist = async () => {
   let packageJson, packageObject;
   const depsToRemove = [ 'react', 'react-dom', 'react-router', 'react-router-dom' ];
+  const scriptsToRemove = [ 'postinstall' ];
 
   console.log(`Removing dependencies [${ depsToRemove }] from package.json and writing to ./dist/package.json`);
   try {
@@ -23,11 +24,15 @@ const createDist = async () => {
     return remaining;
   }, dependencies);
 
-  // Removes .git from postinstall dependencies
-  delete scripts.postinstall;
+  const remainingScripts = scriptsToRemove.reduce((script, scriptToRemove) => {
+    // eslint-disable-next-line no-unused-vars
+    const { [scriptToRemove]: _, ...remaining } = script;
+
+    return remaining;
+  }, scripts);
 
   const distPackage = { ...packageObject, ...{ dependencies: remainingDeps },
-    ...{ scripts } };
+    ...{ scripts: remainingScripts } };
 
   try {
     await fs.writeFile(path.resolve('./dist/package.json'), JSON.stringify(distPackage, null, '\t'));
