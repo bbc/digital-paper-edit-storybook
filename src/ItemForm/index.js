@@ -58,7 +58,7 @@ const ItemForm = (props) => {
       validated={ isValidated }
       onSubmit={ handleSubmit }
     >
-      <Form.Group>
+      <Form.Group controlId={ `form.${ type }-title` }>
         <Form.Label>{formValues[type].title}</Form.Label>
         <Form.Control
           required
@@ -74,7 +74,7 @@ const ItemForm = (props) => {
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Form.Group>
+      <Form.Group controlId={ `form.${ type }-description` }>
         <Form.Label>Description</Form.Label>
         <Form.Control
           type="text"
