@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { LinkContainer } from 'react-router-bootstrap';
 import moment from 'moment';
+import { TimeRow, SourceRow, MessageRow, InProgressMessage } from './rows';
 import ProgressBar from '../ProgressBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -13,10 +14,8 @@ import {
   faExclamationTriangle,
   faPen,
   faEllipsisV,
-  faPlay,
-  faVolumeUp,
   faCheckCircle,
-  faSyncAlt
+  faHourglassEnd
 } from '@fortawesome/free-solid-svg-icons';
 
 moment().format();
@@ -34,19 +33,6 @@ const TranscriptRow = (props) => {
 
   const handleEdit = () => {
     props.handleEditItem(props.id);
-  };
-
-  const getExpiryDate = (createdDate) => {
-    const dateCreated = moment(new Date(createdDate));
-    console.log('dateCreated: ', dateCreated);
-    const dateNow = moment();
-    console.log('dateNow: ', dateNow);
-    const expiryDate = moment(new Date(dateCreated)).add(60, 'days');
-    console.log('expiryDate: ', expiryDate);
-    const daysUntilExpiry = expiryDate.diff(dateNow, 'days');
-    console.log('daysUntilExpiry: ', daysUntilExpiry);
-
-    return daysUntilExpiry;
   };
 
   const HeaderRow = ({ children }) => {
@@ -82,70 +68,6 @@ const TranscriptRow = (props) => {
       </Row>
     );
   };
-  const MessageRow = ({ children }) =>
-    <Row style={ { width: '100%', fontSize: '13px' } }>
-      <Col xs={ 12 }>
-        {children}
-      </Col>
-    </Row>;
-
-  const MetaRow = ({ children }) => {
-    return (
-      <Row style={ { fontSize: '13px', lineHeight: '1', marginBottom: '-30px', color: 'grey'
-      } }>
-        <Col style={ { paddingBottom:'15px' } }>
-          {children}
-        </Col>
-      </Row>);
-  };
-
-  const InProgressMessage = ({ message }) => {
-    if (message === 'Transcribing...') {
-      return (
-        <p style={ { paddingBottom: '13px', borderBottom: 'solid 1px #c0c0c0' } }>
-          <FontAwesomeIcon
-            icon={ faSyncAlt }
-            style={ { marginRight: '0.4rem' } }/>
-          <span>{message}</span>
-        </p>
-      );
-    } else if (message === 'Stripping audio...' || 'Sending media to a Speech-to-Text service...') {
-      return (
-        <p style={ { paddingBottom: '13px', borderBottom: 'solid 1px #c0c0c0' } }>
-          <FontAwesomeIcon
-            icon={ faSyncAlt }
-            style={ { marginRight: '0.4rem' } } />
-          <span>{`Transcribing: ${ message }`}</span>
-        </p>
-      );
-    }
-
-    return <p>{message}</p>;
-  };
-
-  const SourceRow = () => {
-    const renderMediaType = (mediaType) => {
-      if (mediaType.includes('video')) {
-        return <div style={ { display: 'flex' } } ><FontAwesomeIcon icon={ faPlay } style={ { marginRight: '0.4rem' } } /><p>{`Video, expires in ${ getExpiryDate(props.created) } days`}</p></div>;
-      }
-      if (mediaType.includes('audio')) {
-        return <div style={ { display: 'flex' } }><FontAwesomeIcon icon={ faVolumeUp } style={ { marginRight: '0.4rem' } }/><p>{`Audio, expires in ${ getExpiryDate(props.created) } days`}</p></div>;
-      }
-    };
-
-    return (
-      <MetaRow>
-        {props.mediaType ? renderMediaType(props.mediaType) : <p>unknown</p>}
-      </MetaRow>);
-  };
-
-  const TimeRow = () =>
-    <MetaRow>
-      <p style={ { paddingBottom: '13px', borderBottom: 'solid 1px #c0c0c0' } }>
-        {props.mediaDuration ? `Duration: ${ props.mediaDuration } | ` : null}
-        {props.created ? `Upload: ${ props.created }` : null}
-      </p>
-    </MetaRow>;
 
   const ErrorCard = () => {
     return (
@@ -164,7 +86,10 @@ const TranscriptRow = (props) => {
             <span>Transcription failed, please try again</span>
           </div>
         </MessageRow>
-        <TimeRow></TimeRow>
+        <TimeRow
+          mediaDuration={ props.mediaDuration }
+          created={ props.created }
+        />
       </>
     );
   };
@@ -178,16 +103,12 @@ const TranscriptRow = (props) => {
           </p>
         </HeaderRow>
 
-        {props.message ? (
-          <MessageRow>
-            <span style={ { marginBottom: '15px', display: 'block' } }>
-              This file will be automatically deleted after 60 days.
-            </span>
-            <InProgressMessage message={ props.message }/>
-          </MessageRow>
-
-        ) : null}
-        {/* <TimeRow></TimeRow> */}
+        <MessageRow>
+          <span style={ { marginBottom: '15px', display: 'block' } }>
+            This file will be automatically deleted after 60 days.
+          </span>
+          <InProgressMessage message={ props.message ? props.message : 'In progress...' }/>
+        </MessageRow>
       </>
     );
   };
@@ -213,7 +134,10 @@ const TranscriptRow = (props) => {
             </div>
           ) : null}
         </MessageRow>
-        <TimeRow></TimeRow>
+        <TimeRow
+          mediaDuration={ props.mediaDuration }
+          created={ props.created }
+        />
       </>
     );
   };
@@ -241,8 +165,33 @@ const TranscriptRow = (props) => {
             </p>
           </LinkContainer>
         </HeaderRow>
-        <SourceRow></SourceRow>
-        <TimeRow></TimeRow>
+        <SourceRow
+          mediaType={ props.mediaType }
+          created={ props.created }
+        />
+        <TimeRow
+          mediaDuration={ props.mediaDuration }
+          created={ props.created }
+        />
+      </>
+    );
+  };
+
+  const ExpiredCard = () => {
+    return (
+      <>
+        <HeaderRow>
+          <p style={ { color: 'grey' } }>
+            <strong>{props.title}</strong>
+          </p>
+        </HeaderRow>
+        <MessageRow>
+          <FontAwesomeIcon icon={ faHourglassEnd } /> This file is no longer available.
+        </MessageRow>
+        <TimeRow
+          mediaDuration={ props.mediaDuration }
+          created={ props.created }
+        />
       </>
     );
   };
@@ -257,6 +206,8 @@ const TranscriptRow = (props) => {
     card = ErrorCard();
   } else if (props.status === 'uploading') {
     card = UploadingCard();
+  } else if (props.status === 'expired') {
+    card = ExpiredCard();
   }
 
   return <>{card}</>;
@@ -275,6 +226,8 @@ TranscriptRow.propTypes = {
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   progress: PropTypes.number,
+  created: PropTypes.string,
+  mediaType: PropTypes.string
 };
 
 TranscriptRow.defaultProps = {
