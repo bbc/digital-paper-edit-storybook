@@ -11,7 +11,7 @@ const pauseIcon = <FontAwesomeIcon icon={ faPause } />;
 const stopIcon = <FontAwesomeIcon icon={ faStop } />;
 
 const Controls = (props) => {
-  
+
   const [ isPlaying, setIsPlaying ] = useState(false);
   const [ videoContext, setVideoContext ] = useState(props.videoContext);
 
@@ -33,15 +33,15 @@ const Controls = (props) => {
   useEffect(() => {
     const isVideoFinished = () => {
       if (videoContext.currentTime >= videoContext.duration) {
-        setIsPlaying(false)
+        setIsPlaying(false);
       }
-        requestAnimationFrame(isVideoFinished)
-      }
+      requestAnimationFrame(isVideoFinished);
+    };
 
     if (videoContext) {
-      isVideoFinished()
+      isVideoFinished();
     }
-  }, [ videoContext ])
+  }, [ videoContext ]);
 
   return (
     <>

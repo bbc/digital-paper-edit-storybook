@@ -36,7 +36,7 @@ storiesOf('Transcript Row', module)
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
           mediaDuration={ 10000 }
-          transcriptionDuration={ 1000000 }
+          created={ '20.04.21, 12:53' }
         />
       </section>
     );

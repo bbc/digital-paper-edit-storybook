@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { faCopy, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
 import 'bootstrap-css-only/css/bootstrap.css';
 
@@ -46,16 +46,17 @@ const ProjectRow = (props) => {
       <Col xs={ 1 } sm={ 1 }>
         <Dropdown>
           <Dropdown.Toggle
+            bsPrefix="custom-menu"
             variant="secondary"
             size="sm"
             style={ {
-              marginTop: '0.2rem',
+              margin: '0.2rem',
               borderWidth: 0,
               backgroundColor: 'transparent',
               color: 'grey',
             } }
           >
-            <FontAwesomeIcon icon={ faEllipsisH } />
+            <FontAwesomeIcon icon={ faEllipsisV } />
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item as="button" onClick={ handleDuplicateItem }>
