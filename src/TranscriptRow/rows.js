@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import moment from 'moment';
@@ -90,6 +91,28 @@ const TimeRow = (props) => {
       </p>
     </MetaRow>
   );
+};
+
+TimeRow.propTypes = {
+  created: PropTypes.string,
+  mediaDuration: PropTypes.string
+};
+
+SourceRow.propTypes = {
+  mediaType: PropTypes.string,
+};
+
+MetaRow.propTypes = {
+  children: PropTypes.any
+};
+
+InProgressMessage.propTypes = {
+  mediaDuration: PropTypes.string,
+  message: PropTypes.string
+};
+
+MessageRow.propTypes = {
+  children: PropTypes.any,
 };
 
 export {

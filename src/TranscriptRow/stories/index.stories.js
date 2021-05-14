@@ -9,7 +9,7 @@ import { transcriptItems } from '../../dummy';
 
 const transcriptCardActions = actions({
   handleEdit: 'Edit button clicked',
-  handleDelete: 'Delete button clicked'
+  handleDelete: 'Delete button clicked',
 });
 
 const style = { height: '90vh', overflow: 'scroll' };
@@ -24,6 +24,8 @@ storiesOf('Transcript Row', module)
           { ...transcriptItems[0] }
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
+          created={ '2021-05-14' }
+          mediaDuration={ '30 mins' }
         />
       </section>
     );
@@ -35,8 +37,8 @@ storiesOf('Transcript Row', module)
           { ...transcriptItems[0] }
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
-          mediaDuration={ 10000 }
-          created={ '20.04.21, 12:53' }
+          mediaDuration={ '30 mins' }
+          created={ '2021-05-14' }
         />
       </section>
     );
@@ -46,8 +48,10 @@ storiesOf('Transcript Row', module)
       <section style={ style }>
         <TranscriptRow
           { ...transcriptItems[1] }
+          created={ '2021-05-14' }
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
+
         />
       </section>
     );
@@ -59,6 +63,8 @@ storiesOf('Transcript Row', module)
           message="Stripping audio..."
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
+          created={ '2021-05-14' }
+
         />
       </section>
     );
@@ -73,6 +79,7 @@ storiesOf('Transcript Row', module)
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
           progress={ number('progress', defaultProgress) }
+          created={ '2021-05-14' }
         />
       </section>
     );
@@ -84,6 +91,7 @@ storiesOf('Transcript Row', module)
           { ...transcriptItems[2] }
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
+          created={ '2021-05-14' }
         />
       </section>
     );
