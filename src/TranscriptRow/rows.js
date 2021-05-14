@@ -100,6 +100,7 @@ TimeRow.propTypes = {
 
 SourceRow.propTypes = {
   mediaType: PropTypes.string,
+  created: PropTypes.string
 };
 
 MetaRow.propTypes = {
