@@ -107,7 +107,10 @@ const TranscriptRow = (props) => {
           <span style={ { marginBottom: '15px', display: 'block' } }>
             This file will be automatically deleted after 60 days.
           </span>
-          <InProgressMessage message={ props.message ? props.message : 'In progress...' }/>
+          <InProgressMessage
+            message={ props.message ? props.message : 'In progress...' }
+            mediaDuration={ props.mediaDuration }
+          />
         </MessageRow>
       </>
     );
@@ -216,7 +219,7 @@ const TranscriptRow = (props) => {
 TranscriptRow.propTypes = {
   description: PropTypes.string,
   message: PropTypes.string,
-  mediaDuration: PropTypes.number,
+  mediaDuration: PropTypes.string,
   transcriptionDuration: PropTypes.number,
   handleDeleteItem: PropTypes.func.isRequired,
   handleEditItem: PropTypes.func.isRequired,

@@ -22,14 +22,14 @@ const getExpiryDate = (createdDate) => {
   return daysUntilExpiry;
 };
 
-const InProgressMessage = ({ message }) => {
+const InProgressMessage = ({ message, mediaDuration }) => {
   if (message === 'Transcribing...') {
     return (
       <p style={ { paddingBottom: '13px', borderBottom: 'solid 1px #c0c0c0' } }>
         <FontAwesomeIcon
           icon={ faSyncAlt }
           style={ { marginRight: '0.4rem' } } />
-        <span>{`${ message }`}</span>
+        <span>{`Transcribing${ mediaDuration ? `, approx. ${ mediaDuration }` : '...' }`}</span>
       </p>
     );
   } else if (message === 'Stripping audio...' || 'Sending media to a Speech-to-Text service...') {
@@ -94,6 +94,7 @@ const MetaRow = ({ children }) => {
 };
 
 const TimeRow = (props) => {
+
   return (
     <MetaRow>
       <p style={ { paddingBottom: '13px', borderBottom: 'solid 1px #c0c0c0' } }>
