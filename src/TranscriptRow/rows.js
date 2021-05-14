@@ -22,38 +22,25 @@ const getExpiryDate = (createdDate) => {
   return daysUntilExpiry;
 };
 
-const InProgressMessage = ({ message, mediaDuration }) => {
+const formatMessage = (message, mediaDuration) => {
   if (message === 'Transcribing...') {
-    return (
-      <p style={ { paddingBottom: '13px', borderBottom: 'solid 1px #c0c0c0' } }>
-        <FontAwesomeIcon
-          icon={ faSyncAlt }
-          style={ { marginRight: '0.4rem' } } />
-        <span>{`Transcribing${ mediaDuration ? `, approx. ${ mediaDuration }` : '...' }`}</span>
-      </p>
-    );
+    return `Transcribing${ mediaDuration ? `, approx. ${ mediaDuration }` : '...' }`;
   } else if (message === 'Stripping audio...' || 'Sending media to a Speech-to-Text service...') {
-    return (
-      <p style={ { paddingBottom: '13px', borderBottom: 'solid 1px #c0c0c0' } }>
-        <FontAwesomeIcon
-          icon={ faSyncAlt }
-          style={ { marginRight: '0.4rem' } } />
-        <span>{`Preparing: ${ message }`}</span>
-      </p>
-    );
-  } else if (message === 'Queued...') {
-    return (
-      <p style={ { paddingBottom: '13px', borderBottom: 'solid 1px #c0c0c0' } }>
-        <FontAwesomeIcon
-          icon={ faLayerGroup }
-          style={ { marginRight: '0.4rem' } } />
-        <span>{`In progress: ${ message }`}</span>
-      </p>
-
-    );
+    return `Preparing: ${ message }`;
   }
 
-  return <p>{message}</p>;
+  return `Transcribing: ${ message }`;
+};
+
+const InProgressMessage = ({ message, mediaDuration }) => {
+  return (
+    <p style={ { paddingBottom: '13px', borderBottom: 'solid 1px #c0c0c0' } }>
+      <FontAwesomeIcon
+        icon={ message === 'Queued...' ? faLayerGroup : faSyncAlt }
+        style={ { marginRight: '0.4rem' } } />
+      <span>{formatMessage(message, mediaDuration)}</span>
+    </p>
+  );
 };
 
 const MessageRow = ({ children }) => {
