@@ -35,7 +35,7 @@ const formatMessage = (message, mediaDuration) => {
 
 const InProgressMessage = ({ message, mediaDuration }) => {
   return (
-    <p style={ { paddingBottom: '13px', borderBottom: 'solid 1px #c0c0c0' } }>
+    <p>
       <FontAwesomeIcon
         icon={ message === 'Queued...' ? faLayerGroup : faSyncAlt }
         style={ { marginRight: '0.4rem' } } />
