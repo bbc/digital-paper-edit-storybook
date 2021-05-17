@@ -25,7 +25,7 @@ const getExpiryDate = (createdDate) => {
 
 const formatMessage = (message, mediaDuration) => {
   if (message === 'Transcribing...') {
-    return `Transcribing${ mediaDuration ? `, approx. ${ mediaDuration }` : '...' }`;
+    return mediaDuration ? `Transcribing, approx. ${ mediaDuration }` : message;
   } else if (message === 'Stripping audio...' || 'Sending media to a Speech-to-Text service...') {
     return `Preparing: ${ message }`;
   }
