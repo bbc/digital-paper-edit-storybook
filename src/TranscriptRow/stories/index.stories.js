@@ -38,7 +38,7 @@ storiesOf('Transcript Row', module)
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
           mediaDuration={ '30 mins' }
-          created={ '2021-05-14' }
+          created={ '2021-05-14, 12:53' }
         />
       </section>
     );
@@ -48,10 +48,8 @@ storiesOf('Transcript Row', module)
       <section style={ style }>
         <TranscriptRow
           { ...transcriptItems[1] }
-          created={ '2021-05-14' }
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
-
         />
       </section>
     );
@@ -63,8 +61,6 @@ storiesOf('Transcript Row', module)
           message="Stripping audio..."
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
-          created={ '2021-05-14' }
-
         />
       </section>
     );
@@ -79,7 +75,6 @@ storiesOf('Transcript Row', module)
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
           progress={ number('progress', defaultProgress) }
-          created={ '2021-05-14' }
         />
       </section>
     );
@@ -91,7 +86,6 @@ storiesOf('Transcript Row', module)
           { ...transcriptItems[2] }
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
-          created={ '2021-05-14' }
         />
       </section>
     );

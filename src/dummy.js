@@ -32,6 +32,7 @@ const transcriptItems = [
     description: 'This is a sample card description. This is fun!',
     url: '/projects/1/transcripts/',
     projectId: '1',
+    created: '2021-05-19, 10:53',
     updated: { seconds: 1576057575, nanoseconds: 390000000 },
     status: 'done',
     display: true,
@@ -44,6 +45,7 @@ const transcriptItems = [
     description: 'This is a sample card description. This is fun!',
     url: '/projects/1/transcripts/',
     projectId: '1',
+    created: '2021-03-19, 08:03',
     updated: { seconds: 1576057575, nanoseconds: 390000000 },
     status: 'in-progress',
     display: true,
@@ -58,6 +60,7 @@ const transcriptItems = [
     status: 'error',
     message: 'Something has gone wrong with your transcription',
     projectId: '1',
+    created: '2021-05-02, 14:53',
     updated: { seconds: 1576057575, nanoseconds: 390000000 },
     display: true,
     mediaType: 'audio'
@@ -72,7 +75,7 @@ const transcriptItems = [
     display: true,
     progress: 100,
     projectId: '1',
-    created: { seconds: 1576057570, nanoseconds: 390000000 },
+    created: '2021-05-19, 19:03',
     updated: { seconds: 1576057575, nanoseconds: 390000000 },
     status: 'uploading',
     mediaType: 'video'
