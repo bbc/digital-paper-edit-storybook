@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { LinkContainer } from 'react-router-bootstrap';
-import moment from 'moment';
 import { TimeRow, SourceRow, MessageRow, InProgressMessage } from './rows';
 import ProgressBar from '../ProgressBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,8 +17,6 @@ import {
   faHourglassEnd,
   faTimes
 } from '@fortawesome/free-solid-svg-icons';
-
-moment().format();
 
 const TranscriptRow = (props) => {
   const handleDelete = () => {

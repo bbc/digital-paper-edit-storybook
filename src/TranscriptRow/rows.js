@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import moment from 'moment';
+import { differenceInDays, addDays } from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
@@ -12,13 +12,11 @@ import {
   faLayerGroup
 } from '@fortawesome/free-solid-svg-icons';
 
-moment().format();
-
 const getExpiryDate = (createdDate) => {
-  const dateCreated = moment(new Date(createdDate));
-  const dateNow = moment();
-  const expiryDate = moment(new Date(dateCreated)).add(60, 'days');
-  const daysUntilExpiry = expiryDate.diff(dateNow, 'days');
+  const dateCreated = new Date(createdDate);
+  const dateNow = new Date();
+  const expiryDate = addDays(dateCreated, 60);
+  const daysUntilExpiry = differenceInDays(expiryDate, dateNow);
 
   return daysUntilExpiry;
 };
