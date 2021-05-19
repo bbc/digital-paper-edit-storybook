@@ -25,3 +25,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [ 1.23.2 ] - 2021-05-12
 - I91 Removed postinstall script in the dist folder
+
+## [ 1.24.0 ]
+- I222 Updated design of the workspace: List, ProjectRow and TranscriptRow components
+
+## [ 1.25.0 ]
+- I230 Updated design of the workspace: TranscriptRow component

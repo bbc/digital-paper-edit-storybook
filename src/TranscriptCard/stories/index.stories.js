@@ -56,7 +56,7 @@ storiesOf('Transcript Card', module)
       <section style={ style }>
         <TranscriptCard
           { ...transcriptItems[1] }
-          message="Fixing up a Martini..."
+          message="Stripping audio..."
           handleEditItem={ transcriptCardActions.handleEdit }
           handleDeleteItem={ transcriptCardActions.handleDelete }
         />
