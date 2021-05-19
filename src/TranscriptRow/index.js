@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Alert from 'react-bootstrap/Alert';
 import { LinkContainer } from 'react-router-bootstrap';
+import { TimeRow, SourceRow, MessageRow, InProgressMessage } from './rows';
 import ProgressBar from '../ProgressBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -13,8 +13,9 @@ import {
   faExclamationTriangle,
   faPen,
   faEllipsisV,
-  faPlay,
-  faVolumeUp
+  faCheckCircle,
+  faHourglassEnd,
+  faTimes
 } from '@fortawesome/free-solid-svg-icons';
 
 const TranscriptRow = (props) => {
@@ -30,6 +31,10 @@ const TranscriptRow = (props) => {
 
   const handleEdit = () => {
     props.handleEditItem(props.id);
+  };
+
+  const handleCancelUpload = () => {
+    props.handleCancelItemUpload(props.id);
   };
 
   const HeaderRow = ({ children }) => {
@@ -65,46 +70,6 @@ const TranscriptRow = (props) => {
       </Row>
     );
   };
-  const MessageRow = ({ children }) =>
-    <Row style={ { width: '100%', fontSize: '13px' } }>
-      <Col xs={ 12 }>
-        {children}
-      </Col>
-    </Row>;
-
-  const MetaRow = ({ children }) => {
-    return (
-      <Row style={ { fontSize: '13px', lineHeight: '1', marginBottom: '-30px', color: 'grey'
-      } }>
-        <Col style={ { paddingBottom:'15px' } }>
-          {children}
-        </Col>
-      </Row>);
-  };
-
-  const SourceRow = () => {
-    const renderMediaType = (mediaType) => {
-      if (mediaType.includes('video')) {
-        return <div style={ { display: 'flex' } } ><FontAwesomeIcon icon={ faPlay } style={ { marginRight: '0.4rem' } } /><p>Video</p></div>;
-      }
-      if (mediaType.includes('audio')) {
-        return <div style={ { display: 'flex' } }><FontAwesomeIcon icon={ faVolumeUp } style={ { marginRight: '0.4rem' } }/><p>Audio</p></div>;
-      }
-    };
-
-    return (
-      <MetaRow>
-        {props.mediaType ? renderMediaType(props.mediaType) : <p>unknown</p>}
-      </MetaRow>);
-  };
-
-  const TimeRow = () =>
-    <MetaRow>
-      <p style={ { paddingBottom: '13px', borderBottom: 'solid 1px #c0c0c0' } }>
-        {props.mediaDuration ? `Duration: ${ props.mediaDuration } | ` : null}
-        {props.created ? `Upload: ${ props.created }` : null}
-      </p>
-    </MetaRow>;
 
   const ErrorCard = () => {
     return (
@@ -115,11 +80,18 @@ const TranscriptRow = (props) => {
           </p>
         </HeaderRow>
         <MessageRow>
-          <Alert variant={ 'danger' } style={ { lineHeight: 'normal' } }>
-            <FontAwesomeIcon icon={ faExclamationTriangle } /> {props.message}
-          </Alert>
+          <div style={ { color: '#f76900' } }>
+            <FontAwesomeIcon icon={ faExclamationTriangle }
+              style={ {
+                marginRight: '0.4rem'
+              } }/>
+            <span>Transcription failed, please try again</span>
+          </div>
         </MessageRow>
-        <TimeRow></TimeRow>
+        <TimeRow
+          mediaDuration={ props.mediaDuration }
+          created={ props.created }
+        />
       </>
     );
   };
@@ -133,12 +105,19 @@ const TranscriptRow = (props) => {
           </p>
         </HeaderRow>
 
-        {props.message ? (
-          <MessageRow>
-            <Alert variant={ 'info' } style={ { lineHeight: 'normal' } }>{props.message}</Alert></MessageRow>
-        ) : null}
-        <SourceRow></SourceRow>
-        <TimeRow></TimeRow>
+        <MessageRow>
+          <span style={ { marginBottom: '15px', display: 'block' } }>
+            This file will be automatically deleted after 60 days.
+          </span>
+          <InProgressMessage
+            message={ props.message ? props.message : 'In progress...' }
+            mediaDuration={ props.mediaDuration }
+          />
+        </MessageRow>
+        <TimeRow
+          mediaDuration={ props.mediaDuration }
+          created={ props.created }
+        />
       </>
     );
   };
@@ -152,16 +131,32 @@ const TranscriptRow = (props) => {
           </p>
         </HeaderRow>
         <MessageRow>
-          <Alert variant={ 'info' } style={ { lineHeight: 'normal' } }>
-            <FontAwesomeIcon icon={ faExclamationTriangle } /> Do not move away
-            from or refresh this page until upload is complete!
-            {typeof props.progress === 'number' ? (
-              <ProgressBar progress={ props.progress } />
-            ) : null}
-          </Alert>
+          <FontAwesomeIcon icon={ faExclamationTriangle } /> This file will be automatically deleted after 60 days.
+          {typeof props.progress === 'number' ? (
+            <Row style={ { display: 'flex' } }>
+              <Col xs={ 8 } sm={ 9 }>
+                <div style={ { display: 'flex' } }>
+                  <span style={ { marginRight: '0.4rem' } }>Uploading...</span>
+                  <ProgressBar
+                    progress={ props.progress }
+                  />
+                </div>
+              </Col>
+              <Col xs={ 2 } sm={ 1 }>
+                <FontAwesomeIcon
+                  icon={ faTimes }
+                  onClick={ handleCancelUpload }
+                  style={ {
+                    marginLeft: '0.4rem'
+                  } }/>
+              </Col>
+            </Row>
+          ) : null}
         </MessageRow>
-        <SourceRow></SourceRow>
-        <TimeRow></TimeRow>
+        <TimeRow
+          mediaDuration={ props.mediaDuration }
+          created={ props.created }
+        />
       </>
     );
   };
@@ -174,15 +169,48 @@ const TranscriptRow = (props) => {
             to={ props.url }
             style={ { color: '#007bff', cursor: 'pointer' } }
           >
-            <strong>
-              <p>
+            <p style={ {
+              display: 'flex'
+            } }>
+              <FontAwesomeIcon
+                icon={ faCheckCircle }
+                style={ {
+                  color: 'green',
+                  marginRight: '0.4rem'
+                } }/>
+              <strong>
                 {props.title}
-              </p>
-            </strong>
+              </strong>
+            </p>
           </LinkContainer>
         </HeaderRow>
-        <SourceRow></SourceRow>
-        <TimeRow></TimeRow>
+        <SourceRow
+          mediaType={ props.mediaType }
+          created={ props.created }
+        />
+        <TimeRow
+          mediaDuration={ props.mediaDuration }
+          created={ props.created }
+        />
+      </>
+    );
+  };
+
+  const ExpiredCard = () => {
+    return (
+      <>
+        <HeaderRow>
+          <p style={ { color: 'grey' } }>
+            <strong>{props.title}</strong>
+          </p>
+        </HeaderRow>
+        <MessageRow>
+          <FontAwesomeIcon icon={ faHourglassEnd } /> This file is no longer available.
+        </MessageRow>
+        <TimeRow
+          mediaDuration={ props.mediaDuration }
+          created={ props.created }
+        />
       </>
     );
   };
@@ -197,6 +225,8 @@ const TranscriptRow = (props) => {
     card = ErrorCard();
   } else if (props.status === 'uploading') {
     card = UploadingCard();
+  } else if (props.status === 'expired') {
+    card = ExpiredCard();
   }
 
   return <>{card}</>;
@@ -205,16 +235,19 @@ const TranscriptRow = (props) => {
 TranscriptRow.propTypes = {
   description: PropTypes.string,
   message: PropTypes.string,
-  mediaDuration: PropTypes.number,
+  mediaDuration: PropTypes.string,
   transcriptionDuration: PropTypes.number,
   handleDeleteItem: PropTypes.func.isRequired,
   handleEditItem: PropTypes.func.isRequired,
+  handleCancelItemUpload: PropTypes.func.isRequired,
   icon: PropTypes.any,
   id: PropTypes.string.isRequired,
   status: PropTypes.string,
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   progress: PropTypes.number,
+  created: PropTypes.string,
+  mediaType: PropTypes.string
 };
 
 TranscriptRow.defaultProps = {
