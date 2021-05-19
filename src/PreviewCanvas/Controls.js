@@ -4,16 +4,16 @@ import Col from 'react-bootstrap/Col';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faStop } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
-import VideoContext from 'videocontext';
 
 const playIcon = <FontAwesomeIcon icon={ faPlay } />;
 const pauseIcon = <FontAwesomeIcon icon={ faPause } />;
 const stopIcon = <FontAwesomeIcon icon={ faStop } />;
 
 const Controls = (props) => {
-  
+
   const [ isPlaying, setIsPlaying ] = useState(false);
-  const [ videoContext, setVideoContext ] = useState(props.videoContext);
+
+  const [ videoContext ] = useState(props.videoContext);
 
   const handlePlay = () => {
     props.handlePlay();
@@ -33,15 +33,15 @@ const Controls = (props) => {
   useEffect(() => {
     const isVideoFinished = () => {
       if (videoContext.currentTime >= videoContext.duration) {
-        setIsPlaying(false)
+        setIsPlaying(false);
       }
-        requestAnimationFrame(isVideoFinished)
-      }
+      requestAnimationFrame(isVideoFinished);
+    };
 
     if (videoContext) {
-      isVideoFinished()
+      isVideoFinished();
     }
-  }, [ videoContext ])
+  }, [ videoContext ]);
 
   return (
     <>
@@ -76,5 +76,6 @@ export default Controls;
 Controls.propTypes = {
   handleStop: PropTypes.any,
   handlePlay: PropTypes.any,
-  handlePause: PropTypes.any
+  handlePause: PropTypes.any,
+  videoContext: PropTypes.any
 };
