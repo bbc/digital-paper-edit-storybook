@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -6,9 +6,18 @@ import Modal from 'react-bootstrap/Modal';
 
 const ItemForm = (props) => {
   const type = props.type.toLowerCase();
-  const [ description, setDescription ] = useState(props.description);
+  const [ description, setDescription ] = useState('');
   const [ isValidated, setIsValidated ] = useState(false);
-  const [ title, setTitle ] = useState(props.title);
+  const [ title, setTitle ] = useState('');
+
+  useEffect(() => {
+    setDescription(props.description);
+    setTitle(props.title);
+
+    return () => {
+
+    };
+  }, [ props.description, props.title ]);
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -41,6 +50,12 @@ const ItemForm = (props) => {
       titlePlaceholder: 'Enter a programme script title',
       titleFeedback: 'Please choose a programme script title',
       descriptionPlaceholder: 'Enter a programme script description (optional)'
+    },
+    'transcript': {
+      title: 'Transcript title',
+      titlePlaceholder: 'Enter a transcript title',
+      titleFeedback: 'Please choose a transcript title',
+      descriptionPlaceholder: 'Enter a transcript description (optional)'
     }
   };
 
@@ -75,6 +90,9 @@ const ItemForm = (props) => {
           name="description"
           onChange={ (e) => setDescription(e.target.value) }
         />
+        <Form.Text className="text-muted">
+          Choose an optional description
+        </Form.Text>
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
       </Form.Group>
       <Modal.Footer>
