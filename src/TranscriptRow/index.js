@@ -15,7 +15,6 @@ import {
   faEllipsisV,
   faCheckCircle,
   faHourglassEnd,
-  faTimes
 } from '@fortawesome/free-solid-svg-icons';
 
 const TranscriptRow = (props) => {
@@ -31,10 +30,6 @@ const TranscriptRow = (props) => {
 
   const handleEdit = () => {
     props.handleEditItem(props.id);
-  };
-
-  const handleCancelUpload = () => {
-    props.handleCancelItemUpload(props.id);
   };
 
   const HeaderRow = ({ children }) => {
@@ -142,14 +137,6 @@ const TranscriptRow = (props) => {
                   />
                 </div>
               </Col>
-              <Col xs={ 2 } sm={ 1 }>
-                <FontAwesomeIcon
-                  icon={ faTimes }
-                  onClick={ handleCancelUpload }
-                  style={ {
-                    marginLeft: '0.4rem'
-                  } }/>
-              </Col>
             </Row>
           ) : null}
         </MessageRow>
@@ -235,11 +222,10 @@ const TranscriptRow = (props) => {
 TranscriptRow.propTypes = {
   description: PropTypes.string,
   message: PropTypes.string,
-  mediaDuration: PropTypes.string,
+  mediaDuration: PropTypes.any,
   transcriptionDuration: PropTypes.number,
   handleDeleteItem: PropTypes.func.isRequired,
   handleEditItem: PropTypes.func.isRequired,
-  handleCancelItemUpload: PropTypes.func.isRequired,
   icon: PropTypes.any,
   id: PropTypes.string.isRequired,
   status: PropTypes.string,
