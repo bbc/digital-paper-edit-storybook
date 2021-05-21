@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 const ItemForm = (props) => {
-
+  const type = props.type.toLowerCase();
   const [ description, setDescription ] = useState('');
   const [ isValidated, setIsValidated ] = useState(false);
   const [ title, setTitle ] = useState('');
 
-  useEffect (() => {
+  useEffect(() => {
     setDescription(props.description);
     setTitle(props.title);
 
     return () => {
+
     };
   }, [ props.description, props.title ]);
 
@@ -37,36 +38,54 @@ const ItemForm = (props) => {
     }
   };
 
+  const formValues = {
+    'project': {
+      title: 'Project title',
+      titlePlaceholder: 'Enter a project title',
+      titleFeedback: 'Please choose a project title',
+      descriptionPlaceholder: 'Enter a project description (optional)'
+    },
+    'programme-script': {
+      title: 'Programme script title',
+      titlePlaceholder: 'Enter a programme script title',
+      titleFeedback: 'Please choose a programme script title',
+      descriptionPlaceholder: 'Enter a programme script description (optional)'
+    },
+    'transcript': {
+      title: 'Transcript title',
+      titlePlaceholder: 'Enter a transcript title',
+      titleFeedback: 'Please choose a transcript title',
+      descriptionPlaceholder: 'Enter a transcript description (optional)'
+    }
+  };
+
   return (
 
     <Form noValidate
       validated={ isValidated }
       onSubmit={ handleSubmit }
     >
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Title</Form.Label>
+      <Form.Group controlId={ `form.${ type }-title` }>
+        <Form.Label>{formValues[type].title}</Form.Label>
         <Form.Control
           required
           type="text"
           name="title"
-          placeholder="Enter a project title"
+          placeholder={ formValues[type].titlePlaceholder }
           value={ title }
           onChange={ (e) => setTitle(e.target.value) }
         />
-        <Form.Text className="text-muted">
-          Choose a title
-        </Form.Text>
         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         <Form.Control.Feedback type="invalid">
-          Please choose a title
+          {formValues[type].titleFeedback}
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Form.Group controlId="formBasicEmail">
+      <Form.Group controlId={ `form.${ type }-description` }>
         <Form.Label>Description</Form.Label>
         <Form.Control
           type="text"
-          placeholder="Enter a project description"
+          placeholder={ formValues[type].descriptionPlaceholder }
           value={ description }
           name="description"
           onChange={ (e) => setDescription(e.target.value) }
@@ -89,13 +108,14 @@ ItemForm.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
+  type: PropTypes.string,
   showModal: PropTypes.bool,
   modalTitle: PropTypes.string,
   handleSaveForm: PropTypes.func.isRequired,
 };
 
 ItemForm.defaultProps = {
-  showModal: false
+  showModal: false,
 };
 
 export default ItemForm;
