@@ -15,7 +15,6 @@ import {
   faEllipsisV,
   faCheckCircle,
   faHourglassEnd,
-  faTimes
 } from '@fortawesome/free-solid-svg-icons';
 
 const TranscriptRow = (props) => {
@@ -31,10 +30,6 @@ const TranscriptRow = (props) => {
 
   const handleEdit = () => {
     props.handleEditItem(props.id);
-  };
-
-  const handleCancelUpload = () => {
-    props.handleCancelItemUpload(props.id);
   };
 
   const HeaderRow = ({ children }) => {
@@ -134,21 +129,13 @@ const TranscriptRow = (props) => {
           <FontAwesomeIcon icon={ faExclamationTriangle } /> This file will be automatically deleted after 60 days.
           {typeof props.progress === 'number' ? (
             <Row style={ { display: 'flex' } }>
-              <Col xs={ 8 } sm={ 9 }>
+              <Col xs={ 12 } sm={ 12 }>
                 <div style={ { display: 'flex' } }>
                   <span style={ { marginRight: '0.4rem' } }>Uploading...</span>
                   <ProgressBar
                     progress={ props.progress }
                   />
                 </div>
-              </Col>
-              <Col xs={ 2 } sm={ 1 }>
-                <FontAwesomeIcon
-                  icon={ faTimes }
-                  onClick={ handleCancelUpload }
-                  style={ {
-                    marginLeft: '0.4rem'
-                  } }/>
               </Col>
             </Row>
           ) : null}
