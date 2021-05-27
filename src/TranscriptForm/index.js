@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -105,7 +105,7 @@ const TranscriptForm = ({ ...props }) => {
         </Form.Group>
         <Modal.Footer>
           <Button variant="primary" type="submit">
-            Save
+            Upload
           </Button>
         </Modal.Footer>
       </Form>
