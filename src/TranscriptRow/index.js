@@ -129,7 +129,7 @@ const TranscriptRow = (props) => {
           <FontAwesomeIcon icon={ faExclamationTriangle } /> This file will be automatically deleted after 60 days.
           {typeof props.progress === 'number' ? (
             <Row style={ { display: 'flex' } }>
-              <Col xs={ 8 } sm={ 9 }>
+              <Col xs={ 12 } sm={ 12 }>
                 <div style={ { display: 'flex' } }>
                   <span style={ { marginRight: '0.4rem' } }>Uploading...</span>
                   <ProgressBar
@@ -208,7 +208,7 @@ const TranscriptRow = (props) => {
     card = DoneCard();
   } else if (props.status === 'in-progress') {
     card = InProgressCard();
-  } else if (props.status === 'error') {
+  } else if (props.status === 'error' || props.status === 'fail') {
     card = ErrorCard();
   } else if (props.status === 'uploading') {
     card = UploadingCard();
