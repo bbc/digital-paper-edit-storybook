@@ -18,7 +18,7 @@ storiesOf('Form Modal', module)
       </section>
     );
   })
-  .add('New project', () => {
+  .add('New programme script', () => {
     return (
       <section style={ { height: '90vh', overflow: 'scroll' } }>
         <FormModal

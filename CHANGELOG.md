@@ -28,5 +28,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [ 1.25.0 ]
 - I230 Updated design of the workspace: TranscriptRow component
 
+## 1.26.0
+- I92 Updates placeholder text and titles of project, transcript and programme script modals
+
 ## [ 1.27.0 ]
 - I105 Updates TranscriptRow components

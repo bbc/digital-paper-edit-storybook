@@ -222,7 +222,7 @@ const TranscriptRow = (props) => {
 TranscriptRow.propTypes = {
   description: PropTypes.string,
   message: PropTypes.string,
-  mediaDuration: PropTypes.string,
+  mediaDuration: PropTypes.any,
   transcriptionDuration: PropTypes.number,
   handleDeleteItem: PropTypes.func.isRequired,
   handleEditItem: PropTypes.func.isRequired,
