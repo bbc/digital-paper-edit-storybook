@@ -208,7 +208,7 @@ const TranscriptRow = (props) => {
     card = DoneCard();
   } else if (props.status === 'in-progress') {
     card = InProgressCard();
-  } else if (props.status === 'error') {
+  } else if (props.status === 'error' || props.status === 'fail') {
     card = ErrorCard();
   } else if (props.status === 'uploading') {
     card = UploadingCard();
@@ -226,7 +226,6 @@ TranscriptRow.propTypes = {
   transcriptionDuration: PropTypes.number,
   handleDeleteItem: PropTypes.func.isRequired,
   handleEditItem: PropTypes.func.isRequired,
-  handleCancelItemUpload: PropTypes.func.isRequired,
   icon: PropTypes.any,
   id: PropTypes.string.isRequired,
   status: PropTypes.string,
