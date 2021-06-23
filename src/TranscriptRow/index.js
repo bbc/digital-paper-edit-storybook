@@ -155,6 +155,7 @@ const TranscriptRow = (props) => {
           <LinkContainer
             to={ props.url }
             style={ { color: '#007bff', cursor: 'pointer' } }
+            onClick={ props.handleClick }
           >
             <p style={ {
               display: 'flex'
@@ -226,6 +227,7 @@ TranscriptRow.propTypes = {
   transcriptionDuration: PropTypes.number,
   handleDeleteItem: PropTypes.func.isRequired,
   handleEditItem: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
   icon: PropTypes.any,
   id: PropTypes.string.isRequired,
   status: PropTypes.string,
