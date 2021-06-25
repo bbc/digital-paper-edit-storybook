@@ -51,12 +51,23 @@ const VideoContextPreview = (props) => {
   }, [ props.playlist, videoContext ]);
 
   const handleStop = () => {
+    props.handleClick('stop');
     videoContext.pause();
     setVideoContext((vc) => {
       vc.currentTime = 0;
 
       return vc;
     });
+  };
+
+  const handlePlay = () => {
+    videoContext.play();
+    props.handleClick('play');
+  };
+
+  const handlePause = () => {
+    videoContext.pause();
+    props.handleClick('pause');
   };
 
   const formattedDuration = secondsToHHMMSSFormat(duration);
@@ -78,15 +89,18 @@ const VideoContextPreview = (props) => {
         style={ { backgroundColor: 'lightgrey' } }
       >
         {videoContext ? (
-          <VideoContextProgressBar videoContext={ videoContext } />
+          <VideoContextProgressBar
+            videoContext={ videoContext }
+            handleClick={ props.handleClick }
+          />
         ) : null}
       </Row>
       <Row style={ { marginTop: '0.4em' } }>
         {videoContext ? (
           <Controls
             videoContext={ videoContext }
-            handlePlay={ () => videoContext.play() }
-            handlePause={ () => videoContext.pause() }
+            handlePlay={ () => handlePlay() }
+            handlePause={ () => handlePause() }
             handleStop={ () => handleStop() }
           />
         ) : null}
@@ -103,6 +117,7 @@ VideoContextPreview.propTypes = {
   canvasRef: PropTypes.any,
   playlist: PropTypes.array,
   width: PropTypes.number,
+  handleClick: PropTypes.func,
 };
 
 export default VideoContextPreview;
