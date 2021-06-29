@@ -241,7 +241,7 @@ TranscriptRow.propTypes = {
 TranscriptRow.defaultProps = {
   title: '',
   description: '',
-  handlClick: () => {}
+  handleClick: () => {}
 };
 
 export default React.memo(TranscriptRow);
