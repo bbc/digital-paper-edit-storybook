@@ -53,7 +53,7 @@ const VideoContextProgressBar = (props) => {
 
 VideoContextProgressBar.propTypes = {
   videoContext: PropTypes.any,
-  handleClick: PropTypes.any
+  handleClick: PropTypes.func
 };
 
 export default VideoContextProgressBar;

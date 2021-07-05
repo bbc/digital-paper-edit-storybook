@@ -13,7 +13,6 @@ const CustomBreadcrumb = (props) => {
       }
     };
 
-    console.log(item);
     if (item.link) {
       return (
         <LinkContainer key={ item.name } to={ item.link } onClick={ () => handleClick() }>
