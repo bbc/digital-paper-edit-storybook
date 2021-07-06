@@ -5,6 +5,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [ 1.28.0 ] – 2021-07-06
+- I219 added analytics
+
+## [ 1.27.0 ] - 2021-06-19
+- I105 Updates TranscriptRow components
 ## [ 1.23.0 ] - 2021-05-10
 - I72 Added npm link scripts, babel plugin and react-dom dependency
 
