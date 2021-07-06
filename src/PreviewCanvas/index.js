@@ -12,17 +12,20 @@ const PreviewCanvas = props => {
       width={ width }
       canvasRef={ canvasRef }
       playlist={ playlist }
+      handleClick={ props.handleClick }
     />
   );
 };
 
 PreviewCanvas.propTypes = {
   playlist: PropTypes.array,
-  width: PropTypes.number
+  width: PropTypes.number,
+  handleClick: PropTypes.func,
 };
 
 PreviewCanvas.defaultProps = {
-  playlist: []
+  playlist: [],
+  handleClick: () => { console.log('play controls clicked'); }
 };
 
 export default PreviewCanvas;

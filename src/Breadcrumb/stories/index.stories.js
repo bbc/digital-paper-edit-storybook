@@ -44,7 +44,9 @@ storiesOf('Breadcrumb', module)
   })
   .add('Paper Edits', () => {
     return (
-      <section style={ { height: '90vh', overflow: 'scroll' } }>
+      <section
+        style={ { height: '90vh', overflow: 'scroll' } }
+      >
         <Breadcrumb
           items={ breadcrumbItems.paperEdits }
         />

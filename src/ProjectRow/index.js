@@ -32,8 +32,9 @@ const ProjectRow = (props) => {
         <LinkContainer
           to={ props.url }
           style={ { color: '#007bff', cursor: 'pointer', marginTop: '0.4rem' } }
+          onClick={ props.handleClick }
         >
-          <p >
+          <p>
             <strong>{props.title}</strong>
           </p>
         </LinkContainer>
@@ -86,6 +87,7 @@ ProjectRow.propTypes = {
   title: PropTypes.string.isRequired,
   updated: PropTypes.any,
   url: PropTypes.string.isRequired,
+  handleClick: PropTypes.func,
 };
 
 ProjectRow.defaultProps = {

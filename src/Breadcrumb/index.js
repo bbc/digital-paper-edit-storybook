@@ -6,9 +6,16 @@ import { LinkContainer } from 'react-router-bootstrap';
 const CustomBreadcrumb = (props) => {
 
   const breadcrumbs = props.items.map((item) => {
+
+    const handleClick = () => {
+      if (item.name.includes('Project:')) {
+        props.handleClick();
+      }
+    };
+
     if (item.link) {
       return (
-        <LinkContainer key={ item.name } to={ item.link }>
+        <LinkContainer key={ item.name } to={ item.link } onClick={ () => handleClick() }>
           <Breadcrumb.Item>{item.name}</Breadcrumb.Item>
         </LinkContainer>
       );
@@ -32,6 +39,7 @@ const CustomBreadcrumb = (props) => {
 
 CustomBreadcrumb.propTypes = {
   items: PropTypes.array,
+  handleClick: PropTypes.func,
 };
 
 CustomBreadcrumb.defaultProps = {
