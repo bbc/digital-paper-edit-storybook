@@ -1,14 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
-
 name: Node.js Package
 on:
   # release:
   #   types: [created]
   push:
     branches:
-      -github-actions-test
+      - github-actions-test
 jobs:
   build:
     runs-on: ubuntu-latest
